@@ -20,6 +20,14 @@ set(SOURCE ${SOURCE_FILES} ${INCLUDE_FILES}) #Define Variable "Source" as all Gr
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/com/ethanbreit) #Define the Green Engine include directories
 
+###
+### Libraries
+###
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/libs/headers) #Define the Green Engine include directories
+
+
+
 if (DEVELOPMENT_MODE)
     message("Development build enabled (not creating library)")
 
