@@ -26,7 +26,22 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/com/ethanbreit) #Define 
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/libs/headers) #Define the Green Engine include directories
 
+if (${WIN32} OR ("${CMAKE_SYSTEM_NAME}" MATCHES "Linux")) 
+	message("Should support Vulkan")
+    find_package(Vulkan REQUIRED)
+	if(Vulkan_FOUND)
+	    include_directories(${Vulkan_INCLUDE_DIRS})
+	    target_link_libraries (Green_Engine ${Vulkan_LIBRARIES})
+	else()
+		message( FATAL_ERROR "ERROR: Could not Vulkan, Vulkan is NECESSARY for Windows and Linux")
+	endif()
 
+elseif(APPLE)
+
+   find_library(Metal_LIBRARY Metal)
+   target_link_libraries (Green_Engine ${Metal_LIBRARY})
+
+endif()
 
 if (DEVELOPMENT_MODE)
     message("Development build enabled (not creating library)")
