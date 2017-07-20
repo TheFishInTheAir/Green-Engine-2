@@ -21,27 +21,8 @@ set(SOURCE ${SOURCE_FILES} ${INCLUDE_FILES}) #Define Variable "Source" as all Gr
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/com/ethanbreit) #Define the Green Engine include directories
 
 ###
-### Libraries
+### Sources and Includes
 ###
-
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/libs/headers) #Define the Green Engine include directories
-
-if (${WIN32} OR ("${CMAKE_SYSTEM_NAME}" MATCHES "Linux")) 
-	message("Should support Vulkan")
-    find_package(Vulkan REQUIRED)
-	if(Vulkan_FOUND)
-	    include_directories(${Vulkan_INCLUDE_DIRS})
-	    target_link_libraries (Green_Engine ${Vulkan_LIBRARIES})
-	else()
-		message( FATAL_ERROR "ERROR: Could not Vulkan, Vulkan is NECESSARY for Windows and Linux")
-	endif()
-
-elseif(APPLE)
-
-   find_library(Metal_LIBRARY Metal)
-   target_link_libraries (Green_Engine ${Metal_LIBRARY})
-
-endif()
 
 if (DEVELOPMENT_MODE)
     message("Development build enabled (not creating library)")
@@ -65,5 +46,38 @@ else()
     add_library(Green_Engine_2 ${SOURCE})
 
 endif ()
+
+
+###
+### Libraries
+###
+
+set(SUPPORTS_VULKAN FALSE)
+
+if(WIN32)
+    set(SUPPORTS_VULKAN TRUE)
+endif()
+
+if("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux")
+    set(SUPPORTS_VULKAN TRUE)
+endif()
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/libs/headers) #Define the Green Engine include directories
+
+if (SUPPORTS_VULKAN)
+	message("Should support Vulkan")
+    find_package(Vulkan REQUIRED)
+	if(Vulkan_FOUND)
+	    include_directories(${Vulkan_INCLUDE_DIRS})
+	    target_link_libraries (Green_Engine_2 ${Vulkan_LIBRARIES})
+	else()
+		message( FATAL_ERROR "ERROR: Could not Vulkan, Vulkan is NECESSARY for Windows and Linux")
+	endif()
+elseif(APPLE)
+    message("Should support Metal")
+   find_library(Metal_LIBRARY Metal)
+   target_link_libraries (Green_Engine_2 ${Metal_LIBRARY})
+
+endif()
 
 set_target_properties(Green_Engine_2 PROPERTIES LINKER_LANGUAGE "CXX")
