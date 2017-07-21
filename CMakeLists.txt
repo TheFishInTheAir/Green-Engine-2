@@ -24,6 +24,9 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/com/ethanbreit) #Define 
 ### Sources and Includes
 ###
 
+### STUPID LIB THAT HAS TO BE ADDED TO THE SOURCE
+
+
 if (DEVELOPMENT_MODE)
     message("Development build enabled (not creating library)")
 
@@ -52,32 +55,63 @@ endif ()
 ### Libraries
 ###
 
-set(SUPPORTS_VULKAN FALSE)
+set(SUPPORTS_VULKAN FALSE) # Check if os Supports Vulkan
 
-if(WIN32)
+if(WIN32)# Check if OS is Windows (Supports Vulkan)
     set(SUPPORTS_VULKAN TRUE)
 endif()
 
-if("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux")
-    set(SUPPORTS_VULKAN TRUE)
+if("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux") # Check if OS is Linux (Supports Vulkan)
+    set(SUPPORTS_VULKAN TRUE) # Check if os Supports Vulkan
 endif()
+
+
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/libs/headers) #Define the Green Engine include directories
 
+
+
+find_package(OpenGL REQUIRED)
+if (OpenGL_FOUND)
+
+    include_directories(${OpenGL_INCLUDE_DIRS})
+    target_link_libraries (Green_Engine_2 ${OpenGL_LIBRARIES})
+
+endif ()
+
 if (SUPPORTS_VULKAN)
+
 	message("Should support Vulkan")
     find_package(Vulkan REQUIRED)
+
 	if(Vulkan_FOUND)
+
 	    include_directories(${Vulkan_INCLUDE_DIRS})
 	    target_link_libraries (Green_Engine_2 ${Vulkan_LIBRARIES})
-	else()
-		message( FATAL_ERROR "ERROR: Could not Vulkan, Vulkan is NECESSARY for Windows and Linux")
-	endif()
-elseif(APPLE)
-    message("Should support Metal")
-   find_library(Metal_LIBRARY Metal)
-   target_link_libraries (Green_Engine_2 ${Metal_LIBRARY})
 
+	else()
+
+		message( FATAL_ERROR "ERROR: Could not Vulkan, Vulkan is NECESSARY for Windows and Linux")
+
+	endif()
+
+elseif(APPLE)
+
+    message("Should support Metal")
+    find_library(Cocoa_LIBRARY Cocoa)
+    find_library(Core_LIBRARY CoreFoundation)
+    find_library(Metal_LIBRARY Metal)
+    find_library(MetalKit_LIBRARY MetalKit)
+    message("Cocoa: ${Cocoa_LIBRARY}")
+    message("CoreFoundation: ${Core_LIBRARY}")
+    message("Metal: ${Metal_LIBRARY}")
+    message("MetalKit: ${MetalKit_LIBRARY}")
+    #include_directories(${Vulkan_INCLUDE_DIRS}/Headers)
+    target_link_libraries (Green_Engine_2 ${Cocoa_LIBRARY})
+    target_link_libraries (Green_Engine_2 ${Core_LIBRARY})
+    target_link_libraries (Green_Engine_2 ${Metal_LIBRARY})
+    target_link_libraries (Green_Engine_2 ${MetalKit_LIBRARY})
+    target_link_libraries (Green_Engine_2 ${CMAKE_CURRENT_SOURCE_DIR}/libs/compiled/mtlpp.o ${CMAKE_CURRENT_SOURCE_DIR}/libs/compiled/window.o )
 endif()
 
 set_target_properties(Green_Engine_2 PROPERTIES LINKER_LANGUAGE "CXX")
