@@ -7,6 +7,9 @@
 *.userosscache
 *.sln.docstates
 
+#Ignore Clion files
+.idea/
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -15,6 +18,7 @@
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
+cmake-build-debug/
 x64/
 x86/
 build/
