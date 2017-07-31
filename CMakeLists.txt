@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD 11)
 #TODO: SET TO FALSE
 set(DEVELOPMENT_MODE TRUE CACHE BOOL "Include tests in build.")
 
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake) #Include custom cmake files
 
 file(GLOB_RECURSE SOURCE_FILES 
         ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
@@ -19,6 +20,8 @@ file(GLOB_RECURSE INCLUDE_FILES
 set(SOURCE ${SOURCE_FILES} ${INCLUDE_FILES}) #Define Variable "Source" as all Green Engine Library Paths
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/com/ethanbreit) #Define the Green Engine include directories
+
+
 
 ###
 ### Sources and Includes
@@ -72,17 +75,42 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/libs/headers) #Define the Green 
 
 
 find_package(OpenGL REQUIRED)
-if (OpenGL_FOUND)
-
-    include_directories(${OpenGL_INCLUDE_DIRS})
-    target_link_libraries (Green_Engine_2 ${OpenGL_LIBRARIES})
-
+if (OPENGL_FOUND)
+    message("${OPENGL_INCLUDE_DIRS} and ${OPENGL_LIBRARIES}\n")
+    include_directories(${OPENGL_INCLUDE_DIRS})
+    target_link_libraries (Green_Engine_2 ${OPENGL_LIBRARIES})
 endif ()
+
+
+find_package(GLEWosd REQUIRED)
+
+if (GLEW_FOUND)
+    message("${GLEW_INCLUDE_DIR} and ${GLEW_LIBRARY}\n")
+    include_directories(${GLEW_INCLUDE_DIR})
+    target_link_libraries (Green_Engine_2 ${GLEW_LIBRARY})
+
+endif()
+
+find_package(GLFWosd REQUIRED)
+
+if (GLFW_FOUND)
+    message("${GLFW_INCLUDE_DIR} and ${GLFW_LIBRARY}\n")
+    include_directories(${GLFW_INCLUDE_DIR})
+    target_link_libraries (Green_Engine_2 ${GLFW_LIBRARY})
+
+endif()
+
+find_library(Spline TinySpline)
+
+if(Spline)
+    message("TinySpline: ${Spline}")
+    target_link_libraries (Green_Engine_2 ${Spline})
+endif()
 
 if (SUPPORTS_VULKAN)
 
 	message("Should support Vulkan")
-    find_package(Vulkan REQUIRED)
+    find_package(Vulkan)
 
 	if(Vulkan_FOUND)
 
@@ -91,12 +119,12 @@ if (SUPPORTS_VULKAN)
 
 	else()
 
-		message( FATAL_ERROR "ERROR: Could not Vulkan, Vulkan is NECESSARY for Windows and Linux")
+		#message( FATAL_ERROR "ERROR: Could not Vulkan, Vulkan is NECESSARY for Windows and Linux")
 
 	endif()
 
 elseif(APPLE)
-
+#TODO: try catch
     message("Should support Metal")
     find_library(Cocoa_LIBRARY Cocoa)
     find_library(Core_LIBRARY CoreFoundation)
@@ -107,6 +135,7 @@ elseif(APPLE)
     message("Metal: ${Metal_LIBRARY}")
     message("MetalKit: ${MetalKit_LIBRARY}")
     #include_directories(${Vulkan_INCLUDE_DIRS}/Headers)
+
     target_link_libraries (Green_Engine_2 ${Cocoa_LIBRARY})
     target_link_libraries (Green_Engine_2 ${Core_LIBRARY})
     target_link_libraries (Green_Engine_2 ${Metal_LIBRARY})

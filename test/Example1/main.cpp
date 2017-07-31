@@ -1,78 +1,121 @@
 //
-// Created by Ethan Breit on 2017-07-13.
+// Created by Ethan Breit on 2017-07-22.
 //
-#include <glm/glm.hpp>
-#include <mtlpp/mtlpp.hpp>
-#include <mtlpp/window/window.hpp>
-#include <iostream>
+#include "../ExampleController.h"
 
-mtlpp::Device              g_device;
-mtlpp::CommandQueue        g_commandQueue;
-mtlpp::Buffer              g_vertexBuffer;
-mtlpp::RenderPipelineState g_renderPipelineState;
 
-void Render(const Window& win)
+#ifdef Enable_Example1
+#include <gl/glew.h>
+#include <error/Error.h>
+#include <console/ConsoleIO.h>
+#include <util/ResourceUtil.h>
+#include <graphics/GraphicsCore.h>
+
+ge::Error test()
 {
-    mtlpp::CommandBuffer commandBuffer = g_commandQueue.CommandBuffer();
-
-    mtlpp::RenderPassDescriptor renderPassDesc = win.GetRenderPassDescriptor();
-    if (renderPassDesc)
-    {
-        mtlpp::RenderCommandEncoder renderCommandEncoder;
-        renderCommandEncoder = commandBuffer.RenderCommandEncoder(renderPassDesc);
-        renderCommandEncoder.SetRenderPipelineState(g_renderPipelineState);
-        renderCommandEncoder.SetVertexBuffer(g_vertexBuffer, 0, 0);
-        renderCommandEncoder.Draw(mtlpp::PrimitiveType::Triangle, 0, 3);
-        renderCommandEncoder.EndEncoding();
-        commandBuffer.Present(win.GetDrawable());
-    }
-
-    commandBuffer.Commit();
-    commandBuffer.WaitUntilCompleted();
+    ge::Error err("testing");
+    ge_Error_ADDTRACE(err);
+    return err;
 }
+
+ge::Shader* vert;
+ge::Shader* frag;
+
+ge::Uniform* u;
+
+std::string fragSrc;
+std::string vertSrc;
+
+static const float g_vertex_buffer_data[] = {
+        -1.0f, -1.0f, 0.0f,
+        1.0f, -1.0f, 0.0f,
+        0.0f,  1.0f, 0.0f,
+};
+
+static const unsigned int vertices[] = {
+        0,1,2
+};
 
 int main()
 {
-    const char shadersSrc[] = R"""(
-        #include <metal_stdlib>
-        using namespace metal;
 
-        vertex float4 vertFunc(
-            const device packed_float3* vertexArray [[buffer(0)]],
-            unsigned int vID[[vertex_id]])
-        {
-            return float4(vertexArray[vID], 1.0);
-        }
+    ge::GraphicsCore *gc = new ge::GraphicsCore(ge::GraphicsApi::API_OpenGL);
 
-        fragment half4 fragFunc()
-        {
-            return half4(1.0, 0.0, 0.0, 1.0);
-        }
-    )""";
 
-    const float vertexData[] =
-            {
-                    0.0f,  1.0f, 0.0f,
-                    -1.0f, -1.0f, 0.0f,
-                    1.0f, -1.0f, 0.0f,
-            };
-    g_device = mtlpp::Device::CreateSystemDefaultDevice();
-    g_commandQueue = g_device.NewCommandQueue();
+    {
+        ge::Error err = test();
+        ge_Error_ADDTRACE(err);
+    }
+    ge_Error_ADDTRACE(
+            gc->window->init(ge::WindowConstructorInfo())
+    );
 
-    mtlpp::Library library = g_device.NewLibrary(shadersSrc, mtlpp::CompileOptions(), nullptr);
-    mtlpp::Function vertFunc = library.NewFunction("vertFunc");
-    mtlpp::Function fragFunc = library.NewFunction("fragFunc");
 
-    g_vertexBuffer = g_device.NewBuffer(vertexData, sizeof(vertexData), mtlpp::ResourceOptions::CpuCacheModeDefaultCache);
+    ge::ResourceUtil::getRawStrResource("PosColour.frag", &fragSrc);
+    gc->shaderFactory->genShader(fragSrc,ge::ShaderType::Shader_Fragment,&frag);
 
-    mtlpp::RenderPipelineDescriptor renderPipelineDesc;
-    renderPipelineDesc.SetVertexFunction(vertFunc);
-    renderPipelineDesc.SetFragmentFunction(fragFunc);
-    renderPipelineDesc.GetColorAttachments()[0].SetPixelFormat(mtlpp::PixelFormat::BGRA8Unorm);
-    g_renderPipelineState = g_device.NewRenderPipelineState(renderPipelineDesc, nullptr);
+    ge::ResourceUtil::getRawStrResource("PosColour.vert", &vertSrc);
+    gc->shaderFactory->genShader(vertSrc,ge::ShaderType::Shader_Vertex,&vert);
 
-    Window win(g_device, &Render, 320, 240);
-    Window::Run();
 
-    return 0;
+
+
+
+    ge::IndexBuffer *ib = gc->bufferFactory->genIndexBuffer();
+
+    ib->bufferData(sizeof(vertices),vertices,ge::BufferMemoryType::Static);
+
+    ib->length = 3;
+
+    ge::VertexBuffer *vb =gc->bufferFactory->genVertexBuffer();
+    vb->offset = 0;
+    vb->normalized = false;
+    vb->dataType = ge::DataType::Float;
+    vb->attributeId = 0;
+    vb->sizePerAttrib = 3;
+    vb->bufferData(sizeof(g_vertex_buffer_data), g_vertex_buffer_data, ge::BufferMemoryType::Static);
+
+
+
+    ge::ShaderGroup *sg;
+    {
+        ge_Error_ADDTRACE(
+        gc->shaderFactory->genShaderGroup({vert, frag}, &sg)
+        );
+    }
+
+
+    ge::RenderObject *ro = gc->renderObjectFactory->newRenderObject();
+    ro->setShaderGroup(sg);
+    ro->setIndexBuffer(ib);
+
+    ro->registerVertexBuffer("index", vb);
+
+    ro->rebuffer();
+
+    ro->registerUniform("tint");
+    u = ro->getUniform("tint");
+
+
+    gc->window->setClearColour({0.2f, 0.3f, 0.3f});
+
+    while(!gc->window->shouldClose())
+    {
+        gc->window->clear();
+        u->setData(glm::vec3(0.0f,0.0f,0.7f));
+        ro->render();
+        gc->window->poll();
+        gc->window->swap();
+    }
+    gc->window->cleanup();
+
+
+    delete ro;
+    delete vb;
+    delete sg;
+    delete frag;
+    delete vert;
+
 }
+
+#endif

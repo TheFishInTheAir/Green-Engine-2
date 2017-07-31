@@ -6,12 +6,14 @@
 
 #include <string>
 
-namespace GE
+namespace ge
 {
+    namespace StringUtil {
 
-    void replaceChar(std::string *, char);
+        void removeChar(std::string *, char);
 
-    int  amountOfChar(std::string str, char chr);
+        int amountOfChar(std::string str, char chr);
 
+    }
 
 }
