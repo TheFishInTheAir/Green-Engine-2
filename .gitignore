@@ -223,3 +223,4 @@ _Pvt_Extensions
 
 #Resources
 test/Resources/
+.build

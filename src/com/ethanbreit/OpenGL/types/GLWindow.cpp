@@ -1,6 +1,9 @@
 //
 // Created by Ethan Breit on 2017-07-23.
 //
+#ifdef _WIN32
+#define GLFW_DLL
+#endif
 
 #include <OpenGL/types/GLWindow.h>
 #include <console/ConsoleIO.h>

@@ -58,6 +58,8 @@ endif ()
 ### Libraries
 ###
 
+set(LIBRARIES)
+
 set(SUPPORTS_VULKAN FALSE) # Check if os Supports Vulkan
 
 if(WIN32)# Check if OS is Windows (Supports Vulkan)
@@ -78,7 +80,8 @@ find_package(OpenGL REQUIRED)
 if (OPENGL_FOUND)
     message("${OPENGL_INCLUDE_DIRS} and ${OPENGL_LIBRARIES}\n")
     include_directories(${OPENGL_INCLUDE_DIRS})
-    target_link_libraries (Green_Engine_2 ${OPENGL_LIBRARIES})
+	set(LIBRARIES "${LIBRARIES}${OPENGL_LIBRARIES};")
+    #target_link_libraries (Green_Engine_2 ${OPENGL_LIBRARIES})
 endif ()
 
 
@@ -87,7 +90,9 @@ find_package(GLEWosd REQUIRED)
 if (GLEW_FOUND)
     message("${GLEW_INCLUDE_DIR} and ${GLEW_LIBRARY}\n")
     include_directories(${GLEW_INCLUDE_DIR})
-    target_link_libraries (Green_Engine_2 ${GLEW_LIBRARY})
+	set(LIBRARIES "${LIBRARIES}\"${GLEW_LIBRARY}\";")
+
+    #target_link_libraries (Green_Engine_2 ${GLEW_LIBRARY})
 
 endif()
 
@@ -96,7 +101,10 @@ find_package(GLFWosd REQUIRED)
 if (GLFW_FOUND)
     message("${GLFW_INCLUDE_DIR} and ${GLFW_LIBRARY}\n")
     include_directories(${GLFW_INCLUDE_DIR})
-    target_link_libraries (Green_Engine_2 ${GLFW_LIBRARY})
+	STRING(REGEX REPLACE ";" "" GLFW_LIBRARY ${GLFW_LIBRARY})
+	set(LIBRARIES "${LIBRARIES}\"${GLFW_LIBRARY}\";")
+
+    #target_link_libraries (Green_Engine_2 ${GLFW_LIBRARY})
 
 endif()
 
@@ -104,7 +112,10 @@ find_library(Spline TinySpline)
 
 if(Spline)
     message("TinySpline: ${Spline}")
-    target_link_libraries (Green_Engine_2 ${Spline})
+
+	set(LIBRARIES "${LIBRARIES}\"${Spline}\";")
+
+    #target_link_libraries (Green_Engine_2 ${Spline})
 endif()
 
 if (SUPPORTS_VULKAN)
@@ -115,7 +126,10 @@ if (SUPPORTS_VULKAN)
 	if(Vulkan_FOUND)
 
 	    include_directories(${Vulkan_INCLUDE_DIRS})
-	    target_link_libraries (Green_Engine_2 ${Vulkan_LIBRARIES})
+
+		set(LIBRARIES "${LIBRARIES}\"${Vulkan_LIBRARIES}\";")
+
+	    #target_link_libraries (Green_Engine_2 ${Vulkan_LIBRARIES})
 
 	else()
 
@@ -142,5 +156,9 @@ elseif(APPLE)
     target_link_libraries (Green_Engine_2 ${MetalKit_LIBRARY})
     target_link_libraries (Green_Engine_2 ${CMAKE_CURRENT_SOURCE_DIR}/libs/compiled/mtlpp.o ${CMAKE_CURRENT_SOURCE_DIR}/libs/compiled/window.o )
 endif()
-
 set_target_properties(Green_Engine_2 PROPERTIES LINKER_LANGUAGE "CXX")
+
+message("Libraries:\n${LIBRARIES}")
+
+target_link_libraries (Green_Engine_2 ${LIBRARIES})
+

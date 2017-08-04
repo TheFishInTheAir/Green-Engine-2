@@ -3,6 +3,8 @@
 //
 
 #pragma once
+#include <cstring>
+
 
 #ifdef _WIN32
 
