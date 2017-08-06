@@ -224,3 +224,4 @@ _Pvt_Extensions
 #Resources
 test/Resources/
 .build
+*.DS_Store
