@@ -27,9 +27,6 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/com/ethanbreit) #Define 
 ### Sources and Includes
 ###
 
-### STUPID LIB THAT HAS TO BE ADDED TO THE SOURCE
-
-
 if (DEVELOPMENT_MODE)
     message("Development build enabled (not creating library)")
 
@@ -49,7 +46,7 @@ else()
     message("Development build disabled (creating library)")
 
 
-    add_library(Green_Engine_2 ${SOURCE})
+    #add_library(Green_Engine_2 ${SOURCE})
 
 endif ()
 
@@ -78,6 +75,7 @@ find_package(OpenGL REQUIRED)
 if (OPENGL_FOUND)
     message("${OPENGL_INCLUDE_DIRS} and ${OPENGL_LIBRARIES}\n")
     include_directories(${OPENGL_INCLUDE_DIRS})
+	#list(APPEND LIBRARIES ${OPENGL_LIBRARIES})
     target_link_libraries (Green_Engine_2 ${OPENGL_LIBRARIES})
 endif ()
 
@@ -86,8 +84,10 @@ find_package(GLEWosd REQUIRED)
 
 if (GLEW_FOUND)
     message("${GLEW_INCLUDE_DIR} and ${GLEW_LIBRARY}\n")
-    include_directories(${GLEW_INCLUDE_DIR})
-    target_link_libraries (Green_Engine_2 ${GLEW_LIBRARY})
+    include_directories("${GLEW_INCLUDE_DIR}")
+	#list(APPEND LIBRARIES ${GLEW_LIBRARY})
+
+    target_link_libraries (Green_Engine_2 "${GLEW_LIBRARY}")
 
 endif()
 
@@ -96,15 +96,11 @@ find_package(GLFWosd REQUIRED)
 if (GLFW_FOUND)
     message("${GLFW_INCLUDE_DIR} and ${GLFW_LIBRARY}\n")
     include_directories(${GLFW_INCLUDE_DIR})
+	STRING(REGEX REPLACE ";" "" GLFW_LIBRARY ${GLFW_LIBRARY})
+	#list(APPEND LIBRARIES ${GLFW_LIBRARY})
+
     target_link_libraries (Green_Engine_2 ${GLFW_LIBRARY})
 
-endif()
-
-find_library(Spline TinySpline)
-
-if(Spline)
-    message("TinySpline: ${Spline}")
-    target_link_libraries (Green_Engine_2 ${Spline})
 endif()
 
 if (SUPPORTS_VULKAN)
@@ -115,6 +111,9 @@ if (SUPPORTS_VULKAN)
 	if(Vulkan_FOUND)
 
 	    include_directories(${Vulkan_INCLUDE_DIRS})
+
+		#list(APPEND LIBRARIES ${Vulkan_LIBRARIES})
+
 	    target_link_libraries (Green_Engine_2 ${Vulkan_LIBRARIES})
 
 	else()
@@ -134,7 +133,6 @@ elseif(APPLE)
     message("CoreFoundation: ${Core_LIBRARY}")
     message("Metal: ${Metal_LIBRARY}")
     message("MetalKit: ${MetalKit_LIBRARY}")
-    #include_directories(${Vulkan_INCLUDE_DIRS}/Headers)
 
     target_link_libraries (Green_Engine_2 ${Cocoa_LIBRARY})
     target_link_libraries (Green_Engine_2 ${Core_LIBRARY})
@@ -142,5 +140,7 @@ elseif(APPLE)
     target_link_libraries (Green_Engine_2 ${MetalKit_LIBRARY})
     target_link_libraries (Green_Engine_2 ${CMAKE_CURRENT_SOURCE_DIR}/libs/compiled/mtlpp.o ${CMAKE_CURRENT_SOURCE_DIR}/libs/compiled/window.o )
 endif()
-
 set_target_properties(Green_Engine_2 PROPERTIES LINKER_LANGUAGE "CXX")
+
+#target_link_libraries (Green_Engine_2 ${LIBRARIES})
+
