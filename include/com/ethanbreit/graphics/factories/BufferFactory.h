@@ -4,8 +4,8 @@
 
 #pragma once
 
-#include <graphics/types/VertexBuffer.h>
-#include <graphics/types/IndexBuffer.h>
+#include <graphics/CoreAbstractions/types/VertexBuffer.h>
+#include <graphics/CoreAbstractions/types/IndexBuffer.h>
 
 namespace ge
 {

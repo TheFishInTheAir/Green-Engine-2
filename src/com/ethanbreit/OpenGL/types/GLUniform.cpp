@@ -24,22 +24,22 @@ void ge::GL::Uniform::setData(glm::vec4 vf)
     glUniform4f(id, vf.x, vf.y, vf.z, vf.w);
 }
 
-void ge::GL::Uniform::setData(int i)
+void ge::GL::Uniform::setData(int32_t i)
 {
     glUniform1i(id, i);
 }
 
-void ge::GL::Uniform::setData(glm::tvec2<int> vi)
+void ge::GL::Uniform::setData(glm::tvec2<int32_t> vi)
 {
     glUniform2i(id, vi.x, vi.y);
 }
 
-void ge::GL::Uniform::setData(glm::tvec3<int> vi)
+void ge::GL::Uniform::setData(glm::tvec3<int32_t> vi)
 {
     glUniform3i(id, vi.x, vi.y, vi.z);
 }
 
-void ge::GL::Uniform::setData(glm::tvec4<int> vi)
+void ge::GL::Uniform::setData(glm::tvec4<int32_t> vi)
 {
     glUniform4i(id, vi.x, vi.y, vi.z, vi.w);
 }
@@ -62,4 +62,21 @@ void ge::GL::Uniform::setData(glm::tvec3<double> vd)
 void ge::GL::Uniform::setData(glm::tvec4<double> vd)
 {
     glUniform4d(id, vd.x, vd.y, vd.z, vd.w);
+}
+
+void ge::GL::Uniform::setData(glm::mat2 m)
+{
+    glUniformMatrix2fv(id,1,GL_FALSE,&m[0][0]);
+}
+
+void ge::GL::Uniform::setData(glm::mat3 m)
+{
+    glUniformMatrix3fv(id,1,GL_FALSE,&m[0][0]);
+
+}
+
+void ge::GL::Uniform::setData(glm::mat4 m)
+{
+    glUniformMatrix4fv(id,1,GL_FALSE,&m[0][0]);
+
 }

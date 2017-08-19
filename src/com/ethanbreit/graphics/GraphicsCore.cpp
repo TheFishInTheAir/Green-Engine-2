@@ -4,29 +4,35 @@
 
 #include <graphics/enums/GraphicsApi.h>
 #include <graphics/GraphicsCore.h>
-#include <OpenGL/types/GLWindow.h>
-#include <OpenGL/factories/GLBufferFactory.h>
-#include <OpenGL/factories/GLShaderFactory.h>
-#include <OpenGL/factories/GLRenderObjectFactory.h>
+#include <memory/GlobalMemory.h>
 
 namespace ge
 {
 
     GraphicsCore::GraphicsCore(GraphicsApi::type api)
     {
+        GlobalMemory::init();
+
         switch (api)
         {
 
-            case GraphicsApi::API_OpenGL:
+            case GraphicsApi::OpenGL:
 
                 window              = new GL::Window();
                 bufferFactory       = new GL::BufferFactory();
                 shaderFactory       = new GL::ShaderFactory();
-                renderObjectFactory = new GL::RenderObjectFactory();
-
-                return;
-            case GraphicsApi::API_Vulkan:break;
-            case GraphicsApi::API_Metal:break;
+                meshFactory         = new GL::MeshFactory();
+            case GraphicsApi::Vulkan:break;
+            case GraphicsApi::Metal:break;
         }
+
+
+
+        GlobalMemory::insert("ge_renderer_instance", GlobalMemory::MemItem(this,ReadableMemType::OTHER)); ///Add static reference to this in the global memory
+    }
+
+    bool GraphicsCore::getSupportedFeature(unsigned int feature)
+    {
+        return supportedFeatures.find(feature)->second;
     }
 }

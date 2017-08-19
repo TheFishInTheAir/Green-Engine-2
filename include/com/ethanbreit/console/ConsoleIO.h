@@ -13,7 +13,7 @@ namespace ge
     {
 
 
-        void Print(std::string);
+        void print(std::string);
         void Print(std::string, MessageType::type);
     }
 }

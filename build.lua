@@ -14,25 +14,25 @@ print("build dir:  " .. build_dir)
 
 if(arg[1] == "remove") then
 
-	--os.execute("")  -- delete build directory
+	--os.execute("")  --- delete build directory
 	
 	os.exit()
 
 end
 
-os.execute("mkdir \"" .. build_dir .. "\"") -- create build folder
+os.execute("mkdir \"" .. build_dir .. "\"") --- create build folder
 
-if(package.config:sub(1,1)=="/") then -- If Unix
+if(package.config:sub(1,1)=="/") then --- If Unix
 
-os.execute("cmake \"" .. file_dir .. "\" -G \"Unix Makefiles\"") -- Finish
+os.execute("cmake \"" .. file_dir .. "\" -G \"Unix Makefiles\"") --- TODO: Finish
 
 
-else --If Windows
+else ---If Windows
 
 os.execute("cd \"" .. build_dir .. "\" &" ..
 "cmake .. -G \"MinGW Makefiles\" &" ..
 "mingw32-make -Wextra &" ..
-"") -- TODO: Add command to execute program.
+"") --- TODO: Add command to execute program.
 
 
 end

@@ -13,12 +13,12 @@
 // It works by creating triangle meshes. The library includes
 //
 //    - converter from dense 3D arrays of block info to vertex mesh
-//    - vertex & fragment shaders for the vertex mesh
+//    - vertex & fragment shader for the vertex mesh
 //    - assistance in setting up shader state
 //
 // For portability, none of the library code actually accesses
 // the 3D graphics API. (At the moment, it's not actually portable
-// since the shaders are GLSL only, but patches are welcome.)
+// since the shader are GLSL only, but patches are welcome.)
 //
 // You have to do all the caching and tracking of vertex buffers
 // yourself. However, you could also try making a game with
@@ -245,7 +245,7 @@ extern "C" {
 //
 //  #define STBVOX_CONFIG_MODE <integer>           // REQUIRED
 //     Configures the overall behavior of stb_voxel_render. This
-//     can affect the shaders, the uniform info, and other things.
+//     can affect the shader, the uniform info, and other things.
 //     (If you need more than one mode in the same app, you can
 //     use STB_VOXEL_RENDER_STATIC to create multiple versions
 //     in separate files, and then wrap them.)
@@ -273,7 +273,7 @@ extern "C" {
 //        use the gl_ModelView matrix rather than the explicit uniform
 //
 //    STBVOX_CONFIG_HLSL
-//        NOT IMPLEMENTED! Define HLSL shaders instead of GLSL shaders
+//        NOT IMPLEMENTED! Define HLSL shader instead of GLSL shader
 //
 //    STBVOX_CONFIG_PREFER_TEXBUFFER
 //        Stores many of the uniform arrays in texture buffers intead,
@@ -342,7 +342,7 @@ extern "C" {
 // MESHING
 //
 // A mesh represents a (typically) small chunk of a larger world.
-// Meshes encode coordinates using small integers, so those
+// meshes encode coordinates using small integers, so those
 // coordinates must be relative to some base location.
 // All of the coordinates in the functions below use
 // these relative coordinates unless explicitly stated

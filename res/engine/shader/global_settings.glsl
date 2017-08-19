@@ -1,0 +1,3 @@
+#define VERTEX_POSITION 0
+#define NORMAL_POSITION 1
+#define UV_POSITION     2

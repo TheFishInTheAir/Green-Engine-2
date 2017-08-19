@@ -3,12 +3,17 @@
 //
 
 #pragma once
-#include <gl/glew.h>
+
+#include <GL/glew.h>
+#include <vector>
+#include <map>
+#include <error/Error.h>
+#include "GLShader.h"
+#include "GLVertexBuffer.h"
+#include "GLUniform.h"
 
 #include <graphics/types/ShaderGroup.h>
 
-#include "GLVertexBuffer.h"
-#include "GLUniform.h"
 
 
 namespace ge

@@ -1,0 +1,66 @@
+//
+// Created by Ethan Breit on 2017-08-12.
+//
+
+#pragma once
+
+#include <chrono>
+#include <string>
+#include <vector>
+#include <thread>
+#include <queue>
+#include "GlobalRuntime.h"
+#include "RuntimeGroup.h"
+
+#define ge_START_CYCLE_HANDLER(c)   static uint64_t __cycleHandlerUUID() {static uint64_t __uuid = 0;if(__uuid==0){__uuid = ge::GlobalRuntime::genCycleHandlerUUID();}return __uuid;} static void __cycle(void *vRef, uint32_t runId){ c* ref = reinterpret_cast<c*>(vRef); switch(runId) {
+#define ge_GENERATE_TRAMPOLINE(f,i) case i: ref->f(); return;
+#define ge_END_CYCLE_HANDLER        default:return;}}
+//TODO: Add group selection
+
+namespace ge
+{
+
+
+
+    struct Runtime
+    {
+        Runtime(std::string name, uint32_t cyclesPerSecond);
+
+        bool        unlocked;
+
+        void        end();
+
+        uint32_t    cyclesPerSecond;
+        uint32_t    managesBetweenClear;
+
+        uint16_t    getAmountOfGroups();
+        uint64_t    getCyclesSinceClear();
+
+        void        enqueFunction(void (*)());
+
+        void        insertGroup(RuntimeGroup*);
+        void        insertGroup(RuntimeGroup*, uint32_t);
+
+
+
+    private:
+
+        static void         run();
+        static Runtime*     passedContext;
+        static std::mutex   passedContextSemaphore;
+
+
+        void                            cycle();
+
+        bool                            shouldRun                   = true;
+        std::string                     name                        = "NULL";
+        uint32_t                        managesSinceLastClear       = 0;
+        uint64_t                        cyclesSinceLastClear        = 0;
+        uint32_t                        cyclesSinceLastManage       = 0;
+        std::vector<RuntimeGroup*>      groups;
+        std::thread                    *runtime;
+        std::queue<void (*)()>          queue;
+
+
+    };
+}

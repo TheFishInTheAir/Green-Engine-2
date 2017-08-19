@@ -11,6 +11,7 @@ namespace ge
 {
     struct IndexBuffer
     {
+        virtual ~IndexBuffer(){}
         unsigned int length;
 
         virtual void bufferData(size_t, const void*, BufferMemoryType::type) = 0;

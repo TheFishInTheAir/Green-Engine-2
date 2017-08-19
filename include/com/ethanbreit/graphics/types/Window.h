@@ -7,21 +7,24 @@
 #include <string>
 #include <error/Error.h>
 #include <glm/vec3.hpp>
+#include <runtime/Runtime.h>
 
 namespace ge
 {
 
     struct WindowConstructorInfo
     {
-        int width                   = 500           ;
-        int height                  = 500           ;
-        int samples                 = 4             ;
-        int glMajorVersion          = 3             ;
-        int glMinorVersion          = 3             ;
-        int mtlMajorVersion         = 3             ; ///Don't know if this is necessary
-        int mtlMinorVersion         = 3             ; ///Don't know if this is necessary
-        int vkMajorVersion          = 3             ; ///Don't know if this is necessary
-        int vkMinorVersion          = 3             ; ///Don't know if this is necessary
+        int16_t width                   = 500           ;
+        int16_t height                  = 500           ;
+        int8_t samples                 = 4             ;
+        int8_t glMajorVersion          = 3             ;
+        int8_t glMinorVersion          = 3             ;
+        int8_t mtlMajorVersion         = 3             ; ///Don't know if this is necessary
+        int8_t mtlMinorVersion         = 3             ; ///Don't know if this is necessary
+        int8_t vkMajorVersion          = 3             ; ///Don't know if this is necessary
+        int8_t vkMinorVersion          = 3             ; ///Don't know if this is necessary
+        Runtime* startupThread         = nullptr       ;
+        bool hasDepthBuffer         = true          ;
         bool isForwardCompatible    = true          ;
         const char *windowName      = "NULL"        ;
     };
@@ -40,6 +43,8 @@ namespace ge
         virtual void poll() = 0;
 
         virtual void swap() = 0;
+
+        virtual void makeCurrentThread() = 0;
 
         virtual void cleanup() = 0;
 

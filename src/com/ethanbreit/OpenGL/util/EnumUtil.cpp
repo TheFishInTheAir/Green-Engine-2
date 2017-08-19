@@ -2,6 +2,7 @@
 // Created by Ethan Breit on 2017-07-26.
 //
 #include <OpenGL/util/EnumUtil.h>
+#include <graphics/enums/TextureFilterType.h>
 
 namespace ge
 {
@@ -55,6 +56,7 @@ namespace ge
 
                 }
             }
+
         }
     }
 }

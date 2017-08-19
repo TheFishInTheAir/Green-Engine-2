@@ -6,6 +6,7 @@
 
 #include <graphics/types/IndexBuffer.h>
 #include <cstddef>
+#include <OpenGL/util/EnumUtil.h>
 #include <graphics/enums/BufferMemoryType.h>
 
 namespace ge

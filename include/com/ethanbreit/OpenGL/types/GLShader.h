@@ -3,7 +3,7 @@
 //
 
 #pragma once
-
+#include <GL/glew.h>
 #include <graphics/types/Shader.h>
 
 namespace ge

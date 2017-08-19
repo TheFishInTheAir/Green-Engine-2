@@ -10,7 +10,7 @@ namespace ge
         typedef enum
         {
             Static,
-            Dynamic, //TODO: Better name
+            Dynamic,
             Stream
         } type;
     }

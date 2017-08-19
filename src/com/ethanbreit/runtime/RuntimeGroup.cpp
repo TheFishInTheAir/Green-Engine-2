@@ -1,0 +1,29 @@
+//
+// Created by Ethan Breit on 2017-08-12.
+//
+
+#include <runtime/RuntimeGroup.h>
+
+namespace ge
+{
+
+
+
+    void ge::RuntimeGroup::cycle()
+    {
+        for(auto item : items)
+            item.handler->func(item.ref,runtimeId);
+    }
+
+    void ge::RuntimeGroup::remove(void* ref)
+    {
+        for(auto i = items.begin(); i!=items.end(); i++)
+            if((*i).ref == ref)
+                items.erase(i); ///No Curly Braces
+    }
+
+    void RuntimeGroup::insert(void *ref, uint64_t uuid)
+    {
+        items.push_back({getHandler(uuid), ref});
+    }
+}

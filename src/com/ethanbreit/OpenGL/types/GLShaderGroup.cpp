@@ -3,7 +3,6 @@
 //
 
 #include <OpenGL/types/GLShaderGroup.h>
-#include <OpenGL/types/GLShader.h>
 
 namespace ge
 {

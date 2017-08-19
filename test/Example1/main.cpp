@@ -5,7 +5,6 @@
 
 
 #ifdef Enable_Example1
-#include <gl/glew.h>
 #include <error/Error.h>
 #include <console/ConsoleIO.h>
 #include <util/ResourceUtil.h>
@@ -39,18 +38,26 @@ static const unsigned int vertices[] = {
 int main()
 {
 
-    ge::GraphicsCore *gc = new ge::GraphicsCore(ge::GraphicsApi::API_OpenGL);
+    /**
+     * Initialise Graphics
+     */
+    ge::GraphicsCore *gc = new ge::GraphicsCore(ge::GraphicsApi::OpenGL);
 
+    ge_Error_ADDTRACE(
+            gc->window->init(ge::WindowConstructorInfo()));
+
+    /**
+     * Error Test
+     */
 
     {
         ge::Error err = test();
         ge_Error_ADDTRACE(err);
     }
-    ge_Error_ADDTRACE(
-            gc->window->init(ge::WindowConstructorInfo())
-    );
 
-
+    /**
+     * Generate Shaders
+     */
     ge::ResourceUtil::getRawStrResource("PosColour.frag", &fragSrc);
     gc->shaderFactory->genShader(fragSrc,ge::ShaderType::Shader_Fragment,&frag);
 
@@ -60,12 +67,19 @@ int main()
 
 
 
+    /**
+     * Generate Index Buffer
+     */
 
     ge::IndexBuffer *ib = gc->bufferFactory->genIndexBuffer();
 
     ib->bufferData(sizeof(vertices),vertices,ge::BufferMemoryType::Static);
 
     ib->length = 3;
+
+    /**
+     * Generate Vertex Buffer and set vertex buffer data
+     */
 
     ge::VertexBuffer *vb =gc->bufferFactory->genVertexBuffer();
     vb->offset = 0;
@@ -75,46 +89,59 @@ int main()
     vb->sizePerAttrib = 3;
     vb->bufferData(sizeof(g_vertex_buffer_data), g_vertex_buffer_data, ge::BufferMemoryType::Static);
 
-
+    /**
+     * Generate Shader Group (Program)
+     */
 
     ge::ShaderGroup *sg;
-    {
-        ge_Error_ADDTRACE(
-        gc->shaderFactory->genShaderGroup({vert, frag}, &sg)
-        );
-    }
 
+    ge_Error_ADDTRACE(
+            gc->shaderFactory->genShaderGroup({vert, frag}, &sg));
 
-    ge::RenderObject *ro = gc->renderObjectFactory->newRenderObject();
+    /**
+     * Generate Mesh and add the shader group, index buffer, and the vertex buffer
+     */
+
+    ge::BaseTriangleMesh *ro = gc->meshFactory->newTriangleMesh();
     ro->setShaderGroup(sg);
     ro->setIndexBuffer(ib);
 
     ro->registerVertexBuffer("index", vb);
 
-    ro->rebuffer();
+    ro->rebuffer(); /// This binds the buffers to the vao
 
-    ro->registerUniform("tint");
-    u = ro->getUniform("tint");
+    /**
+     * Get the uniforms
+     */
+
+    ro->registerUniform("model"); //TODO: better syntax
+    u = ro->getUniform("model");  //TODO: better syntax
 
 
-    gc->window->setClearColour({0.2f, 0.3f, 0.3f});
+    gc->window->setClearColour({0.2f, 0.3f, 0.3f}); /// self explanatory
+
+
+
+    /**
+     * Render Loop
+     */
 
     while(!gc->window->shouldClose())
     {
-        gc->window->clear();
-        u->setData(glm::vec3(0.0f,0.0f,0.7f));
-        ro->render();
-        gc->window->poll();
-        gc->window->swap();
+        gc->window->clear(); /// Clear
+        u->setData(glm::vec3(0.0f,0.0f,0.7f)); /// set the uniforms data (tint colour)
+        ro->render(); ///render mesh
+        gc->window->poll(); /// poll window events
+        gc->window->swap(); /// swap buffers
     }
-    gc->window->cleanup();
+    gc->window->cleanup(); /// cleanup and terminate window
 
 
-    delete ro;
-    delete vb;
-    delete sg;
-    delete frag;
-    delete vert;
+    delete ro;      ///Delete Mesh
+    delete vb;      ///Delete Vertex Buffer
+    delete sg;      ///Delete Shader Group
+    delete frag;    ///Delete Fragment Shader
+    delete vert;    ///Delete Vertex Shader
 
 }
 

@@ -14,7 +14,7 @@
 *.userprefs
 
 # Build results
-[Dd]ebug/
+#[Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
@@ -65,7 +65,7 @@ artifacts/
 *.tlh
 *.tmp
 *.tmp_proj
-*.log
+#*.log
 *.vspscc
 *.vssscc
 .builds
@@ -221,7 +221,8 @@ FakesAssemblies/
 _Pvt_Extensions
 
 
-#Resources
+#res
 test/Resources/
 .build
 *.DS_Store
+!/res/

@@ -6,7 +6,8 @@
 #endif
 
 #include <OpenGL/types/GLWindow.h>
-#include <console/ConsoleIO.h>
+#include <input/KeyboardHandler.h>
+#include <input/MouseHandler.h>
 
 namespace ge
 {
@@ -18,7 +19,7 @@ namespace ge
             ConsoleIO::Print("GLFW Error: "+std::string(err)+"\n", MessageType::Error);
         }
 
-        void glfwResizeCallback(); //TODO: implement
+        void glfwResizeCallback(); /// @unimplemented TODO: implement
 
         Window::Window()
         {
@@ -32,12 +33,13 @@ namespace ge
 
         Error Window::init(WindowConstructorInfo windowConstructorInfo)
         {
+/**
+             *
+             * Setup Variables
+             *
+             */
 
-            if (!glfwInit())
-            {
-                ge_Error_GENERATE("GLFW failed to initialize!");
-            }
-
+            ///Extract variables from constructor info
             _width               =      windowConstructorInfo.width;
             _height              =      windowConstructorInfo.height;
 
@@ -47,23 +49,51 @@ namespace ge
             _isForwardCompatible =      windowConstructorInfo.isForwardCompatible;
 
             _windowName          =      windowConstructorInfo.windowName;
+            _startThread         =      windowConstructorInfo.startupThread;
+            _hasDepthBuffer      =      windowConstructorInfo.hasDepthBuffer;
+            ///Initialise Clear Mask
+            _clearMask           =      GL_COLOR_BUFFER_BIT;
 
-            glfwSetErrorCallback((GLFWerrorfun)glfwErrorCallback);
 
-            ///Get Monitors
-            ConsoleIO::Print("Finding available Monitors:\n");
+
+
+            /**
+             *
+             * GLFW Initialisation
+             *
+             */
+
+            if (!glfwInit())
+                ge_Error_GENERATE("GLFW failed to initialize!");
+
+            glfwSetErrorCallback((GLFWerrorfun)glfwErrorCallback); ///Set the GLFW Error Callback to the glfwErrorCallback() function
+
+
+
+
+            /**
+             *
+             * Test for Monitors
+             *
+             */
+
+            ConsoleIO::print("Finding available Monitors:\n");
             int count;
             GLFWmonitor **monitors =glfwGetMonitors(&count);
             for(int i = 0; i<count; i++)
             {
-                ConsoleIO::Print(
+                ConsoleIO::print(
                         std::string(glfwGetMonitorName(
-                                *(monitors+i)
-                        )) +"\n");
+                                *(monitors + i)
+                        )) + "\n");
             }
-            ConsoleIO::Print("Total of ("+std::to_string(count)+") monitors found.\n");
+            ConsoleIO::print("Total of (" + std::to_string(count) + ") monitors found.\n");
 
-            ///CreateWindow
+            /**
+             *
+             * GLFW Window Initialization
+             *
+             */
 
             glfwWindowHint(GLFW_SAMPLES, _samples); // antialiasing
             glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, _majorVersion); // We want OpenGL 3.3
@@ -80,6 +110,22 @@ namespace ge
                 glfwTerminate();
                 ge_Error_GENERATE("GLFW failed to create window. (Possible incompatible OpenGL driver)");
             }
+            /**
+             *
+             * GLFW Input Setup
+             *
+             */
+
+            //glfwSetWindowSizeCallback(_window,(GLFWwindowsizefun)glfwResizeCallback); /// @unimplemented Set the GLFW Window Resize Callback to the glfwResizeCallback() function
+            glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+            //glfwSetInputMode(_window, GLFW_STICKY_KEYS, GL_TRUE); ///Maybe don't enable this TODO: add proper window input handler
+            glfwSetKeyCallback(_window, KeyboardHandler::_keyHandler);
+            glfwSetCursorPosCallback(_window, MouseHandler::_mouseHandler);
+            /**
+             *
+             * GLEW Init
+             *
+             */
 
             glfwMakeContextCurrent(_window); /// Initialize GLEW
             glewExperimental= (GLboolean) true; /// Needed in core profile
@@ -87,10 +133,22 @@ namespace ge
                 ge_Error_GENERATE("GLEW Failed to Initialize\n");
             }
 
-            glEnable( GL_DEPTH_TEST );
+            /**
+             *
+             * OpenGL Configuration
+             *
+             */
 
-            glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-            glfwSetInputMode(_window, GLFW_STICKY_KEYS, GL_TRUE); ///Maybe don't enable this
+            if(_hasDepthBuffer)
+            {
+                glEnable(GL_DEPTH_TEST);
+                _clearMask |= GL_DEPTH_BUFFER_BIT;
+            }
+
+
+            glfwSetCursorPos(glfwGetCurrentContext(),0,0);
+
+
 
             return Error();
         }
@@ -120,9 +178,9 @@ namespace ge
             return (bool) glfwWindowShouldClose(_window);
         }
 
-        void Window::getSize(int *, int *)
+        void Window::getSize(int *w, int *h)
         {
-
+            glfwGetWindowSize(_window, w, h);
         }
 
         void Window::setClearColour(glm::vec3 c)
@@ -132,7 +190,12 @@ namespace ge
 
         void Window::clear()
         {
-            glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+            glClear( _clearMask );
+        }
+
+        void Window::makeCurrentThread()
+        {
+            glfwMakeContextCurrent(_window);
         }
 
 

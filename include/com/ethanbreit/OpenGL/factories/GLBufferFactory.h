@@ -7,10 +7,10 @@
 #include <GL/glew.h>
 
 #include <graphics/factories/BufferFactory.h>
-#include <graphics/types/VertexBuffer.h>
+#include <graphics/base_abstractions/types/VertexBuffer.h>
 
-#include <OpenGL/types/GLVertexBuffer.h>
-#include <graphics/types/IndexBuffer.h>
+#include <OpenGL/base_abstractions/types/GLVertexBuffer.h>
+#include <graphics/base_abstractions/types/IndexBuffer.h>
 
 
 namespace ge

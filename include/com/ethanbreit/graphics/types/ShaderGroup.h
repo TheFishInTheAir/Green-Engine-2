@@ -4,12 +4,7 @@
 
 #pragma once
 
-#include <vector>
-#include <map>
-#include <error/Error.h>
-#include "Shader.h"
-#include "VertexBuffer.h"
-#include "Uniform.h"
+
 
 namespace ge
 {

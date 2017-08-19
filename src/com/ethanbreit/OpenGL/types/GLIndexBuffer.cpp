@@ -3,8 +3,6 @@
 //
 
 #include <OpenGL/types/GLIndexBuffer.h>
-#include <GL/glew.h>
-#include <OpenGL/util/EnumUtil.h>
 
 namespace ge
 {
@@ -14,7 +12,6 @@ namespace ge
         {
             bind();
             glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, EnumUtil::getTrueBufferMemoryType(t));
-
         }
 
         void IndexBuffer::bind()

@@ -7,9 +7,18 @@
 #include <graphics/factories/ShaderFactory.h>
 #include <graphics/types/Window.h>
 #include <graphics/factories/BufferFactory.h>
-#include <graphics/factories/RenderObjectFactory.h>
+#include <graphics/factories/MeshFactory.h>
 #include <graphics/enums/GraphicsApi.h>
 
+///OpenGL
+#include <OpenGL/types/GLWindow.h>
+#include <OpenGL/factories/GLBufferFactory.h>
+#include <OpenGL/factories/GLShaderFactory.h>
+#include <OpenGL/factories/GLMeshFactory.h>
+#include <map>
+///Vulkan
+
+///Metal
 namespace ge
 {
     struct GraphicsCore
@@ -19,10 +28,12 @@ namespace ge
 
         ShaderFactory       *shaderFactory;
         BufferFactory       *bufferFactory;
-        RenderObjectFactory *renderObjectFactory;
+        MeshFactory         *meshFactory;
 
         Window              *window;
 
+        bool getSupportedFeature(unsigned int feature);
 
+        std::map<unsigned int, bool> supportedFeatures;
     };
 }

@@ -9,9 +9,9 @@ namespace ge
     {
         //TODO: Refactor to something better or have a namespace
         typedef enum {
-            API_OpenGL,
-            API_Vulkan,
-            API_Metal
+            OpenGL,
+            Vulkan,
+            Metal
 
         } type;
     }

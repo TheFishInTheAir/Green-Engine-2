@@ -7,8 +7,8 @@
 #include <string>
 #include <vector>
 #include <util/PreprocessorUtil.h>
-#define ge_Error_GENERATE(m) ge::Error _generatedErr(m); ge_Error_ADDTRACE(_generatedErr); return _generatedErr
-#define ge_Error_ADDTRACE(t) t.stack.push_back(std::string(__FILENAME__)+" : "+std::string(__FUNCTION__)+"("+std::to_string(__LINE__)+")\n")
+#define ge_Error_GENERATE(m) {ge::Error __generatedErr(m); ge_Error_ADDTRACE(__generatedErr); return __generatedErr;}
+#define ge_Error_ADDTRACE(t) {t.stack.push_back(std::string(__FILENAME__)+" : "+std::string(__FUNCTION__)+"("+std::to_string(__LINE__)+")\n");}
 
 namespace ge
 {

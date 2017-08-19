@@ -1,0 +1,36 @@
+#+TITLE: Green Engine Planning Document
+#+AUTHOR: Ethan Breit
+
+
+* Quick Explanation
+
+The template for the Green Engine Planning Document is as follows. The first bullet is the general topic, the second bullet is the more specific sub-topic, the numbered bullets are answers.
+
+
+* Shaders and Materials
+
+** Requirements and possible solutions
+- Not restricting to user.
+  - Don't make it required to use the Green Engine's Shader Utilities and pre built Shaders.
+
+- Support multiple rendering styles.
+  - Physically based rendering (PBR).
+  - Phong (should be discouraged).
+  - Blinn Phong.
+
+- Flexable
+  - Preferably a Dynamic amount of lights (might not be possible).
+  - Global configuration file for shaders.
+
+- Pre-Processor
+  - include or equivelant
+    1. ~( #pragma include " /PATH/ " )~ Would include another text document/shader into shader being built. Path should be relative to current file.
+    2. ~( #pragma include < /PATH/ > )~ Would include another text document/shader into shader being built. Path should be relative to Head of resources directory.
+
+- Shaders
+  - Compatible with all APIS
+    1. *SPIR-V*, *SPIR-V Cross*, and Shader Manifests
+       * If all shaders where built into *SPIR-V* bytecode then *Vulkan* and newer versions of *OpenGL* (via KHR extension) can use the same shaders.
+       * For older versions of *OpenGL* and *Metal*, *SPIR-V* Cross can be used in combination with automatically built shader manifest files
+
+    2. Some Higher level shader language

@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include <gl/glew.h>
+#include <GL/glew.h>
 
 #include <graphics/types/Uniform.h>
 #include <string>
@@ -26,13 +26,17 @@ namespace ge
 
             void setData(glm::vec4);
 
-            void setData(int);
+            void setData(glm::mat2);
+            void setData(glm::mat3);
+            void setData(glm::mat4);
 
-            void setData(glm::tvec2<int>);
+            void setData(int32_t);
 
-            void setData(glm::tvec3<int>);
+            void setData(glm::tvec2<int32_t>);
 
-            void setData(glm::tvec4<int>);
+            void setData(glm::tvec3<int32_t>);
+
+            void setData(glm::tvec4<int32_t>);
 
             void setData(double);
 

@@ -4,11 +4,13 @@
 
 #pragma once
 
-#include <gl/glew.h>
+#include <GL/glew.h>
 
 #include <GLFW/glfw3.h>
 
 #include <string>
+#include <console/ConsoleIO.h>
+
 #include <graphics/types/Window.h>
 
 namespace ge
@@ -32,6 +34,8 @@ namespace ge
 
             void cleanup();
 
+            void makeCurrentThread();
+
             bool shouldClose();
 
             void setClearColour(glm::vec3);
@@ -40,14 +44,18 @@ namespace ge
 
             void getSize(int *, int *);
         private:
+
             int _width;
             int _height;
             int _samples;
             int _majorVersion;
             int _minorVersion;
             int _isForwardCompatible;
+            unsigned int _clearMask;
+            bool _hasDepthBuffer;
             const char *_windowName;
             GLFWwindow *_window;
+            Runtime *_startThread;
         };
     }
 }

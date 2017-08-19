@@ -171,7 +171,7 @@ else()
 endif()
 # Remove leading and trailing spaces from TINYSPLINE_DEFINITIONS
 string(STRIP "${TINYSPLINE_DEFINITIONS}" TINYSPLINE_DEFINITIONS)
-# Export TINYSPLINE_DEFINITIONS to parent CMakeLists.txt file
+# Export TINYSPLINE_DEFINITIONS to parent Libraries.cmake file
 set(TINYSPLINE_DEFINITIONS "${TINYSPLINE_DEFINITIONS}" PARENT_SCOPE)
 add_definitions("${TINYSPLINE_DEFINITIONS}")
 

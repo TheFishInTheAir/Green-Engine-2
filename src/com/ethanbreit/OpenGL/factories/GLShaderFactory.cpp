@@ -1,11 +1,11 @@
 //
 // Created by Ethan Breit on 2017-07-22.
 //
-#include <OpenGL/factories/GLShaderFactory.h>
+#include <OpenGL/CoreAbstractions/factories/GLShaderFactory.h>
 #include <console/ConsoleIO.h>
-#include <OpenGL/types/GLShader.h>
+#include <OpenGL/CoreAbstractions/types/GLShader.h>
 #include <OpenGL/util/EnumUtil.h>
-#include <OpenGL/types/GLShaderGroup.h>
+#include <OpenGL/CoreAbstractions/types/GLShaderGroup.h>
 
 namespace ge
 {
@@ -42,9 +42,8 @@ namespace ge
                 ge_Error_GENERATE(&ShaderErrorMessage[0]);
             }
 
-            ConsoleIO::Print("\nValid\n\n");
+            ConsoleIO::print("\nValid\n\n");
 
-            //TODO: learn about scalar constructors (or whatever they are called) specifically about heap memory
             GL::Shader *shader = new GL::Shader();
             shader->id = id;
             *outShader = (ge::Shader*)shader;
