@@ -5,12 +5,13 @@
 #pragma once
 
 #include <GL/glew.h>
+#include <OpenGL/types/GLIndexBuffer.h>
 
 #include <graphics/factories/BufferFactory.h>
-#include <graphics/base_abstractions/types/VertexBuffer.h>
+#include <graphics/types/VertexBuffer.h>
 
-#include <OpenGL/base_abstractions/types/GLVertexBuffer.h>
-#include <graphics/base_abstractions/types/IndexBuffer.h>
+#include <OpenGL/types/GLVertexBuffer.h>
+#include <graphics/types/IndexBuffer.h>
 
 
 namespace ge

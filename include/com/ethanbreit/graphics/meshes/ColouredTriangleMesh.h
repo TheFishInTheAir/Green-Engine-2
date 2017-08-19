@@ -3,3 +3,18 @@
 //
 
 #pragma once
+
+namespace ge
+{
+    struct ColouredTriangleMesh
+    {
+        BaseTriangleMesh *_baseMesh;
+
+        float vertices;
+        float vertexColours; //TODO: FINISH
+
+        void rebuffer();
+        void render();
+
+    };
+}

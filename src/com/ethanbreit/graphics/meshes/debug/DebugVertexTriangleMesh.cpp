@@ -2,14 +2,16 @@
 // Created by Ethan Breit on 2017-08-10.
 //
 
-#include <graphics/meshes/DebugVertexTriangleMesh.h>
+#include <graphics/meshes/debug/DebugVertexTriangleMesh.h>
+#include <memory/GlobalMemory.h>
+
 namespace ge
 {
 
 
     DebugVertexTriangleMesh::DebugVertexTriangleMesh()
     {
-        //i = GraphicsCor TODO: Finish
+        _graphicsCore = GlobalMemory::get("ge_render_instance").getRawData<GraphicsCore>();
     }
 
 

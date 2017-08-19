@@ -2,55 +2,92 @@
 // Created by Ethan Breit on 2017-08-08.
 //
 #include <GL/glew.h>
-#include <GLFW/glfw.h>
+#include <GLFW/glfw3.h>
 
 #pragma once
 namespace ge
 {
-    namespace KeyType
+    namespace KeyboardKeyState
     {
         typedef enum
         {
-            GE_KEY_A = GLFW_KEY_A,
-            GE_KEY_B = GLFW_KEY_B,
-            GE_KEY_C = GLFW_KEY_C,
-            GE_KEY_D = GLFW_KEY_D,
-            GE_KEY_E = GLFW_KEY_E,
-            GE_KEY_F = GLFW_KEY_F,
-            GE_KEY_G = GLFW_KEY_G,
-            GE_KEY_H = GLFW_KEY_H,
-            GE_KEY_I = GLFW_KEY_I,
-            GE_KEY_J = GLFW_KEY_J,
-            GE_KEY_K = GLFW_KEY_K,
-            GE_KEY_L = GLFW_KEY_L,
-            GE_KEY_M = GLFW_KEY_M,
-            GE_KEY_N = GLFW_KEY_N,
-            GE_KEY_O = GLFW_KEY_O,
-            GE_KEY_P = GLFW_KEY_P,
-            GE_KEY_Q = GLFW_KEY_Q,
-            GE_KEY_R = GLFW_KEY_R,
-            GE_KEY_S = GLFW_KEY_S,
-            GE_KEY_T = GLFW_KEY_T,
-            GE_KEY_U = GLFW_KEY_U,
-            GE_KEY_V = GLFW_KEY_V,
-            GE_KEY_W = GLFW_KEY_W,
-            GE_KEY_X = GLFW_KEY_X,
-            GE_KEY_Y = GLFW_KEY_Y,
-            GE_KEY_Z = GLFW_KEY_Z,
-            GE_KEY_UP = GLFW_KEY_UP,
-            GE_KEY_DOWN = GLFW_KEY_DOWN,
-            GE_KEY_LEFT = GLFW_KEY_LEFT,
-            GE_KEY_RIGHT = GLFW_KEY_RIGHT,
-            GE_KEY_ESC = GLFW_KEY_ESCAPE,
-            GE_KEY_SPACE = GLFW_KEY_SPACE,
-            GE_KEY_LSHIFT = GLFW_KEY_LEFT_SHIFT,
-            GE_KEY_RSHIFT = GLFW_KEY_RIGHT_SHIFT,
-            GE_KEY_TAB = GLFW_KEY_TAB,
-            GE_KEY_LCTRL = GLFW_KEY_LEFT_CONTROL,
-            GE_KEY_TILDA = GLFW_KEY_GRAVE_ACCENT,
-            GE_KEY_BACKSPACE = GLFW_KEY_BACKSPACE,
-            GE_KEY_RETURN = GLFW_KEY_ENTER,
-            //add in more
+            Pressed = GLFW_PRESS,
+            Held = GLFW_REPEAT,
+            Releassed = GLFW_RELEASE
+        } type;
+    }
+
+    namespace KeyboardModifier
+    {
+        typedef enum
+        {
+
+            Shift   = GLFW_MOD_SHIFT,
+            Alt     = GLFW_MOD_ALT,
+            Control = GLFW_MOD_CONTROL,
+            Super   = GLFW_MOD_SUPER
+
+        } type;
+
+    }
+
+    namespace KeyboardKey
+    {
+        typedef enum
+        {
+            A = GLFW_KEY_A,
+            B = GLFW_KEY_B,
+            C = GLFW_KEY_C,
+            D = GLFW_KEY_D,
+            E = GLFW_KEY_E,
+            F = GLFW_KEY_F,
+            G = GLFW_KEY_G,
+            H = GLFW_KEY_H,
+            I = GLFW_KEY_I,
+            J = GLFW_KEY_J,
+            K = GLFW_KEY_K,
+            L = GLFW_KEY_L,
+            M = GLFW_KEY_M,
+            N = GLFW_KEY_N,
+            O = GLFW_KEY_O,
+            P = GLFW_KEY_P,
+            Q = GLFW_KEY_Q,
+            R = GLFW_KEY_R,
+            S = GLFW_KEY_S,
+            T = GLFW_KEY_T,
+            U = GLFW_KEY_U,
+            V = GLFW_KEY_V,
+            W = GLFW_KEY_W,
+            X = GLFW_KEY_X,
+            Y = GLFW_KEY_Y,
+            Z = GLFW_KEY_Z,
+            N0 = GLFW_KEY_0,
+            N1 = GLFW_KEY_1,
+            N2 = GLFW_KEY_2,
+            N3 = GLFW_KEY_3,
+            N4 = GLFW_KEY_4,
+            N5 = GLFW_KEY_5,
+            N6 = GLFW_KEY_6,
+            N7 = GLFW_KEY_7,
+            N8 = GLFW_KEY_8,
+            N9 = GLFW_KEY_9,
+            MINUS = GLFW_KEY_MINUS,
+            EQUAL = GLFW_KEY_EQUAL,
+            UP = GLFW_KEY_UP,
+            DOWN = GLFW_KEY_DOWN,
+            LEFT = GLFW_KEY_LEFT,
+            RIGHT = GLFW_KEY_RIGHT,
+            ESC = GLFW_KEY_ESCAPE,
+            SPACE = GLFW_KEY_SPACE,
+            LSHIFT = GLFW_KEY_LEFT_SHIFT,
+            RSHIFT = GLFW_KEY_RIGHT_SHIFT,
+            TAB = GLFW_KEY_TAB,
+            LCTRL = GLFW_KEY_LEFT_CONTROL,
+            RCTRL = GLFW_KEY_RIGHT_CONTROL,
+            TILDA = GLFW_KEY_GRAVE_ACCENT,
+            BACKSPACE = GLFW_KEY_BACKSPACE,
+            RETURN = GLFW_KEY_ENTER,
+            //TODO: add in more keys
 
 
         } type;

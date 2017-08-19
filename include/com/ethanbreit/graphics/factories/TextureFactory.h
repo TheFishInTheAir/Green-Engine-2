@@ -3,3 +3,15 @@
 //
 
 #pragma once
+
+#include <error/Error.h>
+#include <graphics/types/Image.h>
+#include <graphics/types/Texture.h>
+
+namespace ge
+{
+    struct TextureFactory
+    {
+        virtual Error genTexture(std::string,Image, Texture**)     = 0;
+    };
+}

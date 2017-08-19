@@ -1,53 +1,54 @@
-#include <Memory/GlobalMemory.h>
-#include <Debug/PrintUtil.h>
-#include "../../../../../Include/com/ethanbreit/GE/Memory/GlobalMemory.h"
+#include <memory/GlobalMemory.h>
+#include <mutex>
 
-std::unordered_map<std::string, MemItem *>* GlobalMemory::_mem;
-Semaphore GlobalMemory::_accessSemaphore;
-
-void GlobalMemory::insert(std::string key, MemItem* o)
+namespace ge
 {
+    namespace GlobalMemory
+    {
+        std::unordered_map<std::string, MemItem> _mem;
 
-    _accessSemaphore.acquire();
+        std::mutex _accessSemaphore;
 
-    if(_mem != NULL)
-        _mem->insert({ key, o });
+        void insert(std::string key, MemItem o)
+        {
 
-    _accessSemaphore.release();
+            _accessSemaphore.lock();
 
-}
+            _mem.insert({key, o});
 
-void GlobalMemory::remove(std::string key)
-{
-    _accessSemaphore.acquire();
+            _accessSemaphore.unlock();
 
-    if(_mem != NULL)
-        _mem->erase(key);
+        }
 
-    _accessSemaphore.release();
+        void remove(std::string key)
+        {
+            _accessSemaphore.lock();
 
-}
+            _mem.erase(key);
 
-MemItem* GlobalMemory::get(std::string key)
-{
+            _accessSemaphore.unlock();
 
-    _accessSemaphore.acquire();
-    if(_mem != NULL) {
-        MemItem * item =  _mem->find(key)->second;
-        _accessSemaphore.release();
-        return item;
+        }
+
+        MemItem get(std::string key)
+        {
+
+            _accessSemaphore.lock();
+
+            MemItem item = _mem.find(key)->second;
+            _accessSemaphore.unlock();
+            return item;
+
+        }
+
+        void deInit()
+        {
+            _mem.clear();
+        }
+
+        void init()
+        {
+            _accessSemaphore.unlock();
+        }
     }
-    _accessSemaphore.release();
-}
-
-void GlobalMemory::deInit() {
-	_mem->clear();
-	delete _mem;
-}
-
-void GlobalMemory::init() {
-    //PrintUtil::DebugPrint("why \n");
-    _mem = new std::unordered_map<std::string, MemItem* >();
-    _accessSemaphore = Semaphore();
-    _accessSemaphore.release();
 }

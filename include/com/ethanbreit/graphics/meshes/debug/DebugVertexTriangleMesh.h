@@ -6,7 +6,8 @@
 
 #include <glm/vec3.hpp>
 #include <vector>
-#include "BaseTriangleMesh.h"
+#include <graphics/GraphicsCore.h>
+#include "graphics/meshes/BaseTriangleMesh.h"
 
 namespace ge
 {
@@ -27,6 +28,7 @@ namespace ge
         void render();
 
     private:
+        GraphicsCore *_graphicsCore;
 
         Uniform *t;
         IndexBuffer *i;

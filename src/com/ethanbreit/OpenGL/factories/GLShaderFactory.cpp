@@ -1,11 +1,11 @@
 //
 // Created by Ethan Breit on 2017-07-22.
 //
-#include <OpenGL/CoreAbstractions/factories/GLShaderFactory.h>
+#include <OpenGL/factories/GLShaderFactory.h>
 #include <console/ConsoleIO.h>
-#include <OpenGL/CoreAbstractions/types/GLShader.h>
+#include <OpenGL/types/GLShader.h>
 #include <OpenGL/util/EnumUtil.h>
-#include <OpenGL/CoreAbstractions/types/GLShaderGroup.h>
+#include <OpenGL/types/GLShaderGroup.h>
 
 namespace ge
 {

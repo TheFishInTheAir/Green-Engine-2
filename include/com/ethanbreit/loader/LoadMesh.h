@@ -3,3 +3,16 @@
 //
 
 #pragma once
+
+#include <error/Error.h>
+#include <graphics/meshes/BaseTriangleMesh.h>
+
+namespace ge
+{
+
+    namespace MeshLoader
+    {
+        Error loadTriangleMesh(std::string path,BaseTriangleMesh**);
+    }
+
+}

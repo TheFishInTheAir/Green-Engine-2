@@ -12,7 +12,7 @@ namespace ge
     {
         struct MeshFactory : ge::MeshFactory
         {
-            ge::TriangleMesh *newTriangleMesh();
+            ge::BaseTriangleMesh *newTriangleMesh();
         };
     }
 }

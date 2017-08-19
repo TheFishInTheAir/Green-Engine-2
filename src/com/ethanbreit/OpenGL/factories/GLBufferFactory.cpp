@@ -2,9 +2,7 @@
 // Created by Ethan Breit on 2017-07-26.
 //
 
-#include <OpenGL/CoreAbstractions/factories/GLBufferFactory.h>
-#include <graphics/CoreAbstractions/types/IndexBuffer.h>
-#include <OpenGL/CoreAbstractions/types/GLIndexBuffer.h>
+#include <OpenGL/factories/GLBufferFactory.h>
 
 
 namespace ge

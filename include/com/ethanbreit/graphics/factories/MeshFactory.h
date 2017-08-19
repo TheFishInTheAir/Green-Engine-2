@@ -4,12 +4,12 @@
 
 #pragma once
 
-#include <graphics/CoreAbstractions/types/RenderObject.h>
+#include <graphics/meshes/BaseTriangleMesh.h>
 
 namespace ge
 {
-    struct RenderObjectFactory
+    struct MeshFactory
     {
-        virtual RenderObject* newRenderObject() = 0;
+        virtual BaseTriangleMesh* newTriangleMesh() = 0;
     };
 }

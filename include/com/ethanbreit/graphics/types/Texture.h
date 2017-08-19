@@ -12,12 +12,15 @@ namespace ge
 {
     struct Texture
     {
+        int getWidth() const;
+        int getHeight() const;
 
-        virtual TextureFilterType::type getFiltering() = 0;
-        virtual ColourModelType::type getColourModel() = 0;
+        TextureFilterType::type getFiltering();
+        ColourModelType::type getColourModel();
         virtual Error setFiltering(TextureFilterType::type) = 0;
 
     private:
+        int width,height;
 
         TextureFilterType   ::type filtering;
         ColourModelType     ::type colourModel;

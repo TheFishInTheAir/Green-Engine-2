@@ -4,17 +4,18 @@
 
 #pragma once
 
-#include <graphics/base_abstractions/types/VertexBuffer.h>
-#include <graphics/base_abstractions/types/Uniform.h>
-#include "graphics/base_abstractions/types/ShaderGroup.h"
-#include "graphics/base_abstractions/types/IndexBuffer.h"
+#include <graphics/types/VertexBuffer.h>
+#include <graphics/types/Uniform.h>
+#include <graphics/types/Texture.h>
+#include "graphics/types/ShaderGroup.h"
+#include "graphics/types/IndexBuffer.h"
 
 namespace ge
 {
-    struct TriangleMesh
+    struct BaseTriangleMesh
     {
         virtual void render() = 0;
-        virtual ~TriangleMesh(){};
+        virtual ~BaseTriangleMesh(){};
 
         virtual void rebuffer() = 0;
 
@@ -27,6 +28,7 @@ namespace ge
 
         virtual void registerUniform(std::string) = 0;
         virtual void registerVertexBuffer(std::string, ge::VertexBuffer*) = 0;
+        virtual void registerTexture(ge::Texture*, unsigned int) = 0;
 
         virtual ge::Uniform* getUniform(std::string) = 0;
         virtual ge::VertexBuffer* getVertexBuffer(std::string) = 0;
