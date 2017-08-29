@@ -44,7 +44,6 @@ namespace ge
 
         void deInit();
 
-        void init();
 
     }
 }

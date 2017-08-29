@@ -2,26 +2,7 @@
 // Created by Ethan Breit on 2017-08-13.
 //
 
-#include <common/Triangle.h>
-#include <util/ResourceUtil.h>
-#include <memory/GlobalMemory.h>
-
-
-static const float g_vertex_buffer_data[] = {
-        -1.0f, -1.0f, 0.0f,
-        1.0f, -1.0f, 0.0f,
-        0.0f,  1.0f, 0.0f,
-};
-
-static const unsigned int vertices[] = {
-        0,1,2
-};
-
-static Uniform* u;
-static IndexBuffer *ib;
-static VertexBuffer *vb;
-static ShaderGroup *sg;
-static BaseTriangleMesh *mesh;
+#include <common/TexturedModel.h>
 
 static GraphicsCore* core;
 
@@ -33,15 +14,16 @@ static std::string vertSrc;
 
 
 
-void Triangle::render()
+void TexturedModel::render()
 {
+
     u->setData(camera->vp*model);
     mesh->render();
 
 	//ConsoleIO::print("RENDERING \n");
 }
 
-void Triangle::update()
+void TexturedModel::update()
 {
 
 	//ConsoleIO::print("UPDATING \n");
@@ -85,7 +67,7 @@ void Triangle::update()
     }
 }
 bool isInitialised = false;
-Triangle::Triangle(bool shouldRotate, bool shouldHover, Camera *c)
+TexturedModel::TexturedModel(bool shouldRotate, bool shouldHover, Camera *c)
 {
 	ge::GlobalRuntime::ge_REGISTER_RUNTIME_HANDLER;
 
@@ -97,9 +79,12 @@ Triangle::Triangle(bool shouldRotate, bool shouldHover, Camera *c)
 		GlobalMemory::get("ge_render_context_runtime").getRawData<Runtime>()->enqueFunction(setup);
     }
 	while (!isInitialised);
-    ///Triangle Instance Setup
+    ///TexturedModel Instance Setup
     this->shouldRotate = shouldRotate;
     this->shouldHover  = shouldHover;
+
+
+	//TODO: READ MESH AND OTHER STUFF
 
 
     camera = c;
@@ -108,9 +93,8 @@ Triangle::Triangle(bool shouldRotate, bool shouldHover, Camera *c)
 
 }
 
-void Triangle::setup()
+void TexturedModel::setup()
 {
-
     /**
      *
      * One Time Mesh Setup (we only need one mesh because we are only changing uniforms)
@@ -119,71 +103,16 @@ void Triangle::setup()
 
     core = GlobalMemory::get("ge_renderer_instance").getRawData<GraphicsCore>(); ///Get Current Instance of graphics core
 
-    ge::ResourceUtil::getRawStrResource("../res/shaders/debug/PosColour3D.frag", &fragSrc); ///Get Shader
+    ge::ResourceUtil::getRawStrResource("../res/shaders/unlit/Textured/Textured.frag", &fragSrc); ///Get Shader
     core->shaderFactory->genShader(fragSrc,ge::ShaderType::Shader_Fragment,&frag); ///Generate the shader
 
-    ge::ResourceUtil::getRawStrResource("../res/shaders/debug/PosColour3D.vert", &vertSrc); ///Get Shader
+    ge::ResourceUtil::getRawStrResource("../res/shaders/unlit/Textured/Textured.vert", &vertSrc); ///Get Shader
     core->shaderFactory->genShader(vertSrc,ge::ShaderType::Shader_Vertex,&vert); ///Generate the shader
-
-    /**
-    * Generate Index Buffer
-    */
-
-
-    ib = core->bufferFactory->genIndexBuffer();
-
-    ib->bufferData(sizeof(vertices),vertices,ge::BufferMemoryType::Static);
-
-    ib->length = 3;
-
-
-    /**
-     * Generate Vertex Buffer and set vertex buffer data
-     */
-
-    vb = core->bufferFactory->genVertexBuffer();
-    vb->offset = 0;
-    vb->normalized = false;
-    vb->dataType = ge::DataType::Float;
-    vb->attributeId = 0;
-    vb->sizePerAttrib = 3;
-    vb->bufferData(sizeof(g_vertex_buffer_data), g_vertex_buffer_data, ge::BufferMemoryType::Static);
-
-    /**
-     * Generate Shader Group (Program)
-     */
-
-
-    ge_Error_ADDTRACE(
-            core->shaderFactory->genShaderGroup({vert, frag}, &sg));
-
-    /**
-    * Generate Mesh and add the shader group, index buffer, and the vertex buffer
-    */
-
-    mesh = core->meshFactory->newTriangleMesh();
-    mesh->setShaderGroup(sg);
-    mesh->setIndexBuffer(ib);
-
-    mesh->registerVertexBuffer("index", vb);
-
-    mesh->rebuffer(); /// This binds the buffers to the vao
-
-    /**
-     * Get the uniforms
-     */
-
-    mesh->registerUniform("mvp"); ///register uniform
-    u = mesh->getUniform("mvp");  ///acquire uniform
 	isInitialised = true;
 }
 
-void Triangle::cleanup()
+void TexturedModel::cleanup()
 {
-    delete mesh;    ///Delete Mesh
-    delete vb;      ///Delete Vertex Buffer
-    delete ib;      ///Delete Index Buffer
-    delete sg;      ///Delete Shader Group
     delete frag;    ///Delete Fragment Shader
     delete vert;    ///Delete Vertex Shader
 }

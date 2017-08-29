@@ -2,8 +2,7 @@
 // Created by Ethan Breit on 2017-07-28.
 //
 #include "../ExampleController.h"
-
-#ifdef Enable_Example3
+#ifdef Enable_Example6
 #include <gl/glew.h>
 #include <error/Error.h>
 #include <runtime/Runtime.h>
@@ -180,14 +179,14 @@ int main()
 
 
     Triangle *t1 = new Triangle(false, true, camera);
-	t1->model = glm::translate(t1->model, { 1.0f,0.0f,0.0f });
+    t1->model = glm::translate(t1->model, {2.0f,0.0f,0.0f});
 
-	updateGroup->ge_RUNTIME_GROUP_INSERT_HEAP(t1);
-	renderGroup->ge_RUNTIME_GROUP_INSERT_HEAP(t1);
+    updateGroup->ge_RUNTIME_GROUP_INSERT_HEAP(t1);
+    renderGroup->ge_RUNTIME_GROUP_INSERT_HEAP(t1);
 
-	Triangle *t2 = new Triangle(true, false, camera);
+    Triangle *t2 = new Triangle(true, false, camera);
 
-	t2->model = glm::translate(t2->model, { -1.0f,0.0f,0.0f });
+    t2->model = glm::translate(t2->model, {-2.0f,0.0f,0.0f});
 
     updateGroup->ge_RUNTIME_GROUP_INSERT_HEAP(t2);
     renderGroup->ge_RUNTIME_GROUP_INSERT_HEAP(t2);

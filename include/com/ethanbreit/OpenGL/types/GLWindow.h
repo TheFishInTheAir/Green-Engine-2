@@ -34,7 +34,7 @@ namespace ge
 
             void cleanup();
 
-            void makeCurrentThread();
+            void makeCurrentThread(Runtime*);
 
             bool shouldClose();
 

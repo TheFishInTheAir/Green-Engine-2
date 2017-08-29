@@ -11,7 +11,6 @@ namespace ge
 
     GraphicsCore::GraphicsCore(GraphicsApi::type api)
     {
-        GlobalMemory::init();
 
         switch (api)
         {

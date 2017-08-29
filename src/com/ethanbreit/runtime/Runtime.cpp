@@ -9,21 +9,13 @@
 namespace ge
 {
 
-    Runtime*     Runtime::passedContext;
-    std::mutex   Runtime::passedContextSemaphore;
+
 
     typedef std::chrono::nanoseconds    nanoseconds;
     typedef std::chrono::seconds        seconds;
     Runtime::Runtime(std::string name, uint32_t cyclesPerSecond)
     {
 
-        static bool shouldInitialize = true;
-
-        if(shouldInitialize)
-        {
-            shouldInitialize=false;
-            passedContextSemaphore.unlock();
-        }
         for ( auto g : groups )
             g = nullptr;
         this->name = name;
@@ -32,19 +24,14 @@ namespace ge
         shouldRun = true;
         ///Start Instance Pass
 
-        passedContextSemaphore.lock();
-        passedContext = this;
-
         ///Start Thread
-        runtime = new std::thread(run);
+        runtime = new std::thread(run, this);
     }
-    void Runtime::run()
+    void Runtime::run(Runtime* context)
     {
 
         ///Acquire Instance
 
-        Runtime *context = passedContext;
-        passedContextSemaphore.unlock();
 
         ///Initialise Cycle Timing Data
         nanoseconds delta(nanoseconds(seconds(1)).count()/context->cyclesPerSecond); ///Calculate Delta
@@ -84,7 +71,9 @@ namespace ge
 
                 context->managesSinceLastClear++;
 
-
+				//TESTING
+				ConsoleIO::print(context->name+": "+std::to_string(context->cyclesSinceLastManage)+"\n");
+				//TESTING
                 nextManage =  currentTime;
                 nextManage += managerDelta;
 

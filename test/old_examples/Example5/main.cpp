@@ -1,9 +1,9 @@
 //
 // Created by Ethan Breit on 2017-07-28.
 //
-#include "../ExampleController.h"
+#include "../../ExampleController.h"
 
-#ifdef Enable_Example4
+#ifdef Enable_Example5
 #include <error/Error.h>
 #include <runtime/Runtime.h>
 #include <console/ConsoleIO.h>
@@ -177,7 +177,7 @@ int main()
     postRenderGroup->ge_RUNTIME_GROUP_INSERT_HEAP(e);
 
 
-    ExampleModel *t1 = new ExampleModel("slime_vert.obj", camera);
+    ExampleModel *t1 = new ExampleModel("../res/models/debug/slime_vert.obj", camera);
     //t1->model = glm::translate(t1->model, {1.0f,0.0f,0.0f});
 
     updateGroup->ge_RUNTIME_GROUP_INSERT_HEAP(t1);

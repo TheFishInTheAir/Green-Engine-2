@@ -17,6 +17,7 @@ namespace ge
         {
             std::string identifier;
             int id;
+			void* parentMesh;
 
             void setData(float);
 

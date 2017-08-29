@@ -1,23 +1,26 @@
 //
-// Created by Ethan Breit on 2017-07-28.
+// Created by Ethan Breit on 2017-07-22.
 //
-#include "../ExampleController.h"
+#include "../../ExampleController.h"
 
-#ifdef Enable_Example2
-#include <gl/glew.h>
+
+#ifdef Enable_Example1
 #include <error/Error.h>
 #include <console/ConsoleIO.h>
 #include <util/ResourceUtil.h>
 #include <graphics/GraphicsCore.h>
-#include <graphics/Camera.h>
-#include <debug/FreeMove.h>
+
+ge::Error test()
+{
+    ge::Error err("testing");
+    ge_Error_ADDTRACE(err);
+    return err;
+}
 
 ge::Shader* vert;
 ge::Shader* frag;
 
 ge::Uniform* u;
-
-glm::mat4 model(1);
 
 std::string fragSrc;
 std::string vertSrc;
@@ -34,6 +37,7 @@ static const unsigned int vertices[] = {
 
 int main()
 {
+
     /**
      * Initialise Graphics
      */
@@ -42,46 +46,22 @@ int main()
     ge_Error_ADDTRACE(
             gc->window->init(ge::WindowConstructorInfo()));
 
-
     /**
-     * Generate and Configure Camera
+     * Error Test
      */
 
-    ge::Camera camera = ge::Camera();
-    camera.nearCull = 0.1f;
-    camera.farCull  = 100.0f;
-    camera.aspectRatio = 1.6f;
-    //camera.fov = 90.0f/100.0f; ///Divide by 100 to convert fov to radians.
-    camera.fov   = glm::radians(45.0f);
-    ///initialising data
-    camera.up = glm::vec3(0,1,0);
-    camera.pos = glm::vec3(0,0,0);
-    camera.dir = glm::vec3(0,0,-1);
-
-
-
-    /**
-     * Generate and Configure Debug FreeMove TODO: Add Debug to namespace
-     */
-
-    ge::FreeMove fm = ge::FreeMove();
-    fm.speed = 0.05f;
-    fm.lookSpeed = 0.002f;
-    fm._position = glm::vec3(0);
-
-    ///initialising data
-    fm._horizontalAngle = 0;
-    fm._verticalAngle = 0;
-
-
+    {
+        ge::Error err = test();
+        ge_Error_ADDTRACE(err);
+    }
 
     /**
      * Generate Shaders
      */
-    ge::ResourceUtil::getRawStrResource("PosColour3D.frag", &fragSrc);
+    ge::ResourceUtil::getRawStrResource("../res/shaders/debug/PosColour.frag", &fragSrc);
     gc->shaderFactory->genShader(fragSrc,ge::ShaderType::Shader_Fragment,&frag);
 
-    ge::ResourceUtil::getRawStrResource("PosColour3D.vert", &vertSrc);
+    ge::ResourceUtil::getRawStrResource("../res/shaders/debug/PosColour.vert", &vertSrc);
     gc->shaderFactory->genShader(vertSrc,ge::ShaderType::Shader_Vertex,&vert);
 
 
@@ -134,20 +114,13 @@ int main()
      * Get the uniforms
      */
 
-    ro->registerUniform("mvp"); //TODO: better syntax
-    u = ro->getUniform("mvp");  //TODO: better syntax
+    ro->registerUniform("model"); //TODO: better syntax
+    u = ro->getUniform("model");  //TODO: better syntax
 
 
     gc->window->setClearColour({0.2f, 0.3f, 0.3f}); /// self explanatory
 
 
-    /**
-     *
-     * Create Model Position and Orientation
-     *
-     */
-
-    glm::translate(model,glm::vec3(0,1,0));
 
     /**
      * Render Loop
@@ -156,15 +129,7 @@ int main()
     while(!gc->window->shouldClose())
     {
         gc->window->clear(); /// Clear
-
-        fm.update(&camera);
-
-        camera.update();
-        ge::ConsoleIO::print(std::to_string(camera.dir[0])+"\n");
-
-        u->setData(camera.proj*camera.view); /// set the uniforms data (matrix view projection)
-
-
+        u->setData(glm::vec3(0.0f,0.0f,0.7f)); /// set the uniforms data (tint colour)
         ro->render(); ///render mesh
         gc->window->poll(); /// poll window events
         gc->window->swap(); /// swap buffers

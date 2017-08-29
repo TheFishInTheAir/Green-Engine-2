@@ -2,13 +2,24 @@
 // Created by Ethan Breit on 2017-08-15.
 //
 
+/*
+ *
+ *
+ *
+ * BROKEN
+ *
+ *
+ *
+ */
+
+
 #pragma once
 
 #include <runtime/Runtime.h>
 #include <glm/glm.hpp>
 #include <graphics/Camera.h>
 #include <graphics/meshes/BaseTriangleMesh.h>
-#include "GroupIDs.h"
+#include "../GroupIDs.h"
 
 using namespace ge;
 

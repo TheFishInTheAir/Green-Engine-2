@@ -8,6 +8,7 @@
 #include <OpenGL/types/GLWindow.h>
 #include <input/KeyboardHandler.h>
 #include <input/MouseHandler.h>
+#include "memory/GlobalMemory.h"
 
 namespace ge
 {
@@ -146,9 +147,14 @@ namespace ge
             }
 
 
-            glfwSetCursorPos(glfwGetCurrentContext(),0,0);
+            glfwSetCursorPos(_window,0,0);
 
-
+			/**
+			 *
+			 * Release Context
+			 *
+			 */
+			glfwMakeContextCurrent(nullptr);
 
             return Error();
         }
@@ -193,8 +199,9 @@ namespace ge
             glClear( _clearMask );
         }
 
-        void Window::makeCurrentThread()
+        void Window::makeCurrentThread(Runtime* r)
         {
+			GlobalMemory::insert("ge_render_context_runtime", GlobalMemory::MemItem(r, ReadableMemType::OTHER));
             glfwMakeContextCurrent(_window);
         }
 

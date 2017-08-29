@@ -1,6 +1,18 @@
 //
 // Created by Ethan Breit on 2017-08-15.
 //
+
+/*
+*
+*
+*
+* BROKEN
+*
+*
+*
+*/
+
+
 #include "ExampleModel.h"
 #include <util/ResourceUtil.h>
 #include <memory/GlobalMemory.h>
@@ -54,10 +66,10 @@ ExampleModel::ExampleModel(std::string p, Camera *c)
         core = GlobalMemory::get(
                 "ge_renderer_instance").getRawData<GraphicsCore>(); ///Get Current Instance of graphics core
 
-        ge::ResourceUtil::getRawStrResource("PosColour3D.frag", &fragSrc); ///Get Shader
+        ge::ResourceUtil::getRawStrResource("../res/shaders/debug/PosColour3D.frag", &fragSrc); ///Get Shader
         core->shaderFactory->genShader(fragSrc, ge::ShaderType::Shader_Fragment, &frag); ///Generate the shader
 
-        ge::ResourceUtil::getRawStrResource("PosColour3D.vert", &vertSrc); ///Get Shader
+        ge::ResourceUtil::getRawStrResource("../res/shaders/debug/PosColour3D.vert", &vertSrc); ///Get Shader
         core->shaderFactory->genShader(vertSrc, ge::ShaderType::Shader_Vertex, &vert); ///Generate the shader
 
         core->shaderFactory->genShaderGroup({vert,frag},&sg);

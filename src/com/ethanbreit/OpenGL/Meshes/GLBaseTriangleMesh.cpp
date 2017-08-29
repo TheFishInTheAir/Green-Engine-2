@@ -6,6 +6,7 @@
 #include <OpenGL/Meshes/GLBaseTriangleMesh.h>
 #include <memory/GlobalMemory.h>
 #include <console/ConsoleIO.h>
+#include <iostream>
 
 namespace ge
 {
@@ -14,13 +15,13 @@ namespace ge
 
         void TriangleMesh::render()
         {
-            glUseProgram( shaderGroup->programID );
+			startRender();
             glBindVertexArray(_vao);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer->id);
 
             glDrawElements(GL_TRIANGLES, indexBuffer->length, GL_UNSIGNED_INT, 0);
 
-
+			isRendering = false;
         }
 
         void TriangleMesh::rebuffer()
@@ -53,6 +54,7 @@ namespace ge
         void TriangleMesh::registerUniform(std::string name)
         {
             ge::GL::Uniform* uniform = new GL::Uniform;
+			uniform->parentMesh = this;
             uniform->identifier = name;
             uniform->id = glGetUniformLocation(shaderGroup->programID, name.c_str());
             _uniforms.insert({name, uniform});
@@ -96,7 +98,9 @@ namespace ge
 
         TriangleMesh::TriangleMesh()
         {
+        	ConsoleIO::print(std::to_string(_vao) + std::string("\n"));
             glGenVertexArrays(1,&_vao);
+			ConsoleIO::print(std::to_string(_vao) + std::string("\n"));
         }
 
         void TriangleMesh::setIndexBuffer(ge::IndexBuffer *ib)
@@ -114,5 +118,16 @@ namespace ge
             _textures.insert({unitId, (GL::Texture*)tex});
         }
 
+	    void TriangleMesh::startRender()
+	    {
+			if (!isRendering)
+			{
+				isRendering = true;
+
+				glUseProgram(shaderGroup->programID);
+
+			}
+
+	    }
     }
 }

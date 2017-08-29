@@ -69,6 +69,7 @@ if (WIN32)
 endif ()
 
 if (${CMAKE_HOST_UNIX})
+message("UNIX TEST \n\n")
     find_path( GLEW_INCLUDE_DIR
         NAMES
             GL/glew.h

@@ -45,10 +45,5 @@ namespace ge
         {
             _mem.clear();
         }
-
-        void init()
-        {
-            _accessSemaphore.unlock();
-        }
     }
 }

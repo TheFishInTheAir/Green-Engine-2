@@ -1,9 +1,9 @@
 //
 // Created by Ethan Breit on 2017-07-28.
 //
-#include "../ExampleController.h"
+#include "../../ExampleController.h"
 
-#ifdef Enable_Example5
+#ifdef Enable_Example4
 #include <error/Error.h>
 #include <runtime/Runtime.h>
 #include <console/ConsoleIO.h>

@@ -9,6 +9,7 @@
 #include <assimp/scene.h>
 #include <memory/GlobalMemory.h>
 #include <graphics/GraphicsCore.h>
+#include "util/ResourceUtil.h"
 
 namespace ge
 {
@@ -20,7 +21,7 @@ namespace ge
         Error loadTriangleMesh(std::string path, BaseTriangleMesh **outMesh)
         {
 
-            const aiScene *scene = importer.ReadFile(path.c_str(), aiProcess_Triangulate ); //TODO: UV flip maybe...
+            const aiScene *scene = importer.ReadFile(ResourceUtil::getResPath(path).c_str(), aiProcess_Triangulate ); //TODO: UV flip maybe...
 
             if(!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
             {

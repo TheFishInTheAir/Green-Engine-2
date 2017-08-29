@@ -12,11 +12,12 @@
 #include <graphics/types/Uniform.h>
 #include <graphics/GraphicsCore.h>
 #include "GroupIDs.h"
-
+#include <util/ResourceUtil.h>
+#include <memory/GlobalMemory.h>
 
 using namespace ge;
 
-struct Triangle
+struct TexturedModel
 {
 
 
@@ -25,7 +26,11 @@ struct Triangle
     glm::mat4 model = glm::mat4();
 
 
-
+	Uniform* u;
+	IndexBuffer *ib;
+	VertexBuffer *vb;
+	ShaderGroup *sg;
+	BaseTriangleMesh *mesh;
 
 
     bool    shouldRotate;
@@ -46,13 +51,13 @@ struct Triangle
 
     void update();
 
-    ge_START_CYCLE_HANDLER(Triangle)
+    ge_START_CYCLE_HANDLER(TexturedModel)
         ge_GENERATE_TRAMPOLINE(render,RENDER)
         ge_GENERATE_TRAMPOLINE(update,UPDATE)
     ge_END_CYCLE_HANDLER
 
 
-    Triangle(bool, bool, Camera*);
+    TexturedModel(bool, bool, Camera*);
 };
 
 

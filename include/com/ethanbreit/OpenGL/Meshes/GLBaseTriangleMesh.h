@@ -20,6 +20,10 @@ namespace ge
             GL::ShaderGroup* shaderGroup;
             GL::IndexBuffer* indexBuffer;
 
+			void startRender();
+
+			bool isRendering = false;
+
             TriangleMesh();
             ~TriangleMesh();
 

@@ -45,12 +45,7 @@ if (GLFW_FOUND)
 
 endif()
 
-find_library(Spline TinySpline)
 
-if(Spline)
-    message("TinySpline: ${Spline}")
-    list(APPEND Green_Engine_LIBS ${Spline})
-endif()
 
 if (SUPPORTS_VULKAN)
 
@@ -63,8 +58,15 @@ if (SUPPORTS_VULKAN)
         list(APPEND Green_Engine_LIBS ${Vulkan_LIBRARIES})
 
     else()
+		
+		if(IS_DIRECTORY $ENV{VULKAN_SDK})
 
-        #message( FATAL_ERROR "ERROR: Could not Vulkan, Vulkan is NECESSARY for Windows and Linux")
+			list(APPEND Green_Engine_INCLUDES	$ENV{VULKAN_SDK}/Include)
+			list(APPEND Green_Engine_LIBS		$ENV{VULKAN_SDK}/Lib/vulkan-1.lib)
+
+		endif()
+		
+        message( ERROR ": Could not Find Vulkan, Vulkan is a good for Windows and Linux")
 
     endif()
 
@@ -94,16 +96,31 @@ endif()
     ###
 
     #list(APPEND Green_Engine_LIBS ${CMAKE_CURRENT_SOURCE_DIR}/libs/compiled/libz.a )
-    find_library(libz z.1)
-    find_library(ass assimp)
+    
+	if(WIN32)
+		set(ASSIMP_ROOT_DIR CACHE PATH "ASSIMP root directory")
 
-    message("libz: ${libz}")
-    message("assimp: ${ass}")
-    list(APPEND Green_Engine_LIBS ${libz})
-    list(APPEND Green_Engine_LIBS ${ass})
+		set(ASSIMP_ROOT_DIR "C:\\Program Files\\Assimp")
+
+	else()
+
+	endif()
+
+	find_package(assimp REQUIRED)
+
+	if(ASSIMP_LIBRARY_DIR)
+		message("assimp: ${ASSIMP_INCLUDE_DIR}")
+        list(APPEND Green_Engine_INCLUDES ${ASSIMP_INCLUDE_DIR})
+        list(APPEND Green_Engine_LIBS ${ASSIMP_LIBRARY_RELEASE})
+
+		#ZLIB
+
+		list(APPEND Green_Engine_LIBS ${ASSIMP_LIBRARY_DIR}/zlibstatic.lib)
+
+	endif()
 
     set(${includes} ${Green_Engine_INCLUDES} PARENT_SCOPE)
     set(${libs}     ${Green_Engine_LIBS}     PARENT_SCOPE)
-    message("libs: ${includes}")
-    message("includes: ${libs}")
+    message("libs: ${Green_Engine_INCLUDES}")
+    message("includes: ${Green_Engine_LIBS}")
 endfunction()

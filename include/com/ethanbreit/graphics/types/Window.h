@@ -44,7 +44,7 @@ namespace ge
 
         virtual void swap() = 0;
 
-        virtual void makeCurrentThread() = 0;
+        virtual void makeCurrentThread(Runtime*) = 0;
 
         virtual void cleanup() = 0;
 

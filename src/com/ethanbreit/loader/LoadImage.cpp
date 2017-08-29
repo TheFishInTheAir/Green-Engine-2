@@ -5,6 +5,8 @@
 #include <loader/LoadImage.h>
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb/stb_image.h>
+#include "util/ResourceUtil.h"
+
 namespace ge
 {
     namespace ImageLoader
@@ -13,7 +15,7 @@ namespace ge
         ge::Error loadImage(std::string path, Image **out)
         {
             int width, height, nrChannels;
-            const void *data = stbi_load(path.c_str(), &width, &height, &nrChannels, 0);
+            const void *data = stbi_load(ResourceUtil::getResPath(path).c_str(), &width, &height, &nrChannels, 0);
 
 
             *out = new Image();

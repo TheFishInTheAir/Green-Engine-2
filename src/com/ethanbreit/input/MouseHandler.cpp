@@ -26,8 +26,8 @@ namespace ge
             //ConsoleIO::print(std::to_string(xpos)+", "+std::to_string(ypos)+"\n");
 
             glfwSetCursorPos(window,0,0);
-            x = xpos;
-            y = ypos;
+            x += xpos;
+            y += ypos;
         }
     }
 }
