@@ -37,7 +37,10 @@ namespace ge
         uint16_t    getAmountOfGroups();
         uint64_t    getCyclesSinceClear();
 
-        void        enqueFunction(void (*)());
+        void        enqueFunctionStatic(void (*)());
+
+		void        enqueFunction(std::pair<void(*)(void*), void*>);
+
 
         void        insertGroup(RuntimeGroup*);
         void        insertGroup(RuntimeGroup*, uint32_t);
@@ -58,8 +61,8 @@ namespace ge
         uint32_t                        cyclesSinceLastManage       = 0;
         std::vector<RuntimeGroup*>      groups;
         std::thread                    *runtime;
-        std::queue<void (*)()>          queue;
-
+        std::queue<void(*)()>			staticQueue;
+		std::queue<std::pair<void(*)(void*),void*>>		queue;
 
     };
 }

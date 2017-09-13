@@ -131,7 +131,7 @@ int main()
 	ge_Error_ADDTRACE(
 		GlobalMemory::get("ge_renderer_instance").getRawData<GraphicsCore>()->window->init(ge::WindowConstructorInfo()));
 
-    renderRun->enqueFunction(startWindow);
+    renderRun->enqueFunctionStatic(startWindow);
 
 	while (!initialised);
     /**

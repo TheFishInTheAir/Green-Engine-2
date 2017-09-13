@@ -130,7 +130,7 @@ int main()
     renderRun->insertGroup(postRenderGroup,2);
 
 
-    renderRun->enqueFunction(startWindow);
+    renderRun->enqueFunctionStatic(startWindow);
 
 
     /**

@@ -94,7 +94,7 @@ Triangle::Triangle(bool shouldRotate, bool shouldHover, Camera *c)
     if(shouldSetup)
     {
         shouldSetup = false;
-		GlobalMemory::get("ge_render_context_runtime").getRawData<Runtime>()->enqueFunction(setup);
+		GlobalMemory::get("ge_render_context_runtime").getRawData<Runtime>()->enqueFunctionStatic(setup);
     }
 	while (!isInitialised);
     ///Triangle Instance Setup

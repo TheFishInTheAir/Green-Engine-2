@@ -609,11 +609,11 @@ void prepare_threads(void)
 
 // @TODO
 //   Thread usage is probably pretty terrible; need to make a
-//   separate queue of needed chunks, instead of just generating
-//   one request per thread per frame, and a separate queue of
+//   separate staticQueue of needed chunks, instead of just generating
+//   one request per thread per frame, and a separate staticQueue of
 //   results. (E.g. If it takes 1.5 frames to build mesh, thread
 //   is idle for 0.5 frames.) To fake this for now, I've just
-//   doubled the number of threads to let those serve as a 'queue',
+//   doubled the number of threads to let those serve as a 'staticQueue',
 //   but that's dumb.
 
    num_mesh_workers *= 2; // try to get better thread usage
@@ -934,7 +934,7 @@ void render_caves(float campos[3])
                if (request_chunk(cm->chunk_x, cm->chunk_y)) {
                   cm->state = STATE_requested;
                } else {
-                  // if we couldn't queue this one, skip the remainder
+                  // if we couldn't staticQueue this one, skip the remainder
                   break;
                }
             }

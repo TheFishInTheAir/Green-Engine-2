@@ -66,13 +66,13 @@ Version History
    1.95   hack stb__rec_max; clean up recursion code to use new functions
    1.94   stb_dirtree; rename stb_extra to stb_ptrmap
    1.93   stb_sem_new() API cleanup (no blockflag-starts blocked; use 'extra')
-   1.92   stb_threadqueue--multi reader/writer queue, fixed size or resizeable
+   1.92   stb_threadqueue--multi reader/writer staticQueue, fixed size or resizeable
    1.91   stb_bgio_* for reading disk asynchronously
    1.90   stb_mutex uses CRITICAL_REGION; new stb_sync primitive for thread
           joining; workqueue supports stb_sync instead of stb_semaphore
    1.89   support ';' in constant-string wildcards; stb_mutex wrapper (can
           implement with EnterCriticalRegion eventually)
-   1.88   portable threading API (only for win32 so far); worker thread queue
+   1.88   portable threading API (only for win32 so far); worker thread staticQueue
    1.87   fix wildcard handling in stb_readdir_recursive
    1.86   support ';' in wildcards
    1.85   make stb_regex work with non-constant strings;
@@ -7041,7 +7041,7 @@ static int stb__dirtree_update_db(stb_dirtree *db, stb_dirtree *active)
             if (n > 1 && n != 3600) {  // the 3600 is a hack because sometimes this jumps for no apparent reason, even when no time zone or DST issues are at play
                // it's changed! force a rescan
                // we don't want to scan it until we've stat()d its
-               // subdirs, though, so we queue it
+               // subdirs, though, so we staticQueue it
                if (stb__showfile) printf("Changed: %s - %08x:%08x\n", db->dirs[i].path, db->dirs[i].last_modified, info.st_mtime);
                stb_arr_push(rescan, i);
                // update the last_mod time
@@ -11338,13 +11338,13 @@ STB_EXTERN int stb_processor_count(void);
 // force to run on a single core -- needed for RDTSC to work, e.g. for iprof
 STB_EXTERN void stb_force_uniprocessor(void);
 
-// stb_work functions: queue up work to be done by some worker threads
+// stb_work functions: staticQueue up work to be done by some worker threads
 
-// set number of threads to serve the queue; you can change this on the fly,
+// set number of threads to serve the staticQueue; you can change this on the fly,
 // but if you decrease it, it won't decrease until things currently on the
-// queue are finished
+// staticQueue are finished
 STB_EXTERN void          stb_work_numthreads(int n);
-// set maximum number of units in the queue; you can only set this BEFORE running any work functions
+// set maximum number of units in the staticQueue; you can only set this BEFORE running any work functions
 STB_EXTERN int           stb_work_maxunits(int n);
 // enqueue some work to be done (can do this from any thread, or even from a piece of work);
 // return value of f is stored in *return_code if non-NULL

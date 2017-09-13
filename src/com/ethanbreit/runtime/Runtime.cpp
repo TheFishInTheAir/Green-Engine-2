@@ -143,14 +143,23 @@ namespace ge
 
     void Runtime::cycle()
     {
-        if(!queue.empty())
+        if(!staticQueue.empty())
         {
-            for (int i = 0; i < queue.size(); ++i)
+            for (int i = 0; i < staticQueue.size(); ++i)
             {
-                queue.front()();
-                queue.pop();
+                staticQueue.front()();
+                staticQueue.pop();
             }
         }
+
+		if (!queue.empty())
+		{
+			for (int i = 0; i < queue.size(); ++i)
+			{
+				queue.front().first(queue.front().second);
+				queue.pop();
+			}
+		}
 
         for (int i = 0; i < groups.size(); ++i)
         {
@@ -158,9 +167,13 @@ namespace ge
         }
     }
 
-    void Runtime::enqueFunction(void (* f)())
+    void Runtime::enqueFunctionStatic(void (* f)())
     {
-        queue.push(f);
+        staticQueue.push(f);
     }
 
+	void Runtime::enqueFunction(std::pair<void(*)(void*), void*> f)
+	{
+		queue.push(f);
+	}
 }

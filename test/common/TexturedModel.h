@@ -27,8 +27,6 @@ struct TexturedModel
 
 
 	Uniform* u;
-	IndexBuffer *ib;
-	VertexBuffer *vb;
 	ShaderGroup *sg;
 	BaseTriangleMesh *mesh;
 
@@ -57,7 +55,7 @@ struct TexturedModel
     ge_END_CYCLE_HANDLER
 
 
-    TexturedModel(bool, bool, Camera*);
+    TexturedModel(bool, bool, Camera*, std::string);
 };
 
 

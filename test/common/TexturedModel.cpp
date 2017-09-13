@@ -3,6 +3,7 @@
 //
 
 #include <common/TexturedModel.h>
+#include "loader/LoadMesh.h"
 
 static GraphicsCore* core;
 
@@ -16,6 +17,21 @@ static std::string vertSrc;
 
 void TexturedModel::render()
 {
+
+	static bool isLoaded = false;
+
+	if(!isLoaded)
+	{
+		isLoaded = true;
+
+		MeshLoader::loadTriangleMesh(p, &mesh);
+
+		mesh->setShaderGroup(sg);
+
+		mesh->registerUniform("mvp");
+		u = mesh->getUniform("mvp");
+
+	}
 
     u->setData(camera->vp*model);
     mesh->render();
@@ -66,8 +82,8 @@ void TexturedModel::update()
         }
     }
 }
-bool isInitialised = false;
-TexturedModel::TexturedModel(bool shouldRotate, bool shouldHover, Camera *c)
+bool isInitialised	= false;
+TexturedModel::TexturedModel(bool shouldRotate, bool shouldHover, Camera *c, std::string p)
 {
 	ge::GlobalRuntime::ge_REGISTER_RUNTIME_HANDLER;
 
@@ -76,15 +92,13 @@ TexturedModel::TexturedModel(bool shouldRotate, bool shouldHover, Camera *c)
     if(shouldSetup)
     {
         shouldSetup = false;
-		GlobalMemory::get("ge_render_context_runtime").getRawData<Runtime>()->enqueFunction(setup);
+		GlobalMemory::get("ge_render_context_runtime").getRawData<Runtime>()->enqueFunctionStatic(setup);
     }
 	while (!isInitialised);
     ///TexturedModel Instance Setup
     this->shouldRotate = shouldRotate;
     this->shouldHover  = shouldHover;
 
-
-	//TODO: READ MESH AND OTHER STUFF
 
 
     camera = c;
