@@ -9,15 +9,18 @@
 #include <graphics/types/Texture.h>
 #include "graphics/types/ShaderGroup.h"
 #include "graphics/types/IndexBuffer.h"
+#include "graphics/empty_types/MeshData.h"
 
 namespace ge
 {
-    struct BaseTriangleMesh
+
+	struct TriangleMesh
     {
         virtual void render() = 0;
-        virtual ~BaseTriangleMesh(){};
+        virtual ~TriangleMesh(){};
 
         virtual void rebuffer() = 0;
+
 
         virtual void setShaderGroup(ge::ShaderGroup*) = 0;
         virtual ge::ShaderGroup* getShaderGroup() = 0;

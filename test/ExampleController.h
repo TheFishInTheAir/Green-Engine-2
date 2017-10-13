@@ -9,5 +9,6 @@
 //#define Enable_Example3 ///Example With runtime
 //#define Enable_Example4 ///Example With 3D Models		BROKEN
 //#define Enable_Example5 ///Example With Textures		BROKEN
-#define Enable_Example6 ///Example with model and testure
+//#define Enable_Example6 ///Example with models, textures, and asynchronouse loading.
+#define Enable_Example7 ///TODO:: Basic Lighting, scene... ? maybe?
 

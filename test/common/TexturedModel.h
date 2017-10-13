@@ -27,12 +27,15 @@ struct TexturedModel
 
 
 	Uniform* u;
-	ShaderGroup *sg;
-	BaseTriangleMesh *mesh;
-
+	TriangleMesh *mesh;
+	Image* img;
+	Texture* tex;
+	Empty::MeshData m;
 
     bool    shouldRotate;
     bool    shouldHover;
+	bool	isLoaded	= false;
+	bool	shouldLoad	= false;
 
     float   rotation = 0;
     float   position = 0.0f;
@@ -41,8 +44,12 @@ struct TexturedModel
     bool    positionState = false;
 
 
+	std::string p;
+
+	TexturedModel(bool shouldRotate, bool shouldHover, Camera* c, std::string p, Image* T);
     static void setup();
     static void cleanup();
+	static void load(void *);
 
 
     void render();
@@ -55,7 +62,6 @@ struct TexturedModel
     ge_END_CYCLE_HANDLER
 
 
-    TexturedModel(bool, bool, Camera*, std::string);
 };
 
 

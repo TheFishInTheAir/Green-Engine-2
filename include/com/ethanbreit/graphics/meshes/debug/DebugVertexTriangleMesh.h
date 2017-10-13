@@ -7,7 +7,7 @@
 #include <glm/vec3.hpp>
 #include <vector>
 #include <graphics/GraphicsCore.h>
-#include "graphics/meshes/BaseTriangleMesh.h"
+#include "graphics/meshes/TriangleMesh.h"
 
 namespace ge
 {
@@ -17,7 +17,7 @@ namespace ge
 
         DebugVertexTriangleMesh();
 
-        BaseTriangleMesh *_baseMesh;
+        TriangleMesh *_baseMesh;
 
         std::vector<float> vertices;
         std::vector<int> indices;

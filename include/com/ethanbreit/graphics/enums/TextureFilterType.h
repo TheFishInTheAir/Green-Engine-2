@@ -12,10 +12,9 @@ namespace ge
             /// first digit is type, last digit is properties
             Nearest_Neighbour   = 0x00,
             Bilinear            = 0x10,
-            Trilinear           = 0x11,
-            Anisotropic_4x      = 0x21, ///last digit multiplied by 4 is level anisotropy
-            Anisotropic_8x      = 0x22,
-            Anisotropic_16x     = 0x34,
+            Anisotropic_4x      = 0x22, ///last digit is exponent of 2 which equals is level anisotropy
+            Anisotropic_8x      = 0x23,
+            Anisotropic_16x     = 0x24,
         } type;
     }
 }

@@ -8,10 +8,10 @@ namespace ge
 {
     namespace GL
     {
-        void VertexBuffer::bufferData(size_t size, const void* data, BufferMemoryType::type t)
+        void VertexBuffer::bufferData()
         {
             bind();
-            glBufferData(GL_ARRAY_BUFFER, size, data, EnumUtil::getTrueBufferMemoryType(t));
+            glBufferData(GL_ARRAY_BUFFER, data->size, data->data, EnumUtil::getTrueBufferMemoryType(data->memoryType));
 
         }
 

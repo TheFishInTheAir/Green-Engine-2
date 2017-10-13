@@ -12,7 +12,7 @@ namespace ge
     {
         struct TextureFactory : ge::TextureFactory
         {
-            Error genTexture(std::string, Image, ge::Texture **);
+	        Error genTexture(Image img, ge::Texture** outTex);
         };
     }
 }

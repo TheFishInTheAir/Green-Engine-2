@@ -34,3 +34,13 @@ The template for the Green Engine Planning Document is as follows. The first bul
        * For older versions of *OpenGL* and *Metal*, *SPIR-V* Cross can be used in combination with automatically built shader manifest files
 
     2. Some Higher level shader language
+
+
+* Loading
+
+Need to create empty template clases to load data into so no OpenGL calls are made. OpenGL calls have to be on the OpenGL Thread (Rendering Thread) making asynchronouse loading impossible and also making loading freeze the entire game.
+
+To add onto the previous statement we could aslo remove the data from the real vertex buffer class and have a pointer to the empty template class to retrieve the data. This would essentially make the real vertex buffer just a pointer with some functions.
+
+
+

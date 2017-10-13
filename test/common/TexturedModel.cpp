@@ -9,33 +9,43 @@ static GraphicsCore* core;
 
 static Shader* vert;
 static Shader* frag;
+static ShaderGroup *sg;
 
 static std::string fragSrc;
 static std::string vertSrc;
 
 
-
 void TexturedModel::render()
 {
 
-	static bool isLoaded = false;
-
-	if(!isLoaded)
+	if(!isLoaded&&shouldLoad)
 	{
+
+		ConsoleIO::print("\n\n\n\nloading...\n\n\n\n\n\n");
+
+
 		isLoaded = true;
-
-		MeshLoader::loadTriangleMesh(p, &mesh);
-
+		mesh = core->meshFactory->newTriangleMesh(m);
+		core->textureFactory->genTexture(*img, &tex);
+		tex->setFiltering(TextureFilterType::Anisotropic_16x);
 		mesh->setShaderGroup(sg);
 
 		mesh->registerUniform("mvp");
 		u = mesh->getUniform("mvp");
 
+		mesh->registerTexture(tex, 1);
+
+		mesh->rebuffer();
+
+		ConsoleIO::print("\n\n\n\nloaded.\n\n\n\n\n\n");
+
+
 	}
-
-    u->setData(camera->vp*model);
-    mesh->render();
-
+	if (isLoaded) 
+	{
+		u->setData(camera->vp*model);
+		mesh->render();
+	}
 	//ConsoleIO::print("RENDERING \n");
 }
 
@@ -82,8 +92,8 @@ void TexturedModel::update()
         }
     }
 }
-bool isInitialised	= false;
-TexturedModel::TexturedModel(bool shouldRotate, bool shouldHover, Camera *c, std::string p)
+static bool isInitialised	= false;
+TexturedModel::TexturedModel(bool shouldRotate, bool shouldHover, Camera *c, std::string p, Image *i)
 {
 	ge::GlobalRuntime::ge_REGISTER_RUNTIME_HANDLER;
 
@@ -98,14 +108,26 @@ TexturedModel::TexturedModel(bool shouldRotate, bool shouldHover, Camera *c, std
     ///TexturedModel Instance Setup
     this->shouldRotate = shouldRotate;
     this->shouldHover  = shouldHover;
-
-
+	this->p = p;
+	this->img = i;
 
     camera = c;
-
+	
+	GlobalMemory::get("ge_loading_context_runtime").getRawData<Runtime>()->enqueFunction({ load, this });
 
 
 }
+
+void TexturedModel::load(void* v)
+{
+	TexturedModel* tm = reinterpret_cast<TexturedModel*>(v);
+
+	MeshLoader::loadTriangleMesh(tm->p, &tm->m);
+
+	tm->shouldLoad = true;
+
+}
+
 
 void TexturedModel::setup()
 {
@@ -122,6 +144,9 @@ void TexturedModel::setup()
 
     ge::ResourceUtil::getRawStrResource("../res/shaders/unlit/Textured/Textured.vert", &vertSrc); ///Get Shader
     core->shaderFactory->genShader(vertSrc,ge::ShaderType::Shader_Vertex,&vert); ///Generate the shader
+
+	core->shaderFactory->genShaderGroup({ vert,frag }, &sg);
+
 	isInitialised = true;
 }
 

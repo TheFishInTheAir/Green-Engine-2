@@ -6,6 +6,7 @@
 
 #include <graphics/enums/DataType.h>
 #include <graphics/enums/BufferMemoryType.h>
+#include "graphics/empty_types/VertexBuffer.h"
 
 namespace ge
 {
@@ -14,13 +15,9 @@ namespace ge
 
         virtual ~VertexBuffer(){}
 
-        unsigned int attributeId;
-        int sizePerAttrib;
-        void* offset;
-        DataType::type dataType;
-        bool normalized;
+		Empty::VertexBuffer* data;
 
-        virtual void bufferData(size_t, const void*, BufferMemoryType::type) = 0;
+        virtual void bufferData() = 0;
 
     };
 }

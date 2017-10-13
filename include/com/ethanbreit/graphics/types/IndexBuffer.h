@@ -6,14 +6,17 @@
 
 #include <graphics/enums/BufferMemoryType.h>
 #include <cstddef>
+#include "graphics/empty_types/IndexBuffer.h"
 
 namespace ge
 {
     struct IndexBuffer
     {
         virtual ~IndexBuffer(){}
-        unsigned int length;
+        
 
-        virtual void bufferData(size_t, const void*, BufferMemoryType::type) = 0;
+		Empty::IndexBuffer* data;
+
+        virtual void bufferData() = 0;
     };
 }

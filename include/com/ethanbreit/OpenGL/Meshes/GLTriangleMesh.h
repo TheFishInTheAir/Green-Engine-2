@@ -4,7 +4,7 @@
 
 #pragma once
 #include <string>
-#include <graphics/meshes/BaseTriangleMesh.h>
+#include <graphics/meshes/TriangleMesh.h>
 #include <OpenGL/types/GLTexture.h>
 #include "OpenGL/types/GLVertexBuffer.h"
 #include "OpenGL/types/GLUniform.h"
@@ -15,7 +15,7 @@ namespace ge
 {
     namespace GL
     {
-        struct TriangleMesh : ge::BaseTriangleMesh
+        struct TriangleMesh : ge::TriangleMesh
         {
             GL::ShaderGroup* shaderGroup;
             GL::IndexBuffer* indexBuffer;

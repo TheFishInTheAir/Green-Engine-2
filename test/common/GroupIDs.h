@@ -10,3 +10,5 @@
 #define POST_RENDER 2
 
 #define UPDATE 3
+
+#define LOADER 6

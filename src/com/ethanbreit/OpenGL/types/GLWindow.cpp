@@ -9,6 +9,10 @@
 #include <input/KeyboardHandler.h>
 #include <input/MouseHandler.h>
 #include "memory/GlobalMemory.h"
+#include "OpenGL/FeatureHandler.h"
+#include <Graphics/GraphicsCore.h>
+
+ge::GraphicsCore* core;
 
 namespace ge
 {
@@ -55,6 +59,7 @@ namespace ge
             ///Initialise Clear Mask
             _clearMask           =      GL_COLOR_BUFFER_BIT;
 
+			core				 =		GlobalMemory::get("ge_renderer_instance").getRawData<GraphicsCore>();
 
 
 
@@ -133,6 +138,12 @@ namespace ge
             if (glewInit() != GLEW_OK) {
                 ge_Error_GENERATE("GLEW Failed to Initialize\n");
             }
+
+
+			ge::GL::registerFeatures(&((*core).supportedFeatures));
+
+
+
 
             /**
              *

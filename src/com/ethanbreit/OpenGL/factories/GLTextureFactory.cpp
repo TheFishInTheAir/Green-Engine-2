@@ -10,7 +10,7 @@ namespace ge
 {
     namespace GL
     {
-        Error TextureFactory::genTexture(std::string path, Image img, ge::Texture ** outTex)
+        Error TextureFactory::genTexture(Image img, ge::Texture ** outTex)
         {
             Texture *glTex = new Texture();
             glGenTextures(1,&(glTex->id));
@@ -39,6 +39,7 @@ namespace ge
             }
             glTexImage2D(GL_TEXTURE_2D, 0,channels, img.width, img.height, 0, channels, GL_UNSIGNED_BYTE, img.data);
 
+			*outTex = glTex;
             return ge::Error();
         }
     }

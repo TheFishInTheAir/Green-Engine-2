@@ -4,7 +4,7 @@
 #include "../ExampleController.h"
 #include "common/TexturedModel.h"
 #include "loader/LoadImage.h"
-#ifdef Enable_Example6
+#ifdef Enable_Example7
 #include <gl/glew.h>
 #include <error/Error.h>
 #include <runtime/Runtime.h>

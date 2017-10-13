@@ -31,7 +31,12 @@ namespace ge
             }
             else if((((byte)t&0xf0)>>4) == 2)/// anisotropic
             {
-                byte anisotropy = (byte) (((byte)t & 0xf) * 4);
+
+				glGenerateMipmap(GL_TEXTURE_2D);
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+
+                byte anisotropy = (byte) (pow(2,((byte)t & 0xf)));
                 if(GlobalMemory::get("ge_max_anisotropy").getData<byte>() >= anisotropy)
                 {
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT,anisotropy);

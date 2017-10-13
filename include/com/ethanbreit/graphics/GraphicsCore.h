@@ -16,6 +16,8 @@
 #include <OpenGL/factories/GLShaderFactory.h>
 #include <OpenGL/factories/GLMeshFactory.h>
 #include <map>
+#include "factories/TextureFactory.h"
+
 ///Vulkan
 
 ///Metal
@@ -29,6 +31,7 @@ namespace ge
         ShaderFactory       *shaderFactory;
         BufferFactory       *bufferFactory;
         MeshFactory         *meshFactory;
+		TextureFactory		*textureFactory;
 
         Window              *window;
 

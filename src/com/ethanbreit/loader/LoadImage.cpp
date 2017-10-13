@@ -20,13 +20,13 @@ namespace ge
 
             *out = new Image();
             (*out)->width = width;
-            (*out)->height = height;
+			(*out)->height = height;
 
-            (*out)->data = data;
+			(*out)->data = data;
             if(nrChannels==3)
-                (*out)->model = ColourModelType::RGB;
+				(*out)->model = ColourModelType::RGB;
             else
-                (*out)->model = ColourModelType::RGBA;
+				(*out)->model = ColourModelType::RGBA;
 
             return ge::Error();
         }

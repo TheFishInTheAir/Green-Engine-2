@@ -24,7 +24,7 @@ namespace ge
 
             void bind();
 
-            void bufferData(size_t, const void*, BufferMemoryType::type);
+            void bufferData();
 
         };
     }

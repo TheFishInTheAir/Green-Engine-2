@@ -4,7 +4,7 @@ layout(location = 2) in vec2 UV;
 
 out vec2 tUV;
 
-uniform mat4 MVP;
+uniform mat4 mvp;
 
 void main()
 {

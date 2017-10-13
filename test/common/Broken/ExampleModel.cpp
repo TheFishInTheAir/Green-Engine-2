@@ -81,7 +81,7 @@ ExampleModel::ExampleModel(std::string p, Camera *c)
 
 
 
-    ge::MeshLoader::loadTriangleMesh(p,&mesh);
+    //ge::MeshLoader::loadTriangleMesh(p,&mesh);
     camera = c;
 
     mesh->setShaderGroup(sg);

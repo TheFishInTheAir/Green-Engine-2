@@ -21,7 +21,7 @@ static Uniform* u;
 static IndexBuffer *ib;
 static VertexBuffer *vb;
 static ShaderGroup *sg;
-static BaseTriangleMesh *mesh;
+static TriangleMesh *mesh;
 
 static GraphicsCore* core;
 
@@ -132,9 +132,18 @@ void Triangle::setup()
 
     ib = core->bufferFactory->genIndexBuffer();
 
-    ib->bufferData(sizeof(vertices),vertices,ge::BufferMemoryType::Static);
+	ib->data = new Empty::IndexBuffer;
 
-    ib->length = 3;
+
+	ib->data->size = sizeof(vertices);
+
+	ib->data->data = vertices;
+
+	ib->data->memoryType = ge::BufferMemoryType::Static;
+
+	ib->data->length = 3;
+
+	ib->bufferData();
 
 
     /**
@@ -142,12 +151,22 @@ void Triangle::setup()
      */
 
     vb = core->bufferFactory->genVertexBuffer();
-    vb->offset = 0;
-    vb->normalized = false;
-    vb->dataType = ge::DataType::Float;
-    vb->attributeId = 0;
-    vb->sizePerAttrib = 3;
-    vb->bufferData(sizeof(g_vertex_buffer_data), g_vertex_buffer_data, ge::BufferMemoryType::Static);
+
+	vb->data = new Empty::VertexBuffer;
+
+	vb->data->offset = 0;
+	vb->data->normalized = false;
+	vb->data->dataType = ge::DataType::Float;
+	vb->data->attributeId = 0;
+	vb->data->sizePerAttrib = 3;
+
+	vb->data->size = sizeof(g_vertex_buffer_data);
+
+	vb->data->data = g_vertex_buffer_data;
+
+	vb->data->memoryType = ge::BufferMemoryType::Static;
+
+    vb->bufferData();
 
     /**
      * Generate Shader Group (Program)
@@ -165,7 +184,7 @@ void Triangle::setup()
     mesh->setShaderGroup(sg);
     mesh->setIndexBuffer(ib);
 
-    mesh->registerVertexBuffer("index", vb);
+    mesh->registerVertexBuffer("vertex", vb);
 
     mesh->rebuffer(); /// This binds the buffers to the vao
 

@@ -12,6 +12,6 @@ namespace ge
 {
     struct TextureFactory
     {
-        virtual Error genTexture(std::string,Image, Texture**)     = 0;
+        virtual Error genTexture(Image, Texture**)     = 0;
     };
 }

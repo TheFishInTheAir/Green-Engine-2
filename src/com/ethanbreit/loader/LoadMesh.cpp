@@ -13,169 +13,175 @@
 
 namespace ge
 {
-    namespace MeshLoader
-    {
+	namespace MeshLoader
+	{
 
-        Assimp::Importer importer;
+		Assimp::Importer importer;
 
-        Error loadTriangleMesh(std::string path, BaseTriangleMesh **outMesh)
-        {
+		Error loadTriangleMesh(std::string path, Empty::MeshData *outMesh)
+		{
 
-            const aiScene *scene = importer.ReadFile(ResourceUtil::getResPath(path).c_str(), aiProcess_Triangulate ); //TODO: UV flip maybe...
+			const aiScene *scene = importer.ReadFile(ResourceUtil::getResPath(path).c_str(), aiProcess_Triangulate); //TODO: UV flip maybe...
 
-            if(!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
-            {
-                ge_Error_GENERATE(std::string("Assimp:") + importer.GetErrorString());
-            }
+			if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
+			{
+				ge_Error_GENERATE(std::string("Assimp:") + importer.GetErrorString());
+			}
 
-            if(scene->mNumMeshes!=1)
-            {
-                ge_Error_GENERATE("More than one mesh in file!");
-            }
+			if (scene->mNumMeshes != 1)
+			{
+				ge_Error_GENERATE("More than one mesh in file!");
+			}
 
-            /**
-             *
-             * This all assumes that there is only one mesh, one texture and one material.
-             *
-             */
-            GraphicsCore* graphicsCore = GlobalMemory::get("ge_renderer_instance").getRawData<GraphicsCore>();
-            *outMesh = graphicsCore->meshFactory->newTriangleMesh();
+			/**
+			*
+			* This all assumes that there is only one mesh, one texture and one material.
+			*
+			*/
+			//GraphicsCore* graphicsCore = GlobalMemory::get("ge_renderer_instance").getRawData<GraphicsCore>();
 
-            const aiMesh *mesh = scene->mMeshes[0];
+			const aiMesh *mesh = scene->mMeshes[0];
+			//TODO: allocate to heap (like indices buffer)
+			std::vector<glm::vec3>*  vertices	= new std::vector<glm::vec3>;
+			std::vector<unsigned int>* indices	= new std::vector<unsigned int>;
+			std::vector<glm::vec3>*  normals	= new std::vector<glm::vec3>;
+			std::vector<glm::vec2>*  UVs		= new std::vector<glm::vec2>;
 
-            std::vector<glm::vec3>  vertices;
-            std::vector<unsigned int>        indices;
-            std::vector<glm::vec3>  normals;
-            std::vector<glm::vec2>  UVs;
-            
-            bool hasNormals = false;
-            bool hasUVs     = false;
-
-
-
-            if(mesh->HasNormals())
-                hasNormals  = true;
-
-            if(mesh->HasTextureCoords(0))
-                hasUVs      = true;
-
-
-            if(mesh->HasBones())
-            {
-                ConsoleIO::Print("WARNING: Currently no support for bones in meshes. ignoring.",MessageType::Warning); //TODO: Implement bones in engine
-            }
+			bool hasNormals = false;
+			bool hasUVs = false;
 
 
 
-            for (int i = 0; i < mesh->mNumVertices; ++i)
-            {
+			if (mesh->HasNormals())
+				hasNormals = true;
 
-                ///Get Vertices
-
-                aiVector3D v = mesh->mVertices[i];
-                
-                vertices.push_back(
-                        {
-                                v.x,
-                                v.y,
-                                v.z
-                        }
-                );
-
-                if(hasNormals)
-                {
-                    ///Get Normals
-
-                    aiVector3D n = mesh->mNormals[i];
-
-                    normals.push_back(
-                            {
-                                    n.x,
-                                    n.y,
-                                    n.z
-                            }
-                    );
-                }
-
-                if(hasUVs)
-                {
-                    ///Get UVs
-
-                    aiVector3D u = mesh->mTextureCoords[0][i];
-                    UVs.push_back(
-                            {
-                                    u.x,
-                                    u.y,
-                            }
-                    );
-                }
-
-            }
-
-            for(unsigned int i = 0; i < mesh->mNumFaces; i++)
-            {
-                aiFace face = mesh->mFaces[i];
-                for(unsigned int j = 0; j < face.mNumIndices; j++)
-                    indices.push_back(face.mIndices[j]);
-            }
-
-            /**
-             *
-             * Generate Buffers
-             *
-             */
-
-            VertexBuffer *vertexBuffer  = graphicsCore->bufferFactory->genVertexBuffer();
-            IndexBuffer  *indexBuffer   = graphicsCore->bufferFactory->genIndexBuffer();
+			if (mesh->HasTextureCoords(0))
+				hasUVs = true;
 
 
-            vertexBuffer->dataType      = DataType::Float;
-            vertexBuffer->attributeId   = 0;
-            vertexBuffer->sizePerAttrib = 3;
-            vertexBuffer->offset        = 0;
-            vertexBuffer->normalized    = false;
-
-            vertexBuffer->bufferData(vertices.size() * sizeof(glm::vec3),&vertices[0],BufferMemoryType::Static);
-
-            indexBuffer->length         = (unsigned int) indices.size();
-            indexBuffer->bufferData(indices.size() * sizeof(unsigned int),&indices[0],BufferMemoryType::Static);
-
-            (*outMesh)->registerVertexBuffer("Vertices", vertexBuffer);
-            (*outMesh)->setIndexBuffer(indexBuffer);
+			if (mesh->HasBones())
+			{
+				ConsoleIO::Print("WARNING: Currently no support for bones in meshes. ignoring.", MessageType::Warning); //TODO: Implement bones in engine
+			}
 
 
-            if(hasNormals)
-            {
 
-                VertexBuffer *normalBuffer  = graphicsCore->bufferFactory->genVertexBuffer();
+			for (int i = 0; i < mesh->mNumVertices; ++i)
+			{
 
-                normalBuffer->dataType      = DataType::Float;
-                normalBuffer->attributeId   = 1;
-                normalBuffer->sizePerAttrib = 3;
-                normalBuffer->offset        = 0;
-                normalBuffer->normalized    = false;
+				///Get Vertices
 
-                normalBuffer->bufferData(normals.size() * sizeof(glm::vec3),&normals[0],BufferMemoryType::Static);
+				aiVector3D v = mesh->mVertices[i];
 
-                (*outMesh)->registerVertexBuffer("Normals", normalBuffer);
-            }
-            if(hasUVs)
-            {
-                VertexBuffer *UVBuffer      = graphicsCore->bufferFactory->genVertexBuffer();
-                UVBuffer    ->dataType      = DataType::Float;
-                UVBuffer    ->attributeId   = 2;
-                UVBuffer    ->sizePerAttrib = 2;
-                UVBuffer    ->offset        = 0;
-                UVBuffer    ->normalized    = false;
+				vertices->push_back(
+				{
+					v.x,
+					v.y,
+					v.z
+				}
+				);
 
-                UVBuffer->bufferData(UVs.size() * sizeof(glm::vec3),&UVs[0],BufferMemoryType::Static);
+				if (hasNormals)
+				{
+					///Get Normals
 
-                (*outMesh)->registerVertexBuffer("UVs", UVBuffer);
-            }
+					aiVector3D n = mesh->mNormals[i];
 
-            (*outMesh)->rebuffer(); ///Mesh should be loaded
+					normals->push_back(
+					{
+						n.x,
+						n.y,
+						n.z
+					}
+					);
+				}
 
-            return Error();
-        }
-    }
+				if (hasUVs)
+				{
+					///Get UVs
+
+					aiVector3D u = mesh->mTextureCoords[0][i];
+					UVs->push_back(
+					{
+						u.x,
+						u.y * -1,
+					}
+					);
+				}
+
+			}
+
+			for (unsigned int i = 0; i < mesh->mNumFaces; i++)
+			{
+				aiFace face = mesh->mFaces[i];
+				for (unsigned int j = 0; j < face.mNumIndices; j++)
+					indices->push_back(face.mIndices[j]);
+			}
+
+			/**
+			*
+			* Generate Buffers
+			*
+			*/
+
+			Empty::VertexBuffer *vertexBuffer = new Empty::VertexBuffer();
+			Empty::IndexBuffer  *indexBuffer = new Empty::IndexBuffer();
+
+
+			vertexBuffer->dataType = DataType::Float;
+			vertexBuffer->attributeId = 0;
+			vertexBuffer->sizePerAttrib = 3;
+			vertexBuffer->offset = 0;
+			vertexBuffer->normalized = false;
+			vertexBuffer->size = vertices->size() * sizeof(glm::vec3);
+			vertexBuffer->data = &(*vertices)[0];
+			vertexBuffer->memoryType = BufferMemoryType::Static;
+
+			indexBuffer->length = (unsigned int)indices->size();
+			indexBuffer->size = indices->size() * sizeof(unsigned int);
+			indexBuffer->data = &(*indices)[0];
+			indexBuffer->memoryType = BufferMemoryType::Static;
+
+			outMesh->vertexBuffers.push_back({ vertexBuffer, "vertex" });
+			outMesh->indexBuffer = indexBuffer;
+			outMesh->hasIndexBuffer = true;
+
+			if (hasNormals)
+			{
+
+				Empty::VertexBuffer *normalBuffer = new Empty::VertexBuffer();
+
+				normalBuffer->dataType = DataType::Float;
+				normalBuffer->attributeId = 1;
+				normalBuffer->sizePerAttrib = 3;
+				normalBuffer->offset = 0;
+				normalBuffer->normalized = false;
+
+				normalBuffer->size = normals->size() * sizeof(glm::vec3);
+				normalBuffer->data = &(*normals)[0];
+				normalBuffer->memoryType = BufferMemoryType::Static;
+
+				(*outMesh).vertexBuffers.push_back({ normalBuffer,"normals", });
+			}
+			if (hasUVs)
+			{
+				Empty::VertexBuffer *UVBuffer = new Empty::VertexBuffer();
+				UVBuffer->dataType = DataType::Float;
+				UVBuffer->attributeId = 2;
+				UVBuffer->sizePerAttrib = 2;
+				UVBuffer->offset = 0;
+				UVBuffer->normalized = false;
+
+				UVBuffer->size = UVs->size() * sizeof(glm::vec2);
+				UVBuffer->data = &(*UVs)[0];
+				UVBuffer->memoryType = BufferMemoryType::Static;
+
+
+				(*outMesh).vertexBuffers.push_back({ UVBuffer,"UVs", });
+			}
+
+			
+			return Error();
+		}
+	}
 }

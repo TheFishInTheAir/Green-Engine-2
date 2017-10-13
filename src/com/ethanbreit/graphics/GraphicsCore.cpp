@@ -5,6 +5,8 @@
 #include <graphics/enums/GraphicsApi.h>
 #include <graphics/GraphicsCore.h>
 #include <memory/GlobalMemory.h>
+#include "OpenGL/factories/GLTextureFactory.h"
+#include "OpenGL/FeatureHandler.h"
 
 namespace ge
 {
@@ -21,6 +23,9 @@ namespace ge
                 bufferFactory       = new GL::BufferFactory();
                 shaderFactory       = new GL::ShaderFactory();
                 meshFactory         = new GL::MeshFactory();
+				textureFactory		= new GL::TextureFactory();
+
+
             case GraphicsApi::Vulkan:break;
             case GraphicsApi::Metal:break;
         }

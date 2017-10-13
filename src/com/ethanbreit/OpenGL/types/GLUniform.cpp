@@ -3,7 +3,7 @@
 //
 
 #include <OpenGL/types/GLUniform.h>
-#include <OpenGL/Meshes/GLBaseTriangleMesh.h>
+#include <OpenGL/Meshes/GLTriangleMesh.h>
 
 void ge::GL::Uniform::setData(float f)
 {
