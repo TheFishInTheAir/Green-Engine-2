@@ -1,3 +1,16 @@
+#ifndef GLOBAL_SETTINGS //
+#define GLOBAL_SETTINGS
+
+
+
 #define VERTEX_POSITION 0
 #define NORMAL_POSITION 1
 #define UV_POSITION     2
+
+#defome MAX_LIGHTS		16
+
+
+
+
+
+#endig

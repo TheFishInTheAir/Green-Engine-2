@@ -4,6 +4,7 @@
 #include "../ExampleController.h"
 #include "common/TexturedModel.h"
 #include "loader/LoadImage.h"
+#include "loader/ShaderPreprocessor.h"
 #ifdef Enable_Example7
 #include <gl/glew.h>
 #include <error/Error.h>
@@ -113,7 +114,7 @@ int main()
 
     updateRun     = new ge::Runtime("Update Runtime", 60);
     renderRun     = new ge::Runtime("Render Runtime", 60);
-	loadingRun	  = new ge::Runtime("Loading Runtime", 10);
+	loadingRun	  = new ge::Runtime("Loading Runtime", 1);
 
     updateGroup      = new ge::RuntimeGroup();
     renderGroup      = new ge::RuntimeGroup();
@@ -213,16 +214,20 @@ int main()
 
 	
 	Image *im;
-	ImageLoader::loadImage("buddha.png", &im);
-	TexturedModel *texm = new TexturedModel(false, false, camera, "buddha.obj", im);
+	ImageLoader::loadImage("Poliigon_Onyx_COL.jpg", &im);
+	TexturedModel *texm = new TexturedModel(false, false, camera, "crystal1_Art_Norm.obj", im);
 
 	texm->model = glm::rotate(texm->model, glm::radians(-90.0f), glm::vec3(0.0f,1.0f,0.0f));
 
 	updateGroup->ge_RUNTIME_GROUP_INSERT_HEAP(texm);
 	renderGroup->ge_RUNTIME_GROUP_INSERT_HEAP(texm);
+	/*
+	std::string data;
+	ResourceUtil::getRawStrResource("shaders/debug/preprocessor_test.glsl", &data);
 
-	
-    
+	ConsoleIO::Print("\n" + data + "\n\n",MessageType::Debug);
+	ShaderPreprocessor::process(data);
+    */
     while(true)
         gc->window->poll(); /// poll window events;
 

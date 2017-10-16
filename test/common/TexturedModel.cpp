@@ -114,7 +114,7 @@ TexturedModel::TexturedModel(bool shouldRotate, bool shouldHover, Camera *c, std
     camera = c;
 	
 	GlobalMemory::get("ge_loading_context_runtime").getRawData<Runtime>()->enqueFunction({ load, this });
-
+	
 
 }
 

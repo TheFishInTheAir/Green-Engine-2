@@ -6,14 +6,17 @@
 #include <OpenGL/types/GLShader.h>
 #include <OpenGL/util/EnumUtil.h>
 #include <OpenGL/types/GLShaderGroup.h>
+#include "loader/ShaderPreprocessor.h"
 
 namespace ge
 {
     namespace GL
     {
 
-        Error ShaderFactory::genShader(std::string data,ge::ShaderType::type shaderType, ge::Shader** outShader)
+        Error ShaderFactory::genShader(std::string in_data,ge::ShaderType::type shaderType, ge::Shader** outShader)
         {
+
+			std::string data = ShaderPreprocessor::process(in_data);
 
             GLuint id = glCreateShader(EnumUtil::getTrueShaderType(shaderType));
 
