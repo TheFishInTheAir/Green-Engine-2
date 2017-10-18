@@ -3,14 +3,14 @@
 
 namespace ge
 {
-	struct LightDirectional : Light
+	struct LightSpot : Light
 	{
 		glm::vec3 dir;
+		float coneAngle;
 
 		LightType::type getLightType()
 		{
-			return LightType::Directional;
+			return LightType::Point;
 		}
-
 	};
 }

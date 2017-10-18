@@ -4,7 +4,15 @@
 #pragma include <engine/shader/global_settings.pre>
 
 
+#ifdef VERTEX
 
+
+
+#elif defined FRAGMENT
+
+
+
+#endif
 
 
 #endif

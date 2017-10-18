@@ -3,13 +3,12 @@
 
 namespace ge
 {
-	struct LightDirectional : Light
+	struct LightPoint : Light
 	{
-		glm::vec3 dir;
 
 		LightType::type getLightType()
 		{
-			return LightType::Directional;
+			return LightType::Point;
 		}
 
 	};

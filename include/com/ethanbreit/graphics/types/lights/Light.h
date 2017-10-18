@@ -6,21 +6,16 @@ namespace ge
 {
 	struct Light
 	{
-		LightType::type type;
 		//Global:
 				
 		glm::vec3 pos;
 
 		glm::vec3 colour;
 		float intensity; ///Implement soon
-		
-		// Directional, Spot
 
-		glm::vec3 dir;
-
-		//Spot
-		float coneAngle;
+		virtual LightType::type getLightType() = 0;
 
 		//TODO: add more parameters.
+
 	};
 }
