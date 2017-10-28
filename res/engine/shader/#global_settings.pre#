@@ -8,7 +8,7 @@
 
 //STANDARDS
 #define FRAG_OUT_COL ge_fragment_colour
-#define CAMERA_DIR   ge_camera_direction
+#define CAMERA_POS   ge_camera_position
 
 //LIGHTING
 

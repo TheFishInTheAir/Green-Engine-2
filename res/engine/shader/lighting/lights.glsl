@@ -70,6 +70,14 @@ float calcDirectionalLightDIF(DirectionalLight light, vec3 normal)
 	return max(dot(normal, lightDir), 0.0);
 }
 
+float calcDirectionalLightSPEC(DirectionalLight light, vec3 normal, vec3 cameraPos, vec3 FragPos)
+{
+	vec3 viewDir = normalize(cameraPos - FragPos);
+	vec3 reflectDir = reflect(-light.dir, normal);
+
+    return max(dot(viewDir, reflectDir), 0.0);
+}
+
 #endif
 
 

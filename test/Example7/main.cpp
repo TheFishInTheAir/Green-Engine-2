@@ -77,7 +77,7 @@ struct example
 
 		//Light Rotation
 
-		dirLight->dir = glm::rotateY(dirLight->dir, 0.02f);
+		//dirLight->dir = glm::rotateY(dirLight->dir, 0.02f);
 
         if(gc->window->shouldClose())
         {
@@ -117,7 +117,7 @@ int main()
 
 	dirLight = new LightDirectional();
 	dirLight->dir = glm::vec3(1, -0.5, 0);
-
+	dirLight->colour = glm::vec3(0xff,0x00,0xff);
 
     /**
      *
@@ -213,7 +213,6 @@ int main()
     preRenderGroup->ge_RUNTIME_GROUP_INSERT_HEAP(e);
     postRenderGroup->ge_RUNTIME_GROUP_INSERT_HEAP(e);
 
-
     Triangle *t1 = new Triangle(false, true, camera);
     t1->model = glm::translate(t1->model, {3.0f,0.0f,0.0f});
 
@@ -228,9 +227,9 @@ int main()
 	renderGroup->ge_RUNTIME_GROUP_INSERT_HEAP(t2);
 
 	Image *im;
-	ImageLoader::loadImage("buddha.png", &im);
-	BasicLightModel *texm = new BasicLightModel(false, false, camera, "buddha.obj", im, dirLight);
-
+	ImageLoader::loadImage("VoodooSkull_BaseColor.png", &im);
+	BasicLightModel *texm = new BasicLightModel(false, false, camera, "plane.obj", im, dirLight);
+	texm->model = glm::scale(texm->model, { 0.1f,0.1f,0.1f });
 	texm->model = glm::rotate(texm->model, glm::radians(-90.0f), glm::vec3(0.0f,1.0f,0.0f));
 
 	updateGroup->ge_RUNTIME_GROUP_INSERT_HEAP(texm);

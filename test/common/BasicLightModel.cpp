@@ -4,6 +4,13 @@
 
 #include <common/BasicLightModel.h>
 #include "loader/LoadMesh.h"
+//#include <>
+#define CAMERA_POS   ge_camera_position
+
+#define getAsString(m) #m
+
+//todo: actually import global_settings
+
 
 static GraphicsCore* core;
 
@@ -30,11 +37,16 @@ void BasicLightModel::render()
 		tex->setFiltering(TextureFilterType::Anisotropic_16x);
 		mesh->setShaderGroup(sg);
 
-		mesh->registerUniform("mvp");
+		mesh->registerUniform("vp");
+		mesh->registerUniform("model");
 		mesh->registerUniform("testLight.dir");
-		u = mesh->getUniform("mvp");
+		mesh->registerUniform("testLight.colour");
+		mesh->registerUniform(getAsString(CAMERA_POS));
+		u = mesh->getUniform("vp");
+		mod = mesh->getUniform("model");
         lightDir = mesh->getUniform("testLight.dir");
-
+		lightCol = mesh->getUniform("testLight.colour");
+		cameraDir = mesh->getUniform(getAsString(CAMERA_POS));
 		mesh->registerTexture(tex, 1);
 
 		mesh->rebuffer();
@@ -45,8 +57,11 @@ void BasicLightModel::render()
 	}
 	if (isLoaded)
 	{
-		u->setData(camera->vp*model);
+		u->setData(camera->vp);
+		mod->setData(model);
         lightDir->setData(dirLight->dir);
+		lightCol->setData(dirLight->colour);
+		cameraDir->setData(camera->pos);
 		mesh->render();
 	}
 	//ConsoleIO::print("RENDERING \n");

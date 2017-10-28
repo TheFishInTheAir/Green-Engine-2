@@ -29,8 +29,11 @@ struct BasicLightModel
 
 	Uniform* u;
 
-    Uniform* lightDir;
+	Uniform* mod;
 
+    Uniform* lightDir;
+	Uniform* lightCol;
+	Uniform* cameraDir;
 
 	TriangleMesh *mesh;
 	Image* img;

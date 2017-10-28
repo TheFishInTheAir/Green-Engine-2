@@ -10,12 +10,14 @@ layout(location = UV_POSITION) in vec2 UV;
 
 out vec2 tUV;
 out vec3 tNorm;
-
-uniform mat4 mvp;
+out vec3 tFragPos;
+uniform mat4 model;
+uniform mat4 vp;
 
 void main()
 {
-	gl_Position = mvp * vec4(vertexPositions, 1);
+	gl_Position = vp * model * vec4(vertexPositions, 1);
+	tFragPos = vec3(model * vec4(vertexPositions, 1.0));
 	tUV = UV;
 	tNorm = normals;
 }
