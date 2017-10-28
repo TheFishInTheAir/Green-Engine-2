@@ -42,7 +42,7 @@ namespace ge
             if ( InfoLogLength > 0 ){
                 std::vector<char> ShaderErrorMessage(InfoLogLength+1);
                 glGetShaderInfoLog(id, InfoLogLength, NULL, &ShaderErrorMessage[0]);
-                ge_Error_GENERATE(&ShaderErrorMessage[0]);
+                ge_Error_GENERATE(std::string("Error in Shader \"oh wait I did this badly so I don't know the shader name\"\n")+&ShaderErrorMessage[0]);
             }
 
             ConsoleIO::print("\nValid\n\n");

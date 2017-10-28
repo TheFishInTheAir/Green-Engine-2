@@ -1,8 +1,15 @@
 #version 330
-layout(location = 0) in vec3 vertexPositions;
-layout(location = 2) in vec2 UV;
+
+#define VERTEX
+
+#pragma include <engine/shader/global_settings.pre>
+
+layout(location = VERTEX_POSITION) in vec3 vertexPositions;
+layout(location = NORMAL_POSITION) in vec3 normals;
+layout(location = UV_POSITION) in vec2 UV;
 
 out vec2 tUV;
+out vec3 tNorm;
 
 uniform mat4 mvp;
 
@@ -10,4 +17,5 @@ void main()
 {
 	gl_Position = mvp * vec4(vertexPositions, 1);
 	tUV = UV;
+	tNorm = normals;
 }

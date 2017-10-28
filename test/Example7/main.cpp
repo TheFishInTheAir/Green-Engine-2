@@ -5,6 +5,8 @@
 #include "common/TexturedModel.h"
 #include "loader/LoadImage.h"
 #include "loader/ShaderPreprocessor.h"
+#include "common/BasicLightModel.h"
+#include "graphics/types/lights/LightDirectional.h"
 #ifdef Enable_Example7
 #include <gl/glew.h>
 #include <error/Error.h>
@@ -29,6 +31,9 @@ Runtime *updateRun;
 Runtime *renderRun;
 
 Runtime *loadingRun;
+
+
+LightDirectional* dirLight;
 
 
 RuntimeGroup *updateGroup;
@@ -70,6 +75,10 @@ struct example
         fm.update(camera);
     	camera->update();
 
+		//Light Rotation
+
+		dirLight->dir = glm::rotateY(dirLight->dir, 0.02f);
+
         if(gc->window->shouldClose())
         {
             renderRun->end(); ///End threads
@@ -103,7 +112,13 @@ int main()
      */
     gc = new ge::GraphicsCore(ge::GraphicsApi::OpenGL);
 
-    
+    //Lighting Setup
+
+
+	dirLight = new LightDirectional();
+	dirLight->dir = glm::vec3(1, -0.5, 0);
+
+
     /**
      *
      *
@@ -212,10 +227,9 @@ int main()
 	updateGroup->ge_RUNTIME_GROUP_INSERT_HEAP(t2);
 	renderGroup->ge_RUNTIME_GROUP_INSERT_HEAP(t2);
 
-	
 	Image *im;
-	ImageLoader::loadImage("Poliigon_Onyx_COL.jpg", &im);
-	TexturedModel *texm = new TexturedModel(false, false, camera, "crystal1_Art_Norm.obj", im);
+	ImageLoader::loadImage("buddha.png", &im);
+	BasicLightModel *texm = new BasicLightModel(false, false, camera, "buddha.obj", im, dirLight);
 
 	texm->model = glm::rotate(texm->model, glm::radians(-90.0f), glm::vec3(0.0f,1.0f,0.0f));
 

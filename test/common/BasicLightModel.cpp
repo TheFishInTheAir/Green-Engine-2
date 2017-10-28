@@ -2,7 +2,7 @@
 // Created by Ethan Breit on 2017-08-13.
 //
 
-#include <common/TexturedModel.h>
+#include <common/BasicLightModel.h>
 #include "loader/LoadMesh.h"
 
 static GraphicsCore* core;
@@ -15,7 +15,7 @@ static std::string fragSrc;
 static std::string vertSrc;
 
 
-void TexturedModel::render()
+void BasicLightModel::render()
 {
 
 	if(!isLoaded&&shouldLoad)
@@ -31,7 +31,9 @@ void TexturedModel::render()
 		mesh->setShaderGroup(sg);
 
 		mesh->registerUniform("mvp");
+		mesh->registerUniform("testLight.dir");
 		u = mesh->getUniform("mvp");
+        lightDir = mesh->getUniform("testLight.dir");
 
 		mesh->registerTexture(tex, 1);
 
@@ -44,12 +46,13 @@ void TexturedModel::render()
 	if (isLoaded)
 	{
 		u->setData(camera->vp*model);
+        lightDir->setData(dirLight->dir);
 		mesh->render();
 	}
 	//ConsoleIO::print("RENDERING \n");
 }
 
-void TexturedModel::update()
+void BasicLightModel::update()
 {
 
 	//ConsoleIO::print("UPDATING \n");
@@ -93,7 +96,7 @@ void TexturedModel::update()
     }
 }
 static bool isInitialised	= false;
-TexturedModel::TexturedModel(bool shouldRotate, bool shouldHover, Camera *c, std::string p, Image *i)
+BasicLightModel::BasicLightModel(bool shouldRotate, bool shouldHover, Camera *c, std::string p, Image *i, LightDirectional* dirLight)
 {
 	ge::GlobalRuntime::ge_REGISTER_RUNTIME_HANDLER;
 
@@ -105,11 +108,12 @@ TexturedModel::TexturedModel(bool shouldRotate, bool shouldHover, Camera *c, std
 		GlobalMemory::get("ge_render_context_runtime").getRawData<Runtime>()->enqueFunctionStatic(setup);
     }
 	while (!isInitialised);
-    ///TexturedModel Instance Setup
+    ///BasicLightModel Instance Setup
     this->shouldRotate = shouldRotate;
     this->shouldHover  = shouldHover;
 	this->p = p;
 	this->img = i;
+    this->dirLight = dirLight;
 
     camera = c;
 
@@ -118,9 +122,9 @@ TexturedModel::TexturedModel(bool shouldRotate, bool shouldHover, Camera *c, std
 
 }
 
-void TexturedModel::load(void* v)
+void BasicLightModel::load(void* v)
 {
-	TexturedModel* tm = reinterpret_cast<TexturedModel*>(v);
+	BasicLightModel* tm = reinterpret_cast<BasicLightModel*>(v);
 
 	MeshLoader::loadTriangleMesh(tm->p, &tm->m);
 
@@ -129,7 +133,7 @@ void TexturedModel::load(void* v)
 }
 
 
-void TexturedModel::setup()
+void BasicLightModel::setup()
 {
     /**
      *
@@ -139,10 +143,10 @@ void TexturedModel::setup()
 
     core = GlobalMemory::get("ge_renderer_instance").getRawData<GraphicsCore>(); ///Get Current Instance of graphics core
 
-    ge::ResourceUtil::getRawStrResource("../res/shaders/unlit/Textured/Textured.frag", &fragSrc); ///Get Shader
+    ge::ResourceUtil::getRawStrResource("../res/shaders/basic/Textured/Textured.frag", &fragSrc); ///Get Shader
     core->shaderFactory->genShader(fragSrc,ge::ShaderType::Shader_Fragment,&frag); ///Generate the shader
 
-    ge::ResourceUtil::getRawStrResource("../res/shaders/unlit/Textured/Textured.vert", &vertSrc); ///Get Shader
+    ge::ResourceUtil::getRawStrResource("../res/shaders/basic/Textured/Textured.vert", &vertSrc); ///Get Shader
     core->shaderFactory->genShader(vertSrc,ge::ShaderType::Shader_Vertex,&vert); ///Generate the shader
 
 	core->shaderFactory->genShaderGroup({ vert,frag }, &sg);
@@ -150,7 +154,7 @@ void TexturedModel::setup()
 	isInitialised = true;
 }
 
-void TexturedModel::cleanup()
+void BasicLightModel::cleanup()
 {
     delete frag;    ///Delete Fragment Shader
     delete vert;    ///Delete Vertex Shader
