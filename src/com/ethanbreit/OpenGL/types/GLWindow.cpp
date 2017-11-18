@@ -11,6 +11,8 @@
 #include "memory/GlobalMemory.h"
 #include "OpenGL/FeatureHandler.h"
 #include <Graphics/GraphicsCore.h>
+#include <iostream>
+#include "debug/PreProcessor.h"
 
 ge::GraphicsCore* core;
 
@@ -21,7 +23,7 @@ namespace ge
 
         void glfwErrorCallback(int error, char* err)
         {
-            ConsoleIO::Print("GLFW Error: "+std::string(err)+"\n", MessageType::Error);
+            ConsoleIO::print("GLFW Error: "+std::string(err)+"\n", MessageType::Error);
         }
 
         void glfwResizeCallback(); /// @unimplemented TODO: implement
@@ -68,20 +70,25 @@ namespace ge
              * GLFW Initialisation
              *
              */
+			ge_DEBUG_TIMER_INIT
+
+			ge_DEBUG_TIMER_START
 
             if (!glfwInit())
                 ge_Error_GENERATE("GLFW failed to initialize!");
 
             glfwSetErrorCallback((GLFWerrorfun)glfwErrorCallback); ///Set the GLFW Error Callback to the glfwErrorCallback() function
 
-
-
+			ge_DEBUG_TIMER_END("GLFW INIT")
 
             /**
              *
              * Test for Monitors
              *
              */
+
+			ge_DEBUG_TIMER_START
+
 
             ConsoleIO::print("Finding available Monitors:\n");
             int count;
@@ -95,11 +102,15 @@ namespace ge
             }
             ConsoleIO::print("Total of (" + std::to_string(count) + ") monitors found.\n");
 
+			ge_DEBUG_TIMER_END("GLFW Monitor Test")
+
+
             /**
              *
              * GLFW Window Initialization
              *
              */
+			ge_DEBUG_TIMER_START
 
             glfwWindowHint(GLFW_SAMPLES, _samples); // antialiasing
             glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, _majorVersion); // We want OpenGL 3.3
@@ -108,7 +119,10 @@ namespace ge
             glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //We don't want the old OpenGL
             glfwWindowHint(GLFW_MAXIMIZED, true);
 
+			ge_DEBUG_TIMER_END("GLFW Window Hinted")
 
+
+			ge_DEBUG_TIMER_START
 
             //_window = glfwCreateWindow( _width, _height, _windowName, glfwGetPrimaryMonitor(), NULL); ///Start Fullscreen
             _window = glfwCreateWindow( _width, _height, _windowName, NULL, NULL); ///Start Windowed
@@ -116,28 +130,44 @@ namespace ge
                 glfwTerminate();
                 ge_Error_GENERATE("GLFW failed to create window. (Possible incompatible OpenGL driver)");
             }
+
+			ge_DEBUG_TIMER_END("GLFW Window Creation")
+
+
             /**
              *
              * GLFW Input Setup
              *
              */
 
+			ge_DEBUG_TIMER_START
+
+
             //glfwSetWindowSizeCallback(_window,(GLFWwindowsizefun)glfwResizeCallback); /// @unimplemented Set the GLFW Window Resize Callback to the glfwResizeCallback() function
             glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
             //glfwSetInputMode(_window, GLFW_STICKY_KEYS, GL_TRUE); ///Maybe don't enable this TODO: add proper window input handler
             glfwSetKeyCallback(_window, KeyboardHandler::_keyHandler);
             glfwSetCursorPosCallback(_window, MouseHandler::_mouseHandler);
+
+			ge_DEBUG_TIMER_END("GLFW Input Init")
+
+
             /**
              *
              * GLEW Init
              *
              */
 
+			ge_DEBUG_TIMER_START
+
+
             glfwMakeContextCurrent(_window); /// Initialize GLEW
             glewExperimental= (GLboolean) true; /// Needed in core profile
             if (glewInit() != GLEW_OK) {
                 ge_Error_GENERATE("GLEW Failed to Initialize\n");
             }
+
+			ge_DEBUG_TIMER_END("GLEW Init (E not f)")
 
 
 			ge::GL::registerFeatures(&((*core).supportedFeatures));

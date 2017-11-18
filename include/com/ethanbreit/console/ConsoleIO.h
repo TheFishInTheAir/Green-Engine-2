@@ -14,6 +14,6 @@ namespace ge
 
 
         void print(std::string);
-        void Print(std::string, MessageType::type);
+        void print(std::string, MessageType::type);
     }
 }

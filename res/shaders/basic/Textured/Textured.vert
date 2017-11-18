@@ -19,5 +19,6 @@ void main()
 	gl_Position = vp * model * vec4(vertexPositions, 1);
 	tFragPos = vec3(model * vec4(vertexPositions, 1.0));
 	tUV = UV;
-	tNorm = normals;
+	tNorm = mat3(transpose(inverse(model))) * normals;
+
 }

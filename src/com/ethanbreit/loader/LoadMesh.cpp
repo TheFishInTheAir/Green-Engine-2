@@ -61,7 +61,7 @@ namespace ge
 
 			if (mesh->HasBones())
 			{
-				ConsoleIO::Print("WARNING: Currently no support for bones in meshes. ignoring.", MessageType::Warning); //TODO: Implement bones in engine
+				ConsoleIO::print("WARNING: Currently no support for bones in meshes. ignoring.", MessageType::Warning); //TODO: Implement bones in engine
 			}
 
 

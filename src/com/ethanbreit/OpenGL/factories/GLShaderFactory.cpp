@@ -21,19 +21,19 @@ namespace ge
             GLuint id = glCreateShader(EnumUtil::getTrueShaderType(shaderType));
 
 
-            ConsoleIO::Print(data+"\n",MessageType::Turbo_Verbose);
+            ConsoleIO::print(data+"\n",MessageType::Turbo_Verbose);
 
 
             //Compile Shader
 
-            ConsoleIO::Print(std::string("Compiling Shader: ")  + " ...\n", MessageType::Verbose);
+            ConsoleIO::print(std::string("Compiling Shader: ")  + " ...\n", MessageType::Verbose);
 
             const char * shaderCode = data.c_str();
 
             glShaderSource(id, 1, &shaderCode , NULL);
             glCompileShader(id);
 
-            ConsoleIO::Print(std::string("Compiled Shader: ") + "\nChecking validity ...\n", MessageType::Verbose);
+            ConsoleIO::print(std::string("Compiled Shader: ") + "\nChecking validity ...\n", MessageType::Verbose);
 
             //Check
 
@@ -42,7 +42,18 @@ namespace ge
             if ( InfoLogLength > 0 ){
                 std::vector<char> ShaderErrorMessage(InfoLogLength+1);
                 glGetShaderInfoLog(id, InfoLogLength, NULL, &ShaderErrorMessage[0]);
+				std::string error_data = data;
+				for (int i = 0; i < std::count(data.begin(), data.end(), '\n'); i++)
+				{
+					int nextLine = error_data.find_first_of('\n');
+					ConsoleIO::print(std::to_string(i+1)+": "+ error_data.substr(0,nextLine+1));
+					error_data = error_data.substr(nextLine + 1), error_data.length();
+
+				}
+
                 ge_Error_GENERATE(std::string("Error in Shader \"oh wait I did this badly so I don't know the shader name\"\n")+&ShaderErrorMessage[0]);
+
+
             }
 
             ConsoleIO::print("\nValid\n\n");

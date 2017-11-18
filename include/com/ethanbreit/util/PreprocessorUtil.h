@@ -6,6 +6,10 @@
 #include <cstring>
 
 
+#define STRINGIFY(s) #s
+
+#define DBL_STRINGIFY(m) STRINGIFY(m)
+
 #ifdef _WIN32
 
 #define __FILENAME__ (strrchr(__FILE__, '\\') ? strrchr(__FILE__, '\\') + 1 : __FILE__)

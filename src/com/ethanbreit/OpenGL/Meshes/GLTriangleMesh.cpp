@@ -47,7 +47,7 @@ namespace ge
 				}
 				else
 				{
-					ConsoleIO::Print("GL: texture unit ID(" + std::to_string(tex.first) + ") exceeds maximum(" + std::to_string(GlobalMemory::get("ge_max_texture_units").getData<int>()) + ")!", MessageType::Error);
+					ConsoleIO::print("GL: texture unit ID(" + std::to_string(tex.first) + ") exceeds maximum(" + std::to_string(GlobalMemory::get("ge_max_texture_units").getData<int>()) + ")!", MessageType::Error);
 				}
 			}
 		}

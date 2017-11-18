@@ -7,6 +7,7 @@
 #include "loader/ShaderPreprocessor.h"
 #include "common/BasicLightModel.h"
 #include "graphics/types/lights/LightDirectional.h"
+#include "debug/debug_entities/ColouredBox.h"
 #ifdef Enable_Example7
 #include <gl/glew.h>
 #include <error/Error.h>
@@ -67,6 +68,8 @@ struct example
 
     void postRender()
     {
+
+
         gc->window->swap(); /// swap buffers
     }
 
@@ -117,7 +120,7 @@ int main()
 
 	dirLight = new LightDirectional();
 	dirLight->dir = glm::vec3(1, -0.5, 0);
-	dirLight->colour = glm::vec3(0xff,0x00,0xff);
+	dirLight->colour = glm::vec3(1, 1, 1);
 
     /**
      *
@@ -163,7 +166,8 @@ int main()
 	
 	wci.height = 1080;
 	wci.width  = 1920;
-
+	wci.glMajorVersion = 2;
+	wci.glMinorVersion = 2;
 	ge_Error_ADDTRACE(
 		GlobalMemory::get("ge_renderer_instance").getRawData<GraphicsCore>()->window->init(ge::WindowConstructorInfo()));
 
@@ -213,6 +217,20 @@ int main()
     preRenderGroup->ge_RUNTIME_GROUP_INSERT_HEAP(e);
     postRenderGroup->ge_RUNTIME_GROUP_INSERT_HEAP(e);
 
+
+	Triangle *t1l = new Triangle(false, false, camera);
+	t1l->model = glm::translate(t1l->model, dirLight->dir);
+	t1l->model = glm::scale(t1l ->model, glm::vec3(0.2,0.2,0.2));
+
+	updateGroup->ge_RUNTIME_GROUP_INSERT_HEAP(t1l);
+	renderGroup->ge_RUNTIME_GROUP_INSERT_HEAP(t1l);
+
+	//Debug::DebugColouredBox *box = new Debug::DebugColouredBox(camera, -(dirLight->dir)*8);
+	//box->model = glm::scale(box->model, { 0.5f,0.5f,0.5f });
+	//box->colour = {1,1,1};
+	//renderGroup->ge_RUNTIME_GROUP_INSERT_HEAP(box);
+
+
     Triangle *t1 = new Triangle(false, true, camera);
     t1->model = glm::translate(t1->model, {3.0f,0.0f,0.0f});
 
@@ -228,16 +246,19 @@ int main()
 
 	Image *im;
 	ImageLoader::loadImage("VoodooSkull_BaseColor.png", &im);
-	BasicLightModel *texm = new BasicLightModel(false, false, camera, "plane.obj", im, dirLight);
-	texm->model = glm::scale(texm->model, { 0.1f,0.1f,0.1f });
-	texm->model = glm::rotate(texm->model, glm::radians(-90.0f), glm::vec3(0.0f,1.0f,0.0f));
+
+	Image *im_spec;
+	ImageLoader::loadImage("VoodooSkullRough.png", &im_spec);
+
+	BasicLightModel *texm = new BasicLightModel(false, false /* enable this one to rotate */, camera, "plane.obj", im, im_spec, dirLight);
+	texm->model = glm::scale(texm->model, { 0.05f,0.05f,0.05f });
+	texm->model = glm::rotate(texm->model, glm::radians(90.0f), glm::vec3(0.0f,1.0f,0.0f));
 
 	updateGroup->ge_RUNTIME_GROUP_INSERT_HEAP(texm);
 	renderGroup->ge_RUNTIME_GROUP_INSERT_HEAP(texm);
 	/*
 	std::string data;
 	ResourceUtil::getRawStrResource("shaders/debug/preprocessor_test.glsl", &data);
-
 	ConsoleIO::Print("\n" + data + "\n\n",MessageType::Debug);
 	ShaderPreprocessor::process(data);
     */

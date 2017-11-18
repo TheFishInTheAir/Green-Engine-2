@@ -16,8 +16,15 @@ namespace ge
             glGenTextures(1,&(glTex->id));
             glBindTexture(GL_TEXTURE_2D, (glTex->id));
             unsigned int channels = 0;
+			unsigned int coreChannel = 0;
+			bool hasChannelDisconnect = false;
             switch (img.model)
             {
+				case ColourModelType::BW:
+					channels = GL_RED;
+					//hasChannelDisconnect = true;
+					//coreChannel = GL_RED;
+					break;
                 case ColourModelType::RGB:
                     channels = GL_RGB;
                     break;
@@ -37,7 +44,7 @@ namespace ge
                     channels = GL_BGRA;
                     break;
             }
-            glTexImage2D(GL_TEXTURE_2D, 0,channels, img.width, img.height, 0, channels, GL_UNSIGNED_BYTE, img.data);
+            glTexImage2D(GL_TEXTURE_2D, 0, hasChannelDisconnect ? coreChannel : channels, img.width, img.height, 0, channels, GL_UNSIGNED_BYTE, img.data);
 
 			*outTex = glTex;
             return ge::Error();

@@ -35,10 +35,17 @@ namespace ge
 
 			(*out)->data = data;
 			if (nrChannels == 3)
+			{
 				(*out)->model = ColourModelType::RGB;
+			}
+			else if(nrChannels == 1)
+			{
+				(*out)->model = ColourModelType::BW;
+			}
 			else
+			{
 				(*out)->model = ColourModelType::RGBA;
-
+			}
 			return ge::Error();
 		}
 		ge::Error loadImage(std::string path, std::shared_ptr<Image> *outop)

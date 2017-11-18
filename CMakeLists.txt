@@ -59,6 +59,10 @@ green_engine_libs(includes libraries)
 include_directories(${includes})
 target_link_libraries(Green_Engine_2 ${libraries})
 
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/res/)
+
+
 ###
 ### Include res into build path
 ###

@@ -33,7 +33,7 @@ namespace ge
             std::string str = "";
             for(std::string s : stack)
                 str += s;
-            ConsoleIO::Print("Uncaught "+_msg+"Stack Trace:\n"+str,MessageType::Error);
+            ConsoleIO::print("Uncaught "+_msg+"Stack Trace:\n"+str,MessageType::Error);
         }
     }
 

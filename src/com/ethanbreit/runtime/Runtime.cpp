@@ -48,7 +48,7 @@ namespace ge
         std::chrono::steady_clock::time_point currentTime;
 
 
-        ConsoleIO::Print("Starting runtime \""+context->name+"\" at "+std::to_string(context->cyclesPerSecond)+" cycles per second.\n", MessageType::Message);
+        ConsoleIO::print("Starting runtime \""+context->name+"\" at "+std::to_string(context->cyclesPerSecond)+" cycles per second.\n", MessageType::Message);
 
         while (context->shouldRun)
         {

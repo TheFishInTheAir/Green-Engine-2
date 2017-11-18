@@ -8,16 +8,37 @@
 #include <windows.h>
 //#endif
 
+#include <util/ResourceUtil.h>
+
+#define LOG
+
 namespace ge
 {
     namespace ConsoleIO
     {
+
+		void RawOut(std::string m)
+		{
+
+#ifdef LOG
+
+			static std::string logPos = ResourceUtil::getResPath("../GREEN_ENGINE_LOG.txt");
+			static std::ofstream out_log(logPos);
+			static bool needsSetup = true;
+
+			out_log << m;
+
+#endif
+
+			std::cout << m;
+		}
+
 //TODO: do more complicated stuff with buffering to seperate consoles, I.E. stringbuf, stringstream, or vector of strings.
         void print(std::string msg) {
-            std::cout << msg;
+            RawOut(msg);
         }
 
-        void Print(std::string msg, MessageType::type t) {
+        void print(std::string msg, MessageType::type t) {
 #ifndef ENABLE_TURBO_VERBOSE
 			if(t==MessageType::Turbo_Verbose)
 			{
@@ -33,44 +54,44 @@ namespace ge
 			
 			case MessageType::Warning: 
 				SetConsoleTextAttribute(hConsole, 12);
-				std::cout << msg;
+				RawOut(msg);
 
 				SetConsoleTextAttribute(hConsole, 15);
 				break;
 			case MessageType::Message: 
-				std::cout << msg;
+				RawOut(msg);
 				break;
 			case MessageType::Success: 
 				SetConsoleTextAttribute(hConsole, 2);
-				std::cout << msg;
+				RawOut(msg);
 				SetConsoleTextAttribute(hConsole, 15);
 				break;
 			case MessageType::Error: 
 				SetConsoleTextAttribute(hConsole, 4);
-				std::cout << msg;
+				RawOut(msg);
 				SetConsoleTextAttribute(hConsole, 15);
 				break;
 			case MessageType::Debug: 
 				SetConsoleTextAttribute(hConsole, 5);
-				std::cout << msg;
+				RawOut(msg);
 				SetConsoleTextAttribute(hConsole, 15);
 				break;
 			case MessageType::Verbose: 
 				SetConsoleTextAttribute(hConsole, 7);
-				std::cout << msg;
+				RawOut(msg);
 				SetConsoleTextAttribute(hConsole, 15);
 				break;
 			case MessageType::Turbo_Verbose: 
 				SetConsoleTextAttribute(hConsole, 8);
-				std::cout << msg;
+				RawOut(msg);
 				SetConsoleTextAttribute(hConsole, 15);
 				break;
 			default:
-				std::cout << msg;
+				RawOut(msg);
 			}
         	
 #else
-            std::cout << msg;
+			RawOut(msg);
 #endif
         }
     }

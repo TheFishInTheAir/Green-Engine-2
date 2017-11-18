@@ -34,10 +34,14 @@ struct BasicLightModel
     Uniform* lightDir;
 	Uniform* lightCol;
 	Uniform* cameraDir;
-
+	Uniform* samplerCOL;
+	Uniform* samplerSPEC;
 	TriangleMesh *mesh;
 	Image* img;
 	Texture* tex;
+
+	Image* img_spec;
+	Texture* tex_spec;
 	Empty::MeshData m;
 
 
@@ -58,7 +62,7 @@ struct BasicLightModel
 
 	std::string p;
 
-	BasicLightModel(bool shouldRotate, bool shouldHover, Camera* c, std::string p, Image* T, LightDirectional* dirLight);
+	BasicLightModel(bool shouldRotate, bool shouldHover, Camera* c, std::string p, Image* T, Image* T_S, LightDirectional* dirLight);
     static void setup();
     static void cleanup();
 	static void load(void *);

@@ -4,10 +4,9 @@
 
 #include <common/BasicLightModel.h>
 #include "loader/LoadMesh.h"
+#include <engine/shader/global_settings.pre>
 //#include <>
-#define CAMERA_POS   ge_camera_position
 
-#define getAsString(m) #m
 
 //todo: actually import global_settings
 
@@ -35,23 +34,33 @@ void BasicLightModel::render()
 		mesh = core->meshFactory->newTriangleMesh(m);
 		core->textureFactory->genTexture(*img, &tex);
 		tex->setFiltering(TextureFilterType::Anisotropic_16x);
+
+		core->textureFactory->genTexture(*img_spec, &tex_spec);
+		tex_spec->setFiltering(TextureFilterType::Anisotropic_16x);
+
 		mesh->setShaderGroup(sg);
 
 		mesh->registerUniform("vp");
 		mesh->registerUniform("model");
 		mesh->registerUniform("testLight.dir");
 		mesh->registerUniform("testLight.colour");
-		mesh->registerUniform(getAsString(CAMERA_POS));
+		mesh->registerUniform("tex");
+		mesh->registerUniform("spec_map");
+		mesh->registerUniform(DBL_STRINGIFY(CAMERA_POS));
 		u = mesh->getUniform("vp");
 		mod = mesh->getUniform("model");
         lightDir = mesh->getUniform("testLight.dir");
 		lightCol = mesh->getUniform("testLight.colour");
-		cameraDir = mesh->getUniform(getAsString(CAMERA_POS));
-		mesh->registerTexture(tex, 1);
+		samplerCOL = mesh->getUniform("tex");
+		samplerSPEC = mesh->getUniform("spec_map");
+
+		cameraDir = mesh->getUniform(DBL_STRINGIFY(CAMERA_POS));
+		mesh->registerTexture(tex, 0);
+		mesh->registerTexture(tex_spec, 1);
 
 		mesh->rebuffer();
 
-		ConsoleIO::print("\n\n\n\nloaded.\n\n\n\n\n\n");
+		ConsoleIO::print("\n\n\n" DBL_STRINGIFY(CAMERA_POS) "\nloaded.\n\n\n\n\n\n");
 
 
 	}
@@ -61,6 +70,9 @@ void BasicLightModel::render()
 		mod->setData(model);
         lightDir->setData(dirLight->dir);
 		lightCol->setData(dirLight->colour);
+		samplerCOL->setData(0);
+		samplerSPEC->setData(1);
+
 		cameraDir->setData(camera->pos);
 		mesh->render();
 	}
@@ -96,22 +108,22 @@ void BasicLightModel::update()
         if(positionState)
         {
             position += 0.01;
-            model = glm::translate(model, {0.0f,0.01f,0.0f});
-            if(position>1)
+            model = glm::scale(model, {0.9f,0.9f,0.9f});
+            if(position>0.2)
                 positionState=false;
         }
         else
         {
             position -= 0.01;
-            model = glm::translate(model, {0.0f,-0.01f,0.0f});
-			if (position < -1) {
+            model = glm::scale(model, {1.1f,1.1f,1.1f});
+			if (position < -0.2) {
 				positionState = true;
 			}
         }
     }
 }
 static bool isInitialised	= false;
-BasicLightModel::BasicLightModel(bool shouldRotate, bool shouldHover, Camera *c, std::string p, Image *i, LightDirectional* dirLight)
+BasicLightModel::BasicLightModel(bool shouldRotate, bool shouldHover, Camera *c, std::string p, Image *i, Image *i_S, LightDirectional* dirLight)
 {
 	ge::GlobalRuntime::ge_REGISTER_RUNTIME_HANDLER;
 
@@ -128,6 +140,7 @@ BasicLightModel::BasicLightModel(bool shouldRotate, bool shouldHover, Camera *c,
     this->shouldHover  = shouldHover;
 	this->p = p;
 	this->img = i;
+	this->img_spec = i_S;
     this->dirLight = dirLight;
 
     camera = c;
