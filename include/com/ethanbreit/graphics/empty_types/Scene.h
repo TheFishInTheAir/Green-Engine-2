@@ -18,6 +18,8 @@ namespace ge
 
 			//TODO: First get Textures working and then get the others going.
 
+			std::vector<std::string>								keptRes;
+
 			std::unordered_map<std::string, ge::Image>				images;
 			std::unordered_map<std::string, ge::Empty::MeshData>	meshes;
 

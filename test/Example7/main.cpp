@@ -225,10 +225,10 @@ int main()
 	updateGroup->ge_RUNTIME_GROUP_INSERT_HEAP(t1l);
 	renderGroup->ge_RUNTIME_GROUP_INSERT_HEAP(t1l);
 
-	//Debug::DebugColouredBox *box = new Debug::DebugColouredBox(camera, -(dirLight->dir)*8);
-	//box->model = glm::scale(box->model, { 0.5f,0.5f,0.5f });
-	//box->colour = {1,1,1};
-	//renderGroup->ge_RUNTIME_GROUP_INSERT_HEAP(box);
+	Debug::DebugColouredBox *box = new Debug::DebugColouredBox(camera, -(dirLight->dir)*8);
+	box->model = glm::scale(box->model, { 0.5f,0.5f,0.5f });
+	box->colour = {1,1,1};
+	renderGroup->ge_RUNTIME_GROUP_INSERT_HEAP(box);
 
 
     Triangle *t1 = new Triangle(false, true, camera);

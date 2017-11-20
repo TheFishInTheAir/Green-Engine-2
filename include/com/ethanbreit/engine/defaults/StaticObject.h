@@ -1,6 +1,6 @@
 #pragma once
 #include "engine/types/ModelMat.h"
-#include "engine/empty_types/StaticObject.h"
+#include "engine/empty_types/EmptyStaticObject.h"
 
 #include "graphics/meshes/TriangleMesh.h"
 

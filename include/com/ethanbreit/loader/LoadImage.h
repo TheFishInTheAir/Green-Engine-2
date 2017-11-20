@@ -15,6 +15,6 @@ namespace ge
     {
         Error loadImage(std::string, Image**);
 		Error loadImage(std::string, std::shared_ptr<Image>*);
-		Error loadImage(std::string, std::shared_ptr<Image>*, Scene*);
+		//Error loadImage(std::string, std::shared_ptr<Image>*, Scene*);
     }
 }

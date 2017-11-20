@@ -78,12 +78,12 @@ namespace ge
 			return ge::Error();
 		}
 
-		Error loadImage(std::string p, std::shared_ptr<Image>* ptr, ge::Scene* s)
+		/*Error loadImage(std::string p, std::shared_ptr<Image>* ptr, ge::Scene* s)
 		{
 			Error err = loadImage(p, ptr);
 			s->images.push_front(*ptr);
 			ge_Error_ADDTRACE(err);
 			return err;
-		}
+		}*/
 	}
 }

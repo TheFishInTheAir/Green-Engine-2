@@ -35,7 +35,7 @@ namespace ge
 		//TODO: First get Textures working and then get the others going.
 
 		std::unordered_map<std::string, std::shared_ptr<ge::Texture>> textures;
-		std::unordered_map<std::string, std::shared_ptr<ge::Empty::MeshData>> meshs;
+		std::unordered_map<std::string, std::shared_ptr<ge::Empty::MeshData>> meshes;
 		std::unordered_map<std::string, std::shared_ptr<ge::ShaderGroup>> shaders;
 
 		//TODO: create light class/struct 

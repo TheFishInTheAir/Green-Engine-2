@@ -3,8 +3,10 @@
 #include <json/json.hpp>
 #include "loader/LoadImage.h"
 #include "loader/LoadMesh.h"
-#include "engine/empty_types/StaticObject.h"
+#include "engine/empty_types/EmptyStaticObject.h"
 #include "glm/ext.hpp"
+#include "common/BasicLightModel.h"
+#include "engine/scene/Scene.h"
 
 using json = nlohmann::json;
 
@@ -35,9 +37,18 @@ namespace ge
 
 			std::vector<std::string> textures = res["textures"];
 			std::vector<std::string> meshes = res["meshes"];
+
+			//std::vector<std::string> kept;
 			
+			ge::Scene* currentScene = GlobalMemory::get("ge_current_scene").getRawData<ge::Scene>();
+
 			for(auto s : textures)
 			{
+				if(currentScene->textures.count(s)!=0)
+				{
+					scene.keptRes.push_back(s);
+					continue;
+				}
 				Image *i;
 				ImageLoader::loadImage(s, &i);
 
@@ -47,6 +58,13 @@ namespace ge
 
 			for(auto s : meshes)
 			{
+
+				if (currentScene->meshes.count(s) != 0)
+				{
+					scene.keptRes.push_back(s);
+					continue;
+				}
+
 				Empty::MeshData md;
 				MeshLoader::loadTriangleMesh(s, &md);
 			
@@ -59,6 +77,13 @@ namespace ge
 
 				for (auto s : shaders)
 				{
+
+					if (currentScene->shaders.count(s) != 0)
+					{
+						scene.keptRes.push_back(s);
+						continue;
+					}
+
 					scene.shaders.push_front( std::string(s) );
 				}
 
