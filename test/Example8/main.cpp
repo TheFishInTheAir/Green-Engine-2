@@ -8,7 +8,7 @@
 #include "common/BasicLightModel.h"
 #include "graphics/types/lights/LightDirectional.h"
 #include "debug/debug_entities/ColouredBox.h"
-#ifdef Enable_Example7
+#ifdef Enable_Example8
 #include <gl/glew.h>
 #include <error/Error.h>
 #include <runtime/Runtime.h>
@@ -211,13 +211,18 @@ int main()
      * generate and register new runtime items
      *
      */
-
+	
     example *e = new example();
     updateGroup->ge_RUNTIME_GROUP_INSERT_HEAP(e);
     preRenderGroup->ge_RUNTIME_GROUP_INSERT_HEAP(e);
     postRenderGroup->ge_RUNTIME_GROUP_INSERT_HEAP(e);
-
-
+	
+	
+	//
+	// load scene
+	//
+	
+	
 	Triangle *t1l = new Triangle(false, false, camera);
 	t1l->model = glm::translate(t1l->model, dirLight->dir);
 	t1l->model = glm::scale(t1l ->model, glm::vec3(0.2,0.2,0.2));

@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include "ReadableMemType.h"
 
+//TODO: Implemented nested hashmaps
+
 namespace ge
 {
 
@@ -36,9 +38,14 @@ namespace ge
             void* data;
             ReadableMemType::type memoryType;
         };
-        void insert(std::string, MemItem);
+
+		std::vector<std::string> getAllEntries();
+
+		void insert(std::string, MemItem);
 
         void remove(std::string);
+
+		bool exists(std::string);
 
         MemItem get(std::string);
 

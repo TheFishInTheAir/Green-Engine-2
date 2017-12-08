@@ -113,6 +113,9 @@ namespace ge
 					std::string string = material["lighting_type"];
 					obj.lighting_type = string;
 				}
+
+				obj.override_tex = material["override_tex"];
+
 				if(material.count("custom_shader")!=0)
 				{
 					std::string string = material["custom_shader"];

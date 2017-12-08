@@ -9,6 +9,7 @@
 #define STRINGIFY(s) #s
 
 #define DBL_STRINGIFY(m) STRINGIFY(m)
+#define MSTR(m) DBL_STRINGIFY(m)
 
 #ifdef _WIN32
 

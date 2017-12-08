@@ -4,7 +4,7 @@
 
 #include <common/BasicLightModel.h>
 #include "loader/LoadMesh.h"
-#include <engine/shader/global_settings.pre>
+#include <engine/global_settings.pre>
 //#include <>
 
 

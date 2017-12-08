@@ -9,6 +9,26 @@ namespace ge
 
         std::mutex _accessSemaphore;
 
+		std::vector<std::string> getAllEntries()
+	    {
+			_accessSemaphore.lock();
+
+			std::vector<std::string> out;
+			out.resize(_mem.size());
+
+			int i = 0;
+			for(auto m : _mem)
+			{
+				
+				out[i] = m.first;
+
+				i++;
+			}
+
+			_accessSemaphore.unlock();
+			return out;
+	    }
+
         void insert(std::string key, MemItem o)
         {
 
@@ -30,7 +50,15 @@ namespace ge
 
         }
 
-        MemItem get(std::string key)
+	    bool exists(std::string key)
+	    {
+			_accessSemaphore.lock();
+			bool state = _mem.count(key) != 0;
+			_accessSemaphore.unlock();
+			return state;
+	    }
+
+	    MemItem get(std::string key)
         {
 
             _accessSemaphore.lock();

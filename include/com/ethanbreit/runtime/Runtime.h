@@ -45,7 +45,7 @@ namespace ge
         void        insertGroup(RuntimeGroup*);
         void        insertGroup(RuntimeGroup*, uint32_t);
 
-
+		std::thread::id getThreadID();
 
     private:
 

@@ -7,6 +7,7 @@
 #include <memory>
 #include "graphics/types/Image.h"
 #include <unordered_map>
+#include "engine/empty_types/EmptyStaticObject.h"
 
 namespace ge
 {
@@ -25,6 +26,8 @@ namespace ge
 
 			std::forward_list<std::string>							shaders;
 
+
+			std::forward_list<Empty::StaticObject*>					staticObjects;
 
 			//std::map<std::string, std::shared_ptr<ge::Empty::MeshData>> meshs;
 			//std::map<std::string, std::shared_ptr<ge::Shader>> shaders;

@@ -10,5 +10,6 @@
 //#define Enable_Example4 ///Example With 3D Models		BROKEN
 //#define Enable_Example5 ///Example With Textures		BROKEN
 //#define Enable_Example6 ///Example with models, textures, and asynchronouse loading.
-#define Enable_Example7 ///TODO:: Basic Lighting, scene... ? maybe?
+//#define Enable_Example7 ///Example with Basic Lighting
+#define Enable_Example8 ///TODO:: Scenes
 

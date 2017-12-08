@@ -11,6 +11,9 @@
 #include "graphics/types/Image.h"
 #include <unordered_map>
 #include "graphics/empty_types/Scene.h"
+#include "graphics/meshes/TriangleMesh.h"
+
+
 namespace ge
 {
 
@@ -19,6 +22,8 @@ namespace ge
     {
 
 		void loadScene(Empty::Scene);
+
+		static void init();
 
 		//Contains:
     	/*
@@ -34,9 +39,11 @@ namespace ge
 
 		//TODO: First get Textures working and then get the others going.
 
-		std::unordered_map<std::string, std::shared_ptr<ge::Texture>> textures;
-		std::unordered_map<std::string, std::shared_ptr<ge::Empty::MeshData>> meshes;
-		std::unordered_map<std::string, std::shared_ptr<ge::ShaderGroup>> shaders;
+		std::unordered_map<std::string, std::shared_ptr<ge::Texture>>		textures;
+		std::unordered_map<std::string, std::shared_ptr<ge::TriangleMesh>>	meshes;
+		std::unordered_map<std::string, std::shared_ptr<ge::ShaderGroup>>	shaders;
+
+		std::forward_list<void*>											SuperSketchyEntityHandler;
 
 		//TODO: create light class/struct 
 

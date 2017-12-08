@@ -3,7 +3,7 @@
 #include "graphics/Camera.h"
 
 #include "runtime/Runtime.h"
-#include <engine/shader/global_settings.pre>
+#include <engine/global_settings.pre>
 #include "graphics/meshes/TriangleMesh.h"
 
 namespace ge

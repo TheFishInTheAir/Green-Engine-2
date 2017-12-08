@@ -20,6 +20,7 @@ namespace ge
 			std::string normal;
 			std::string roughness;
 
+			bool override_tex;
 
 		};
 	}

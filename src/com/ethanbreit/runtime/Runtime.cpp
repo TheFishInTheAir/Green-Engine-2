@@ -141,7 +141,12 @@ namespace ge
 
     }
 
-    void Runtime::cycle()
+	std::thread::id Runtime::getThreadID()
+	{
+		return runtime->get_id();
+	}
+
+	void Runtime::cycle()
     {
         if(!staticQueue.empty())
         {
