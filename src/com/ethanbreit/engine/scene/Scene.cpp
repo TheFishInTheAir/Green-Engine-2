@@ -88,15 +88,15 @@ namespace ge
 
 
 
+		std::forward_list<StaticObject>* objsTemp = GlobalMemory::get(MSTR(GE_ENTITES_GM)).getRawData<std::forward_list<StaticObject>>();
+
 		//Initialise Static Objects
 
-		/*for(Empty::StaticObject* staticObjectE : s.staticObjects)
+		for(Empty::StaticObject* staticObjectE : s.staticObjects)
 		{
-			new StaticObject(*staticObjectE);
-			
-			//staticObjects.push_front(sobj);
+			objsTemp->push_front(StaticObject(*staticObjectE));
 
-		}*/
+		}
 
 	}
 
