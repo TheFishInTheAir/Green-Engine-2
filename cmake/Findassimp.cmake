@@ -54,8 +54,8 @@ else(WIN32)
 
 	find_path(
 	  assimp_INCLUDE_DIRS
-	  NAMES postprocess.h scene.h version.h config.h cimport.h
-	  PATHS /usr/local/include/
+	  NAMES postprocess.h scene.h version.h config.h cimport.h ai_assert.h
+	  PATHS /usr/local/include/assimp /usr/local/include
 	)
 
 	find_library(
@@ -63,6 +63,8 @@ else(WIN32)
 	  NAMES assimp
 	  PATHS /usr/local/lib/
 	)
+
+	message("${assimp_LIBRARIES} and ${assimp_INCLUDE_DIRS}")
 
 	if (assimp_INCLUDE_DIRS AND assimp_LIBRARIES)
 	  SET(assimp_FOUND TRUE)

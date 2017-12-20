@@ -4,9 +4,12 @@
 
 #include <console/ConsoleIO.h>
 #include <iostream>
-//#ifndef NO_WIN_COLOUR
+
+#define NO_WIN_COLOUR
+
+#ifndef NO_WIN_COLOUR
 #include <windows.h>
-//#endif
+#endif
 
 #include <util/ResourceUtil.h>
 

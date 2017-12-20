@@ -119,6 +119,25 @@ endif()
 
 	endif()
 
+    if(assimp_INCLUDE_DIRS)
+
+        message("assimp: ${ASSIMP_INCLUDE_DIR}")
+        list(APPEND Green_Engine_INCLUDES ${assimp_INCLUDE_DIRs})
+        list(APPEND Green_Engine_LIBS ${assimp_LIBRARIES})
+
+        #ZLIB
+        if(WIN32)
+            list(APPEND Green_Engine_LIBS ${assimp_LIBRARY_DIRS}/zlibstatic.lib)
+        else()
+            find_library(Z_LIB z)
+            message("ZLIB: ${Z_LIB}")
+            list(APPEND Green_Engine_LIBS ${Z_LIB})
+        endif()
+
+
+
+    endif()
+
     set(${includes} ${Green_Engine_INCLUDES} PARENT_SCOPE)
     set(${libs}     ${Green_Engine_LIBS}     PARENT_SCOPE)
     message("libs: ${Green_Engine_INCLUDES}")

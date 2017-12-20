@@ -2,6 +2,7 @@
 #include <unordered_map>
 #include <string>
 #include <cstdlib>
+#include <vector>
 #include "ReadableMemType.h"
 
 //TODO: Implemented nested hashmaps

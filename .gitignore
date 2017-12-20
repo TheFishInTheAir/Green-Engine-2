@@ -230,3 +230,6 @@ test/Resources/
 .build
 *.DS_Store
 !/res/
+.emacs_saves/
+GREEN_ENGINE_LOG.txt
+copied/
