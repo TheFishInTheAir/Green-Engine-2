@@ -255,7 +255,7 @@ int main()
 	Image *im_spec;
 	ImageLoader::loadImage("VoodooSkullRough.png", &im_spec);
 
-	BasicLightModel *texm = new BasicLightModel(false, false /* enable this one to rotate */, camera, "plane.obj", im, im_spec, dirLight);
+	BasicLightModel *texm = new BasicLightModel(false, false /* enable this one to rotate */, camera, "VoodooSkull.obj", im, im_spec, dirLight);
 	texm->model = glm::scale(texm->model, { 0.05f,0.05f,0.05f });
 	texm->model = glm::rotate(texm->model, glm::radians(90.0f), glm::vec3(0.0f,1.0f,0.0f));
 

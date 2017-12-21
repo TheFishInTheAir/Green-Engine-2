@@ -5,9 +5,9 @@
 #include <console/ConsoleIO.h>
 #include <iostream>
 
-#define NO_WIN_COLOUR
+//#define NO_COLOUR
 
-#ifndef NO_WIN_COLOUR
+#if defined(_WIN32) && !defined(NO_COLOUR)
 #include <windows.h>
 #endif
 
@@ -48,43 +48,46 @@ namespace ge
 				return;
 			}
 #endif
-#ifndef NO_WIN_COLOUR
+#ifndef NO_COLOUR
+
+#ifdef _WIN32
+
 			static HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 			switch(t)
 			{
 				
 			
-			case MessageType::Warning: 
+			case MessageType::Warning:          // bright red
 				SetConsoleTextAttribute(hConsole, 12);
 				RawOut(msg);
 
 				SetConsoleTextAttribute(hConsole, 15);
 				break;
-			case MessageType::Message: 
+			case MessageType::Message:          // white
 				RawOut(msg);
 				break;
-			case MessageType::Success: 
+			case MessageType::Success:          // green
 				SetConsoleTextAttribute(hConsole, 2);
 				RawOut(msg);
 				SetConsoleTextAttribute(hConsole, 15);
 				break;
-			case MessageType::Error: 
+			case MessageType::Error:            // dark red
 				SetConsoleTextAttribute(hConsole, 4);
 				RawOut(msg);
 				SetConsoleTextAttribute(hConsole, 15);
 				break;
-			case MessageType::Debug: 
+			case MessageType::Debug:            // purple
 				SetConsoleTextAttribute(hConsole, 5);
 				RawOut(msg);
 				SetConsoleTextAttribute(hConsole, 15);
 				break;
-			case MessageType::Verbose: 
+			case MessageType::Verbose:          // grey
 				SetConsoleTextAttribute(hConsole, 7);
 				RawOut(msg);
 				SetConsoleTextAttribute(hConsole, 15);
 				break;
-			case MessageType::Turbo_Verbose: 
+			case MessageType::Turbo_Verbose:    // dark grey
 				SetConsoleTextAttribute(hConsole, 8);
 				RawOut(msg);
 				SetConsoleTextAttribute(hConsole, 15);
@@ -92,7 +95,41 @@ namespace ge
 			default:
 				RawOut(msg);
 			}
-        	
+
+#else
+
+			switch(t)
+			{
+
+
+				case MessageType::Warning:          // yellow
+					RawOut("\033[33m"+msg+"\033[0m");
+
+					break;
+				case MessageType::Message:          // white
+					RawOut("\033[0m"+msg+"\033[0m");
+					break;
+				case MessageType::Success:          // green
+					RawOut("\033[32;1m"+msg+"\033[0m");
+					break;
+				case MessageType::Error:            // dark red
+					RawOut("\033[31;1;7m"+msg+"\033[0m");
+					break;
+				case MessageType::Debug:            // purple
+					RawOut("\033[35m"+msg+"\033[0m");
+					break;
+				case MessageType::Verbose:          // grey
+					RawOut("\033[37m"+msg+"\033[0m");
+					break;
+				case MessageType::Turbo_Verbose:    // dark grey
+					RawOut("\033[90m"+msg+"\033[0m");
+					break;
+				default:
+					RawOut(msg);
+			}
+
+#endif
+
 #else
 			RawOut(msg);
 #endif
