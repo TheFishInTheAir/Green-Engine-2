@@ -1,4 +1,4 @@
-#ifndef ge_lights
+    #ifndef ge_lights
 #define ge_lights
 
 #pragma include <engine/shader/global_settings.pre>

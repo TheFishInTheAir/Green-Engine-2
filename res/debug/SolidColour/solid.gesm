@@ -1,20 +1,35 @@
 {
     "version" : "0.0.1",
 
-    "vertex" :
+    "spec":"glsl",
+    "format":"linked",
+
+    "shaders":
+    [
+        "solid.vert",
+        "solid.frag"
+    ],
+
+    "io" :
     {
-        "u" :
+
+        "v":
+        [
+            0
+
+        ],
+
+        "u":
         [
             {
 				"n":"mvp",
 				"i":0
-			}
+
+            },
+            {
+                "n":"ge_solid_colour",
+                "i":1
+            }
         ]
-    },
-
-    "framgent" :
-    {
-
     }
-
 }

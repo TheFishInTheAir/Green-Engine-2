@@ -19,6 +19,8 @@
 #include <debug/FreeMove.h>
 #include <common/Triangle.h>
 #include <memory/GlobalMemory.h>
+#include <loader/LoadShader.h>
+
 ge::GraphicsCore *gc;
 
 bool initialised = false;
@@ -255,7 +257,7 @@ int main()
 	Image *im_spec;
 	ImageLoader::loadImage("VoodooSkullRough.png", &im_spec);
 
-	BasicLightModel *texm = new BasicLightModel(false, false /* enable this one to rotate */, camera, "VoodooSkull.obj", im, im_spec, dirLight);
+	BasicLightModel *texm = new BasicLightModel(true, false /* enable this one to rotate */, camera, "VoodooSkull.obj", im, im_spec, dirLight);
 	texm->model = glm::scale(texm->model, { 0.05f,0.05f,0.05f });
 	texm->model = glm::rotate(texm->model, glm::radians(90.0f), glm::vec3(0.0f,1.0f,0.0f));
 
@@ -276,6 +278,8 @@ int main()
 	}
 	ConsoleIO::print("\n");
 
+
+    ShaderLoader::LoadShader("debug/SolidColour/solid.gesm");
 
     while(true)
         gc->window->poll(); /// poll window events;

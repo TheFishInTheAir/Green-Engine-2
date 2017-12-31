@@ -6,6 +6,8 @@
 #include <iostream>
 
 //#define NO_COLOUR
+//
+//#define ENABLE_TURBO_VERBOSE
 
 #if defined(_WIN32) && !defined(NO_COLOUR)
 #include <windows.h>

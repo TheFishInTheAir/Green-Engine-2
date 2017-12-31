@@ -26,8 +26,8 @@
 
 //LIGHTING
 
-#define MAX_POINT_LIGHTS	   	16
-#define MAX_SPOT_LIGHTS			8
+#define MAX_POINT_LIGHTS	   	6
+#define MAX_SPOT_LIGHTS			4
 #define MAX_DIRECTIONAL_LIGHTS	1
 
 //UNIFORMS
@@ -37,6 +37,8 @@
 #define UNIFORM_POINT_LIGHTS_IN			ge_point_lights_in
 #define UNIFORM_SPOT_LIGHTS_IN			ge_spot_lights_in
 #define UNIFORM_DIRECTIONAL_LIGHTS_IN	ge_directional_lights_in
+
+#define UNIFORM_SOLID_COL               ge_solid_colour
 
 //TRANSFER
 
