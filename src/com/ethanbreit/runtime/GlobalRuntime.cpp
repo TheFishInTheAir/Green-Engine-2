@@ -3,7 +3,7 @@
 //
 #include <runtime/GlobalRuntime.h>
 #include <vector>
-
+#include <console/ConsoleIO.h>
 namespace ge
 {
     namespace GlobalRuntime
@@ -38,8 +38,11 @@ namespace ge
             {
                 for(auto i : globalHandlers)
                 {
-                    if(i->uuid==uuid) /// If handler has already been registered, return.
-                        return;
+					if (i->uuid == uuid) /// If handler has already been registered, return.
+					{
+						ConsoleIO::print("Attempt to register already registered runtime reference.\n", MessageType::Warning);
+						return;
+					}
                 }
             }
             RuntimeHandler* rh = new RuntimeHandler();

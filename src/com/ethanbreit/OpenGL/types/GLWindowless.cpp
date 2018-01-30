@@ -5,7 +5,7 @@
 #define GLFW_DLL
 #endif
 
-#include <OpenGL/types/GLWindow.h>
+#include <OpenGL/types/GLWindowless.h>
 #include <input/KeyboardHandler.h>
 #include <input/MouseHandler.h>
 #include "memory/GlobalMemory.h"
@@ -13,32 +13,32 @@
 #include <Graphics/GraphicsCore.h>
 #include <iostream>
 #include "debug/PreProcessor.h"
-
-ge::GraphicsCore* core;
+#include <OpenGL/types/GLWindowless.h>
 
 namespace ge
 {
     namespace GL
     {
+		ge::GraphicsCore* core;
 
-        void glfwErrorCallback(int error, char* err)
+        void Windowless::glfwErrorCallback(int error, char* err)
         {
             ConsoleIO::print("GLFW Error: "+std::string(err)+"\n", MessageType::Error);
         }
 
         void glfwResizeCallback(); /// @unimplemented TODO: implement
 
-        Window::Window()
+        Windowless::Windowless()
         {
 
         }
 
-        Window::~Window()
+        Windowless::~Windowless()
         {
             cleanup();
         }
 
-        Error Window::init(WindowConstructorInfo windowConstructorInfo)
+        Error Windowless::init(WindowConstructorInfo windowConstructorInfo)
         {
 /**
              *
@@ -117,9 +117,7 @@ namespace ge
             glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, _minorVersion);
             glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, _isForwardCompatible); // To make MacOS happy; should not be needed
             glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //We don't want the old OpenGL
-            glfwWindowHint(GLFW_MAXIMIZED, true);
-
-
+			glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
 
 			ge_DEBUG_TIMER_END("GLFW Window Hinted")
 
@@ -202,47 +200,47 @@ namespace ge
             return Error();
         }
 
-        std::string Window::getWindowName(void)
+        std::string Windowless::getWindowName(void)
         {
             return std::string();
         }
 
-        void Window::poll()
+        void Windowless::poll()
         {
             glfwPollEvents();
         }
 
-        void Window::swap()
+        void Windowless::swap()
         {
             glfwSwapBuffers(_window);
         }
 
-        void Window::cleanup()
+        void Windowless::cleanup()
         {
             glfwTerminate();
         }
 
-        bool Window::shouldClose()
+        bool Windowless::shouldClose()
         {
             return (bool) glfwWindowShouldClose(_window);
         }
 
-        void Window::getSize(int *w, int *h)
+        void Windowless::getSize(int *w, int *h)
         {
             glfwGetWindowSize(_window, w, h);
         }
 
-        void Window::setClearColour(glm::vec3 c)
+        void Windowless::setClearColour(glm::vec3 c)
         {
             glClearColor(c.x,c.y,c.z, 1);
         }
 
-        void Window::clear()
+        void Windowless::clear()
         {
             glClear( _clearMask );
         }
 
-        void Window::makeCurrentThread(Runtime* r)
+        void Windowless::makeCurrentThread(Runtime* r)
         {
 			GlobalMemory::insert("ge_render_context_runtime", GlobalMemory::MemItem(r, ReadableMemType::OTHER));
             glfwMakeContextCurrent(_window);

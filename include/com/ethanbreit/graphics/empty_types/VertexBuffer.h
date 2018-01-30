@@ -15,6 +15,7 @@ namespace ge
 			ge::DataType::type dataType;
 			bool normalized;
 
+			bool unique = false;
 
 
 			size_t size;

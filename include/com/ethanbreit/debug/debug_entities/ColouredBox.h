@@ -1,6 +1,7 @@
 #pragma once
 #include "graphics/types/Uniform.h"
 #include "graphics/Camera.h"
+#include "util/PreprocessorUtil.h"
 
 #include "runtime/Runtime.h"
 #include <engine/global_settings.pre>

@@ -177,7 +177,7 @@ namespace ge
 				UVBuffer->memoryType = BufferMemoryType::Static;
 
 
-				(*outMesh).vertexBuffers.push_back({ UVBuffer,"UVs", });
+				(*outMesh).vertexBuffers.push_back({ UVBuffer,"texcoords", });
 			}
 
 			

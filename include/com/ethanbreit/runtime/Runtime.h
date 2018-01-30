@@ -26,8 +26,9 @@ namespace ge
     struct Runtime
     {
         Runtime(std::string name, uint32_t cyclesPerSecond);
+		Runtime(std::string name);
+        bool        unlocked = false;
 
-        bool        unlocked;
 
         void        end();
 
@@ -50,6 +51,7 @@ namespace ge
     private:
 
         static void         run(Runtime*);
+		static void         runUnlocked(Runtime*);
 
 
         void                            cycle();

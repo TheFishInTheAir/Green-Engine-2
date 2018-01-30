@@ -1,7 +1,7 @@
     #ifndef ge_lights
 #define ge_lights
 
-#pragma include <engine/shader/global_settings.pre>
+#pragma include <engine/global_settings.pre>
 
 ///Lighting Structs
 

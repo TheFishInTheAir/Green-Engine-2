@@ -17,9 +17,12 @@ namespace ge
 
     void ge::RuntimeGroup::remove(void* ref)
     {
-        for(auto i = items.begin(); i!=items.end(); i++)
-            if((*i).ref == ref)
-                items.erase(i); ///No Curly Braces
+        for(std::list<RuntimeItem>::iterator i = items.begin(); i!=items.end(); ++i)
+			if (i->ref == ref) 
+			{
+				items.erase(i); 
+				return;
+			}
     }
 
     void RuntimeGroup::insert(void *ref, uint64_t uuid)

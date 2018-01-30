@@ -19,6 +19,12 @@ namespace ge
 			glBindVertexArray(_vao);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer->id);
 
+			for (auto tex : _textures)
+			{
+				glActiveTexture(GL_TEXTURE0 + tex.first);
+				glBindTexture(GL_TEXTURE_2D, tex.second->id);
+			}
+
 			glDrawElements(GL_TRIANGLES, indexBuffer->data->length, GL_UNSIGNED_INT, 0);
 
 			isRendering = false;
@@ -38,18 +44,7 @@ namespace ge
 
 				i++;
 			}
-			for (auto tex : _textures)
-			{
-				if (tex.first <= GlobalMemory::get("ge_max_texture_units").getData<int>())
-				{
-					glActiveTexture(GL_TEXTURE0 + tex.first);
-					glBindTexture(GL_TEXTURE_2D, tex.second->id);
-				}
-				else
-				{
-					ConsoleIO::print("GL: texture unit ID(" + std::to_string(tex.first) + ") exceeds maximum(" + std::to_string(GlobalMemory::get("ge_max_texture_units").getData<int>()) + ")!", MessageType::Error);
-				}
-			}
+			
 		}
 
 
@@ -123,7 +118,14 @@ namespace ge
 
         void TriangleMesh::registerTexture(ge::Texture* tex, unsigned int unitId)
         {
-            _textures.insert({unitId, (GL::Texture*)tex});
+			if (unitId <= GlobalMemory::get("ge_max_texture_units").getData<int>())
+			{
+				_textures.insert({ unitId, (GL::Texture*)tex });
+			}
+			else
+			{
+				ConsoleIO::print("GL: texture unit ID(" + std::to_string(unitId) + ") exceeds maximum(" + std::to_string(GlobalMemory::get("ge_max_texture_units").getData<int>()) + ")!", MessageType::Error);
+			}
         }
 
 	    void TriangleMesh::startRender()

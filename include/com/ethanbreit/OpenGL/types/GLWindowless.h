@@ -18,11 +18,11 @@ namespace ge
     namespace GL
     {
 
-        struct Window : ge::Window
+        struct Windowless : ge::Window
         {
-            Window();
+            Windowless();
 
-            ~Window();
+            ~Windowless();
 
             Error init(WindowConstructorInfo);
 
@@ -43,8 +43,9 @@ namespace ge
             void clear();
 
             void getSize(int *, int *);
-			GLFWwindow *_window;
         private:
+
+			static void glfwErrorCallback(int error, char* err);
 
             int _width;
             int _height;
@@ -55,7 +56,7 @@ namespace ge
             unsigned int _clearMask;
             bool _hasDepthBuffer;
             const char *_windowName;
-            
+            GLFWwindow *_window;
             Runtime *_startThread;
         };
     }

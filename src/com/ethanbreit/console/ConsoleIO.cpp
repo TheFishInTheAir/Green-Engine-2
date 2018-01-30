@@ -4,10 +4,12 @@
 
 #include <console/ConsoleIO.h>
 #include <iostream>
-
+#include <mutex>
 //#define NO_COLOUR
 //
 //#define ENABLE_TURBO_VERBOSE
+
+//TODO: make async (maybe push to update command buffer) instead of mutex
 
 #if defined(_WIN32) && !defined(NO_COLOUR)
 #include <windows.h>
@@ -21,6 +23,8 @@ namespace ge
 {
     namespace ConsoleIO
     {
+
+		std::mutex canPrint;
 
 		void RawOut(std::string m)
 		{
@@ -44,6 +48,8 @@ namespace ge
         }
 
         void print(std::string msg, MessageType::type t) {
+
+			//canPrint.lock();
 #ifndef ENABLE_TURBO_VERBOSE
 			if(t==MessageType::Turbo_Verbose)
 			{
@@ -135,6 +141,7 @@ namespace ge
 #else
 			RawOut(msg);
 #endif
+			//canPrint.unlock();
         }
     }
 }

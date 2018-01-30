@@ -4,6 +4,7 @@
 
 #include <OpenGL/Meshes/GLTriangleMesh.h>
 #include <OpenGL/factories/GLMeshFactory.h>
+#include <cstring>
 
 namespace ge
 {
@@ -36,9 +37,29 @@ namespace ge
 				for(auto i : m.vertexBuffers)
 				{
 					GL::VertexBuffer* vertex = new GL::VertexBuffer();
-					vertex->data = i.first;
+					
+					if (!i.first->unique)
+					{
+						vertex->data = (Empty::VertexBuffer*) malloc(sizeof(*i.first));
+						memcpy(vertex->data, i.first, sizeof(Empty::VertexBuffer));
+
+
+						vertex->data->data = malloc(vertex->data->size);
+						memcpy(((void*)vertex->data->data), i.first->data, vertex->data->size);
+
+
+					}
+					else
+					{
+						vertex->data = i.first;
+					}
+					//i.first->
+					
+				
 					vertex->bufferData();
 					tm->registerVertexBuffer(i.second, vertex);
+
+
 				}
 			}
 

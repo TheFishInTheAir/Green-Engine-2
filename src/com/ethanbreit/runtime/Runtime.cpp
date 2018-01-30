@@ -5,6 +5,7 @@
 #include <string>
 #include <runtime/Runtime.h>
 #include <console/ConsoleIO.h>
+#include "memory/GlobalMemory.h"
 
 namespace ge
 {
@@ -25,9 +26,31 @@ namespace ge
         ///Start Instance Pass
 
         ///Start Thread
-        runtime = new std::thread(run, this);
+
+		runtime = new std::thread(run, this);	
+
+
+		GlobalMemory::insert("ge_"+name+"_context_runtime", { this,ReadableMemType::OTHER });
     }
-    void Runtime::run(Runtime* context)
+
+	Runtime::Runtime(std::string name)
+	{
+		for (auto g : groups)
+			g = nullptr;
+		this->name = name;
+		this->cyclesPerSecond = cyclesPerSecond;
+
+		shouldRun = true;
+		///Start Instance Pass
+
+		///Start Thread
+
+		runtime = new std::thread(runUnlocked, this);
+		GlobalMemory::insert("ge_" + name + "_context_runtime", { this,ReadableMemType::OTHER });
+
+	}
+
+	void Runtime::run(Runtime* context)
     {
 
         ///Acquire Instance
@@ -54,6 +77,7 @@ namespace ge
         {
 
             currentTime = std::chrono::steady_clock::now();
+
 
 
             if(currentTime>=nextCycle)
@@ -88,12 +112,12 @@ namespace ge
 
                     difference = (uint32_t) (correct - incorrect); /// get the discrepancy
 
-                    delta = nanoseconds(nanoseconds(seconds(1)).count()/(context->cyclesPerSecond+difference)); ///recalculate Delta (to account for the discrepancy)
+                    //delta = nanoseconds(nanoseconds(seconds(1)).count()/(context->cyclesPerSecond+difference)); ///recalculate Delta (to account for the discrepancy)
 
                 }
                 else
                 {
-                    delta = nanoseconds(nanoseconds(seconds(1)).count()/context->cyclesPerSecond); ///recalculate Delta
+                    //delta = nanoseconds(nanoseconds(seconds(1)).count()/context->cyclesPerSecond); ///recalculate Delta
                 }
 
                 ///Correct Delta
@@ -111,7 +135,33 @@ namespace ge
             }
         }
     }
-    void Runtime::end()
+
+	void Runtime::runUnlocked(Runtime* context)
+	{
+		ConsoleIO::print("Starting runtime \"" + context->name + "\" at unlocked cycles per second.\n", MessageType::Message);
+
+
+		std::chrono::steady_clock::time_point lastManage = std::chrono::steady_clock::now();
+
+		std::chrono::steady_clock::time_point currentTime;
+		context->cyclesSinceLastManage = 0;
+		while (context->shouldRun)
+		{
+
+			currentTime = std::chrono::steady_clock::now();
+
+			context->cycle();
+			context->cyclesSinceLastManage++;
+			if (currentTime >= lastManage + std::chrono::seconds(1))
+			{
+				lastManage = std::chrono::steady_clock::now();
+				ConsoleIO::print(context->name + ": " + std::to_string(context->cyclesSinceLastManage) + "\n");
+				context->cyclesSinceLastManage = 0;
+			}
+		}
+	}
+
+	void Runtime::end()
     {
         shouldRun = false;
         //runtime->join();

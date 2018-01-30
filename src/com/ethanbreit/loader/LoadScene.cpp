@@ -5,7 +5,9 @@
 #include "loader/LoadMesh.h"
 #include "engine/empty_types/EmptyStaticObject.h"
 #include "glm/ext.hpp"
-#include "common/BasicLightModel.h"
+#include "glm/glm.hpp"
+
+#include <memory/GlobalMemory.h>
 #include "engine/scene/Scene.h"
 
 using json = nlohmann::json;
@@ -16,7 +18,7 @@ namespace ge
 
 	namespace SceneLoader
 	{		
-		Error loadSceneJson(std::string path, Empty::Scene*)
+		Error loadSceneJson(std::string path, Empty::Scene* outScene)
 		{	
 
 			Empty::Scene scene;
@@ -107,6 +109,23 @@ namespace ge
 					model = glm::translate(model, { (float)object["model"]["pos_x"], (float)object["model"]["pos_y"], (float)object["model"]["pos_z"] });
 				if (object["model"].count("scale_x") != 0)
 					model = glm::scale(model, { (float)object["model"]["scale_x"], (float)object["model"]["scale_y"], (float)object["model"]["scale_z"] });
+				if (object["model"].count("rot_x") != 0)
+				{
+					glm::quat r = { (float)object["model"]["rot_x"], (float)object["model"]["rot_y"], (float)object["model"]["rot_z"], (float)object["model"]["rot_w"] };
+					model *= glm::toMat4(r);
+
+
+				}
+				
+				if (object.count("uv_scale") != 0)
+				{
+					obj.uvscale = (float) object["uv_scale"];
+				}
+				else
+				{
+					obj.uvscale = 1;
+				}
+				obj.model.matrix = model;
 
 				json material = object["material"];
 				{
@@ -115,6 +134,8 @@ namespace ge
 				}
 
 				obj.override_tex = material["override_tex"];
+
+				
 
 				if(material.count("custom_shader")!=0)
 				{
@@ -133,7 +154,7 @@ namespace ge
 
 				if (material.count("albedo") != 0)
 				{
-					std::string string = material["albedo"];
+					std::string string = object["material"]["albedo"];
 
 					obj.albedo = string;
 				}
@@ -175,11 +196,15 @@ namespace ge
 					obj.roughness = "";
 				}
 
+				std::string string_temp = object["mesh"];
 
-				obj.mesh = &(scene.meshes.find(material["mesh"])->second);
+				obj.mesh = string_temp;
 
+
+				scene.staticObjects.push_front(obj);
 			}
 
+			*outScene = scene;
 
 			return Error();
 

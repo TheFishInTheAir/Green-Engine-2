@@ -11,7 +11,7 @@ namespace ge
 		{
 			ModelMat model;
 
-			Empty::MeshData* mesh;
+			std::string mesh;
 
 			std::string lighting_type;
 			std::string custom_shader;
@@ -21,7 +21,7 @@ namespace ge
 			std::string roughness;
 
 			bool override_tex;
-
+			float uvscale;
 		};
 	}
 }

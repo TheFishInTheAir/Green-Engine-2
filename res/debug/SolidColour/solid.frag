@@ -1,6 +1,6 @@
 #version 330
 
-#pragma include <engine/shader/global_settings.pre>
+#pragma include <engine/global_settings.pre>
 
 uniform vec3 UNIFORM_SOLID_COL;
 

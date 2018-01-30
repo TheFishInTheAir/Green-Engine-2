@@ -1,11 +1,10 @@
-cmake_minimum_required(VERSION 3.7) #Needs Version 3.8 for boost
+cmake_minimum_required(VERSION 3.9) #Needs Version 3.8 for boost
 project(Green_Engine_2)
 
-set(CMAKE_CXX_STANDARD 11)
 
 
 #TODO: SET TO FALSE
-set(DEVELOPMENT_MODE TRUE CACHE BOOL "Include tests in build.")
+set(DEVELOPMENT_MODE FALSE CACHE BOOL "Include tests in build.")
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake) #Include custom cmake files
 
@@ -63,10 +62,25 @@ target_link_libraries(Green_Engine_2 ${libraries})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/res/)
 
 
+get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
+foreach(dir ${dirs})
+  message(STATUS "dir='${dir}'")
+endforeach()
+
 ###
 ### Include res into build path
 ###
 
 file(COPY "res" DESTINATION "${CMAKE_BINARY_DIR}")
+
+#set(CMAKE_CXX_STANDARD 17)
+#set(CMAKE_CXX_STANDARD_REQUIRED 17)
+#set(CXX_STANDARD_REQUIRED 17)
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++latest")
+
+if(MSVC)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++17")
+endif(MSVC)
+
 
 set_target_properties(Green_Engine_2 PROPERTIES LINKER_LANGUAGE "CXX")

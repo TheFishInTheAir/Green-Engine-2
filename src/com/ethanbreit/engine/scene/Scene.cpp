@@ -8,14 +8,14 @@ namespace ge
 {
 	void Scene::loadScene(Empty::Scene s)
 	{
-		GraphicsCore* gc = GlobalMemory::get("ge_renderer").getRawData<GraphicsCore>();
+		GraphicsCore* gc = GlobalMemory::get("ge_renderer_instance").getRawData<GraphicsCore>(); //TODO: replace string with MACRO
 		
 
 		//Clear
 		{
 
 			std::vector<std::pair<std::string, std::shared_ptr<ge::Texture>>> texturesK;
-			std::vector<std::pair<std::string, std::shared_ptr<ge::TriangleMesh>>> meshesK;
+			std::vector<std::pair<std::string, std::shared_ptr<ge::Empty::MeshData>>> meshesK;
 			std::vector<std::pair<std::string, std::shared_ptr<ge::ShaderGroup>>> shadersK;
 			
 			for(auto res : s.keptRes)
@@ -67,10 +67,10 @@ namespace ge
 		
 		for (auto meshdat : s.meshes)
 		{
-			TriangleMesh* meshy;
-			meshy = gc->meshFactory->newTriangleMesh(meshdat.second);
+			Empty::MeshData* md = new Empty::MeshData;
+			*md = meshdat.second;
+			meshes.insert({ meshdat.first, std::shared_ptr<ge::Empty::MeshData> ( md )});
 
-			meshes.insert({ meshdat.first, std::shared_ptr<TriangleMesh>(meshy) });
 		}
 
 		/*
@@ -88,13 +88,13 @@ namespace ge
 
 
 
-		std::forward_list<StaticObject>* objsTemp = GlobalMemory::get(MSTR(GE_ENTITES_GM)).getRawData<std::forward_list<StaticObject>>();
+		std::forward_list<StaticObject*>* objsTemp = GlobalMemory::get(MSTR(GE_ENTITES_GM)).getRawData<std::forward_list<StaticObject*>>();
 
 		//Initialise Static Objects
 
-		for(Empty::StaticObject* staticObjectE : s.staticObjects)
+		for(Empty::StaticObject staticObjectE : s.staticObjects)
 		{
-			objsTemp->push_front(StaticObject(*staticObjectE));
+			objsTemp->push_front(new StaticObject(staticObjectE));
 
 		}
 
@@ -107,7 +107,7 @@ namespace ge
 		if(!GlobalMemory::exists(MSTR(GE_ENTITES_GM)))
 		{
 			//TODO: proper stuff (remove and make good)
-			std::forward_list<StaticObject>* objsTemp = new std::forward_list<StaticObject>();
+			std::forward_list<StaticObject*>* objsTemp = new std::forward_list<StaticObject*>();
 			
 			GlobalMemory::insert(MSTR(GE_ENTITES_GM), {objsTemp, ReadableMemType::OTHER});
 

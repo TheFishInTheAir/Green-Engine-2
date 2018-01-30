@@ -2,6 +2,7 @@
 #include "graphics/GraphicsCore.h"
 #include "memory/GlobalMemory.h"
 #include "util/ResourceUtil.h"
+#include "graphics/empty_types/IndexBuffer.h"
 
 namespace ge
 {

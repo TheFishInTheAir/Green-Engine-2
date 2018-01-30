@@ -20,9 +20,21 @@
 #define NORMAL_POSITION 1
 #define UV_POSITION     2
 
+//STANDARD IMAGE LOCATIONS
+#define ALBEDO_REF ge_albedo_map //Todo: ID instead of name
+#define SPECULAR_REF ge_specular_map //Todo: ID instead of name
+
 //STANDARDS
 #define FRAG_OUT_COL ge_fragment_colour
 #define CAMERA_DIR   ge_camera_direction
+#define CAMERA_POS   ge_camera_position
+
+
+#define MVP			 ge_mvp
+#define MVP_M		 ge_mvp_m
+#define MVP_VP		 ge_mvp_vp
+
+#define MVP_M_VP	 ge_mvp_vp * ge_mvp_m
 
 //LIGHTING
 
@@ -32,7 +44,8 @@
 
 //UNIFORMS
 
-//IN
+
+
 
 #define UNIFORM_POINT_LIGHTS_IN			ge_point_lights_in
 #define UNIFORM_SPOT_LIGHTS_IN			ge_spot_lights_in
@@ -40,7 +53,9 @@
 
 #define UNIFORM_SOLID_COL               ge_solid_colour
 
-//TRANSFER
+
+
+//TRANSFER @Delete
 
 #define UNIFORM_POINT_LIGHTS_T			ge_point_lights_t
 #define UNIFORM_SPOT_LIGHTS_T			ge_spot_lights_t
@@ -53,5 +68,6 @@
 ///
 
 #define GE_ENTITES_GM entities
+#define CURRENT_CAMERA ge_current_camera
 
 #endif

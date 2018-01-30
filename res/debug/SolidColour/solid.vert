@@ -1,6 +1,6 @@
 #version 330
 
-#pragma include <engine/shader/global_settings.pre>
+#pragma include <engine/global_settings.pre>
 
 layout(location = VERTEX_POSITION) in vec3 vertexPositions;
 
