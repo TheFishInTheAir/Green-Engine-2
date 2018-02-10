@@ -26,6 +26,7 @@ namespace ge
         Runtime* startupThread         = nullptr       ;
         bool hasDepthBuffer         = true          ;
         bool isForwardCompatible    = true          ;
+		bool hiddenCursor			= true			;
         const char *windowName      = "NULL"        ;
     };
 

@@ -4,11 +4,14 @@
 #include "loader/LoadImage.h"
 #include "loader/LoadMesh.h"
 #include "engine/empty_types/EmptyStaticObject.h"
+#define GLM_ENABLE_EXPERIMENTAL
 #include "glm/ext.hpp"
 #include "glm/glm.hpp"
+#include "glm/gtx/quaternion.hpp"
 
 #include <memory/GlobalMemory.h>
 #include "engine/scene/Scene.h"
+#include "graphics/meshes/debug/DebugVertexTriangleMesh.h"
 
 using json = nlohmann::json;
 
@@ -18,15 +21,22 @@ namespace ge
 
 	namespace SceneLoader
 	{		
-		Error loadSceneJson(std::string path, Empty::Scene* outScene)
+		Error loadSceneJson(std::string path, Empty::Scene* outScene, bool isResource)
 		{	
 
 			Empty::Scene scene;
 
-			std::string file;
-			ResourceUtil::getRawStrResource(path, &file);
+			ConsoleIO::print("Loading Scene: "+path+"\n");
 
+
+			std::string file;
+			if (isResource)
+				ResourceUtil::getRawStrResource(path, &file);
+			else
+				ResourceUtil::getRawStrFile(path, &file);
 			json data = json::parse(file.c_str());
+
+			ConsoleIO::print("Version Number (not included yet)\n");
 
 			/**
 			 *

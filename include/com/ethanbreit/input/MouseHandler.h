@@ -10,6 +10,9 @@ namespace ge
 {
     namespace MouseHandler
     {
+	    inline bool moveMouse = false;
+		inline bool centerMouse = false;
+
         //TODO: Add More Input Functions (I.E. Listeners and Mouse Buttons)
         void _mouseHandler(GLFWwindow* window, double xpos, double ypos);
         void getMousePos(double*,double *);

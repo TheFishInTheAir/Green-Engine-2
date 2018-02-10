@@ -136,17 +136,25 @@ namespace ge
 			ge_DEBUG_TIMER_END("GLFW Window Creation")
 
 
-            /**
-             *
-             * GLFW Input Setup
-             *
-             */
+				/**
+				 *
+				 * GLFW Input Setup
+				 *
+				 */
 
-			ge_DEBUG_TIMER_START
+				ge_DEBUG_TIMER_START;
 
 
             //glfwSetWindowSizeCallback(_window,(GLFWwindowsizefun)glfwResizeCallback); /// @unimplemented Set the GLFW Window Resize Callback to the glfwResizeCallback() function
-            glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+            
+			if (windowConstructorInfo.hiddenCursor)
+			{
+				glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+			}
+        	else
+			{
+				glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+			}
             //glfwSetInputMode(_window, GLFW_STICKY_KEYS, GL_TRUE); ///Maybe don't enable this TODO: add proper window input handler
             glfwSetKeyCallback(_window, KeyboardHandler::_keyHandler);
             glfwSetCursorPosCallback(_window, MouseHandler::_mouseHandler);
@@ -164,6 +172,10 @@ namespace ge
 
 
             glfwMakeContextCurrent(_window); /// Initialize GLEW
+
+			glViewport(0, 0, _width, _height); /// Not really part of glew init
+
+
             glewExperimental= (GLboolean) true; /// Needed in core profile
             if (glewInit() != GLEW_OK) {
                 ge_Error_GENERATE("GLEW Failed to Initialize\n");

@@ -36,5 +36,26 @@ namespace ge
             return 0;
 
         }
+		int getRawStrFile(std::string path, std::string *fileOut)
+		{
+			//TODO: ERROR CONDITIONS I.E. IF FILE EXISTS
+			std::ifstream file = std::ifstream(path);
+
+			if (!file)
+			{
+				ConsoleIO::print("Couldn't Open File: " + getResPath(path) + ", " + path + "\n", MessageType::Error);
+			}
+
+			std::string str;
+			while (std::getline(file, str))
+			{
+				*fileOut += str;
+				(*fileOut).push_back('\n');
+			}
+
+
+			return 0;
+
+		}
     }
 }

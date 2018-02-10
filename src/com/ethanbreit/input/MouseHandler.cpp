@@ -23,11 +23,29 @@ namespace ge
 
         void _mouseHandler(GLFWwindow *window, double xpos, double ypos)
         {
-            //ConsoleIO::print(std::to_string(xpos)+", "+std::to_string(ypos)+"\n");
 
-            glfwSetCursorPos(window,0,0);
-            x += xpos;
-            y += ypos;
+			static bool initialised = false;
+
+			static int halfWidth;
+			static int halfHeight;
+
+			if (!initialised)
+			{
+				initialised = true;
+
+				glfwGetWindowSize(window, &halfWidth, &halfHeight);
+				halfWidth /= 2;
+				halfHeight /= 2;
+
+			}
+
+			if (!moveMouse)
+			{
+				
+				glfwSetCursorPos(window, centerMouse ? halfWidth : 0, centerMouse ? halfHeight : 0);
+			}
+            x += centerMouse ? xpos - halfWidth : xpos;
+            y += centerMouse ? ypos - halfHeight: ypos;
         }
     }
 }

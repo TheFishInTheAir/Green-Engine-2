@@ -2,7 +2,6 @@
 // Created by Ethan Breit on 2017-07-28.
 //
 
-using namespace ge;
 
 #include "../ExampleController.h"
 #include "graphics/empty_types/Scene.h"
@@ -31,6 +30,9 @@ using namespace ge;
 #include <common/Triangle.h>
 #include <memory/GlobalMemory.h>
 #include <loader/LoadShader.h>
+
+using namespace ge;
+
 
 bool shouldRun = true;
 

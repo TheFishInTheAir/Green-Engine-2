@@ -10,6 +10,6 @@ namespace ge
 	namespace SceneLoader
 	{
 		Error loadScene(std::string path, Empty::MeshData*);
-		Error loadSceneJson(std::string path, Empty::Scene*);
+		Error loadSceneJson(std::string path, Empty::Scene*, bool isResource);
 	}
 }
