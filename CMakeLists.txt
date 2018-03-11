@@ -42,10 +42,11 @@ if (DEVELOPMENT_MODE)
 
     add_executable(Green_Engine_2 ${TEST_FILES} ${SOURCE})
 
-    add_definitions(-DGE_DEVELOPMENT_MODE)
+    #add_definitions(-DGE_DEVELOPMENT_MODE)
 
 else()
     message("Development build disabled (creating library)")
+	add_definitions(-DGE_DEVELOPMENT_MODE)
 
 
     add_library(Green_Engine_2 ${SOURCE})

@@ -21,8 +21,16 @@ namespace ge
 
 			for (auto tex : _textures)
 			{
+				//TODO: Check if Texture is already loaded
 				glActiveTexture(GL_TEXTURE0 + tex.first);
 				glBindTexture(GL_TEXTURE_2D, tex.second->id);
+			}
+
+			for (auto cMap : _cMaps)
+			{
+				//glUniform1(glGetUniformLocation(shaderGroup->programID, DBL_STRINGIFY(CUBEMAP_0)), cMap.second->id);
+				glActiveTexture(GL_TEXTURE0 + cMap.first);
+				glBindTexture(GL_TEXTURE_CUBE_MAP, cMap.second->id);
 			}
 
 			glDrawElements(GL_TRIANGLES, indexBuffer->data->length, GL_UNSIGNED_INT, 0);
@@ -44,11 +52,9 @@ namespace ge
 
 				i++;
 			}
-			
 		}
 
 
-		
 
 		void TriangleMesh::registerUniform(std::string name)
 		{
@@ -103,8 +109,6 @@ namespace ge
 		}
 
 
-		
-
 
         void TriangleMesh::setIndexBuffer(ge::IndexBuffer *ib)
         {
@@ -128,6 +132,18 @@ namespace ge
 			}
         }
 
+		void TriangleMesh::registerCubeMap(ge::CubeMap* cMap, unsigned int unitId)
+        {
+			if (unitId <= GlobalMemory::get("ge_max_texture_units").getData<int>())
+			{
+				_cMaps.insert({ unitId, (GL::CubeMap*)cMap });
+			}
+			else
+			{
+				ConsoleIO::print("GL: texture unit ID(" + std::to_string(unitId) + ") exceeds maximum(" + std::to_string(GlobalMemory::get("ge_max_texture_units").getData<int>()) + ")!", MessageType::Error);
+			}
+        }
+
 	    void TriangleMesh::startRender()
 	    {
 			if (!isRendering)
@@ -137,7 +153,6 @@ namespace ge
 				glUseProgram(shaderGroup->programID);
 
 			}
-
 	    }
     }
 }

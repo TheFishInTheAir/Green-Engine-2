@@ -46,9 +46,12 @@ namespace ge
 			json res  = data["preloaded_resources"];
 
 			bool hasCustomShaders = res.count("shaders") != 0;
+			bool hasCubeMaps = res.count("cubemaps") != 0;
 
 			std::vector<std::string> textures = res["textures"];
 			std::vector<std::string> meshes = res["meshes"];
+
+
 
 			//std::vector<std::string> kept;
 			
@@ -67,6 +70,7 @@ namespace ge
 				scene.images.insert({ std::string(s), *i });
 
 			}
+			
 
 			for(auto s : meshes)
 			{
@@ -83,6 +87,44 @@ namespace ge
 				scene.meshes.insert({ std::string(s), md });
 			}
 
+			//Tagged Resources
+
+			if (hasCubeMaps)
+			{
+				std::vector<json> cubemaps = res["cubemaps"];
+				for (auto cmap : cubemaps)
+				{
+
+					if (cmap.count("xpos"))
+					{
+						ge::Image* xpos;
+						ge::Image* xneg;
+
+						ge::Image* ypos;
+						ge::Image* yneg;
+
+						ge::Image* zpos;
+						ge::Image* zneg;
+
+
+						ImageLoader::loadImage(cmap["xpos"], &xpos);
+						ImageLoader::loadImage(cmap["xneg"], &xneg);
+
+						ImageLoader::loadImage(cmap["ypos"], &ypos);
+						ImageLoader::loadImage(cmap["yneg"], &yneg);
+
+						ImageLoader::loadImage(cmap["zpos"], &zpos);
+						ImageLoader::loadImage(cmap["zneg"], &zneg);
+
+						scene.cubemaps.insert({ cmap["tag"],{ *xpos,*xneg, *ypos,*yneg, *zpos,*zneg } });
+
+					}else
+					{
+						ConsoleIO::print("Invalid Cubemap syntax, must give image coordinates.\n", MessageType::Warning);
+					}
+				}
+			}
+			
 			if (hasCustomShaders) 
 			{
 				std::vector<std::string> shaders = res["shaders"];
@@ -100,6 +142,14 @@ namespace ge
 				}
 
 			}
+			/**
+			* SkyBox
+			*/
+
+			if(data.count("skybox")!=0)
+			{
+				scene.skybox = data["skybox"]; // Not an error
+			}
 
 			/**
 			*
@@ -115,17 +165,16 @@ namespace ge
 
 				glm::mat4 model(1);
 
-				if (object["model"].count("pos_x") != 0)
-					model = glm::translate(model, { (float)object["model"]["pos_x"], (float)object["model"]["pos_y"], (float)object["model"]["pos_z"] });
 				if (object["model"].count("scale_x") != 0)
 					model = glm::scale(model, { (float)object["model"]["scale_x"], (float)object["model"]["scale_y"], (float)object["model"]["scale_z"] });
 				if (object["model"].count("rot_x") != 0)
 				{
 					glm::quat r = { (float)object["model"]["rot_x"], (float)object["model"]["rot_y"], (float)object["model"]["rot_z"], (float)object["model"]["rot_w"] };
 					model *= glm::toMat4(r);
-
-
 				}
+				if (object["model"].count("pos_x") != 0)
+					model = glm::translate(model, { (float)object["model"]["pos_x"], (float)object["model"]["pos_y"], (float)object["model"]["pos_z"] });
+
 				
 				if (object.count("uv_scale") != 0)
 				{

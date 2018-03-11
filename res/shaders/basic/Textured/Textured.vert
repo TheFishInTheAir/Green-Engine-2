@@ -16,6 +16,7 @@ uniform mat4 MVP_VP;
 
 void main()
 {
+
 	gl_Position = MVP_M_VP * vec4(vertexPositions, 1);
 	tFragPos = vec3(MVP_M * vec4(vertexPositions, 1.0));
 	tUV = UV;

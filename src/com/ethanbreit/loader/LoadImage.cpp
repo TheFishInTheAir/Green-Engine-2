@@ -14,7 +14,7 @@ namespace ge
 	namespace ImageLoader
 	{
 
-		ge::Error loadImage(std::string path, Image **out)
+		ge::Error loadImage(std::string path, Image **out) //TODO: we only need a pointer not a pointer to a pointer @REFACTOR
 		{
 			int width, height, nrChannels;
 			const void *data = stbi_load(ResourceUtil::getResPath(path).c_str(), &width, &height, &nrChannels, 0);

@@ -172,9 +172,11 @@ namespace ge
 
 
             glfwMakeContextCurrent(_window); /// Initialize GLEW
-
-			glViewport(0, 0, _width, _height); /// Not really part of glew init
-
+			{
+				int w,  h;
+				getSize(&w, &h);
+				glViewport(0, 0, w, h); /// Not really part of glew init
+			}
 
             glewExperimental= (GLboolean) true; /// Needed in core profile
             if (glewInit() != GLEW_OK) {

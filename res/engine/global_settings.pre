@@ -53,6 +53,10 @@
 
 #define UNIFORM_SOLID_COL               ge_solid_colour
 
+#define CUBEMAP_0                       ge_cube_map_0_in
+#define CUBEMAP_1                       ge_cube_map_1_in
+#define CUBEMAP_2                       ge_cube_map_2_in
+
 
 
 //TRANSFER @Delete
@@ -69,5 +73,5 @@
 
 #define GE_ENTITES_GM entities
 #define CURRENT_CAMERA ge_current_camera
-
+#define CURRENT_SKYBOX ge_current_skybox
 #endif

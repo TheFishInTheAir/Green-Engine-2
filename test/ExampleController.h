@@ -11,5 +11,6 @@
 //#define Enable_Example5 ///Example With Textures		BROKEN
 //#define Enable_Example6 ///Example with models, textures, and asynchronouse loading.
 //#define Enable_Example7 ///Example with Basic Lighting
-#define Enable_Example8 ///TODO:: Scenes
+//#define Enable_Example8
 
+#define Enable_Shooter ///TODO: A LOT OF THINGS

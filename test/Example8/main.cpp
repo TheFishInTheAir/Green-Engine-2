@@ -10,6 +10,7 @@
 #include "filewatch/FileWatch.hpp"
 #include "input/KeyboardHandler.h"
 #include "engine/defaults/StaticObject.h"
+#include "engine/defaults/SkyBox.h"
 #ifdef Enable_Example8
 
 #include "common/TexturedModel.h"
@@ -95,7 +96,7 @@ struct example
 				glfwSwapInterval(0);
 				state = false;
 				scene.loadScene(sceneTemplate);
-
+				//new SkyBox();
 			
 		}
 
@@ -130,7 +131,7 @@ struct example
 					delete s;
 				}
 				so->clear();
-				ge::SceneLoader::loadSceneJson("demo/scenes/demo_scene.json", &sceneTemplate);
+				ge::SceneLoader::loadSceneJson("demo/scenes/demo_scene.json", &sceneTemplate, true);
 				state = true;
 			}
 		}
@@ -203,7 +204,7 @@ int main()
 	 */
 
 	updateRun = new ge::Runtime("Update Runtime", 60);
-	renderRun = new ge::Runtime("Render Runtime");
+	renderRun = new ge::Runtime("Render Runtime", 60);
 	loadingRun = new ge::Runtime("Loading Runtime", 1);
 
 
@@ -297,7 +298,7 @@ int main()
 	updateGroup->ge_RUNTIME_GROUP_INSERT_HEAP(t1l);
 	renderGroup->ge_RUNTIME_GROUP_INSERT_HEAP(t1l);
 
-	Debug::DebugColouredBox *box = new Debug::DebugColouredBox(camera, -(dirLight->dir) * 8);
+	Debug::DebugColouredBox *box = new Debug::DebugColouredBox(camera, -(dirLight->dir) * glm::vec3(8));
 	box->model = glm::scale(box->model, { 0.5f,0.5f,0.5f });
 	box->colour = { 1,1,1 };
 	renderGroup->ge_RUNTIME_GROUP_INSERT_HEAP(box);
@@ -345,7 +346,7 @@ int main()
 
 	
 
-	ge::SceneLoader::loadSceneJson("demo/scenes/demo_scene.json",&sceneTemplate);
+	ge::SceneLoader::loadSceneJson("demo/scenes/demo_scene.json",&sceneTemplate, true);
 
 	/*
 #if __cpp_structured_bindings

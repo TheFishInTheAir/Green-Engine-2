@@ -43,9 +43,10 @@ namespace ge
 			{
 				
 				glfwSetCursorPos(window, centerMouse ? halfWidth : 0, centerMouse ? halfHeight : 0);
+
+				x += centerMouse ? xpos - halfWidth  : xpos;
+				y += centerMouse ? ypos - halfHeight : ypos;
 			}
-            x += centerMouse ? xpos - halfWidth : xpos;
-            y += centerMouse ? ypos - halfHeight: ypos;
         }
     }
 }
