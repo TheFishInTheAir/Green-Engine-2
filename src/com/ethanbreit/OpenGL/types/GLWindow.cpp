@@ -26,7 +26,7 @@ namespace ge
             ConsoleIO::print("GLFW Error: "+std::string(err)+"\n", MessageType::Error);
         }
 
-        void glfwResizeCallback(); /// @unimplemented TODO: implement
+        void glfwResizeCallback(); /// TODO: implement @UNFINISHED
 
         Window::Window()
         {
@@ -155,7 +155,7 @@ namespace ge
 			{
 				glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 			}
-            //glfwSetInputMode(_window, GLFW_STICKY_KEYS, GL_TRUE); ///Maybe don't enable this TODO: add proper window input handler
+
             glfwSetKeyCallback(_window, KeyboardHandler::_keyHandler);
             glfwSetCursorPosCallback(_window, MouseHandler::_mouseHandler);
 

@@ -1,0 +1,8 @@
+{
+	"u":
+	[
+		"mvp_vp"
+	],
+	"vertex":"engine/defaults/skybox/skybox.vert",
+	"fragment":"engine/defaults/skybox/skybox.frag"
+}

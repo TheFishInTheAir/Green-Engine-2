@@ -36,8 +36,8 @@ static const unsigned int vertices[] = {
 
 static GraphicsCore* core;
 
-static Shader* vert;
-static Shader* frag;
+static std::shared_ptr<Shader> vert;
+static std::shared_ptr<Shader> frag;
 
 static std::string fragSrc;
 static std::string vertSrc;

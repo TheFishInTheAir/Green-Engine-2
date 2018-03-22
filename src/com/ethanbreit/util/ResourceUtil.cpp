@@ -2,7 +2,8 @@
 #include <console/ConsoleIO.h>
 
 #ifndef GE_RES_PATH
-#define GE_RES_PATH "../res/"
+//#define GE_RES_PATH "../res/"
+#define GE_RES_PATH   "C:/Users/Ethan Breit/CMakeBuilds/7f623dd2-acf9-3a38-a2a7-973bf10a64cd/build/x64-Debug/res/"
 #endif
 namespace ge
 {
@@ -17,12 +18,13 @@ namespace ge
 
         int getRawStrResource(std::string path, std::string *fileOut)
         {
-            //TODO: ERROR CONDITIONS I.E. IF FILE EXISTS
+            //TODO: ERROR STANDARDIZATION PLEASE
             std::ifstream file = std::ifstream(getResPath(path));
 
             if(!file)
             {
                 ConsoleIO::print("Couldn't Open File: "+getResPath(path)+", "+path+"\n",MessageType::Error);
+				return -1;
             }
 
             std::string str;
@@ -38,12 +40,14 @@ namespace ge
         }
 		int getRawStrFile(std::string path, std::string *fileOut)
 		{
-			//TODO: ERROR CONDITIONS I.E. IF FILE EXISTS
+
 			std::ifstream file = std::ifstream(path);
 
 			if (!file)
 			{
 				ConsoleIO::print("Couldn't Open File: " + getResPath(path) + ", " + path + "\n", MessageType::Error);
+				return -1;
+
 			}
 
 			std::string str;

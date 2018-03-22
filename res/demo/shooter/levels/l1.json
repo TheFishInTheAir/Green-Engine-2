@@ -3,9 +3,12 @@
     "textures": [
       "demo/textures/ONYX_COL.jpg",
       "demo/textures/ONYX_REFL.jpg",
-      "demo/textures/VSK_COL.png",
-      "demo/textures/VSK_ROUGH.png"
 
+      "demo/textures/VSK_COL.png",
+      "demo/textures/VSK_ROUGH.png",
+
+      "demo/textures/WALL1_COL.jpg",
+      "demo/textures/WALL1_GLOSS_BW.jpg"
     ],
 
     "cubemaps": [
@@ -24,7 +27,12 @@
 
     "meshes": [
       "demo/meshes/VSK.obj",
-      "demo/meshes/plane.obj"
+      "demo/meshes/plane.obj",
+      "demo/meshes/wall1.obj"
+
+    ],
+    "shaders": [
+      "demo/shaders/wave.gesm"
     ]
   },
 
@@ -66,10 +74,88 @@
       "material": {
         "lighting_type": "phong",
         "override_tex": true,
+        "custom_shader": "demo/shaders/wave.gesm",
         "albedo": "demo/textures/ONYX_COL.jpg",
         "specular": "demo/textures/ONYX_REFL.jpg"
       },
       "mesh": "demo/meshes/plane.obj"
+
+    },
+    {
+      "comment": "this is a wall TODO: proper json comments",
+
+      "model": {
+        "pos_x": 0,
+        "pos_y": 0,
+        "pos_z": 16,
+        "rot_x": 1
+      },
+      "material": {
+        "lighting_type": "phong",
+        "override_tex": true,
+        "albedo": "demo/textures/WALL1_COL.jpg",
+        "specular": "demo/textures/WALL1_GLOSS_BW.jpg"
+      },
+      "mesh": "demo/meshes/wall1.obj"
+
+    },
+    {
+      "comment": "this is a wall TODO: proper json comments",
+
+      "model": {
+        "pos_x": 0,
+        "pos_y": 0,
+        "pos_z": -16
+      },
+      "material": {
+        "lighting_type": "phong",
+        "override_tex": true,
+        "albedo": "demo/textures/WALL1_COL.jpg",
+        "specular": "demo/textures/WALL1_GLOSS_BW.jpg"
+      },
+      "mesh": "demo/meshes/wall1.obj"
+
+    },
+
+
+    {
+      "comment": "this is a wall TODO: proper json comments",
+
+      "model": {
+        "pos_x": 16,
+        "pos_y": 0,
+        "pos_z": 0,
+        "rot_w": 0.707,
+        "rot_y": -0.707
+      },
+      "material": {
+        "lighting_type": "phong",
+        "override_tex": true,
+        "albedo": "demo/textures/WALL1_COL.jpg",
+        "specular": "demo/textures/WALL1_GLOSS_BW.jpg"
+      },
+      "mesh": "demo/meshes/wall1.obj"
+
+    },
+
+
+    {
+      "comment": "this is a wall TODO: proper json comments",
+
+      "model": {
+        "pos_x": -16,
+        "pos_y": 0,
+        "pos_z": 0,
+        "rot_w": 0.707,
+        "rot_y": 0.707
+      },
+      "material": {
+        "lighting_type": "phong",
+        "override_tex": true,
+        "albedo": "demo/textures/WALL1_COL.jpg",
+        "specular": "demo/textures/WALL1_GLOSS_BW.jpg"
+      },
+      "mesh": "demo/meshes/wall1.obj"
 
     }
   ]

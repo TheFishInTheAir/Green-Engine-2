@@ -6,6 +6,7 @@
 #include <array>
 #include <memory/GlobalMemory.h>
 #include "util/ResourceUtil.h"
+#include "loader/LoadShader.h"
 
 namespace ge
 {
@@ -15,7 +16,7 @@ namespace ge
 	{
 		GlobalRuntime::ge_REGISTER_RUNTIME_HANDLER;
 
-		_gCore = GlobalMemory::get("ge_renderer_instance").getRawData<GraphicsCore>(); //TODO: have macro.
+		_gCore = GlobalMemory::get(DBL_STRINGIFY(RENDERER_INSTANCE)).getRawData<GraphicsCore>();
 
 		ge::Scene s = GlobalMemory::get("ge_current_scene").getData<Scene>();
 
@@ -26,7 +27,7 @@ namespace ge
 
 		currentCamera = GlobalMemory::get(DBL_STRINGIFY(CURRENT_CAMERA)).getRawData<Camera>();
 
-		mesh = _gCore->meshFactory->newTriangleMesh(ge::dgeo::cube::getMeshData()); //todo: fix to be shared pointer
+		mesh = _gCore->meshFactory->newTriangleMesh(ge::dgeo::cube::getMeshData()); //TODO: fix to be shared pointer
 
 		cubeMap = cm;
 
@@ -40,16 +41,16 @@ namespace ge
 
 		//Register to trampoline
 
-		GlobalMemory::get("ge_render_runtime_group").getRawData<RuntimeGroup>()->ge_RUNTIME_GROUP_INSERT_HEAP(this); //TODO: where I left off
+		GlobalMemory::get("ge_render_runtime_group").getRawData<RuntimeGroup>()->ge_RUNTIME_GROUP_INSERT_HEAP(this);
 
 	}
 
 	ge::SkyBox::SkyBox()
 	{
 
-		GlobalRuntime::ge_REGISTER_RUNTIME_HANDLER;
+		/*GlobalRuntime::ge_REGISTER_RUNTIME_HANDLER;
 
-		_gCore = GlobalMemory::get("ge_renderer_instance").getRawData<GraphicsCore>(); //TODO: have macro.
+		_gCore = GlobalMemory::get("ge_renderer_instance").getRawData<GraphicsCore>(); //TODO: have macro fir render instance. @MACRONAME
 
 		ge::Scene s = GlobalMemory::get("ge_current_scene").getData<Scene>();
 
@@ -60,7 +61,7 @@ namespace ge
 
 		currentCamera = GlobalMemory::get(DBL_STRINGIFY(CURRENT_CAMERA)).getRawData<Camera>();
 
-		mesh = _gCore->meshFactory->newTriangleMesh(ge::dgeo::cube::getMeshData()); //todo: fix to be shared pointer
+		mesh = _gCore->meshFactory->newTriangleMesh(ge::dgeo::cube::getMeshData()); //TODO: fix to be shared pointer
 
 		ge::Image* px;
 		ge::Image* nx;
@@ -94,9 +95,9 @@ namespace ge
 
 		//Register to trampoline
 
-		GlobalMemory::get("ge_render_runtime_group").getRawData<RuntimeGroup>()->ge_RUNTIME_GROUP_INSERT_HEAP(this); //TODO: where I left off
+		GlobalMemory::get("ge_render_runtime_group").getRawData<RuntimeGroup>()->ge_RUNTIME_GROUP_INSERT_HEAP(this);
 
-
+		*/ //TODO: @DEPRECATED
 	}
 
 	SkyBox::~SkyBox()
@@ -123,9 +124,7 @@ namespace ge
 	void SkyBox::initRenderer()
 	{
 
-		//auto core = GlobalMemory::get("ge_renderer_instance").getRawData<GraphicsCore>(); ///Get Current Instance of graphics core
-
-		std::string fragSrc;
+		/*std::string fragSrc;
 		std::string vertSrc;
 
 		Shader* frag;
@@ -139,8 +138,12 @@ namespace ge
 
 		_gCore->shaderFactory->genShaderGroup({ vert,frag }, &sg);
 		//ALSO MEMORY LEAKS BECAUSE WHY NOT. AS STATED ABOVE UBER TURBO TEST STUFF
-		shaders = sg;
-		mesh->setShaderGroup(sg);
+		*/
+		
+		ge::ShaderLoader::loadShader("engine/defaults/skybox/skybox.gesm", &shaders);
+
+		//shaders = sg;
+		mesh->setShaderGroup(shaders);
 
 		mesh->registerCubeMap(cubeMap, 0);
 

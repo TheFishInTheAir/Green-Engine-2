@@ -20,7 +20,7 @@ namespace ge
 
 			if (m.hasShaderGroup)
 			{
-				//TODO:: IMPLEMENT SOMETHING BECAUSE THIS DOESN't ACTUALLY WORK..
+				//TODO:: IMPLEMENT SOMETHING BECAUSE THIS DOESN't ACTUALLY WORK.. (Add Proper Shader System) @UNFINISHED
 				tm->setShaderGroup(m.shaderGroup);
 			}
 

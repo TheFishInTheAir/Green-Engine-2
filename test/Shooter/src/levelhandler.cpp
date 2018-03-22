@@ -1,6 +1,6 @@
 #include <Shooter/include/levelhandler.h>
 #include "loader/LoadScene.h"
-
+#define M_PI 3.14159265358979323846
 LevelHandler::LevelHandler()
 {
 	ge::GlobalRuntime::ge_REGISTER_RUNTIME_HANDLER;
@@ -24,6 +24,14 @@ void LevelHandler::update()
 
 
 	}
+
+	static ge::LightDirectional* light = ge::GlobalMemory::get("testlight").getRawData<ge::LightDirectional>();
+	static float degree = 0.0f;
+	light->dir.x = cos(degree) + sin(degree);
+	light->dir.z = -sin(degree) + cos(degree);
+	degree += 0.01f;
+	if (degree > M_PI*2)
+		degree = 0.0f;
 }
 
 void LevelHandler::render()

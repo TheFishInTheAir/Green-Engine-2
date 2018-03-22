@@ -13,7 +13,7 @@ namespace ge
     namespace GL
     {
 
-        Error ShaderFactory::genShader(std::string in_data,ge::ShaderType::type shaderType, ge::Shader** outShader)
+        Error ShaderFactory::genShader(std::string in_data,ge::ShaderType::type shaderType, std::shared_ptr<ge::Shader>* outShader)
         {
 
 			std::string data = ShaderPreprocessor::process(in_data);
@@ -60,20 +60,20 @@ namespace ge
 
             GL::Shader *shader = new GL::Shader();
             shader->id = id;
-            *outShader = (ge::Shader*)shader;
+            *outShader = std::shared_ptr<ge::Shader>(shader);
 
 
             return Error();
         }
 
-        Error ShaderFactory::genShaderGroup(std::vector<ge::Shader *> shadersIn, ge::ShaderGroup ** outShaderGroup)
+        Error ShaderFactory::genShaderGroup(std::vector<std::shared_ptr<ge::Shader>> shadersIn, ge::ShaderGroup ** outShaderGroup)
         {
             GL::ShaderGroup* shaderGroup = new GL::ShaderGroup();
             shaderGroup->programID = glCreateProgram();
 
             for(unsigned long i = 0; i < shadersIn.size(); i++)
             {
-                glAttachShader(shaderGroup->programID, ((GL::Shader*)shadersIn.at(i))->id);
+                glAttachShader(shaderGroup->programID, ((GL::Shader*)shadersIn.at(i).get())->id);
             }
 
             glLinkProgram(shaderGroup->programID);
@@ -88,13 +88,20 @@ namespace ge
 
             for(unsigned long i = 0; i < shadersIn.size(); i++)
             {
-                glDetachShader(shaderGroup->programID, ((GL::Shader*)shadersIn.at(i))->id);
+                glDetachShader(shaderGroup->programID, ((GL::Shader*)shadersIn.at(i).get())->id);
             }
+
+			shaderGroup->shaders = shadersIn;
 
             *outShaderGroup = shaderGroup;
 
             return Error();
         }
 
+	    void ShaderFactory::destroyShader(ge::Shader* shader)
+	    {
+			glDeleteShader(((GL::Shader*)shader)->id);
+			free((GL::Shader*)shader);
+	    }
     }
 }

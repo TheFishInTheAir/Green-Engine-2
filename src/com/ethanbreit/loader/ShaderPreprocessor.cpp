@@ -10,7 +10,7 @@ namespace ge
 	{
 		std::regex include("#pragma include(<| <).*>");
 		std::regex include_path("<.*>");
-		//TODO: better name for both class and function
+		//TODO: better name for both class and function @REFACTOR
 		std::string process(std::string in)
 		{
 			///INCLUDE
@@ -37,7 +37,7 @@ namespace ge
 					std::string real_path = path.str().substr(1,path.str().length()-2);
 					std::string included_file;
 					
-					//TODO: fix the return value to Error
+					//TODO: fix the return value to Error @?
 					ResourceUtil::getRawStrResource(real_path, &included_file);
 
 					in.insert(m.position(), included_file);
@@ -45,7 +45,7 @@ namespace ge
 					includes++;
 				}
 
-				//TODO: MORE? 
+				//TODO: MORE @UNFINISHED 
 
 			}
 			return in;

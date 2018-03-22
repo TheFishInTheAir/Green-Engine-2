@@ -96,8 +96,8 @@ namespace ge
 		Empty::IndexBuffer ibe;
 
 		ShaderGroup* shaders;
-		Shader*			frag;
-		Shader*			vert;
+		std::shared_ptr<Shader>			frag;
+		std::shared_ptr<Shader>			vert;
 
 		void setup()
 		{

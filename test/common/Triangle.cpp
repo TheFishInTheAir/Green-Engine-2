@@ -25,8 +25,8 @@ static TriangleMesh *mesh;
 
 static GraphicsCore* core;
 
-static Shader* vert;
-static Shader* frag;
+static std::shared_ptr<Shader> vert;
+static std::shared_ptr<Shader> frag;
 
 static std::string fragSrc;
 static std::string vertSrc;
@@ -203,6 +203,6 @@ void Triangle::cleanup()
     delete vb;      ///Delete Vertex Buffer
     delete ib;      ///Delete Index Buffer
     delete sg;      ///Delete Shader Group
-    delete frag;    ///Delete Fragment Shader
-    delete vert;    ///Delete Vertex Shader
+    //delete frag;    ///Delete Fragment Shader
+    //delete vert;    ///Delete Vertex Shader
 }

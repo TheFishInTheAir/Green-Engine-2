@@ -49,20 +49,20 @@ void Player::update()
 
 	///Bounds Check Bounce
 
-	if (abs(x)>16)
+	if (abs(x)>16-0.25)
 	{
 		vX = -vX;
 		vX -= vX/2;
 
-		x = 0 > x ? -16 : 16;
+		x = 0 > x ? -(16 - 0.25) : 16 - 0.25;
 	}
 
-	if (abs(y)>16)
+	if (abs(y)>16-0.25)
 	{
 		vY = -vY;
 		vY -= vY/2;
 
-		y = 0 > y ? -16 : 16;
+		y = 0 > y ? -(16 - 0.25) : 16 - 0.25;
 
 	}
 

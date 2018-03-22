@@ -4,7 +4,7 @@ project(Green_Engine_2)
 
 
 #TODO: SET TO FALSE
-set(DEVELOPMENT_MODE FALSE CACHE BOOL "Include tests in build.")
+set(DEVELOPMENT_MODE TRUE CACHE BOOL "Include tests in build.")
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake) #Include custom cmake files
 

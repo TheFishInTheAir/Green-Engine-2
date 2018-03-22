@@ -13,7 +13,7 @@ namespace ge
 	namespace GL
 	{
 
-		void TriangleMesh::render()
+		void  TriangleMesh::render()
 		{
 			startRender();
 			glBindVertexArray(_vao);
@@ -21,7 +21,17 @@ namespace ge
 
 			for (auto tex : _textures)
 			{
-				//TODO: Check if Texture is already loaded
+				//TODO: Check if Texture is already loaded (BATCHING) @UNFINISHED
+				// Check if Texture is already loaded (will be part of batching system)
+				{
+					int currentID;
+					glGetIntegerv(GL_TEXTURE0 + tex.first, &currentID); // Should not return anything below 0 so comparison between int and unsigned int SHOULD be safe
+					if(tex.second->id == currentID)
+					{
+						continue;
+					}
+				}
+
 				glActiveTexture(GL_TEXTURE0 + tex.first);
 				glBindTexture(GL_TEXTURE_2D, tex.second->id);
 			}

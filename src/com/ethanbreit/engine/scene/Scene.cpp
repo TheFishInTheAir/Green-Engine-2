@@ -3,12 +3,13 @@
 #include <memory/GlobalMemory.h>
 #include <engine/global_settings.pre>
 #include "engine/defaults/StaticObject.h"
+#include "loader/LoadShader.h"
 
 namespace ge
 {
 	void Scene::loadScene(Empty::Scene s)
 	{
-		GraphicsCore* gc = GlobalMemory::get("ge_renderer_instance").getRawData<GraphicsCore>(); //TODO: replace string with MACRO
+		GraphicsCore* gc = GlobalMemory::get("ge_renderer_instance").getRawData<GraphicsCore>(); //TODO: replace string with A macro @MACRONAME
 		
 
 		//Clear
@@ -42,8 +43,8 @@ namespace ge
 					meshesK.push_back({ mesh->first,mesh->second });
 					continue;
 				}
-				auto shader = shaders.find(res);
-				if (shader != shaders.end())
+				auto shader = shaderGroups.find(res);
+				if (shader != shaderGroups.end())
 				{
 					shadersK.push_back({ shader->first,shader->second });
 					continue;
@@ -61,7 +62,7 @@ namespace ge
 				meshes.insert({ m.first,m.second });
 			shaders.clear();
 			for (auto s : shadersK)
-				shaders.insert({ s.first,s.second });
+				shaderGroups.insert({ s.first,s.second });
 		}
 
 
@@ -97,18 +98,16 @@ namespace ge
 
 		}
 
-		/*
-		//Shaders
-		//TODO: create shader Manifest's soon pls... pls...
 		
-		for (auto shaderSource : s.shaders)
-		{
-			Texture* tex;
-			gc->textureFactory->genTexture(img.second, &tex);
+		//Shaders
 
-			textures.insert({ img.first, std::shared_ptr<Texture>(tex) });
+		for (auto shaderManifest : s.shaders)
+		{
+			ShaderGroup* sg;
+			ShaderLoader::loadShader(shaderManifest, &sg, this);
+			shaderGroups.insert({shaderManifest, std::shared_ptr<ShaderGroup>(sg)});
 		}
-		*/
+		
 
 		if (s.skybox != "")
 		{
@@ -152,7 +151,7 @@ namespace ge
 	{
 		if(!GlobalMemory::exists(MSTR(GE_ENTITES_GM)))
 		{
-			//TODO: proper stuff (remove and make good)
+			//TODO: proper stuff (remove and make good) I.E. Nested Hashmap
 			std::forward_list<StaticObject*>* objsTemp = new std::forward_list<StaticObject*>();
 			
 			GlobalMemory::insert(MSTR(GE_ENTITES_GM), {objsTemp, ReadableMemType::OTHER});

@@ -9,6 +9,8 @@
 //
 //#define ENABLE_TURBO_VERBOSE
 
+//TODO: ORGANISE, TOO MANY PREPROCESSOR IFS
+
 //TODO: make async (maybe push to update command buffer) instead of mutex
 
 #if defined(_WIN32) && !defined(NO_COLOUR)

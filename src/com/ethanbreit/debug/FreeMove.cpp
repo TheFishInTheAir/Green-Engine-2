@@ -23,7 +23,7 @@ namespace ge
         MouseHandler::getMousePos(&x, &y);
         _horizontalAngle += float(-x)*lookSpeed;
         _verticalAngle  +=  float(-y)*lookSpeed;
-        MouseHandler::resetMousePos();// TODO: this should be handled by a proper thing
+        MouseHandler::resetMousePos();
 
 
         glm::vec3 direction = RotationUtil::getDirection(_verticalAngle,_horizontalAngle);

@@ -13,8 +13,8 @@
 
 static GraphicsCore* core;
 
-static Shader* vert;
-static Shader* frag;
+static std::shared_ptr<Shader> vert;
+static std::shared_ptr<Shader> frag;
 static ShaderGroup *sg;
 
 static std::string fragSrc;
@@ -184,6 +184,6 @@ void BasicLightModel::setup()
 
 void BasicLightModel::cleanup()
 {
-    delete frag;    ///Delete Fragment Shader
-    delete vert;    ///Delete Vertex Shader
+    //delete frag;    ///Delete Fragment Shader
+    //delete vert;    ///Delete Vertex Shader
 }

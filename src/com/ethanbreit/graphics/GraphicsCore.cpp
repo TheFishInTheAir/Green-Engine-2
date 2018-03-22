@@ -7,7 +7,7 @@
 #include <memory/GlobalMemory.h>
 #include "OpenGL/factories/GLTextureFactory.h"
 #include "OpenGL/FeatureHandler.h"
-
+#include <engine/global_settings.pre>
 namespace ge
 {
 
@@ -32,7 +32,7 @@ namespace ge
 
 
 
-        GlobalMemory::insert("ge_renderer_instance", GlobalMemory::MemItem(this,ReadableMemType::OTHER)); ///Add static reference to this in the global memory
+        GlobalMemory::insert(DBL_STRINGIFY(RENDERER_INSTANCE), GlobalMemory::MemItem(this,ReadableMemType::OTHER)); ///Add static reference to this in the global memory
     }
 
     bool GraphicsCore::getSupportedFeature(unsigned int feature)

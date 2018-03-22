@@ -24,12 +24,12 @@ namespace ge
                 case ColourModelType::BGR:
                     return GL_BGR;
                 case ColourModelType::ARGB:
-                    //channels = GL_ARGB; TODO: Something maybe
+                    //channels = GL_ARGB; TODO: Something maybe @?
                     break;
                 case ColourModelType::RGBA:
                     return GL_RGBA;
                 case ColourModelType::ABGR:
-                    //TODO: check if extension is supported
+                    //TODO: check if extension is supported 
                     return GL_ABGR_EXT;
                 case ColourModelType::BGRA:
                     return GL_BGRA;

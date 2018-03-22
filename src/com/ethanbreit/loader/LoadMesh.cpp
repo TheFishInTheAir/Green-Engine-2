@@ -21,7 +21,7 @@ namespace ge
 		Error loadTriangleMesh(std::string path, Empty::MeshData *outMesh)
 		{
 
-			const aiScene *scene = importer.ReadFile(ResourceUtil::getResPath(path).c_str(), aiProcess_Triangulate); //TODO: UV flip maybe...
+			const aiScene *scene = importer.ReadFile(ResourceUtil::getResPath(path).c_str(), aiProcess_Triangulate); 
 
 			if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
 			{
@@ -41,7 +41,7 @@ namespace ge
 			//GraphicsCore* graphicsCore = GlobalMemory::get("ge_renderer_instance").getRawData<GraphicsCore>();
 
 			const aiMesh *mesh = scene->mMeshes[0];
-			//TODO: allocate to heap (like indices buffer)
+			
 			std::vector<glm::vec3>*  vertices	= new std::vector<glm::vec3>;
 			std::vector<unsigned int>* indices	= new std::vector<unsigned int>;
 			std::vector<glm::vec3>*  normals	= new std::vector<glm::vec3>;
@@ -61,7 +61,7 @@ namespace ge
 
 			if (mesh->HasBones())
 			{
-				ConsoleIO::print("WARNING: Currently no support for bones in meshes. ignoring.", MessageType::Warning); //TODO: Implement bones in engine
+				ConsoleIO::print("WARNING: Currently no support for bones in meshes. ignoring.", MessageType::Warning); //TODO: Implement bones in engine @UNFINISHED
 			}
 
 

@@ -163,19 +163,21 @@ namespace ge
 			{
 				Empty::StaticObject obj;
 
-				glm::mat4 model(1);
+				ModelMat model;
 
-				if (object["model"].count("scale_x") != 0)
-					model = glm::scale(model, { (float)object["model"]["scale_x"], (float)object["model"]["scale_y"], (float)object["model"]["scale_z"] });
-				if (object["model"].count("rot_x") != 0)
-				{
-					glm::quat r = { (float)object["model"]["rot_x"], (float)object["model"]["rot_y"], (float)object["model"]["rot_z"], (float)object["model"]["rot_w"] };
-					model *= glm::toMat4(r);
-				}
-				if (object["model"].count("pos_x") != 0)
-					model = glm::translate(model, { (float)object["model"]["pos_x"], (float)object["model"]["pos_y"], (float)object["model"]["pos_z"] });
+				model.scale.x = object["model"].count("scale_x") ? object["model"]["scale_x"] : 1;
+				model.scale.y = object["model"].count("scale_y") ? object["model"]["scale_y"] : 1;
+				model.scale.z = object["model"].count("scale_z") ? object["model"]["scale_z"] : 1;
 
-				
+				model.pos.x = object["model"].count("pos_x") ? object["model"]["pos_x"] : 0;
+				model.pos.y = object["model"].count("pos_y") ? object["model"]["pos_y"] : 0;
+				model.pos.z = object["model"].count("pos_z") ? object["model"]["pos_z"] : 0;
+
+				model.rot.x = object["model"].count("rot_x") ? object["model"]["rot_x"] : 0;
+				model.rot.y = object["model"].count("rot_y") ? object["model"]["rot_y"] : 0;
+				model.rot.z = object["model"].count("rot_z") ? object["model"]["rot_z"] : 0;
+				model.rot.w = object["model"].count("rot_w") ? object["model"]["rot_w"] : 0;
+
 				if (object.count("uv_scale") != 0)
 				{
 					obj.uvscale = (float) object["uv_scale"];
@@ -184,7 +186,7 @@ namespace ge
 				{
 					obj.uvscale = 1;
 				}
-				obj.model.matrix = model;
+				obj.model = model;
 
 				json material = object["material"];
 				{

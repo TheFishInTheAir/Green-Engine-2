@@ -1,5 +1,11 @@
 #ifndef GLOBAL_SETTINGS 
 #define GLOBAL_SETTINGS
+
+//Important globals
+#define RENDERER_INSTANCE ge_renderer_instance
+
+
+
 //Render IDs
 #define RENDER 0
 
@@ -41,6 +47,11 @@
 #define MAX_POINT_LIGHTS	   	6
 #define MAX_SPOT_LIGHTS			4
 #define MAX_DIRECTIONAL_LIGHTS	1
+
+//PREDEFINED UNIFORMS
+
+#define TIME							ge_predef_time
+
 
 //UNIFORMS
 

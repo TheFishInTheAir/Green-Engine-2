@@ -26,7 +26,7 @@ namespace ge
             ConsoleIO::print("GLFW Error: "+std::string(err)+"\n", MessageType::Error);
         }
 
-        void glfwResizeCallback(); /// @unimplemented TODO: implement
+        void glfwResizeCallback(); //TODO: implement @UNFINISHED
 
         Windowless::Windowless()
         {

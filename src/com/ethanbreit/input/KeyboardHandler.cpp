@@ -34,7 +34,7 @@ namespace ge
         key keys[400];
 
 
-        void _keyHandler(GLFWwindow *, int key, int scancode, int action, int mods) //TODO: add support for non glfw windows
+        void _keyHandler(GLFWwindow *, int key, int scancode, int action, int mods) //TODO: add support for non glfw windows, or don't support metal :) @UNFINISHED
         {
             keys[key].currentlyHeld = action != GLFW_RELEASE;
             keys[key].stickyHeld    = action != GLFW_RELEASE;
