@@ -1,15 +1,33 @@
 #+TITLE: Green Engine Planning Document
 #+AUTHOR: Ethan Breit
 
-
 * Quick Explanation
 
 The template for the Green Engine Planning Document is as follows. The first bullet is the general topic, the second bullet is the more specific sub-topic, the numbered bullets are answers.
 
 
-* Shaders and Materials
+* VERSION 2.2: (Design goals revised)
 
-** Requirements and possible solutions
+** Major Changes:
+*** Gradually Drop support for OpenGL 4.5 and below.
+*** All shaders should be compiled to SPIR-V
+*** Revised ECS.
+
+** Shaders and Materials
+- Manifests
+  - Uniforms
+    - Manifests will now contain layout info of uniforms. This is done for Opengl 3.* compatability, this means we can now standardize uniform access across APIs (by name). The uniform info will be stored as a name and layout location.
+- Building.
+  - There should be a shader compilation stage to the build. This will convert all shaders into SPIR-V and generate manifest data for each shader.
+
+
+* VERSION 2.0: 
+
+
+
+** Shaders and Materials
+
+*** Requirements and possible solutions
 - Not restricting to user.
   - Don't make it required to use the Green Engine's Shader Utilities and pre built Shaders.
 
@@ -36,7 +54,7 @@ The template for the Green Engine Planning Document is as follows. The first bul
     2. Some Higher level shader language
 
 
-* Loading
+** Loading
 
 Need to create empty template clases to load data into so no OpenGL calls are made. OpenGL calls have to be on the OpenGL Thread (Rendering Thread) making asynchronouse loading impossible and also making loading freeze the entire game.
 

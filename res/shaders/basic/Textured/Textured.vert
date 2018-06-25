@@ -2,7 +2,7 @@
 
 #define VERTEX
 
-#pragma include <engine/global_settings.pre>
+#pragma include <ge/engine/global_settings.pre>
 
 layout(location = VERTEX_POSITION) in vec3 vertexPositions;
 layout(location = NORMAL_POSITION) in vec3 normals;
