@@ -122,7 +122,8 @@ namespace ge
 					ResourceUtil::getRawStrResource(manifest["vertex"], &vertData);
 					gc->shaderFactory->genShader(vertData, ShaderType::Shader_Vertex, &vert);
 
-					s->shaders.insert({manifest["vertex"], vert});
+
+                    s->shaders.insert({manifest["vertex"].get<std::string>(), vert});
 
 					shaders.push_back(vert);
 				}
@@ -144,7 +145,7 @@ namespace ge
 					ResourceUtil::getRawStrResource(manifest["geometry"], &geomData);
 					gc->shaderFactory->genShader(geomData, ShaderType::Shader_Geometry, &geom);
 
-					s->shaders.insert({ manifest["geometry"], geom });
+					s->shaders.insert({manifest["geometry"].get<std::string>(), geom });
 
 
 					shaders.push_back(geom);
@@ -166,7 +167,7 @@ namespace ge
 					ResourceUtil::getRawStrResource(manifest["fragment"], &fragData);
 					gc->shaderFactory->genShader(fragData, ShaderType::Shader_Fragment, &frag);
 
-					s->shaders.insert({ manifest["fragment"], frag });
+					s->shaders.insert({manifest["fragment"].get<std::string>(), frag });
 
 					shaders.push_back(frag);
 				}

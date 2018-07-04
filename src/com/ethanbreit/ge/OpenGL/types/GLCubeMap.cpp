@@ -2,7 +2,6 @@
 // Created by Ethan Breit on 2017-08-16.
 //
 
-#pragma once
 #include <GL/glew.h>
 #include <ge/memory/GlobalMemory.h>
 #include <ge/error/Error.h>

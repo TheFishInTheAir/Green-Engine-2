@@ -3,7 +3,7 @@
 //
 
 #pragma once
-#include <gl/glew.h>
+#include <GL/glew.h>
 
 #include <ge/graphics/enums/ShaderType.h>
 #include <ge/graphics/enums/BufferMemoryType.h>

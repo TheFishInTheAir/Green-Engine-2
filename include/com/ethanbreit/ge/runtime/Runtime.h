@@ -13,9 +13,29 @@
 #include "RuntimeGroup.h"
 #include <mutex>
 
-#define ge_START_CYCLE_HANDLER(c)   static uint64_t __cycleHandlerUUID() {static uint64_t __uuid = 0;if(__uuid==0){__uuid = ge::RuntimeManager::genCycleHandlerUUID();}return __uuid;} static void __cycle(void *vRef, uint32_t runId){ c* ref = reinterpret_cast<c*>(vRef); switch(runId) {
-#define ge_GENERATE_TRAMPOLINE(f,i) case i: ref->f(); return;
-#define ge_END_CYCLE_HANDLER        default:return;}}
+#define ge_START_CYCLE_HANDLER(c)                               \
+static uint64_t __cycleHandlerUUID()                            \
+{                                                               \
+    static uint64_t __uuid = 0;                                 \
+    if(__uuid==0)                                               \
+    {                                                           \
+        __uuid = ge::RuntimeManager::genCycleHandlerUUID();     \
+    }                                                           \
+    return __uuid;                                              \
+}                                                               \
+static void __cycle(void *vRef, uint32_t runId)                 \
+{                                                               \
+    c* ref = reinterpret_cast<c*>(vRef);                        \
+    switch(runId)                                               \
+    {
+#define ge_GENERATE_TRAMPOLINE(f,i)                             \
+        case i:                                                 \
+            ref->f();                                           \
+            return;
+#define ge_END_CYCLE_HANDLER                                    \
+        default:return;                                         \
+    }                                                           \
+}
 
 namespace ge
 {
@@ -45,6 +65,7 @@ namespace ge
 
         void        insertGroup(RuntimeGroup*);
         void        insertGroup(RuntimeGroup*, uint32_t);
+        RuntimeGroup* getGroup (uint32_t);
 
 		std::string getName();
 
@@ -63,7 +84,7 @@ namespace ge
         uint32_t                        managesSinceLastClear       = 0;
         uint64_t                        cyclesSinceLastClear        = 0;
         uint32_t                        cyclesSinceLastManage       = 0;
-        std::vector<RuntimeGroup*>      groups;
+        std::vector<RuntimeGroup*>      groups; //Maybe make a bst  TODO: OPTOMIZE
         std::thread                    *runtime;
         std::queue<void(*)()>			staticQueue;
 		std::queue<std::pair<void(*)(void*),void*>>		queue;

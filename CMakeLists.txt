@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9) #Needs Version 3.8 for boost
+cmake_minimum_required(VERSION 3.8) #we don't use BOOST anymore...
 project(Green_Engine_2)
 
 
@@ -77,7 +77,7 @@ file(COPY "res" DESTINATION "${CMAKE_BINARY_DIR}")
 #set(CMAKE_CXX_STANDARD 17)
 #set(CMAKE_CXX_STANDARD_REQUIRED 17)
 #set(CXX_STANDARD_REQUIRED 17)
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++latest")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1z")
 
 if(MSVC)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++17")

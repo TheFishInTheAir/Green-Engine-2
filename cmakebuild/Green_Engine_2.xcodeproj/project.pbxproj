@@ -1,0 +1,1292 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		E6C932EC393B4E3884D330A7 /* ZERO_CHECK */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = F0C6F6D8EF854A81B1B2A2FD /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildPhases = (
+				67187C3C5BC047F49413287B /* CMake Rules */,
+			);
+			dependencies = (
+			);
+			name = ZERO_CHECK;
+			productName = ZERO_CHECK;
+		};
+		F68FA9E580A34A199D26BB2A /* ALL_BUILD */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 95D42530A5FA42B2B39286B3 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildPhases = (
+				00AE449DA87C48A0B120B356 /* CMake Rules */,
+			);
+			dependencies = (
+				00203FF9B8AA4AEB88C2D259 /* PBXTargetDependency */,
+				17FA989A8E9F40D092C042C8 /* PBXTargetDependency */,
+			);
+			name = ALL_BUILD;
+			productName = ALL_BUILD;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		0444A28FD48D4B3D9A8BF0E4 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/console/ConsoleIO.h */ = {isa = PBXBuildFile; fileRef = 592DE957E7BB45118111BF63 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/console/ConsoleIO.h */; };
+		051DF57E47DF48D18172FAA6 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/Texture.h */ = {isa = PBXBuildFile; fileRef = E1E2C4B3E4284810942A7741 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/Texture.h */; };
+		065CB2CAAFBC47C4B50DDF9B /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/components/TransformComponent.h */ = {isa = PBXBuildFile; fileRef = 553A86BD71A445FB825F8546 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/components/TransformComponent.h */; };
+		072171A79B9F424AA02281AB /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/loader/LoadMesh.cpp */ = {isa = PBXBuildFile; fileRef = 15648F8CB63145CC8E695853 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/loader/LoadMesh.cpp */; };
+		08D4416F1F994805BD4FCF93 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/empty_types/IndexBuffer.h */ = {isa = PBXBuildFile; fileRef = 250B4C0B5473496DBF107E9B /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/empty_types/IndexBuffer.h */; };
+		0B634078E6A049658A910E0F /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/debug/FreeMove.h */ = {isa = PBXBuildFile; fileRef = 2DCD6B1A0C8A4FE19C6E706B /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/debug/FreeMove.h */; };
+		0DBCC266189443B696AE1872 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/debug/FreeMove.cpp */ = {isa = PBXBuildFile; fileRef = 31EC11DA72FA468A83D09F66 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/debug/FreeMove.cpp */; };
+		0F24FA4BA37E4F31AC93290C /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/runtime/RuntimeGroup.h */ = {isa = PBXBuildFile; fileRef = 1922A668372F46199B9F3E26 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/runtime/RuntimeGroup.h */; };
+		0F63A04618CF49CE8A977437 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/MetalTest/MetalTest.cpp */ = {isa = PBXBuildFile; fileRef = 199BE4B7C62346A68CA6A775 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/MetalTest/MetalTest.cpp */; };
+		0F676DC2ED0345EF9EA0F1B8 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/Window.h */ = {isa = PBXBuildFile; fileRef = 2F38ED0411AC4C0BA404F1C9 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/Window.h */; };
+		10AC9AAE3123449585DB8D2D /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/include/core.h */ = {isa = PBXBuildFile; fileRef = 10D2DCF1310C4150B1A3E38B /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/include/core.h */; };
+		128978DD85A742F18EAD5BB3 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/util/RotationUtil.cpp */ = {isa = PBXBuildFile; fileRef = 847B27F0042F44EBAD93ECE9 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/util/RotationUtil.cpp */; };
+		12E63346D54B4AFE9CEDF34A /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/factories/GLMeshFactory.cpp */ = {isa = PBXBuildFile; fileRef = F443D6CA5E67425BB129F835 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/factories/GLMeshFactory.cpp */; };
+		1427D7FECC7C439E97C9C817 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/src/core.cpp */ = {isa = PBXBuildFile; fileRef = BB95F4C3DBD340348352FD68 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/src/core.cpp */; };
+		15874E385B7F46BBADCF5EDA /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/console/Log.cpp */ = {isa = PBXBuildFile; fileRef = A0D9286F884E468AA7062E18 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/console/Log.cpp */; };
+		16BA03B5FCC644A2B9A6FEBC /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/batches/DefaultComponentBatch.h */ = {isa = PBXBuildFile; fileRef = 1D69827C5EC9467EA841B0EC /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/batches/DefaultComponentBatch.h */; };
+		17796EA83FBD46E0AE3F0C4E /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/input/MouseHandler.h */ = {isa = PBXBuildFile; fileRef = C4EC79146B3C4797AE885E0A /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/input/MouseHandler.h */; };
+		18CF5EF3684544CC95DEA26A /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/Shader.h */ = {isa = PBXBuildFile; fileRef = E66D91BD6F1148EFBC23A9DE /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/Shader.h */; };
+		1AA747B518DA417680FF86A7 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/factories/MeshFactory.h */ = {isa = PBXBuildFile; fileRef = 1E0D64894C604174A62B6841 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/factories/MeshFactory.h */; };
+		1B79D762FB8C4AF4A06D475E /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/Entity.h */ = {isa = PBXBuildFile; fileRef = 015273F560FA4F72829D99CD /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/Entity.h */; };
+		1D0EEBAD68534E0B9EDA3C05 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/factories/TextureFactory.h */ = {isa = PBXBuildFile; fileRef = 7F2F49485EEB428398C91AEA /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/factories/TextureFactory.h */; };
+		1F381A9C48E74ECD86956D5A /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/engine/types/ModelMat.cpp */ = {isa = PBXBuildFile; fileRef = FEA65E8E52E545109C22257F /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/engine/types/ModelMat.cpp */; };
+		1FED28660FA54FFC82ACF99B /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/engine/types/ModelMat.h */ = {isa = PBXBuildFile; fileRef = 1BB17CDE71344FD5AE2D91E2 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/engine/types/ModelMat.h */; };
+		234293F1729044B69A3D8A03 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/engine/empty_types/EmptyStaticObject.h */ = {isa = PBXBuildFile; fileRef = 27DE4BCBDFDB4C1095C8099D /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/engine/empty_types/EmptyStaticObject.h */; };
+		261E272A293140A9862E8818 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/Component.h */ = {isa = PBXBuildFile; fileRef = A70BFB12BC504F9CB1704203 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/Component.h */; };
+		2693035FD1654A12A6D13C14 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/ComponentBatch.cpp */ = {isa = PBXBuildFile; fileRef = 7EA4CDEBFBB9456AAC04FF87 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/ComponentBatch.cpp */; };
+		28BE028F3973406889421DC3 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/old_examples/Example1/main.cpp */ = {isa = PBXBuildFile; fileRef = 8AC9B6F0E0EA462DB472FF11 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/old_examples/Example1/main.cpp */; };
+		295BFAE34056478A9ABE92DA /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/error/Error.h */ = {isa = PBXBuildFile; fileRef = 318F2F5A752F4670B4A32C53 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/error/Error.h */; };
+		2A5B581B0F8E45D090D95107 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/engine/scene/Scene.h */ = {isa = PBXBuildFile; fileRef = 031823B35F7A474BA10C5C73 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/engine/scene/Scene.h */; };
+		2AB8A8E2930543E7A2DDE42C /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/loader/LoadScene.h */ = {isa = PBXBuildFile; fileRef = A625D70F2B2C4DE0B2449443 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/loader/LoadScene.h */; };
+		2D809E278EC840E99F5EC768 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/factories/GLTextureFactory.h */ = {isa = PBXBuildFile; fileRef = AA3C6E1FEDA54ABE955FF060 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/factories/GLTextureFactory.h */; };
+		2D9557FEAFBB443C9D341912 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/engine/defaults/SkyBox.cpp */ = {isa = PBXBuildFile; fileRef = D58AA96A4A694E0985BE4741 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/engine/defaults/SkyBox.cpp */; };
+		2FF9F189247E4A07B715BDBC /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLCubeMap.cpp */ = {isa = PBXBuildFile; fileRef = 296ACDC1D3624735A88B79D1 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLCubeMap.cpp */; };
+		31755F5F9DD3448A829355CA /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLWindow.h */ = {isa = PBXBuildFile; fileRef = F40368213F0C41159B46495F /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLWindow.h */; };
+		321D985CB75D42D481A54934 /* /Users/garthbreit/Desktop/Green-Engine-2/test/Example10/main.cpp */ = {isa = PBXBuildFile; fileRef = 02BB6E18ABE34440ACF08F66 /* /Users/garthbreit/Desktop/Green-Engine-2/test/Example10/main.cpp */; };
+		328340F1042D4EC2AA0E1AD5 /* /Users/garthbreit/Desktop/Green-Engine-2/test/ExampleController.h */ = {isa = PBXBuildFile; fileRef = B6F84D055ECD4B2D94951CF4 /* /Users/garthbreit/Desktop/Green-Engine-2/test/ExampleController.h */; };
+		331C7DFE555B47E5A16175A1 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/util/EnumUtil.cpp */ = {isa = PBXBuildFile; fileRef = 4884462781644DA29B8D27C2 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/util/EnumUtil.cpp */; };
+		33505B6A8C944D718EDA40AC /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/util/EnumUtil.h */ = {isa = PBXBuildFile; fileRef = A715DAE14D274B9AADD48E51 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/util/EnumUtil.h */; };
+		3463598224F547439B9E91AB /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/Triangle.cpp */ = {isa = PBXBuildFile; fileRef = 5DECC652D29F40D1B7801AA8 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/Triangle.cpp */; };
+		34B4AA93A99C4236A5D82886 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/default_geom/Cube.h */ = {isa = PBXBuildFile; fileRef = 439132516A6549079FA251BB /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/default_geom/Cube.h */; };
+		36BD8F88F1A94487B51C0109 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/empty_types/VertexBuffer.h */ = {isa = PBXBuildFile; fileRef = 67523F736BD0436AA468F43A /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/empty_types/VertexBuffer.h */; };
+		36CBD891FB70486B975DC3ED /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/memory/GlobalMemory.cpp */ = {isa = PBXBuildFile; fileRef = A9F4D5F05E06440AB6628280 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/memory/GlobalMemory.cpp */; };
+		37FDA76F6C9342F08A981763 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/engine/defaults/StaticObject.cpp */ = {isa = PBXBuildFile; fileRef = 78DFEFC909FE49AE844EAB50 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/engine/defaults/StaticObject.cpp */; };
+		389DC996DA9D4C56B705BF1A /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/ComponentManager.cpp */ = {isa = PBXBuildFile; fileRef = 54B02F8A06D148DBAF8B42BB /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/ComponentManager.cpp */; };
+		3910D90D3D3449B49F2BAE73 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/factories/BufferFactory.h */ = {isa = PBXBuildFile; fileRef = A790C106952246049B2B6CB8 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/factories/BufferFactory.h */; };
+		397B61C5A23F444E9B9B77F0 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/GraphicsCore.h */ = {isa = PBXBuildFile; fileRef = 2C712C0B2244477F8A618421 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/GraphicsCore.h */; };
+		3B277E0D503040E5BEF3EE08 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/GraphicsApi.h */ = {isa = PBXBuildFile; fileRef = 3418B6EDE09F4241AA851B69 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/GraphicsApi.h */; };
+		43B18F418387465A9DEE9B86 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/components/MeshRendererComponent.h */ = {isa = PBXBuildFile; fileRef = BEE48ADDEF6448F5B79F85EA /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/components/MeshRendererComponent.h */; };
+		4505193387F644E4AAE96BBC /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/input/KeyboardHandler.cpp */ = {isa = PBXBuildFile; fileRef = 7CAF55A0C4254A958340A860 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/input/KeyboardHandler.cpp */; };
+		45447FB5F3394412BA642BA6 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/graphics/types/Texture.cpp */ = {isa = PBXBuildFile; fileRef = 5BB4C14434E049619CF7F6E1 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/graphics/types/Texture.cpp */; };
+		47D74FC036EA4395A8D6C8D9 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/factories/ShaderFactory.h */ = {isa = PBXBuildFile; fileRef = 541B605C7F2E4F50BE9DB1D6 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/factories/ShaderFactory.h */; };
+		485DBEC5D63146108ACB209E /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/Component.cpp */ = {isa = PBXBuildFile; fileRef = D658B5855F0A44EC8A788B02 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/Component.cpp */; };
+		493BB34320D74FBE9E21CD68 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/Meshes/GLTriangleMesh.cpp */ = {isa = PBXBuildFile; fileRef = 35327FFD9BC04839A109ADEF /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/Meshes/GLTriangleMesh.cpp */; };
+		4A77299CD0F745DD819F647E /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/TexturedModel.cpp */ = {isa = PBXBuildFile; fileRef = 9206369319544419B7527C91 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/TexturedModel.cpp */; };
+		4B92E7CC24A748AB88C71EF5 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/TexturedModel.h */ = {isa = PBXBuildFile; fileRef = 1822F037003A42D3B4AEFF51 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/TexturedModel.h */; };
+		4B930DCF29E0432AA19BA915 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/runtime/Runtime.cpp */ = {isa = PBXBuildFile; fileRef = A1FADD31F5F5481F8E7EE853 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/runtime/Runtime.cpp */; };
+		4CB54086F9DF443D97FCC487 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/CubeMap.h */ = {isa = PBXBuildFile; fileRef = 9010BD3ABC2047DE807B6B81 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/CubeMap.h */; };
+		4D32DD667B964EDE896CC96A /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/console/Log.h */ = {isa = PBXBuildFile; fileRef = FDB792BF7BF34602B7561045 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/console/Log.h */; };
+		4D6BD16B04144F69A9CA83CA /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/lights/LightDirectional.h */ = {isa = PBXBuildFile; fileRef = A48124A6A61144F2B71BBD9A /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/lights/LightDirectional.h */; };
+		4F94F10D4BAD4AE48779A4B3 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/input/KeyboardKey.h */ = {isa = PBXBuildFile; fileRef = 670C233B818A446EBD6D40D4 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/input/KeyboardKey.h */; };
+		513BC94E4686424EBEFC1A06 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/console/enum/MessageType.h */ = {isa = PBXBuildFile; fileRef = 7E5C418109FD44328D24C226 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/console/enum/MessageType.h */; };
+		556185B3064C4BB6A2E09883 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/loader/LoadShader.h */ = {isa = PBXBuildFile; fileRef = DE4F2ECEA8A04137AC80A342 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/loader/LoadShader.h */; };
+		556F36A2B48649D8852B2B5B /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/graphics/types/CubeMap.cpp */ = {isa = PBXBuildFile; fileRef = 279AF555E583460598143CA0 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/graphics/types/CubeMap.cpp */; };
+		57A31AE170AA48C3BE941C46 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/console/ConsoleIO.cpp */ = {isa = PBXBuildFile; fileRef = 83992A895C46488382CDEC79 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/console/ConsoleIO.cpp */; };
+		595F1BBA117F418EB4A5A894 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/Image.h */ = {isa = PBXBuildFile; fileRef = 768EC6B5B108415D8B78EA5C /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/Image.h */; };
+		599BF757B7DD4F6395C1A898 /* /Users/garthbreit/Desktop/Green-Engine-2/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = E57E8AB2EB1A4D00B969EC5F /* /Users/garthbreit/Desktop/Green-Engine-2/CMakeLists.txt */; };
+		5AF0017DBBA149679037C0E1 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/include/levelhandler.h */ = {isa = PBXBuildFile; fileRef = 5E0D62DD4D99447DAE96E1B0 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/include/levelhandler.h */; };
+		5C425982D0514A9BB0428823 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLShaderGroup.h */ = {isa = PBXBuildFile; fileRef = AF7661E117424C8AA76373CD /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLShaderGroup.h */; };
+		5ECF09495AD34A15B0C937CE /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/memory/GlobalMemory.h */ = {isa = PBXBuildFile; fileRef = 65046D0CD2904AE9BD254063 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/memory/GlobalMemory.h */; };
+		61A08A79519B49AFB60B811F /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/ComponentBatch.h */ = {isa = PBXBuildFile; fileRef = 3CD984EBEE54404DAFC5CDA3 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/ComponentBatch.h */; };
+		61F3F8DE927C4050A6E439D4 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/ShaderGroup.h */ = {isa = PBXBuildFile; fileRef = 11215C0BE297409EB458AF3C /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/ShaderGroup.h */; };
+		66D763ED13A641A2BEE22557 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/EntityManager.h */ = {isa = PBXBuildFile; fileRef = DC37F0F879AE4C73AA693F8E /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/EntityManager.h */; };
+		68EBFD48E7534D13BFC101F8 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/engine/defaults/SkyBox.h */ = {isa = PBXBuildFile; fileRef = 94C5C6303A3041B18D07BCE1 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/engine/defaults/SkyBox.h */; };
+		6BCBE39C37E045CEB16593CC /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/graphics/GraphicsCore.cpp */ = {isa = PBXBuildFile; fileRef = CE0DA13716254FE48A56077B /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/graphics/GraphicsCore.cpp */; };
+		6DC0D1C6C3374F05AA6ECCF8 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/ColourModelType.h */ = {isa = PBXBuildFile; fileRef = 205D01CBCA2640508C4C29C1 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/ColourModelType.h */; };
+		6F35602319314E0EB7F30777 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLUniform.cpp */ = {isa = PBXBuildFile; fileRef = 54530FC12E264DB186C51AB3 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLUniform.cpp */; };
+		6FA72D8EE2F644579AEC23F2 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/BasicLightModel.cpp */ = {isa = PBXBuildFile; fileRef = 2F6D6E74400D45A5B8A32199 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/BasicLightModel.cpp */; };
+		7088A26DFCCF4F9EBE30922A /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/factories/GLTextureFactory.cpp */ = {isa = PBXBuildFile; fileRef = EE3183A1D46D44B99FB35403 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/factories/GLTextureFactory.cpp */; };
+		70E4F29AEAC54A6D83670303 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/Broken/ExampleModel.cpp */ = {isa = PBXBuildFile; fileRef = 5F7F8B0AC2D244289DA7A58A /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/Broken/ExampleModel.cpp */; };
+		70EA2D695F414942967FBF8B /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/DataType.h */ = {isa = PBXBuildFile; fileRef = E86CB5EAD84540B782370F7B /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/DataType.h */; };
+		731C12AEBB474E35806A9B26 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/factories/GLMeshFactory.h */ = {isa = PBXBuildFile; fileRef = 0959B6C2B06D4CDDB0BE38A3 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/factories/GLMeshFactory.h */; };
+		750602E6490445B3807EFF74 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/engine/scene/Scene.cpp */ = {isa = PBXBuildFile; fileRef = 65CF543CAB5243759DDFA0EC /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/engine/scene/Scene.cpp */; };
+		75B7C321051C45E8B1183506 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLUniform.h */ = {isa = PBXBuildFile; fileRef = 11CF1083DD984089968F91C4 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLUniform.h */; };
+		77921DCA228C47EF97CA5F1B /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/factories/GLBufferFactory.h */ = {isa = PBXBuildFile; fileRef = 63486BA7A2D64FA5BD485F5E /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/factories/GLBufferFactory.h */; };
+		79F52BDF22084EB6B1134EF0 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/TextureFilterType.h */ = {isa = PBXBuildFile; fileRef = C93D72D5431644679215C1FB /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/TextureFilterType.h */; };
+		7AD6CAFD5DBF46DE8B15FF4B /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/components/MeshRendererComponent.cpp */ = {isa = PBXBuildFile; fileRef = 3FDDF4E2048040BFAC4B9A93 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/components/MeshRendererComponent.cpp */; };
+		7B2057C392274BCD96198B0F /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLTexture.h */ = {isa = PBXBuildFile; fileRef = DD82B7FD4BA748F1B84647B8 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLTexture.h */; };
+		7BB75EF5B0DB4A5292C94F91 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/include/entity/enemy/enemy_basic.h */ = {isa = PBXBuildFile; fileRef = 0DC88A3921C74A64AD4F3F50 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/include/entity/enemy/enemy_basic.h */; };
+		7C0AE055E7DA4DEC9F41258C /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/INFO.h */ = {isa = PBXBuildFile; fileRef = C8C1D69514B444408E82DC9B /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/INFO.h */; };
+		7D5A967029EE47BCA1B74224 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/util/StrUtil.cpp */ = {isa = PBXBuildFile; fileRef = 6B3F315F6F874491A0F70E5B /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/util/StrUtil.cpp */; };
+		7FF26621B09F4D18AB3217F0 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/FeatureHandler.h */ = {isa = PBXBuildFile; fileRef = 569FF5F1AD374E429C5B58C3 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/FeatureHandler.h */; };
+		8071901FE4874C479E0045B0 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/empty_types/Scene.h */ = {isa = PBXBuildFile; fileRef = 295D6CFF9E4B47E094C11574 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/empty_types/Scene.h */; };
+		80CE64260F824E88B4A6F59C /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/EntityManager.cpp */ = {isa = PBXBuildFile; fileRef = 4BF0B6B61FCF43C8AA90027C /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/EntityManager.cpp */; };
+		811BEA265E3F44879F6B5656 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLIndexBuffer.h */ = {isa = PBXBuildFile; fileRef = 1BCD3E84A9EF47B29E46697C /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLIndexBuffer.h */; };
+		8711103D2CF04719B4A1659E /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/engine/Start.h */ = {isa = PBXBuildFile; fileRef = 7D4ABB735FAA4F1B93FB4A45 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/engine/Start.h */; };
+		874544175080410E9CB9D20F /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Example8/main.cpp */ = {isa = PBXBuildFile; fileRef = 599C3E2CB1684E6EB1715B09 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Example8/main.cpp */; };
+		87D53090A026421CB203508D /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/batches/DefaultComponentBatch.cpp */ = {isa = PBXBuildFile; fileRef = 383F57F3E63A4BD88C6585ED /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/batches/DefaultComponentBatch.cpp */; };
+		8BCBD15E93144C029C744F5B /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/loader/LoadImage.h */ = {isa = PBXBuildFile; fileRef = 00F6212E3EE94B1FB4A812A0 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/loader/LoadImage.h */; };
+		8EF7BC5F8B374AEAB21372B9 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/factories/GLShaderFactory.h */ = {isa = PBXBuildFile; fileRef = 2039CF7C8B924214839CDC66 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/factories/GLShaderFactory.h */; };
+		92B50201D7EB482F9885DBFA /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/lights/LightPoint.h */ = {isa = PBXBuildFile; fileRef = 9A65E50FBA0648B9BE6A35F8 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/lights/LightPoint.h */; };
+		930F67733AA4445FB961B300 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLCubeMap.h */ = {isa = PBXBuildFile; fileRef = C46AECD0E6DC44FF800D3F58 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLCubeMap.h */; };
+		93C2CDCE006847D7A0B44F1F /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/Meshes/GLTriangleMesh.h */ = {isa = PBXBuildFile; fileRef = 83E23217F40D4A7599DEAA7F /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/Meshes/GLTriangleMesh.h */; };
+		94662E7A9B0F4B8BB4D4C895 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/empty_types/ShaderGroup.h */ = {isa = PBXBuildFile; fileRef = A904CAEE32EF41AF893EA9DA /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/empty_types/ShaderGroup.h */; };
+		94B9732ED1014B97AEF0F5B9 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/old_examples/Example2/main.cpp */ = {isa = PBXBuildFile; fileRef = 3C9E82DC0DF24B128892F615 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/old_examples/Example2/main.cpp */; };
+		94E2EF81288E4D358701B8F4 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/debug/PreProcessor.h */ = {isa = PBXBuildFile; fileRef = 5EBD2EAECAEE4B228A089EE9 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/debug/PreProcessor.h */; };
+		96E1C6BA5E964195A5728F13 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/main.cpp */ = {isa = PBXBuildFile; fileRef = 0459E1859B8843C4A360BC08 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/main.cpp */; };
+		970F5346960D4503936FB416 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLWindowless.cpp */ = {isa = PBXBuildFile; fileRef = CC173D5F3A414DE4B1CC1A1D /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLWindowless.cpp */; };
+		9C75F0A3AF3347CCAB0A7F67 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/lights/LightSpot.h */ = {isa = PBXBuildFile; fileRef = 61E5D19B38F142539FE74CDB /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/lights/LightSpot.h */; };
+		9D6978551E55402F90FDD7A8 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/input/KeyboardHandler.h */ = {isa = PBXBuildFile; fileRef = 785E060671164421977A1850 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/input/KeyboardHandler.h */; };
+		9DEECB886DB040E7B86C8B14 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/components/TestComponent.cpp */ = {isa = PBXBuildFile; fileRef = 16343C2952094687912DF9EF /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/components/TestComponent.cpp */; };
+		9E3DE60E146A4588BB7C7D8E /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/EntityTag.h */ = {isa = PBXBuildFile; fileRef = FB4D24D1511B451FA546FE87 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/EntityTag.h */; };
+		9EBBF9E93DB64C6EBA1CF6F2 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/LightType.h */ = {isa = PBXBuildFile; fileRef = 20188F99C5104269BAAB6330 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/LightType.h */; };
+		A07CA6B80958422790C24B6D /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/include/player/player.h */ = {isa = PBXBuildFile; fileRef = EBABEEB34111424A9D548AC3 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/include/player/player.h */; };
+		A0E99D99A3C246B5821968E0 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/graphics/types/Shader.cpp */ = {isa = PBXBuildFile; fileRef = C49AE5065D8F4490B248FCE0 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/graphics/types/Shader.cpp */; };
+		A1585902E71F4F339578A5F6 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/loader/ShaderPreprocessor.h */ = {isa = PBXBuildFile; fileRef = A801BFE435934F62BDD6D12A /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/loader/ShaderPreprocessor.h */; };
+		A243C69289EC4E1E96E24AAB /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/BufferMemoryType.h */ = {isa = PBXBuildFile; fileRef = 592439C24561462C8A8330AE /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/BufferMemoryType.h */; };
+		A30810336E2E40A7AA243272 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/input/MouseHandler.cpp */ = {isa = PBXBuildFile; fileRef = 099A872F3CFB4E58BB78AC99 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/input/MouseHandler.cpp */; };
+		A396EEFCBA89446CAD6822C8 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Example3/main.cpp */ = {isa = PBXBuildFile; fileRef = 51C9FFB630F841828D07F454 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Example3/main.cpp */; };
+		A45395A11B0A4449B5D05B9A /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLShader.h */ = {isa = PBXBuildFile; fileRef = D5B4B26721354FDFB48BADD6 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLShader.h */; };
+		A52C78835ED74B7FBECB7A5C /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/ShaderType.h */ = {isa = PBXBuildFile; fileRef = A95DE99B1C0A47F38CECC4DC /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/ShaderType.h */; };
+		A5C4A6D3CA2C47FD9E64CC75 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/error/Error.cpp */ = {isa = PBXBuildFile; fileRef = 348D6243FD134D04B7EC3616 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/error/Error.cpp */; };
+		A722CAA15A0C4DE48F620D4D /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/include/entity/entity.h */ = {isa = PBXBuildFile; fileRef = C93986A4F9E6474991B475F8 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/include/entity/entity.h */; };
+		A9F45B508EB14674B42521A6 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/runtime/Runtime.h */ = {isa = PBXBuildFile; fileRef = 4BEB0B4CC444418997B79D6C /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/runtime/Runtime.h */; };
+		AAD75846B9A842AF98394CE9 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/IndexBuffer.h */ = {isa = PBXBuildFile; fileRef = 63C91235C4C04486962EBBDF /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/IndexBuffer.h */; };
+		B05D3C52D5134BF2A54B7D87 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/loader/LoadScene.cpp */ = {isa = PBXBuildFile; fileRef = 49D268BCE5B24F0DBC5D1C34 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/loader/LoadScene.cpp */; };
+		B218CDAED97E4A5E8583C6CE /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/util/RotationUtil.h */ = {isa = PBXBuildFile; fileRef = B290FF5BB4D04F03BBCAB9DE /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/util/RotationUtil.h */; };
+		B23B9A774E3745DC867190A9 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/VertexBuffer.h */ = {isa = PBXBuildFile; fileRef = 0AB420E300714091A7D334F0 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/VertexBuffer.h */; };
+		B416A9C0C7D2488EB0EDFF6E /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/debug/debug_entities/ColouredBox.cpp */ = {isa = PBXBuildFile; fileRef = 86AE6EDDE1F544F0B0BE407B /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/debug/debug_entities/ColouredBox.cpp */; };
+		B58C77FC3C6245A48C1C079B /* /Users/garthbreit/Desktop/Green-Engine-2/test/Example9/main.cpp */ = {isa = PBXBuildFile; fileRef = 70E473C79BCF461F9340C30A /* /Users/garthbreit/Desktop/Green-Engine-2/test/Example9/main.cpp */; };
+		B606D61E7BD34B9DB139BB0B /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/factories/GLBufferFactory.cpp */ = {isa = PBXBuildFile; fileRef = E8D9118ABC634503B4F324A1 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/factories/GLBufferFactory.cpp */; };
+		B84777394BC4473583F4E2D6 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Example6/main.cpp */ = {isa = PBXBuildFile; fileRef = 7F5626ABEE81426CA9B24C03 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Example6/main.cpp */; };
+		BAB8D773224A4A988505E0C9 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/util/ResourceUtil.h */ = {isa = PBXBuildFile; fileRef = 0C5604AB93254627BB2EE27E /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/util/ResourceUtil.h */; };
+		BD6F3D1553CA48F999047D3F /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/memory/ReadableMemType.h */ = {isa = PBXBuildFile; fileRef = EA0F1719436A41D98916CC81 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/memory/ReadableMemType.h */; };
+		C2930693DBBE41A281D0CDFE /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/runtime/RuntimeManager.cpp */ = {isa = PBXBuildFile; fileRef = 95F7F1324AFE4D39AB9C5F84 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/runtime/RuntimeManager.cpp */; };
+		C34F81CA70AD4088BB23668E /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLShaderGroup.cpp */ = {isa = PBXBuildFile; fileRef = 33AF32749A244F839E9B76C6 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLShaderGroup.cpp */; };
+		C483752C0B9E4E90924B3E49 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/Triangle.h */ = {isa = PBXBuildFile; fileRef = FD5DB81F6B554CB9B9C71796 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/Triangle.h */; };
+		C64B18BC290B498B9C5525F7 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/Entity.cpp */ = {isa = PBXBuildFile; fileRef = ED88AE3D2A474C7193160426 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/Entity.cpp */; };
+		C655B6A02DEF40C0A1E89B12 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/util/StrUtil.h */ = {isa = PBXBuildFile; fileRef = 6E29C7A94AEC441A8B999501 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/util/StrUtil.h */; };
+		C85A7364362143FAA7BDDE58 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/BasicLightModel.h */ = {isa = PBXBuildFile; fileRef = CE375620A6534F9B8BD48488 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/BasicLightModel.h */; };
+		C8BE2BB2DE1B49829C02B753 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/factories/GLShaderFactory.cpp */ = {isa = PBXBuildFile; fileRef = B7FA277D9AD74BD09503B8B8 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/factories/GLShaderFactory.cpp */; };
+		C8E02DADABB646D2BB54230A /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/empty_types/MeshData.h */ = {isa = PBXBuildFile; fileRef = 77C07DBCCC8A45D99FE58EB3 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/empty_types/MeshData.h */; };
+		C9D4CF09816C445996D535B6 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/runtime/RuntimeManager.h */ = {isa = PBXBuildFile; fileRef = AA8952349D9241AB9C09828C /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/runtime/RuntimeManager.h */; };
+		CC2182E3180F4A5384C768D0 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/loader/LoadShader.cpp */ = {isa = PBXBuildFile; fileRef = 022FC20F9853485C8C708904 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/loader/LoadShader.cpp */; };
+		CD65C7D56ABD421CAF838177 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/loader/LoadImage.cpp */ = {isa = PBXBuildFile; fileRef = 299E9E5D985D40568E983F53 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/loader/LoadImage.cpp */; };
+		CD8478146776458A94D625B7 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/EntityTag.cpp */ = {isa = PBXBuildFile; fileRef = 611FC9F324AF46A685684173 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/EntityTag.cpp */; };
+		CEB2213CC4FD4C59A2688DEC /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/util/PreprocessorUtil.h */ = {isa = PBXBuildFile; fileRef = EBA7F357890F48AEAD19385D /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/util/PreprocessorUtil.h */; };
+		CFDC920280F24E15B63CAA68 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/Features.h */ = {isa = PBXBuildFile; fileRef = 9C648B10022741C890975243 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/Features.h */; };
+		CFE7F36BDEFB453D8354D686 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/debug/debug_entities/ColouredBox.h */ = {isa = PBXBuildFile; fileRef = 456E720E5E3640D49F42BD78 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/debug/debug_entities/ColouredBox.h */; };
+		CFF721FFBA364B6D8EEC9486 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/runtime/RuntimeGroup.cpp */ = {isa = PBXBuildFile; fileRef = EA2D68348803478EB56FE286 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/runtime/RuntimeGroup.cpp */; };
+		D30E5C81E0AD45D79BF0E800 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/ComponentManager.h */ = {isa = PBXBuildFile; fileRef = 3B7D5B105EF74319A2A999DF /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/ComponentManager.h */; };
+		D47F256CE75C447C9C5771BA /* /Users/garthbreit/Desktop/Green-Engine-2/test/GroupIDs.h */ = {isa = PBXBuildFile; fileRef = 79115C4A54534343B8A05FC8 /* /Users/garthbreit/Desktop/Green-Engine-2/test/GroupIDs.h */; };
+		D51EEEFA3821422BAB79332C /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/src/player/player.cpp */ = {isa = PBXBuildFile; fileRef = CB546DCC01E6464E8A791F94 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/src/player/player.cpp */; };
+		D588BC3CD24D4BB780AC0E1A /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/old_examples/Example4/main.cpp */ = {isa = PBXBuildFile; fileRef = A4972B3096114C40930BEFBE /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/old_examples/Example4/main.cpp */; };
+		D671D5CED3E6457DB19C6A0C /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLVertexBuffer.cpp */ = {isa = PBXBuildFile; fileRef = FC04A693F01B477AB1516744 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLVertexBuffer.cpp */; };
+		D7822FEE2D2342E3AF98D894 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/lights/Light.h */ = {isa = PBXBuildFile; fileRef = 20C3884A3E2A4D36876A8F66 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/lights/Light.h */; };
+		DA1F52CF2534412AA762B5CC /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/util/ResourceUtil.cpp */ = {isa = PBXBuildFile; fileRef = B4E021A6DE9D4ACF91E37707 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/util/ResourceUtil.cpp */; };
+		DADE48A2465B4D43A9809E47 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/src/entity/enemy/enemy_basic.cpp */ = {isa = PBXBuildFile; fileRef = 25072114BDCA481083495E39 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/src/entity/enemy/enemy_basic.cpp */; };
+		DB6A8B872F2346C298CB6DDF /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLWindowless.h */ = {isa = PBXBuildFile; fileRef = 5D2B1F3EEC00443B850CBBE6 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLWindowless.h */; };
+		DCE19D8633584F43A4950F4A /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/engine/Start.cpp */ = {isa = PBXBuildFile; fileRef = 602B613FFB214CE0943D4268 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/engine/Start.cpp */; };
+		DDFA22C39F764482B34CF3C6 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/Uniform.h */ = {isa = PBXBuildFile; fileRef = 05A9111EADB34CFEA3444B4C /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/Uniform.h */; };
+		E5BE197EACF34AC6B2EC2CF6 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/FeatureHandler.cpp */ = {isa = PBXBuildFile; fileRef = E8C422441A414CF28A97A7B7 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/FeatureHandler.cpp */; };
+		E61D8E993ACC4841AA723394 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/meshes/TriangleMesh.h */ = {isa = PBXBuildFile; fileRef = 926F26587814440590C55962 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/meshes/TriangleMesh.h */; };
+		E7970485F0DB4E1FB24F058C /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLWindow.cpp */ = {isa = PBXBuildFile; fileRef = 9EB6961CA7CF451287A2FD1B /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLWindow.cpp */; };
+		EA7D7B3368404C09907813FB /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/old_examples/Example5/main.cpp */ = {isa = PBXBuildFile; fileRef = 2F69D0A035A741E5BA3C245F /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/old_examples/Example5/main.cpp */; };
+		EB06777A0B0E4F30B54D1E1C /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/Camera.h */ = {isa = PBXBuildFile; fileRef = 74987B753D40474CAE83500F /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/Camera.h */; };
+		ED2D0F212B174C87BFAD529E /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/game/scene/Scene.h */ = {isa = PBXBuildFile; fileRef = 8624B10208AD48C6883878C5 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/game/scene/Scene.h */; };
+		ED4E6B1C21BE4763BAEFF1EF /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/functor/Functor.h */ = {isa = PBXBuildFile; fileRef = 1A4FEEC9C2B643DBA6A3EE23 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/functor/Functor.h */; };
+		ED701D749F1848898E39041A /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/loader/LoadMesh.h */ = {isa = PBXBuildFile; fileRef = A05C73E8A02C43E4A346FAC7 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/loader/LoadMesh.h */; };
+		F028DD48303149E5A733458B /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/loader/ShaderPreprocessor.cpp */ = {isa = PBXBuildFile; fileRef = 4C046E97020B454590CCF5F0 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/loader/ShaderPreprocessor.cpp */; };
+		F465A7815FAF412288819360 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/engine/defaults/StaticObject.h */ = {isa = PBXBuildFile; fileRef = 7878411949DD4705BBE3B62B /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/engine/defaults/StaticObject.h */; };
+		F5EEF2FC368841C382331C21 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/src/levelhandler.cpp */ = {isa = PBXBuildFile; fileRef = 9761BB28A6894A72986D87EA /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/src/levelhandler.cpp */; };
+		F63EE4DF56514DBCA73CFFEA /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Example7/main.cpp */ = {isa = PBXBuildFile; fileRef = 9D73ADF8236945E8A317E371 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Example7/main.cpp */; };
+		F864788D5A7D45C2A05E136F /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/components/TestComponent.h */ = {isa = PBXBuildFile; fileRef = CE752FD1ECD541F3811D4E3F /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/components/TestComponent.h */; };
+		F948FD1D09D84555B54CBE43 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/graphics/Camera.cpp */ = {isa = PBXBuildFile; fileRef = ABB94CFC491141A1A305AFD9 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/graphics/Camera.cpp */; };
+		F9C48D857C894825B4BC6C60 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/Broken/ExampleModel.h */ = {isa = PBXBuildFile; fileRef = 85BC0AA5DA474E80864DB710 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/Broken/ExampleModel.h */; };
+		FA208FE0F70E4E078780BC46 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/components/TransformComponent.cpp */ = {isa = PBXBuildFile; fileRef = 513E173F145D4537970DF78E /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/components/TransformComponent.cpp */; };
+		FA7C45A052314ADF8414F6A4 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLTexture.cpp */ = {isa = PBXBuildFile; fileRef = A443CA7ED7EB4CFD95671861 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLTexture.cpp */; };
+		FB7ACF7BAE8B492E88859D33 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLIndexBuffer.cpp */ = {isa = PBXBuildFile; fileRef = 5BDB62D0756B44B29E5D584B /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLIndexBuffer.cpp */; };
+		FE192AC1F8AA424094F407D3 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLVertexBuffer.h */ = {isa = PBXBuildFile; fileRef = 44B48274B5924CF6A024F28F /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLVertexBuffer.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+		6CBD687D6DE74CAEAB29698E /* Debug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		7A1B0A15D4374351A979CFC1 /* Release */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Release;
+		};
+		7CCE5E877F3947DBB75CF7FF /* MinSizeRel */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = MinSizeRel;
+		};
+		9BA8A57E784A48818157ADD7 = {
+			isa = PBXBuildStyle;
+		};
+		E2BC2CA1D09B4C6B87C0FBF3 /* RelWithDebInfo */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = RelWithDebInfo;
+		};
+/* End PBXBuildStyle section */
+
+/* Begin PBXContainerItemProxy section */
+		5E3D47D4F0624E40AE76283B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5D29B3D98294AD6BAFB5ED7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E6C932EC393B4E3884D330A7;
+			remoteInfo = ZERO_CHECK;
+		};
+		8BF9B5F2846945E08D97EE27 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5D29B3D98294AD6BAFB5ED7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E6C932EC393B4E3884D330A7;
+			remoteInfo = ZERO_CHECK;
+		};
+		ACC3AB3124C942848C44F12A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5D29B3D98294AD6BAFB5ED7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9BC6602B23F34D57B2C4CF9D;
+			remoteInfo = Green_Engine_2;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		00F6212E3EE94B1FB4A812A0 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/loader/LoadImage.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = LoadImage.h; path = include/com/ethanbreit/ge/loader/LoadImage.h; sourceTree = SOURCE_ROOT; };
+		015273F560FA4F72829D99CD /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/Entity.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Entity.h; path = include/com/ethanbreit/ge/entity/Entity.h; sourceTree = SOURCE_ROOT; };
+		022FC20F9853485C8C708904 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/loader/LoadShader.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = LoadShader.cpp; path = src/com/ethanbreit/ge/loader/LoadShader.cpp; sourceTree = SOURCE_ROOT; };
+		02BB6E18ABE34440ACF08F66 /* /Users/garthbreit/Desktop/Green-Engine-2/test/Example10/main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = main.cpp; path = test/Example10/main.cpp; sourceTree = SOURCE_ROOT; };
+		031823B35F7A474BA10C5C73 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/engine/scene/Scene.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Scene.h; path = include/com/ethanbreit/ge/engine/scene/Scene.h; sourceTree = SOURCE_ROOT; };
+		0459E1859B8843C4A360BC08 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = main.cpp; path = test/broken/Shooter/main.cpp; sourceTree = SOURCE_ROOT; };
+		05A9111EADB34CFEA3444B4C /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/Uniform.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Uniform.h; path = include/com/ethanbreit/ge/graphics/types/Uniform.h; sourceTree = SOURCE_ROOT; };
+		0959B6C2B06D4CDDB0BE38A3 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/factories/GLMeshFactory.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = GLMeshFactory.h; path = include/com/ethanbreit/ge/graphics/abs/OpenGL/factories/GLMeshFactory.h; sourceTree = SOURCE_ROOT; };
+		099A872F3CFB4E58BB78AC99 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/input/MouseHandler.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = MouseHandler.cpp; path = src/com/ethanbreit/ge/input/MouseHandler.cpp; sourceTree = SOURCE_ROOT; };
+		0AB420E300714091A7D334F0 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/VertexBuffer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = VertexBuffer.h; path = include/com/ethanbreit/ge/graphics/types/VertexBuffer.h; sourceTree = SOURCE_ROOT; };
+		0C5604AB93254627BB2EE27E /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/util/ResourceUtil.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ResourceUtil.h; path = include/com/ethanbreit/ge/util/ResourceUtil.h; sourceTree = SOURCE_ROOT; };
+		0DC88A3921C74A64AD4F3F50 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/include/entity/enemy/enemy_basic.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = enemy_basic.h; path = test/broken/Shooter/include/entity/enemy/enemy_basic.h; sourceTree = SOURCE_ROOT; };
+		0DE7E8565E55417B9689601C /* Green_Engine_2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = Green_Engine_2; sourceTree = BUILT_PRODUCTS_DIR; };
+		10D2DCF1310C4150B1A3E38B /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/include/core.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = core.h; path = test/broken/Shooter/include/core.h; sourceTree = SOURCE_ROOT; };
+		11215C0BE297409EB458AF3C /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/ShaderGroup.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ShaderGroup.h; path = include/com/ethanbreit/ge/graphics/types/ShaderGroup.h; sourceTree = SOURCE_ROOT; };
+		11CF1083DD984089968F91C4 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLUniform.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = GLUniform.h; path = include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLUniform.h; sourceTree = SOURCE_ROOT; };
+		15648F8CB63145CC8E695853 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/loader/LoadMesh.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = LoadMesh.cpp; path = src/com/ethanbreit/ge/loader/LoadMesh.cpp; sourceTree = SOURCE_ROOT; };
+		16343C2952094687912DF9EF /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/components/TestComponent.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = TestComponent.cpp; path = src/com/ethanbreit/ge/entity/component/components/TestComponent.cpp; sourceTree = SOURCE_ROOT; };
+		1822F037003A42D3B4AEFF51 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/TexturedModel.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = TexturedModel.h; path = test/broken/common/TexturedModel.h; sourceTree = SOURCE_ROOT; };
+		1922A668372F46199B9F3E26 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/runtime/RuntimeGroup.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = RuntimeGroup.h; path = include/com/ethanbreit/ge/runtime/RuntimeGroup.h; sourceTree = SOURCE_ROOT; };
+		199BE4B7C62346A68CA6A775 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/MetalTest/MetalTest.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = MetalTest.cpp; path = test/broken/MetalTest/MetalTest.cpp; sourceTree = SOURCE_ROOT; };
+		1A4FEEC9C2B643DBA6A3EE23 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/functor/Functor.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Functor.h; path = include/com/ethanbreit/ge/functor/Functor.h; sourceTree = SOURCE_ROOT; };
+		1BB17CDE71344FD5AE2D91E2 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/engine/types/ModelMat.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ModelMat.h; path = include/com/ethanbreit/ge/engine/types/ModelMat.h; sourceTree = SOURCE_ROOT; };
+		1BCD3E84A9EF47B29E46697C /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLIndexBuffer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = GLIndexBuffer.h; path = include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLIndexBuffer.h; sourceTree = SOURCE_ROOT; };
+		1D69827C5EC9467EA841B0EC /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/batches/DefaultComponentBatch.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = DefaultComponentBatch.h; path = include/com/ethanbreit/ge/entity/component/batches/DefaultComponentBatch.h; sourceTree = SOURCE_ROOT; };
+		1E0D64894C604174A62B6841 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/factories/MeshFactory.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = MeshFactory.h; path = include/com/ethanbreit/ge/graphics/factories/MeshFactory.h; sourceTree = SOURCE_ROOT; };
+		20188F99C5104269BAAB6330 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/LightType.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = LightType.h; path = include/com/ethanbreit/ge/graphics/enums/LightType.h; sourceTree = SOURCE_ROOT; };
+		2039CF7C8B924214839CDC66 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/factories/GLShaderFactory.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = GLShaderFactory.h; path = include/com/ethanbreit/ge/graphics/abs/OpenGL/factories/GLShaderFactory.h; sourceTree = SOURCE_ROOT; };
+		205D01CBCA2640508C4C29C1 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/ColourModelType.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ColourModelType.h; path = include/com/ethanbreit/ge/graphics/enums/ColourModelType.h; sourceTree = SOURCE_ROOT; };
+		20C3884A3E2A4D36876A8F66 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/lights/Light.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Light.h; path = include/com/ethanbreit/ge/graphics/types/lights/Light.h; sourceTree = SOURCE_ROOT; };
+		25072114BDCA481083495E39 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/src/entity/enemy/enemy_basic.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = enemy_basic.cpp; path = test/broken/Shooter/src/entity/enemy/enemy_basic.cpp; sourceTree = SOURCE_ROOT; };
+		250B4C0B5473496DBF107E9B /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/empty_types/IndexBuffer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = IndexBuffer.h; path = include/com/ethanbreit/ge/graphics/empty_types/IndexBuffer.h; sourceTree = SOURCE_ROOT; };
+		279AF555E583460598143CA0 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/graphics/types/CubeMap.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CubeMap.cpp; path = src/com/ethanbreit/ge/graphics/types/CubeMap.cpp; sourceTree = SOURCE_ROOT; };
+		27DE4BCBDFDB4C1095C8099D /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/engine/empty_types/EmptyStaticObject.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = EmptyStaticObject.h; path = include/com/ethanbreit/ge/engine/empty_types/EmptyStaticObject.h; sourceTree = SOURCE_ROOT; };
+		295D6CFF9E4B47E094C11574 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/empty_types/Scene.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Scene.h; path = include/com/ethanbreit/ge/graphics/empty_types/Scene.h; sourceTree = SOURCE_ROOT; };
+		296ACDC1D3624735A88B79D1 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLCubeMap.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = GLCubeMap.cpp; path = src/com/ethanbreit/ge/OpenGL/types/GLCubeMap.cpp; sourceTree = SOURCE_ROOT; };
+		299E9E5D985D40568E983F53 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/loader/LoadImage.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = LoadImage.cpp; path = src/com/ethanbreit/ge/loader/LoadImage.cpp; sourceTree = SOURCE_ROOT; };
+		2C712C0B2244477F8A618421 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/GraphicsCore.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = GraphicsCore.h; path = include/com/ethanbreit/ge/graphics/GraphicsCore.h; sourceTree = SOURCE_ROOT; };
+		2DCD6B1A0C8A4FE19C6E706B /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/debug/FreeMove.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = FreeMove.h; path = include/com/ethanbreit/ge/debug/FreeMove.h; sourceTree = SOURCE_ROOT; };
+		2F38ED0411AC4C0BA404F1C9 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/Window.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Window.h; path = include/com/ethanbreit/ge/graphics/types/Window.h; sourceTree = SOURCE_ROOT; };
+		2F69D0A035A741E5BA3C245F /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/old_examples/Example5/main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = main.cpp; path = test/broken/old_examples/Example5/main.cpp; sourceTree = SOURCE_ROOT; };
+		2F6D6E74400D45A5B8A32199 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/BasicLightModel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = BasicLightModel.cpp; path = test/broken/common/BasicLightModel.cpp; sourceTree = SOURCE_ROOT; };
+		318F2F5A752F4670B4A32C53 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/error/Error.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Error.h; path = include/com/ethanbreit/ge/error/Error.h; sourceTree = SOURCE_ROOT; };
+		31EC11DA72FA468A83D09F66 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/debug/FreeMove.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = FreeMove.cpp; path = src/com/ethanbreit/ge/debug/FreeMove.cpp; sourceTree = SOURCE_ROOT; };
+		33AF32749A244F839E9B76C6 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLShaderGroup.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = GLShaderGroup.cpp; path = src/com/ethanbreit/ge/OpenGL/types/GLShaderGroup.cpp; sourceTree = SOURCE_ROOT; };
+		3418B6EDE09F4241AA851B69 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/GraphicsApi.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = GraphicsApi.h; path = include/com/ethanbreit/ge/graphics/enums/GraphicsApi.h; sourceTree = SOURCE_ROOT; };
+		348D6243FD134D04B7EC3616 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/error/Error.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Error.cpp; path = src/com/ethanbreit/ge/error/Error.cpp; sourceTree = SOURCE_ROOT; };
+		35327FFD9BC04839A109ADEF /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/Meshes/GLTriangleMesh.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = GLTriangleMesh.cpp; path = src/com/ethanbreit/ge/OpenGL/Meshes/GLTriangleMesh.cpp; sourceTree = SOURCE_ROOT; };
+		383F57F3E63A4BD88C6585ED /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/batches/DefaultComponentBatch.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = DefaultComponentBatch.cpp; path = src/com/ethanbreit/ge/entity/component/batches/DefaultComponentBatch.cpp; sourceTree = SOURCE_ROOT; };
+		3B7D5B105EF74319A2A999DF /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/ComponentManager.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ComponentManager.h; path = include/com/ethanbreit/ge/entity/component/ComponentManager.h; sourceTree = SOURCE_ROOT; };
+		3C9E82DC0DF24B128892F615 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/old_examples/Example2/main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = main.cpp; path = test/broken/old_examples/Example2/main.cpp; sourceTree = SOURCE_ROOT; };
+		3CD984EBEE54404DAFC5CDA3 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/ComponentBatch.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ComponentBatch.h; path = include/com/ethanbreit/ge/entity/component/ComponentBatch.h; sourceTree = SOURCE_ROOT; };
+		3FDDF4E2048040BFAC4B9A93 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/components/MeshRendererComponent.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = MeshRendererComponent.cpp; path = src/com/ethanbreit/ge/entity/component/components/MeshRendererComponent.cpp; sourceTree = SOURCE_ROOT; };
+		439132516A6549079FA251BB /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/default_geom/Cube.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Cube.h; path = include/com/ethanbreit/ge/default_geom/Cube.h; sourceTree = SOURCE_ROOT; };
+		44B48274B5924CF6A024F28F /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLVertexBuffer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = GLVertexBuffer.h; path = include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLVertexBuffer.h; sourceTree = SOURCE_ROOT; };
+		456E720E5E3640D49F42BD78 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/debug/debug_entities/ColouredBox.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ColouredBox.h; path = include/com/ethanbreit/ge/debug/debug_entities/ColouredBox.h; sourceTree = SOURCE_ROOT; };
+		4884462781644DA29B8D27C2 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/util/EnumUtil.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = EnumUtil.cpp; path = src/com/ethanbreit/ge/OpenGL/util/EnumUtil.cpp; sourceTree = SOURCE_ROOT; };
+		49D268BCE5B24F0DBC5D1C34 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/loader/LoadScene.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = LoadScene.cpp; path = src/com/ethanbreit/ge/loader/LoadScene.cpp; sourceTree = SOURCE_ROOT; };
+		4BEB0B4CC444418997B79D6C /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/runtime/Runtime.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Runtime.h; path = include/com/ethanbreit/ge/runtime/Runtime.h; sourceTree = SOURCE_ROOT; };
+		4BF0B6B61FCF43C8AA90027C /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/EntityManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = EntityManager.cpp; path = src/com/ethanbreit/ge/entity/EntityManager.cpp; sourceTree = SOURCE_ROOT; };
+		4C046E97020B454590CCF5F0 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/loader/ShaderPreprocessor.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ShaderPreprocessor.cpp; path = src/com/ethanbreit/ge/loader/ShaderPreprocessor.cpp; sourceTree = SOURCE_ROOT; };
+		513E173F145D4537970DF78E /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/components/TransformComponent.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = TransformComponent.cpp; path = src/com/ethanbreit/ge/entity/component/components/TransformComponent.cpp; sourceTree = SOURCE_ROOT; };
+		51C9FFB630F841828D07F454 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Example3/main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = main.cpp; path = test/broken/Example3/main.cpp; sourceTree = SOURCE_ROOT; };
+		541B605C7F2E4F50BE9DB1D6 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/factories/ShaderFactory.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ShaderFactory.h; path = include/com/ethanbreit/ge/graphics/factories/ShaderFactory.h; sourceTree = SOURCE_ROOT; };
+		54530FC12E264DB186C51AB3 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLUniform.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = GLUniform.cpp; path = src/com/ethanbreit/ge/OpenGL/types/GLUniform.cpp; sourceTree = SOURCE_ROOT; };
+		54B02F8A06D148DBAF8B42BB /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/ComponentManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ComponentManager.cpp; path = src/com/ethanbreit/ge/entity/component/ComponentManager.cpp; sourceTree = SOURCE_ROOT; };
+		553A86BD71A445FB825F8546 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/components/TransformComponent.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = TransformComponent.h; path = include/com/ethanbreit/ge/entity/component/components/TransformComponent.h; sourceTree = SOURCE_ROOT; };
+		569FF5F1AD374E429C5B58C3 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/FeatureHandler.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = FeatureHandler.h; path = include/com/ethanbreit/ge/graphics/abs/OpenGL/FeatureHandler.h; sourceTree = SOURCE_ROOT; };
+		592439C24561462C8A8330AE /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/BufferMemoryType.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = BufferMemoryType.h; path = include/com/ethanbreit/ge/graphics/enums/BufferMemoryType.h; sourceTree = SOURCE_ROOT; };
+		592DE957E7BB45118111BF63 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/console/ConsoleIO.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ConsoleIO.h; path = include/com/ethanbreit/ge/console/ConsoleIO.h; sourceTree = SOURCE_ROOT; };
+		599C3E2CB1684E6EB1715B09 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Example8/main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = main.cpp; path = test/broken/Example8/main.cpp; sourceTree = SOURCE_ROOT; };
+		5BB4C14434E049619CF7F6E1 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/graphics/types/Texture.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Texture.cpp; path = src/com/ethanbreit/ge/graphics/types/Texture.cpp; sourceTree = SOURCE_ROOT; };
+		5BDB62D0756B44B29E5D584B /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLIndexBuffer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = GLIndexBuffer.cpp; path = src/com/ethanbreit/ge/OpenGL/types/GLIndexBuffer.cpp; sourceTree = SOURCE_ROOT; };
+		5D2B1F3EEC00443B850CBBE6 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLWindowless.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = GLWindowless.h; path = include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLWindowless.h; sourceTree = SOURCE_ROOT; };
+		5DECC652D29F40D1B7801AA8 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/Triangle.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Triangle.cpp; path = test/broken/common/Triangle.cpp; sourceTree = SOURCE_ROOT; };
+		5E0D62DD4D99447DAE96E1B0 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/include/levelhandler.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = levelhandler.h; path = test/broken/Shooter/include/levelhandler.h; sourceTree = SOURCE_ROOT; };
+		5EBD2EAECAEE4B228A089EE9 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/debug/PreProcessor.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = PreProcessor.h; path = include/com/ethanbreit/ge/debug/PreProcessor.h; sourceTree = SOURCE_ROOT; };
+		5F7F8B0AC2D244289DA7A58A /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/Broken/ExampleModel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ExampleModel.cpp; path = test/broken/common/Broken/ExampleModel.cpp; sourceTree = SOURCE_ROOT; };
+		602B613FFB214CE0943D4268 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/engine/Start.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Start.cpp; path = src/com/ethanbreit/ge/engine/Start.cpp; sourceTree = SOURCE_ROOT; };
+		611FC9F324AF46A685684173 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/EntityTag.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = EntityTag.cpp; path = src/com/ethanbreit/ge/entity/EntityTag.cpp; sourceTree = SOURCE_ROOT; };
+		61E5D19B38F142539FE74CDB /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/lights/LightSpot.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = LightSpot.h; path = include/com/ethanbreit/ge/graphics/types/lights/LightSpot.h; sourceTree = SOURCE_ROOT; };
+		63486BA7A2D64FA5BD485F5E /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/factories/GLBufferFactory.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = GLBufferFactory.h; path = include/com/ethanbreit/ge/graphics/abs/OpenGL/factories/GLBufferFactory.h; sourceTree = SOURCE_ROOT; };
+		63C91235C4C04486962EBBDF /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/IndexBuffer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = IndexBuffer.h; path = include/com/ethanbreit/ge/graphics/types/IndexBuffer.h; sourceTree = SOURCE_ROOT; };
+		65046D0CD2904AE9BD254063 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/memory/GlobalMemory.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = GlobalMemory.h; path = include/com/ethanbreit/ge/memory/GlobalMemory.h; sourceTree = SOURCE_ROOT; };
+		65CF543CAB5243759DDFA0EC /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/engine/scene/Scene.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Scene.cpp; path = src/com/ethanbreit/ge/engine/scene/Scene.cpp; sourceTree = SOURCE_ROOT; };
+		670C233B818A446EBD6D40D4 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/input/KeyboardKey.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = KeyboardKey.h; path = include/com/ethanbreit/ge/input/KeyboardKey.h; sourceTree = SOURCE_ROOT; };
+		67523F736BD0436AA468F43A /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/empty_types/VertexBuffer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = VertexBuffer.h; path = include/com/ethanbreit/ge/graphics/empty_types/VertexBuffer.h; sourceTree = SOURCE_ROOT; };
+		6B3F315F6F874491A0F70E5B /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/util/StrUtil.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = StrUtil.cpp; path = src/com/ethanbreit/ge/util/StrUtil.cpp; sourceTree = SOURCE_ROOT; };
+		6E29C7A94AEC441A8B999501 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/util/StrUtil.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = StrUtil.h; path = include/com/ethanbreit/ge/util/StrUtil.h; sourceTree = SOURCE_ROOT; };
+		70E473C79BCF461F9340C30A /* /Users/garthbreit/Desktop/Green-Engine-2/test/Example9/main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = main.cpp; path = test/Example9/main.cpp; sourceTree = SOURCE_ROOT; };
+		74987B753D40474CAE83500F /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/Camera.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Camera.h; path = include/com/ethanbreit/ge/graphics/Camera.h; sourceTree = SOURCE_ROOT; };
+		768EC6B5B108415D8B78EA5C /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/Image.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Image.h; path = include/com/ethanbreit/ge/graphics/types/Image.h; sourceTree = SOURCE_ROOT; };
+		77C07DBCCC8A45D99FE58EB3 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/empty_types/MeshData.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = MeshData.h; path = include/com/ethanbreit/ge/graphics/empty_types/MeshData.h; sourceTree = SOURCE_ROOT; };
+		785E060671164421977A1850 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/input/KeyboardHandler.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = KeyboardHandler.h; path = include/com/ethanbreit/ge/input/KeyboardHandler.h; sourceTree = SOURCE_ROOT; };
+		7878411949DD4705BBE3B62B /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/engine/defaults/StaticObject.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = StaticObject.h; path = include/com/ethanbreit/ge/engine/defaults/StaticObject.h; sourceTree = SOURCE_ROOT; };
+		78DFEFC909FE49AE844EAB50 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/engine/defaults/StaticObject.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = StaticObject.cpp; path = src/com/ethanbreit/ge/engine/defaults/StaticObject.cpp; sourceTree = SOURCE_ROOT; };
+		79115C4A54534343B8A05FC8 /* /Users/garthbreit/Desktop/Green-Engine-2/test/GroupIDs.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = GroupIDs.h; path = test/GroupIDs.h; sourceTree = SOURCE_ROOT; };
+		7CAF55A0C4254A958340A860 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/input/KeyboardHandler.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = KeyboardHandler.cpp; path = src/com/ethanbreit/ge/input/KeyboardHandler.cpp; sourceTree = SOURCE_ROOT; };
+		7D4ABB735FAA4F1B93FB4A45 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/engine/Start.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Start.h; path = include/com/ethanbreit/ge/engine/Start.h; sourceTree = SOURCE_ROOT; };
+		7E5C418109FD44328D24C226 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/console/enum/MessageType.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = MessageType.h; path = include/com/ethanbreit/ge/console/enum/MessageType.h; sourceTree = SOURCE_ROOT; };
+		7EA4CDEBFBB9456AAC04FF87 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/ComponentBatch.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ComponentBatch.cpp; path = src/com/ethanbreit/ge/entity/component/ComponentBatch.cpp; sourceTree = SOURCE_ROOT; };
+		7F2F49485EEB428398C91AEA /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/factories/TextureFactory.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = TextureFactory.h; path = include/com/ethanbreit/ge/graphics/factories/TextureFactory.h; sourceTree = SOURCE_ROOT; };
+		7F5626ABEE81426CA9B24C03 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Example6/main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = main.cpp; path = test/broken/Example6/main.cpp; sourceTree = SOURCE_ROOT; };
+		83992A895C46488382CDEC79 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/console/ConsoleIO.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ConsoleIO.cpp; path = src/com/ethanbreit/ge/console/ConsoleIO.cpp; sourceTree = SOURCE_ROOT; };
+		83E23217F40D4A7599DEAA7F /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/Meshes/GLTriangleMesh.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = GLTriangleMesh.h; path = include/com/ethanbreit/ge/graphics/abs/OpenGL/Meshes/GLTriangleMesh.h; sourceTree = SOURCE_ROOT; };
+		847B27F0042F44EBAD93ECE9 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/util/RotationUtil.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = RotationUtil.cpp; path = src/com/ethanbreit/ge/util/RotationUtil.cpp; sourceTree = SOURCE_ROOT; };
+		85BC0AA5DA474E80864DB710 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/Broken/ExampleModel.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ExampleModel.h; path = test/broken/common/Broken/ExampleModel.h; sourceTree = SOURCE_ROOT; };
+		8624B10208AD48C6883878C5 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/game/scene/Scene.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Scene.h; path = include/com/ethanbreit/ge/game/scene/Scene.h; sourceTree = SOURCE_ROOT; };
+		86AE6EDDE1F544F0B0BE407B /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/debug/debug_entities/ColouredBox.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ColouredBox.cpp; path = src/com/ethanbreit/ge/debug/debug_entities/ColouredBox.cpp; sourceTree = SOURCE_ROOT; };
+		8AC9B6F0E0EA462DB472FF11 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/old_examples/Example1/main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = main.cpp; path = test/broken/old_examples/Example1/main.cpp; sourceTree = SOURCE_ROOT; };
+		9010BD3ABC2047DE807B6B81 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/CubeMap.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = CubeMap.h; path = include/com/ethanbreit/ge/graphics/types/CubeMap.h; sourceTree = SOURCE_ROOT; };
+		9206369319544419B7527C91 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/TexturedModel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = TexturedModel.cpp; path = test/broken/common/TexturedModel.cpp; sourceTree = SOURCE_ROOT; };
+		926F26587814440590C55962 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/meshes/TriangleMesh.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = TriangleMesh.h; path = include/com/ethanbreit/ge/graphics/meshes/TriangleMesh.h; sourceTree = SOURCE_ROOT; };
+		94C5C6303A3041B18D07BCE1 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/engine/defaults/SkyBox.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = SkyBox.h; path = include/com/ethanbreit/ge/engine/defaults/SkyBox.h; sourceTree = SOURCE_ROOT; };
+		95F7F1324AFE4D39AB9C5F84 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/runtime/RuntimeManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = RuntimeManager.cpp; path = src/com/ethanbreit/ge/runtime/RuntimeManager.cpp; sourceTree = SOURCE_ROOT; };
+		9761BB28A6894A72986D87EA /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/src/levelhandler.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = levelhandler.cpp; path = test/broken/Shooter/src/levelhandler.cpp; sourceTree = SOURCE_ROOT; };
+		9A65E50FBA0648B9BE6A35F8 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/lights/LightPoint.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = LightPoint.h; path = include/com/ethanbreit/ge/graphics/types/lights/LightPoint.h; sourceTree = SOURCE_ROOT; };
+		9C648B10022741C890975243 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/Features.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Features.h; path = include/com/ethanbreit/ge/graphics/enums/Features.h; sourceTree = SOURCE_ROOT; };
+		9D73ADF8236945E8A317E371 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Example7/main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = main.cpp; path = test/broken/Example7/main.cpp; sourceTree = SOURCE_ROOT; };
+		9EB6961CA7CF451287A2FD1B /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLWindow.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = GLWindow.cpp; path = src/com/ethanbreit/ge/OpenGL/types/GLWindow.cpp; sourceTree = SOURCE_ROOT; };
+		A05C73E8A02C43E4A346FAC7 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/loader/LoadMesh.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = LoadMesh.h; path = include/com/ethanbreit/ge/loader/LoadMesh.h; sourceTree = SOURCE_ROOT; };
+		A0D9286F884E468AA7062E18 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/console/Log.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Log.cpp; path = src/com/ethanbreit/ge/console/Log.cpp; sourceTree = SOURCE_ROOT; };
+		A1FADD31F5F5481F8E7EE853 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/runtime/Runtime.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Runtime.cpp; path = src/com/ethanbreit/ge/runtime/Runtime.cpp; sourceTree = SOURCE_ROOT; };
+		A443CA7ED7EB4CFD95671861 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLTexture.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = GLTexture.cpp; path = src/com/ethanbreit/ge/OpenGL/types/GLTexture.cpp; sourceTree = SOURCE_ROOT; };
+		A48124A6A61144F2B71BBD9A /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/lights/LightDirectional.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = LightDirectional.h; path = include/com/ethanbreit/ge/graphics/types/lights/LightDirectional.h; sourceTree = SOURCE_ROOT; };
+		A4972B3096114C40930BEFBE /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/old_examples/Example4/main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = main.cpp; path = test/broken/old_examples/Example4/main.cpp; sourceTree = SOURCE_ROOT; };
+		A625D70F2B2C4DE0B2449443 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/loader/LoadScene.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = LoadScene.h; path = include/com/ethanbreit/ge/loader/LoadScene.h; sourceTree = SOURCE_ROOT; };
+		A70BFB12BC504F9CB1704203 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/Component.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Component.h; path = include/com/ethanbreit/ge/entity/component/Component.h; sourceTree = SOURCE_ROOT; };
+		A715DAE14D274B9AADD48E51 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/util/EnumUtil.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = EnumUtil.h; path = include/com/ethanbreit/ge/graphics/abs/OpenGL/util/EnumUtil.h; sourceTree = SOURCE_ROOT; };
+		A790C106952246049B2B6CB8 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/factories/BufferFactory.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = BufferFactory.h; path = include/com/ethanbreit/ge/graphics/factories/BufferFactory.h; sourceTree = SOURCE_ROOT; };
+		A801BFE435934F62BDD6D12A /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/loader/ShaderPreprocessor.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ShaderPreprocessor.h; path = include/com/ethanbreit/ge/loader/ShaderPreprocessor.h; sourceTree = SOURCE_ROOT; };
+		A904CAEE32EF41AF893EA9DA /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/empty_types/ShaderGroup.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ShaderGroup.h; path = include/com/ethanbreit/ge/graphics/empty_types/ShaderGroup.h; sourceTree = SOURCE_ROOT; };
+		A95DE99B1C0A47F38CECC4DC /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/ShaderType.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ShaderType.h; path = include/com/ethanbreit/ge/graphics/enums/ShaderType.h; sourceTree = SOURCE_ROOT; };
+		A9F4D5F05E06440AB6628280 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/memory/GlobalMemory.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = GlobalMemory.cpp; path = src/com/ethanbreit/ge/memory/GlobalMemory.cpp; sourceTree = SOURCE_ROOT; };
+		AA3C6E1FEDA54ABE955FF060 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/factories/GLTextureFactory.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = GLTextureFactory.h; path = include/com/ethanbreit/ge/graphics/abs/OpenGL/factories/GLTextureFactory.h; sourceTree = SOURCE_ROOT; };
+		AA8952349D9241AB9C09828C /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/runtime/RuntimeManager.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = RuntimeManager.h; path = include/com/ethanbreit/ge/runtime/RuntimeManager.h; sourceTree = SOURCE_ROOT; };
+		ABB94CFC491141A1A305AFD9 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/graphics/Camera.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Camera.cpp; path = src/com/ethanbreit/ge/graphics/Camera.cpp; sourceTree = SOURCE_ROOT; };
+		AF7661E117424C8AA76373CD /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLShaderGroup.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = GLShaderGroup.h; path = include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLShaderGroup.h; sourceTree = SOURCE_ROOT; };
+		B290FF5BB4D04F03BBCAB9DE /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/util/RotationUtil.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = RotationUtil.h; path = include/com/ethanbreit/ge/util/RotationUtil.h; sourceTree = SOURCE_ROOT; };
+		B4E021A6DE9D4ACF91E37707 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/util/ResourceUtil.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ResourceUtil.cpp; path = src/com/ethanbreit/ge/util/ResourceUtil.cpp; sourceTree = SOURCE_ROOT; };
+		B6F84D055ECD4B2D94951CF4 /* /Users/garthbreit/Desktop/Green-Engine-2/test/ExampleController.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ExampleController.h; path = test/ExampleController.h; sourceTree = SOURCE_ROOT; };
+		B7FA277D9AD74BD09503B8B8 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/factories/GLShaderFactory.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = GLShaderFactory.cpp; path = src/com/ethanbreit/ge/OpenGL/factories/GLShaderFactory.cpp; sourceTree = SOURCE_ROOT; };
+		BB95F4C3DBD340348352FD68 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/src/core.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = core.cpp; path = test/broken/Shooter/src/core.cpp; sourceTree = SOURCE_ROOT; };
+		BEE48ADDEF6448F5B79F85EA /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/components/MeshRendererComponent.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = MeshRendererComponent.h; path = include/com/ethanbreit/ge/entity/component/components/MeshRendererComponent.h; sourceTree = SOURCE_ROOT; };
+		C46AECD0E6DC44FF800D3F58 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLCubeMap.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = GLCubeMap.h; path = include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLCubeMap.h; sourceTree = SOURCE_ROOT; };
+		C49AE5065D8F4490B248FCE0 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/graphics/types/Shader.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Shader.cpp; path = src/com/ethanbreit/ge/graphics/types/Shader.cpp; sourceTree = SOURCE_ROOT; };
+		C4EC79146B3C4797AE885E0A /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/input/MouseHandler.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = MouseHandler.h; path = include/com/ethanbreit/ge/input/MouseHandler.h; sourceTree = SOURCE_ROOT; };
+		C8C1D69514B444408E82DC9B /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/INFO.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = INFO.h; path = include/com/ethanbreit/ge/INFO.h; sourceTree = SOURCE_ROOT; };
+		C93986A4F9E6474991B475F8 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/include/entity/entity.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = entity.h; path = test/broken/Shooter/include/entity/entity.h; sourceTree = SOURCE_ROOT; };
+		C93D72D5431644679215C1FB /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/TextureFilterType.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = TextureFilterType.h; path = include/com/ethanbreit/ge/graphics/enums/TextureFilterType.h; sourceTree = SOURCE_ROOT; };
+		CB546DCC01E6464E8A791F94 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/src/player/player.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = player.cpp; path = test/broken/Shooter/src/player/player.cpp; sourceTree = SOURCE_ROOT; };
+		CC173D5F3A414DE4B1CC1A1D /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLWindowless.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = GLWindowless.cpp; path = src/com/ethanbreit/ge/OpenGL/types/GLWindowless.cpp; sourceTree = SOURCE_ROOT; };
+		CE0DA13716254FE48A56077B /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/graphics/GraphicsCore.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = GraphicsCore.cpp; path = src/com/ethanbreit/ge/graphics/GraphicsCore.cpp; sourceTree = SOURCE_ROOT; };
+		CE375620A6534F9B8BD48488 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/BasicLightModel.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = BasicLightModel.h; path = test/broken/common/BasicLightModel.h; sourceTree = SOURCE_ROOT; };
+		CE752FD1ECD541F3811D4E3F /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/components/TestComponent.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = TestComponent.h; path = include/com/ethanbreit/ge/entity/component/components/TestComponent.h; sourceTree = SOURCE_ROOT; };
+		CF901F637B934A21A5A33AA2 /* /Users/garthbreit/Desktop/Green-Engine-2/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		D58AA96A4A694E0985BE4741 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/engine/defaults/SkyBox.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = SkyBox.cpp; path = src/com/ethanbreit/ge/engine/defaults/SkyBox.cpp; sourceTree = SOURCE_ROOT; };
+		D5B4B26721354FDFB48BADD6 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLShader.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = GLShader.h; path = include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLShader.h; sourceTree = SOURCE_ROOT; };
+		D658B5855F0A44EC8A788B02 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/Component.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Component.cpp; path = src/com/ethanbreit/ge/entity/component/Component.cpp; sourceTree = SOURCE_ROOT; };
+		DC37F0F879AE4C73AA693F8E /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/EntityManager.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = EntityManager.h; path = include/com/ethanbreit/ge/entity/EntityManager.h; sourceTree = SOURCE_ROOT; };
+		DD82B7FD4BA748F1B84647B8 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLTexture.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = GLTexture.h; path = include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLTexture.h; sourceTree = SOURCE_ROOT; };
+		DE4F2ECEA8A04137AC80A342 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/loader/LoadShader.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = LoadShader.h; path = include/com/ethanbreit/ge/loader/LoadShader.h; sourceTree = SOURCE_ROOT; };
+		E116BDB86D024A07B13CA794 /* /Users/garthbreit/Desktop/Green-Engine-2/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		E1E2C4B3E4284810942A7741 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/Texture.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Texture.h; path = include/com/ethanbreit/ge/graphics/types/Texture.h; sourceTree = SOURCE_ROOT; };
+		E57E8AB2EB1A4D00B969EC5F /* /Users/garthbreit/Desktop/Green-Engine-2/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		E66D91BD6F1148EFBC23A9DE /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/Shader.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Shader.h; path = include/com/ethanbreit/ge/graphics/types/Shader.h; sourceTree = SOURCE_ROOT; };
+		E86CB5EAD84540B782370F7B /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/DataType.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = DataType.h; path = include/com/ethanbreit/ge/graphics/enums/DataType.h; sourceTree = SOURCE_ROOT; };
+		E8C422441A414CF28A97A7B7 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/FeatureHandler.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = FeatureHandler.cpp; path = src/com/ethanbreit/ge/OpenGL/FeatureHandler.cpp; sourceTree = SOURCE_ROOT; };
+		E8D9118ABC634503B4F324A1 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/factories/GLBufferFactory.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = GLBufferFactory.cpp; path = src/com/ethanbreit/ge/OpenGL/factories/GLBufferFactory.cpp; sourceTree = SOURCE_ROOT; };
+		EA0F1719436A41D98916CC81 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/memory/ReadableMemType.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ReadableMemType.h; path = include/com/ethanbreit/ge/memory/ReadableMemType.h; sourceTree = SOURCE_ROOT; };
+		EA2D68348803478EB56FE286 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/runtime/RuntimeGroup.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = RuntimeGroup.cpp; path = src/com/ethanbreit/ge/runtime/RuntimeGroup.cpp; sourceTree = SOURCE_ROOT; };
+		EBA7F357890F48AEAD19385D /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/util/PreprocessorUtil.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = PreprocessorUtil.h; path = include/com/ethanbreit/ge/util/PreprocessorUtil.h; sourceTree = SOURCE_ROOT; };
+		EBABEEB34111424A9D548AC3 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/include/player/player.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = player.h; path = test/broken/Shooter/include/player/player.h; sourceTree = SOURCE_ROOT; };
+		ED88AE3D2A474C7193160426 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/Entity.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Entity.cpp; path = src/com/ethanbreit/ge/entity/Entity.cpp; sourceTree = SOURCE_ROOT; };
+		EE3183A1D46D44B99FB35403 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/factories/GLTextureFactory.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = GLTextureFactory.cpp; path = src/com/ethanbreit/ge/OpenGL/factories/GLTextureFactory.cpp; sourceTree = SOURCE_ROOT; };
+		F40368213F0C41159B46495F /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLWindow.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = GLWindow.h; path = include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLWindow.h; sourceTree = SOURCE_ROOT; };
+		F443D6CA5E67425BB129F835 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/factories/GLMeshFactory.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = GLMeshFactory.cpp; path = src/com/ethanbreit/ge/OpenGL/factories/GLMeshFactory.cpp; sourceTree = SOURCE_ROOT; };
+		FB4D24D1511B451FA546FE87 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/EntityTag.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = EntityTag.h; path = include/com/ethanbreit/ge/entity/EntityTag.h; sourceTree = SOURCE_ROOT; };
+		FC04A693F01B477AB1516744 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLVertexBuffer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = GLVertexBuffer.cpp; path = src/com/ethanbreit/ge/OpenGL/types/GLVertexBuffer.cpp; sourceTree = SOURCE_ROOT; };
+		FD5DB81F6B554CB9B9C71796 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/Triangle.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Triangle.h; path = test/broken/common/Triangle.h; sourceTree = SOURCE_ROOT; };
+		FDB792BF7BF34602B7561045 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/console/Log.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Log.h; path = include/com/ethanbreit/ge/console/Log.h; sourceTree = SOURCE_ROOT; };
+		FEA65E8E52E545109C22257F /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/engine/types/ModelMat.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ModelMat.cpp; path = src/com/ethanbreit/ge/engine/types/ModelMat.cpp; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1504CA6E177A4D41AF844E07 = {
+			isa = PBXGroup;
+			children = (
+				C659EC2FABCA47D4A64909EB /* Sources */,
+				E88A7F28C51A46538A4B06BE /* Resources */,
+				DA61F56B68B24F609C168453 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3274B31BBD304E29A06457E7 /* ALL_BUILD */ = {
+			isa = PBXGroup;
+			children = (
+				7400AF0BDE324C58B701EFC9 /* CMake Rules */,
+				E116BDB86D024A07B13CA794 /* /Users/garthbreit/Desktop/Green-Engine-2/CMakeLists.txt */,
+			);
+			name = ALL_BUILD;
+			sourceTree = "<group>";
+		};
+		3787F4A34C144CDEBEBAC730 /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				C8C1D69514B444408E82DC9B /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/INFO.h */,
+				592DE957E7BB45118111BF63 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/console/ConsoleIO.h */,
+				FDB792BF7BF34602B7561045 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/console/Log.h */,
+				7E5C418109FD44328D24C226 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/console/enum/MessageType.h */,
+				2DCD6B1A0C8A4FE19C6E706B /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/debug/FreeMove.h */,
+				5EBD2EAECAEE4B228A089EE9 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/debug/PreProcessor.h */,
+				456E720E5E3640D49F42BD78 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/debug/debug_entities/ColouredBox.h */,
+				439132516A6549079FA251BB /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/default_geom/Cube.h */,
+				7D4ABB735FAA4F1B93FB4A45 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/engine/Start.h */,
+				94C5C6303A3041B18D07BCE1 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/engine/defaults/SkyBox.h */,
+				7878411949DD4705BBE3B62B /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/engine/defaults/StaticObject.h */,
+				27DE4BCBDFDB4C1095C8099D /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/engine/empty_types/EmptyStaticObject.h */,
+				031823B35F7A474BA10C5C73 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/engine/scene/Scene.h */,
+				1BB17CDE71344FD5AE2D91E2 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/engine/types/ModelMat.h */,
+				015273F560FA4F72829D99CD /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/Entity.h */,
+				DC37F0F879AE4C73AA693F8E /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/EntityManager.h */,
+				FB4D24D1511B451FA546FE87 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/EntityTag.h */,
+				A70BFB12BC504F9CB1704203 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/Component.h */,
+				3CD984EBEE54404DAFC5CDA3 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/ComponentBatch.h */,
+				3B7D5B105EF74319A2A999DF /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/ComponentManager.h */,
+				1D69827C5EC9467EA841B0EC /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/batches/DefaultComponentBatch.h */,
+				BEE48ADDEF6448F5B79F85EA /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/components/MeshRendererComponent.h */,
+				CE752FD1ECD541F3811D4E3F /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/components/TestComponent.h */,
+				553A86BD71A445FB825F8546 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/entity/component/components/TransformComponent.h */,
+				318F2F5A752F4670B4A32C53 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/error/Error.h */,
+				1A4FEEC9C2B643DBA6A3EE23 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/functor/Functor.h */,
+				8624B10208AD48C6883878C5 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/game/scene/Scene.h */,
+				74987B753D40474CAE83500F /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/Camera.h */,
+				2C712C0B2244477F8A618421 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/GraphicsCore.h */,
+				569FF5F1AD374E429C5B58C3 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/FeatureHandler.h */,
+				83E23217F40D4A7599DEAA7F /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/Meshes/GLTriangleMesh.h */,
+				63486BA7A2D64FA5BD485F5E /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/factories/GLBufferFactory.h */,
+				0959B6C2B06D4CDDB0BE38A3 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/factories/GLMeshFactory.h */,
+				2039CF7C8B924214839CDC66 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/factories/GLShaderFactory.h */,
+				AA3C6E1FEDA54ABE955FF060 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/factories/GLTextureFactory.h */,
+				C46AECD0E6DC44FF800D3F58 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLCubeMap.h */,
+				1BCD3E84A9EF47B29E46697C /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLIndexBuffer.h */,
+				D5B4B26721354FDFB48BADD6 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLShader.h */,
+				AF7661E117424C8AA76373CD /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLShaderGroup.h */,
+				DD82B7FD4BA748F1B84647B8 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLTexture.h */,
+				11CF1083DD984089968F91C4 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLUniform.h */,
+				44B48274B5924CF6A024F28F /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLVertexBuffer.h */,
+				F40368213F0C41159B46495F /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLWindow.h */,
+				5D2B1F3EEC00443B850CBBE6 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/types/GLWindowless.h */,
+				A715DAE14D274B9AADD48E51 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/abs/OpenGL/util/EnumUtil.h */,
+				250B4C0B5473496DBF107E9B /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/empty_types/IndexBuffer.h */,
+				77C07DBCCC8A45D99FE58EB3 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/empty_types/MeshData.h */,
+				295D6CFF9E4B47E094C11574 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/empty_types/Scene.h */,
+				A904CAEE32EF41AF893EA9DA /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/empty_types/ShaderGroup.h */,
+				67523F736BD0436AA468F43A /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/empty_types/VertexBuffer.h */,
+				592439C24561462C8A8330AE /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/BufferMemoryType.h */,
+				205D01CBCA2640508C4C29C1 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/ColourModelType.h */,
+				E86CB5EAD84540B782370F7B /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/DataType.h */,
+				9C648B10022741C890975243 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/Features.h */,
+				3418B6EDE09F4241AA851B69 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/GraphicsApi.h */,
+				20188F99C5104269BAAB6330 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/LightType.h */,
+				A95DE99B1C0A47F38CECC4DC /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/ShaderType.h */,
+				C93D72D5431644679215C1FB /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/enums/TextureFilterType.h */,
+				A790C106952246049B2B6CB8 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/factories/BufferFactory.h */,
+				1E0D64894C604174A62B6841 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/factories/MeshFactory.h */,
+				541B605C7F2E4F50BE9DB1D6 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/factories/ShaderFactory.h */,
+				7F2F49485EEB428398C91AEA /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/factories/TextureFactory.h */,
+				926F26587814440590C55962 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/meshes/TriangleMesh.h */,
+				9010BD3ABC2047DE807B6B81 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/CubeMap.h */,
+				768EC6B5B108415D8B78EA5C /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/Image.h */,
+				63C91235C4C04486962EBBDF /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/IndexBuffer.h */,
+				E66D91BD6F1148EFBC23A9DE /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/Shader.h */,
+				11215C0BE297409EB458AF3C /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/ShaderGroup.h */,
+				E1E2C4B3E4284810942A7741 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/Texture.h */,
+				05A9111EADB34CFEA3444B4C /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/Uniform.h */,
+				0AB420E300714091A7D334F0 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/VertexBuffer.h */,
+				2F38ED0411AC4C0BA404F1C9 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/Window.h */,
+				20C3884A3E2A4D36876A8F66 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/lights/Light.h */,
+				A48124A6A61144F2B71BBD9A /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/lights/LightDirectional.h */,
+				9A65E50FBA0648B9BE6A35F8 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/lights/LightPoint.h */,
+				61E5D19B38F142539FE74CDB /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/lights/LightSpot.h */,
+				785E060671164421977A1850 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/input/KeyboardHandler.h */,
+				670C233B818A446EBD6D40D4 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/input/KeyboardKey.h */,
+				C4EC79146B3C4797AE885E0A /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/input/MouseHandler.h */,
+				00F6212E3EE94B1FB4A812A0 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/loader/LoadImage.h */,
+				A05C73E8A02C43E4A346FAC7 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/loader/LoadMesh.h */,
+				A625D70F2B2C4DE0B2449443 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/loader/LoadScene.h */,
+				DE4F2ECEA8A04137AC80A342 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/loader/LoadShader.h */,
+				A801BFE435934F62BDD6D12A /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/loader/ShaderPreprocessor.h */,
+				65046D0CD2904AE9BD254063 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/memory/GlobalMemory.h */,
+				EA0F1719436A41D98916CC81 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/memory/ReadableMemType.h */,
+				4BEB0B4CC444418997B79D6C /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/runtime/Runtime.h */,
+				1922A668372F46199B9F3E26 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/runtime/RuntimeGroup.h */,
+				AA8952349D9241AB9C09828C /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/runtime/RuntimeManager.h */,
+				EBA7F357890F48AEAD19385D /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/util/PreprocessorUtil.h */,
+				0C5604AB93254627BB2EE27E /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/util/ResourceUtil.h */,
+				B290FF5BB4D04F03BBCAB9DE /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/util/RotationUtil.h */,
+				6E29C7A94AEC441A8B999501 /* /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/util/StrUtil.h */,
+				B6F84D055ECD4B2D94951CF4 /* /Users/garthbreit/Desktop/Green-Engine-2/test/ExampleController.h */,
+				79115C4A54534343B8A05FC8 /* /Users/garthbreit/Desktop/Green-Engine-2/test/GroupIDs.h */,
+				10D2DCF1310C4150B1A3E38B /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/include/core.h */,
+				0DC88A3921C74A64AD4F3F50 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/include/entity/enemy/enemy_basic.h */,
+				C93986A4F9E6474991B475F8 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/include/entity/entity.h */,
+				5E0D62DD4D99447DAE96E1B0 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/include/levelhandler.h */,
+				EBABEEB34111424A9D548AC3 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/include/player/player.h */,
+				CE375620A6534F9B8BD48488 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/BasicLightModel.h */,
+				85BC0AA5DA474E80864DB710 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/Broken/ExampleModel.h */,
+				1822F037003A42D3B4AEFF51 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/TexturedModel.h */,
+				FD5DB81F6B554CB9B9C71796 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/Triangle.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		46E8B89DC8D54D6D9A3F97BF /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				E8C422441A414CF28A97A7B7 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/FeatureHandler.cpp */,
+				35327FFD9BC04839A109ADEF /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/Meshes/GLTriangleMesh.cpp */,
+				E8D9118ABC634503B4F324A1 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/factories/GLBufferFactory.cpp */,
+				F443D6CA5E67425BB129F835 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/factories/GLMeshFactory.cpp */,
+				B7FA277D9AD74BD09503B8B8 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/factories/GLShaderFactory.cpp */,
+				EE3183A1D46D44B99FB35403 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/factories/GLTextureFactory.cpp */,
+				296ACDC1D3624735A88B79D1 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLCubeMap.cpp */,
+				5BDB62D0756B44B29E5D584B /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLIndexBuffer.cpp */,
+				33AF32749A244F839E9B76C6 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLShaderGroup.cpp */,
+				A443CA7ED7EB4CFD95671861 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLTexture.cpp */,
+				54530FC12E264DB186C51AB3 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLUniform.cpp */,
+				FC04A693F01B477AB1516744 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLVertexBuffer.cpp */,
+				9EB6961CA7CF451287A2FD1B /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLWindow.cpp */,
+				CC173D5F3A414DE4B1CC1A1D /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLWindowless.cpp */,
+				4884462781644DA29B8D27C2 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/util/EnumUtil.cpp */,
+				83992A895C46488382CDEC79 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/console/ConsoleIO.cpp */,
+				A0D9286F884E468AA7062E18 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/console/Log.cpp */,
+				31EC11DA72FA468A83D09F66 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/debug/FreeMove.cpp */,
+				86AE6EDDE1F544F0B0BE407B /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/debug/debug_entities/ColouredBox.cpp */,
+				602B613FFB214CE0943D4268 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/engine/Start.cpp */,
+				D58AA96A4A694E0985BE4741 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/engine/defaults/SkyBox.cpp */,
+				78DFEFC909FE49AE844EAB50 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/engine/defaults/StaticObject.cpp */,
+				65CF543CAB5243759DDFA0EC /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/engine/scene/Scene.cpp */,
+				FEA65E8E52E545109C22257F /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/engine/types/ModelMat.cpp */,
+				ED88AE3D2A474C7193160426 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/Entity.cpp */,
+				4BF0B6B61FCF43C8AA90027C /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/EntityManager.cpp */,
+				611FC9F324AF46A685684173 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/EntityTag.cpp */,
+				D658B5855F0A44EC8A788B02 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/Component.cpp */,
+				7EA4CDEBFBB9456AAC04FF87 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/ComponentBatch.cpp */,
+				54B02F8A06D148DBAF8B42BB /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/ComponentManager.cpp */,
+				383F57F3E63A4BD88C6585ED /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/batches/DefaultComponentBatch.cpp */,
+				3FDDF4E2048040BFAC4B9A93 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/components/MeshRendererComponent.cpp */,
+				16343C2952094687912DF9EF /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/components/TestComponent.cpp */,
+				513E173F145D4537970DF78E /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/components/TransformComponent.cpp */,
+				348D6243FD134D04B7EC3616 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/error/Error.cpp */,
+				ABB94CFC491141A1A305AFD9 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/graphics/Camera.cpp */,
+				CE0DA13716254FE48A56077B /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/graphics/GraphicsCore.cpp */,
+				279AF555E583460598143CA0 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/graphics/types/CubeMap.cpp */,
+				C49AE5065D8F4490B248FCE0 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/graphics/types/Shader.cpp */,
+				5BB4C14434E049619CF7F6E1 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/graphics/types/Texture.cpp */,
+				7CAF55A0C4254A958340A860 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/input/KeyboardHandler.cpp */,
+				099A872F3CFB4E58BB78AC99 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/input/MouseHandler.cpp */,
+				299E9E5D985D40568E983F53 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/loader/LoadImage.cpp */,
+				15648F8CB63145CC8E695853 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/loader/LoadMesh.cpp */,
+				49D268BCE5B24F0DBC5D1C34 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/loader/LoadScene.cpp */,
+				022FC20F9853485C8C708904 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/loader/LoadShader.cpp */,
+				4C046E97020B454590CCF5F0 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/loader/ShaderPreprocessor.cpp */,
+				A9F4D5F05E06440AB6628280 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/memory/GlobalMemory.cpp */,
+				A1FADD31F5F5481F8E7EE853 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/runtime/Runtime.cpp */,
+				EA2D68348803478EB56FE286 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/runtime/RuntimeGroup.cpp */,
+				95F7F1324AFE4D39AB9C5F84 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/runtime/RuntimeManager.cpp */,
+				B4E021A6DE9D4ACF91E37707 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/util/ResourceUtil.cpp */,
+				847B27F0042F44EBAD93ECE9 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/util/RotationUtil.cpp */,
+				6B3F315F6F874491A0F70E5B /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/util/StrUtil.cpp */,
+				02BB6E18ABE34440ACF08F66 /* /Users/garthbreit/Desktop/Green-Engine-2/test/Example10/main.cpp */,
+				70E473C79BCF461F9340C30A /* /Users/garthbreit/Desktop/Green-Engine-2/test/Example9/main.cpp */,
+				51C9FFB630F841828D07F454 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Example3/main.cpp */,
+				7F5626ABEE81426CA9B24C03 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Example6/main.cpp */,
+				9D73ADF8236945E8A317E371 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Example7/main.cpp */,
+				599C3E2CB1684E6EB1715B09 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Example8/main.cpp */,
+				199BE4B7C62346A68CA6A775 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/MetalTest/MetalTest.cpp */,
+				0459E1859B8843C4A360BC08 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/main.cpp */,
+				BB95F4C3DBD340348352FD68 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/src/core.cpp */,
+				25072114BDCA481083495E39 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/src/entity/enemy/enemy_basic.cpp */,
+				9761BB28A6894A72986D87EA /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/src/levelhandler.cpp */,
+				CB546DCC01E6464E8A791F94 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/src/player/player.cpp */,
+				2F6D6E74400D45A5B8A32199 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/BasicLightModel.cpp */,
+				5F7F8B0AC2D244289DA7A58A /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/Broken/ExampleModel.cpp */,
+				9206369319544419B7527C91 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/TexturedModel.cpp */,
+				5DECC652D29F40D1B7801AA8 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/Triangle.cpp */,
+				8AC9B6F0E0EA462DB472FF11 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/old_examples/Example1/main.cpp */,
+				3C9E82DC0DF24B128892F615 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/old_examples/Example2/main.cpp */,
+				A4972B3096114C40930BEFBE /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/old_examples/Example4/main.cpp */,
+				2F69D0A035A741E5BA3C245F /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/old_examples/Example5/main.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		7400AF0BDE324C58B701EFC9 /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		84F48084D47249FF8890254D /* Green_Engine_2 */ = {
+			isa = PBXGroup;
+			children = (
+				3787F4A34C144CDEBEBAC730 /* Header Files */,
+				46E8B89DC8D54D6D9A3F97BF /* Source Files */,
+				E57E8AB2EB1A4D00B969EC5F /* /Users/garthbreit/Desktop/Green-Engine-2/CMakeLists.txt */,
+			);
+			name = Green_Engine_2;
+			sourceTree = "<group>";
+		};
+		A3E86E7908644D459C3A3012 /* ZERO_CHECK */ = {
+			isa = PBXGroup;
+			children = (
+				F27CD642587344299BA8BD66 /* CMake Rules */,
+				CF901F637B934A21A5A33AA2 /* /Users/garthbreit/Desktop/Green-Engine-2/CMakeLists.txt */,
+			);
+			name = ZERO_CHECK;
+			sourceTree = "<group>";
+		};
+		C659EC2FABCA47D4A64909EB /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				84F48084D47249FF8890254D /* Green_Engine_2 */,
+				3274B31BBD304E29A06457E7 /* ALL_BUILD */,
+				A3E86E7908644D459C3A3012 /* ZERO_CHECK */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		DA61F56B68B24F609C168453 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0DE7E8565E55417B9689601C /* Green_Engine_2 */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E88A7F28C51A46538A4B06BE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		F27CD642587344299BA8BD66 /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9BC6602B23F34D57B2C4CF9D /* Green_Engine_2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 864AE12E70A24F738A107FBF /* Build configuration list for PBXNativeTarget "Green_Engine_2" */;
+			buildPhases = (
+				E178EE2F84204B2A8654BA3D /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E09EC653838C421F972551C2 /* PBXTargetDependency */,
+			);
+			name = Green_Engine_2;
+			productName = Green_Engine_2;
+			productReference = 0DE7E8565E55417B9689601C /* Green_Engine_2 */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E5D29B3D98294AD6BAFB5ED7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 0830;
+			};
+			buildConfigurationList = 36DDD8017DD04C3CB0D191F0 /* Build configuration list for PBXProject "Green_Engine_2" */;
+			buildSettings = {
+			};
+			buildStyles = (
+				6CBD687D6DE74CAEAB29698E /* Debug */,
+				7A1B0A15D4374351A979CFC1 /* Release */,
+				7CCE5E877F3947DBB75CF7FF /* MinSizeRel */,
+				E2BC2CA1D09B4C6B87C0FBF3 /* RelWithDebInfo */,
+			);
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 0;
+			mainGroup = 1504CA6E177A4D41AF844E07;
+			projectDirPath = ../;
+			projectRoot = "";
+			targets = (
+				F68FA9E580A34A199D26BB2A /* ALL_BUILD */,
+				9BC6602B23F34D57B2C4CF9D /* Green_Engine_2 */,
+				E6C932EC393B4E3884D330A7 /* ZERO_CHECK */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00AE449DA87C48A0B120B356 /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/garthbreit/Desktop/Green-Engine-2/cmakebuild -f /Users/garthbreit/Desktop/Green-Engine-2/cmakebuild/CMakeScripts/ALL_BUILD_cmakeRulesBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+		67187C3C5BC047F49413287B /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/garthbreit/Desktop/Green-Engine-2/cmakebuild -f /Users/garthbreit/Desktop/Green-Engine-2/cmakebuild/CMakeScripts/ZERO_CHECK_cmakeRulesBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+		93CA12ABEE9A43F593241A0D = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		F811093CCF0B4CD48E24399D = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E178EE2F84204B2A8654BA3D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5BE197EACF34AC6B2EC2CF6 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/FeatureHandler.cpp */,
+				493BB34320D74FBE9E21CD68 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/Meshes/GLTriangleMesh.cpp */,
+				B606D61E7BD34B9DB139BB0B /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/factories/GLBufferFactory.cpp */,
+				12E63346D54B4AFE9CEDF34A /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/factories/GLMeshFactory.cpp */,
+				C8BE2BB2DE1B49829C02B753 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/factories/GLShaderFactory.cpp */,
+				7088A26DFCCF4F9EBE30922A /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/factories/GLTextureFactory.cpp */,
+				2FF9F189247E4A07B715BDBC /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLCubeMap.cpp */,
+				FB7ACF7BAE8B492E88859D33 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLIndexBuffer.cpp */,
+				C34F81CA70AD4088BB23668E /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLShaderGroup.cpp */,
+				FA7C45A052314ADF8414F6A4 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLTexture.cpp */,
+				6F35602319314E0EB7F30777 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLUniform.cpp */,
+				D671D5CED3E6457DB19C6A0C /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLVertexBuffer.cpp */,
+				E7970485F0DB4E1FB24F058C /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLWindow.cpp */,
+				970F5346960D4503936FB416 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/types/GLWindowless.cpp */,
+				331C7DFE555B47E5A16175A1 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/OpenGL/util/EnumUtil.cpp */,
+				57A31AE170AA48C3BE941C46 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/console/ConsoleIO.cpp */,
+				15874E385B7F46BBADCF5EDA /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/console/Log.cpp */,
+				0DBCC266189443B696AE1872 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/debug/FreeMove.cpp */,
+				B416A9C0C7D2488EB0EDFF6E /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/debug/debug_entities/ColouredBox.cpp */,
+				DCE19D8633584F43A4950F4A /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/engine/Start.cpp */,
+				2D9557FEAFBB443C9D341912 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/engine/defaults/SkyBox.cpp */,
+				37FDA76F6C9342F08A981763 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/engine/defaults/StaticObject.cpp */,
+				750602E6490445B3807EFF74 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/engine/scene/Scene.cpp */,
+				1F381A9C48E74ECD86956D5A /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/engine/types/ModelMat.cpp */,
+				C64B18BC290B498B9C5525F7 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/Entity.cpp */,
+				80CE64260F824E88B4A6F59C /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/EntityManager.cpp */,
+				CD8478146776458A94D625B7 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/EntityTag.cpp */,
+				485DBEC5D63146108ACB209E /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/Component.cpp */,
+				2693035FD1654A12A6D13C14 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/ComponentBatch.cpp */,
+				389DC996DA9D4C56B705BF1A /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/ComponentManager.cpp */,
+				87D53090A026421CB203508D /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/batches/DefaultComponentBatch.cpp */,
+				7AD6CAFD5DBF46DE8B15FF4B /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/components/MeshRendererComponent.cpp */,
+				9DEECB886DB040E7B86C8B14 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/components/TestComponent.cpp */,
+				FA208FE0F70E4E078780BC46 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/entity/component/components/TransformComponent.cpp */,
+				A5C4A6D3CA2C47FD9E64CC75 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/error/Error.cpp */,
+				F948FD1D09D84555B54CBE43 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/graphics/Camera.cpp */,
+				6BCBE39C37E045CEB16593CC /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/graphics/GraphicsCore.cpp */,
+				556F36A2B48649D8852B2B5B /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/graphics/types/CubeMap.cpp */,
+				A0E99D99A3C246B5821968E0 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/graphics/types/Shader.cpp */,
+				45447FB5F3394412BA642BA6 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/graphics/types/Texture.cpp */,
+				4505193387F644E4AAE96BBC /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/input/KeyboardHandler.cpp */,
+				A30810336E2E40A7AA243272 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/input/MouseHandler.cpp */,
+				CD65C7D56ABD421CAF838177 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/loader/LoadImage.cpp */,
+				072171A79B9F424AA02281AB /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/loader/LoadMesh.cpp */,
+				B05D3C52D5134BF2A54B7D87 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/loader/LoadScene.cpp */,
+				CC2182E3180F4A5384C768D0 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/loader/LoadShader.cpp */,
+				F028DD48303149E5A733458B /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/loader/ShaderPreprocessor.cpp */,
+				36CBD891FB70486B975DC3ED /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/memory/GlobalMemory.cpp */,
+				4B930DCF29E0432AA19BA915 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/runtime/Runtime.cpp */,
+				CFF721FFBA364B6D8EEC9486 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/runtime/RuntimeGroup.cpp */,
+				C2930693DBBE41A281D0CDFE /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/runtime/RuntimeManager.cpp */,
+				DA1F52CF2534412AA762B5CC /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/util/ResourceUtil.cpp */,
+				128978DD85A742F18EAD5BB3 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/util/RotationUtil.cpp */,
+				7D5A967029EE47BCA1B74224 /* /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/util/StrUtil.cpp */,
+				321D985CB75D42D481A54934 /* /Users/garthbreit/Desktop/Green-Engine-2/test/Example10/main.cpp */,
+				B58C77FC3C6245A48C1C079B /* /Users/garthbreit/Desktop/Green-Engine-2/test/Example9/main.cpp */,
+				A396EEFCBA89446CAD6822C8 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Example3/main.cpp */,
+				B84777394BC4473583F4E2D6 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Example6/main.cpp */,
+				F63EE4DF56514DBCA73CFFEA /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Example7/main.cpp */,
+				874544175080410E9CB9D20F /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Example8/main.cpp */,
+				0F63A04618CF49CE8A977437 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/MetalTest/MetalTest.cpp */,
+				96E1C6BA5E964195A5728F13 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/main.cpp */,
+				1427D7FECC7C439E97C9C817 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/src/core.cpp */,
+				DADE48A2465B4D43A9809E47 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/src/entity/enemy/enemy_basic.cpp */,
+				F5EEF2FC368841C382331C21 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/src/levelhandler.cpp */,
+				D51EEEFA3821422BAB79332C /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/Shooter/src/player/player.cpp */,
+				6FA72D8EE2F644579AEC23F2 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/BasicLightModel.cpp */,
+				70E4F29AEAC54A6D83670303 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/Broken/ExampleModel.cpp */,
+				4A77299CD0F745DD819F647E /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/TexturedModel.cpp */,
+				3463598224F547439B9E91AB /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/common/Triangle.cpp */,
+				28BE028F3973406889421DC3 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/old_examples/Example1/main.cpp */,
+				94B9732ED1014B97AEF0F5B9 /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/old_examples/Example2/main.cpp */,
+				D588BC3CD24D4BB780AC0E1A /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/old_examples/Example4/main.cpp */,
+				EA7D7B3368404C09907813FB /* /Users/garthbreit/Desktop/Green-Engine-2/test/broken/old_examples/Example5/main.cpp */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		00203FF9B8AA4AEB88C2D259 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9BC6602B23F34D57B2C4CF9D /* Green_Engine_2 */;
+			targetProxy = ACC3AB3124C942848C44F12A /* PBXContainerItemProxy */;
+		};
+		17FA989A8E9F40D092C042C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E6C932EC393B4E3884D330A7 /* ZERO_CHECK */;
+			targetProxy = 5E3D47D4F0624E40AE76283B /* PBXContainerItemProxy */;
+		};
+		E09EC653838C421F972551C2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E6C932EC393B4E3884D330A7 /* ZERO_CHECK */;
+			targetProxy = 8BF9B5F2846945E08D97EE27 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		024F2932AC4A44B1AB98B5AB /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit","/Users/garthbreit/Desktop/Green-Engine-2/test","/Users/garthbreit/Desktop/Green-Engine-2/libs/headers",/usr/local/include,"/Users/garthbreit/Libraries/glfw-3.2.1/include","/Users/garthbreit/Desktop/Green-Engine-2/res");
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = " -std=c++1z        -DNDEBUG -I/Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit -I/Users/garthbreit/Desktop/Green-Engine-2/test -I/Users/garthbreit/Desktop/Green-Engine-2/libs/headers -I/usr/local/include -I/Users/garthbreit/Libraries/glfw-3.2.1/include -I/Users/garthbreit/Desktop/Green-Engine-2/res   ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -framework OpenGL /usr/local/lib/libGLEW.dylib /Users/garthbreit/Libraries/glfw-3.2.1/lib/libglfw.dylib -framework Cocoa -framework IOKit -framework CoreVideo -framework Cocoa -framework CoreFoundation -framework Metal -framework MetalKit /Users/garthbreit/Desktop/Green-Engine-2/libs/compiled/mtlpp.o /Users/garthbreit/Desktop/Green-Engine-2/libs/compiled/window.o /usr/local/lib/libassimp.dylib /usr/lib/libz.dylib";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = Green_Engine_2;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/garthbreit/Desktop/Green-Engine-2/cmakebuild";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		15A961AE0D3B4EEAA03461D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit","/Users/garthbreit/Desktop/Green-Engine-2/test","/Users/garthbreit/Desktop/Green-Engine-2/libs/headers",/usr/local/include,"/Users/garthbreit/Libraries/glfw-3.2.1/include","/Users/garthbreit/Desktop/Green-Engine-2/res");
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/garthbreit/Desktop/Green-Engine-2/cmakebuild";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Debug;
+		};
+		20286028F6ED496F9C6F2302 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit","/Users/garthbreit/Desktop/Green-Engine-2/test","/Users/garthbreit/Desktop/Green-Engine-2/libs/headers",/usr/local/include,"/Users/garthbreit/Libraries/glfw-3.2.1/include","/Users/garthbreit/Desktop/Green-Engine-2/res");
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/garthbreit/Desktop/Green-Engine-2/cmakebuild";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		3816586447CC45A6AE74198E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit","/Users/garthbreit/Desktop/Green-Engine-2/test","/Users/garthbreit/Desktop/Green-Engine-2/libs/headers",/usr/local/include,"/Users/garthbreit/Libraries/glfw-3.2.1/include","/Users/garthbreit/Desktop/Green-Engine-2/res");
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = " -std=c++1z    -I/Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit -I/Users/garthbreit/Desktop/Green-Engine-2/test -I/Users/garthbreit/Desktop/Green-Engine-2/libs/headers -I/usr/local/include -I/Users/garthbreit/Libraries/glfw-3.2.1/include -I/Users/garthbreit/Desktop/Green-Engine-2/res   ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -framework OpenGL /usr/local/lib/libGLEW.dylib /Users/garthbreit/Libraries/glfw-3.2.1/lib/libglfw.dylib -framework Cocoa -framework IOKit -framework CoreVideo -framework Cocoa -framework CoreFoundation -framework Metal -framework MetalKit /Users/garthbreit/Desktop/Green-Engine-2/libs/compiled/mtlpp.o /Users/garthbreit/Desktop/Green-Engine-2/libs/compiled/window.o /usr/local/lib/libassimp.dylib /usr/lib/libz.dylib";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = Green_Engine_2;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/garthbreit/Desktop/Green-Engine-2/cmakebuild";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Debug;
+		};
+		38763CE9712E4007B808BF2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk;
+				SYMROOT = "/Users/garthbreit/Desktop/Green-Engine-2/cmakebuild/build";
+			};
+			name = Release;
+		};
+		3924F55E7C52447CB67CC8FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit","/Users/garthbreit/Desktop/Green-Engine-2/test","/Users/garthbreit/Desktop/Green-Engine-2/libs/headers",/usr/local/include,"/Users/garthbreit/Libraries/glfw-3.2.1/include","/Users/garthbreit/Desktop/Green-Engine-2/res");
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/garthbreit/Desktop/Green-Engine-2/cmakebuild";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Debug;
+		};
+		3C7CB7D3F18A4EEFAC7ADE4A /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit","/Users/garthbreit/Desktop/Green-Engine-2/test","/Users/garthbreit/Desktop/Green-Engine-2/libs/headers",/usr/local/include,"/Users/garthbreit/Libraries/glfw-3.2.1/include","/Users/garthbreit/Desktop/Green-Engine-2/res");
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/garthbreit/Desktop/Green-Engine-2/cmakebuild";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		4F56D665CBD24CE189CA3E27 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit","/Users/garthbreit/Desktop/Green-Engine-2/test","/Users/garthbreit/Desktop/Green-Engine-2/libs/headers",/usr/local/include,"/Users/garthbreit/Libraries/glfw-3.2.1/include","/Users/garthbreit/Desktop/Green-Engine-2/res");
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = " -std=c++1z     -DNDEBUG -I/Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit -I/Users/garthbreit/Desktop/Green-Engine-2/test -I/Users/garthbreit/Desktop/Green-Engine-2/libs/headers -I/usr/local/include -I/Users/garthbreit/Libraries/glfw-3.2.1/include -I/Users/garthbreit/Desktop/Green-Engine-2/res   ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -framework OpenGL /usr/local/lib/libGLEW.dylib /Users/garthbreit/Libraries/glfw-3.2.1/lib/libglfw.dylib -framework Cocoa -framework IOKit -framework CoreVideo -framework Cocoa -framework CoreFoundation -framework Metal -framework MetalKit /Users/garthbreit/Desktop/Green-Engine-2/libs/compiled/mtlpp.o /Users/garthbreit/Desktop/Green-Engine-2/libs/compiled/window.o /usr/local/lib/libassimp.dylib /usr/lib/libz.dylib";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = Green_Engine_2;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/garthbreit/Desktop/Green-Engine-2/cmakebuild";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		53FC10D5074B4C7181113B10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit","/Users/garthbreit/Desktop/Green-Engine-2/test","/Users/garthbreit/Desktop/Green-Engine-2/libs/headers",/usr/local/include,"/Users/garthbreit/Libraries/glfw-3.2.1/include","/Users/garthbreit/Desktop/Green-Engine-2/res");
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/garthbreit/Desktop/Green-Engine-2/cmakebuild";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Release;
+		};
+		54B3D9E29B6F44ADAE12CDE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk;
+				SYMROOT = "/Users/garthbreit/Desktop/Green-Engine-2/cmakebuild/build";
+			};
+			name = Debug;
+		};
+		61F6658E36E1480CBBFBCDAA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit","/Users/garthbreit/Desktop/Green-Engine-2/test","/Users/garthbreit/Desktop/Green-Engine-2/libs/headers",/usr/local/include,"/Users/garthbreit/Libraries/glfw-3.2.1/include","/Users/garthbreit/Desktop/Green-Engine-2/res");
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = " -std=c++1z     -DNDEBUG -I/Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit -I/Users/garthbreit/Desktop/Green-Engine-2/test -I/Users/garthbreit/Desktop/Green-Engine-2/libs/headers -I/usr/local/include -I/Users/garthbreit/Libraries/glfw-3.2.1/include -I/Users/garthbreit/Desktop/Green-Engine-2/res   ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -framework OpenGL /usr/local/lib/libGLEW.dylib /Users/garthbreit/Libraries/glfw-3.2.1/lib/libglfw.dylib -framework Cocoa -framework IOKit -framework CoreVideo -framework Cocoa -framework CoreFoundation -framework Metal -framework MetalKit /Users/garthbreit/Desktop/Green-Engine-2/libs/compiled/mtlpp.o /Users/garthbreit/Desktop/Green-Engine-2/libs/compiled/window.o /usr/local/lib/libassimp.dylib /usr/lib/libz.dylib";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = Green_Engine_2;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/garthbreit/Desktop/Green-Engine-2/cmakebuild";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Release;
+		};
+		6F2BFAF4D6AC4A2194D582A3 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit","/Users/garthbreit/Desktop/Green-Engine-2/test","/Users/garthbreit/Desktop/Green-Engine-2/libs/headers",/usr/local/include,"/Users/garthbreit/Libraries/glfw-3.2.1/include","/Users/garthbreit/Desktop/Green-Engine-2/res");
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/garthbreit/Desktop/Green-Engine-2/cmakebuild";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		8BAD753E745C4716B7D3B203 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk;
+				SYMROOT = "/Users/garthbreit/Desktop/Green-Engine-2/cmakebuild/build";
+			};
+			name = MinSizeRel;
+		};
+		8C93DE3854DF4C0DB5AFDBB7 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk;
+				SYMROOT = "/Users/garthbreit/Desktop/Green-Engine-2/cmakebuild/build";
+			};
+			name = RelWithDebInfo;
+		};
+		CDEE146608B64814BA22AE5B /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit","/Users/garthbreit/Desktop/Green-Engine-2/test","/Users/garthbreit/Desktop/Green-Engine-2/libs/headers",/usr/local/include,"/Users/garthbreit/Libraries/glfw-3.2.1/include","/Users/garthbreit/Desktop/Green-Engine-2/res");
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/garthbreit/Desktop/Green-Engine-2/cmakebuild";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		CF4BAA932952477CA45C7395 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit","/Users/garthbreit/Desktop/Green-Engine-2/test","/Users/garthbreit/Desktop/Green-Engine-2/libs/headers",/usr/local/include,"/Users/garthbreit/Libraries/glfw-3.2.1/include","/Users/garthbreit/Desktop/Green-Engine-2/res");
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/garthbreit/Desktop/Green-Engine-2/cmakebuild";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		36DDD8017DD04C3CB0D191F0 /* Build configuration list for PBXProject "Green_Engine_2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				54B3D9E29B6F44ADAE12CDE9 /* Debug */,
+				38763CE9712E4007B808BF2D /* Release */,
+				8BAD753E745C4716B7D3B203 /* MinSizeRel */,
+				8C93DE3854DF4C0DB5AFDBB7 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		864AE12E70A24F738A107FBF /* Build configuration list for PBXNativeTarget "Green_Engine_2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3816586447CC45A6AE74198E /* Debug */,
+				61F6658E36E1480CBBFBCDAA /* Release */,
+				4F56D665CBD24CE189CA3E27 /* MinSizeRel */,
+				024F2932AC4A44B1AB98B5AB /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		95D42530A5FA42B2B39286B3 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3924F55E7C52447CB67CC8FE /* Debug */,
+				53FC10D5074B4C7181113B10 /* Release */,
+				20286028F6ED496F9C6F2302 /* MinSizeRel */,
+				CDEE146608B64814BA22AE5B /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F0C6F6D8EF854A81B1B2A2FD /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15A961AE0D3B4EEAA03461D5 /* Debug */,
+				CF4BAA932952477CA45C7395 /* Release */,
+				6F2BFAF4D6AC4A2194D582A3 /* MinSizeRel */,
+				3C7CB7D3F18A4EEFAC7ADE4A /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E5D29B3D98294AD6BAFB5ED7 /* Project object */;
+}

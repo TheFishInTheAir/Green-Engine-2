@@ -5,7 +5,7 @@
 
 namespace ge
 {
-
+ //TODO: IMPROVE AND 
 	void changeP(float** var, float* result)
 	{
 		*var = result;

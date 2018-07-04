@@ -2,6 +2,7 @@
 
 #include <ge/console/ConsoleIO.h>
 #include <ge/INFO.h>
+#include <cstdlib>
 
 namespace ge
 {
@@ -16,7 +17,7 @@ namespace ge
 
 		void msg(std::string tag, std::string t)
 		{
-			ConsoleIO::print("M  [" + tag + "]: " + t, MessageType::Message);
+			ConsoleIO::print("M  [" + tag + "]: " + t+'\n', MessageType::Message);
 		}
 
 
@@ -28,7 +29,7 @@ namespace ge
 
         void scc(std::string tag, std::string msg)
 		{
-			ConsoleIO::print("S  [" + tag + "]: " + msg, MessageType::Success);
+			ConsoleIO::print("S  [" + tag + "]: " + msg+'\n', MessageType::Success);
 		}
 
 
@@ -40,7 +41,7 @@ namespace ge
 
         void dbg(std::string tag, std::string msg)
 		{
-			ConsoleIO::print("D  [" + tag + "]: " + msg, MessageType::Debug);
+			ConsoleIO::print("D  [" + tag + "]: " + msg+'\n', MessageType::Debug);
 		}
 
 
@@ -52,7 +53,7 @@ namespace ge
 
         void wrn(std::string tag, std::string msg)
 		{
-			ConsoleIO::print("W  [" + tag + "]: " + msg, MessageType::Warning);
+			ConsoleIO::print("W  [" + tag + "]: " + msg+'\n', MessageType::Warning);
 		}
 
 
@@ -64,7 +65,7 @@ namespace ge
 
         void err(std::string tag, std::string msg)
 		{
-            ConsoleIO::print("E  [" + tag + "]: " + msg, MessageType::Error);
+            ConsoleIO::print("E  [" + tag + "]: " + msg+'\n', MessageType::Error);
 		}
 
 
@@ -76,8 +77,8 @@ namespace ge
 
 		void critErr(std::string tag, std::string msg) //TODO: get stack trace and stuff
         {
-            ConsoleIO::print("CE [" + tag + "]: " + msg, MessageType::Error);
-			std::exit(ERROR_EXIT_CODE);
+            ConsoleIO::print("CE [" + tag + "]: " + msg+'\n', MessageType::Error);
+            std::exit(ERROR_EXIT_CODE);
         }
 
 
@@ -89,7 +90,7 @@ namespace ge
 
 		void vrb(std::string tag, std::string msg)
         {
-            ConsoleIO::print("V  [" + tag + "]: " + msg, MessageType::Verbose);
+            ConsoleIO::print("V  [" + tag + "]: " + msg+'\n', MessageType::Verbose);
         }
 
 
@@ -101,7 +102,7 @@ namespace ge
 
 		void tVrb(std::string tag, std::string msg)
         {
-            ConsoleIO::print("TV [" + tag + "]: " + msg, MessageType::Turbo_Verbose);
+            ConsoleIO::print("TV [" + tag + "]: " + msg+'\n', MessageType::Turbo_Verbose);
         }
 
 	}

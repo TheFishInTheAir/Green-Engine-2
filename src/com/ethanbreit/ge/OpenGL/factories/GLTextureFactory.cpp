@@ -6,6 +6,7 @@
 #include <ge/graphics/abs/OpenGL/factories/GLTextureFactory.h>
 #include <ge/graphics/abs/OpenGL/types/GLTexture.h>
 #include <ge/graphics/abs/OpenGL/types/GLCubeMap.h>
+#include <ge/console/Log.h>
 
 #include <array>
 
@@ -13,6 +14,8 @@ namespace ge
 {
     namespace GL
     {
+        const std::string LOG_TAG = "GLTextureFactory";
+        
         unsigned int realCMT(ColourModelType::type cmt)
         {
             switch (cmt)
@@ -25,7 +28,7 @@ namespace ge
                     return GL_BGR;
                 case ColourModelType::ARGB:
                     //channels = GL_ARGB; TODO: Something maybe @?
-                    break;
+                    return 0;
                 case ColourModelType::RGBA:
                     return GL_RGBA;
                 case ColourModelType::ABGR:
@@ -33,7 +36,11 @@ namespace ge
                     return GL_ABGR_EXT;
                 case ColourModelType::BGRA:
                     return GL_BGRA;
+                default:
+                    Log::critErr(LOG_TAG, "Unknown Colour Model Enum.");
+                    return 0;
                 }
+            
         }
 
         Error TextureFactory::genTexture(Image img, ge::Texture ** outTex)

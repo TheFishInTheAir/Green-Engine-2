@@ -8,7 +8,7 @@
 
 namespace ge
 {
-    struct Uniform
+    struct Uniform //Deprecated @DEPRECATED
     {
         virtual void setData(float)             = 0;
         virtual void setData(glm::vec2)         = 0;

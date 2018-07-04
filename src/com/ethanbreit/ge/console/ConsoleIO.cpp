@@ -35,7 +35,6 @@ namespace ge
 
 			static std::string logPos = ResourceUtil::getResPath("../GREEN_ENGINE_LOG.txt");
 			static std::ofstream out_log(logPos);
-			static bool needsSetup = true;
 
 			out_log << m;
 

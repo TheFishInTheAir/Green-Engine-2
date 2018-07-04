@@ -114,7 +114,7 @@ namespace ge
 						ImageLoader::loadImage(cmap["zpos"], &zpos);
 						ImageLoader::loadImage(cmap["zneg"], &zneg);
 
-						scene.cubemaps.insert({ cmap["tag"],{ *xpos,*xneg, *ypos,*yneg, *zpos,*zneg } });
+						scene.cubemaps.insert({ cmap["tag"],{ {*xpos,*xneg, *ypos,*yneg, *zpos,*zneg} } }); //Weird thing Xcode suggested...
 
 					}else
 					{
@@ -163,18 +163,18 @@ namespace ge
 
 				ModelMat model;
 
-				model.scale.x = object["model"].count("scale_x") ? object["model"]["scale_x"] : 1;
-				model.scale.y = object["model"].count("scale_y") ? object["model"]["scale_y"] : 1;
-				model.scale.z = object["model"].count("scale_z") ? object["model"]["scale_z"] : 1;
+				model.scale.x = object["model"].count("scale_x") ? ((float)object["model"]["scale_x"]) : 1;
+				model.scale.y = object["model"].count("scale_y") ? ((float)object["model"]["scale_y"]) : 1;
+				model.scale.z = object["model"].count("scale_z") ? ((float)object["model"]["scale_z"]) : 1;
 
-				model.pos.x = object["model"].count("pos_x") ? object["model"]["pos_x"] : 0;
-				model.pos.y = object["model"].count("pos_y") ? object["model"]["pos_y"] : 0;
-				model.pos.z = object["model"].count("pos_z") ? object["model"]["pos_z"] : 0;
+				model.pos.x = object["model"].count("pos_x") ? ((float)object["model"]["pos_x"]) : 0;
+                model.pos.y = object["model"].count("pos_y") ? ((float)object["model"]["pos_y"]) : 0;
+				model.pos.z = object["model"].count("pos_z") ? ((float)object["model"]["pos_z"]) : 0;
 
-				model.rot.x = object["model"].count("rot_x") ? object["model"]["rot_x"] : 0;
-				model.rot.y = object["model"].count("rot_y") ? object["model"]["rot_y"] : 0;
-				model.rot.z = object["model"].count("rot_z") ? object["model"]["rot_z"] : 0;
-				model.rot.w = object["model"].count("rot_w") ? object["model"]["rot_w"] : 0;
+                model.rot.x = object["model"].count("rot_x") ? ((float)object["model"]["rot_x"]) : 0;
+                model.rot.y = object["model"].count("rot_y") ? ((float)object["model"]["rot_y"]) : 0;
+                model.rot.z = object["model"].count("rot_z") ? ((float)object["model"]["rot_z"]) : 0;
+                model.rot.w = object["model"].count("rot_w") ? ((float)object["model"]["rot_w"]) : 0;
 
 				if (object.count("uv_scale") != 0)
 				{

@@ -6,25 +6,27 @@
 
 namespace ge
 {
-	struct ComponentBatch //TODO: make abstract super class and make this default batch
+    //TODO: make abstract super class and make this default batch
+	struct ComponentBatch
 	{
-		std::vector<Component*> components;
+		virtual void cycle() = 0;
 
-
-		void cycle();
-
-
-		void softInsert(Component*);
-		void softRemove(Component*);
-
-		void hardInsert(Component*);
-		void hardRemove(Component*);
-
-	private:
-		typedef enum _action
-		{INSERT, REMOVE};
-		std::queue<std::pair<_action, Component*>> actionBuffer;
-
-		void performPendingActions();
+        virtual void setComponentType(std::string);
+        
+        virtual std::string getBatchType();
+        virtual std::string getComponentType();
+        
+		virtual void softInsert(Component*) = 0;
+		virtual void softRemove(Component*) = 0;
+        virtual void softRemove(uint32_t) = 0;
+        
+		virtual uint32_t hardInsert(Component*) = 0;
+		virtual void hardRemove(uint32_t) = 0;
+        
+    protected:
+        void setBatchType(std::string);
+        
+        std::string batchType       = "UNDEFINED";
+        std::string componentType   = "UNDEFINED";
 	};
 }

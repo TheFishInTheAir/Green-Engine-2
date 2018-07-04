@@ -8,7 +8,8 @@
 #include <string>
 
 //TODO: MAKE INLINE FUNCTION \/
-#define ge_REGISTER_RUNTIME_HANDLER ge::RuntimeManager::registerHandler(__cycleHandlerUUID(), __cycle);
+#define ge_REGISTER_RUNTIME_HANDLER                                 \
+ge::RuntimeManager::registerHandler(__cycleHandlerUUID(), __cycle);
 
 namespace ge
 {

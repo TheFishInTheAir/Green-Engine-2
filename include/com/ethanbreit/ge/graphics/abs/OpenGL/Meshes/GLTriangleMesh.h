@@ -18,8 +18,8 @@ namespace ge
     {
         struct TriangleMesh : ge::TriangleMesh
         {
-            GL::ShaderGroup* shaderGroup;
-            GL::IndexBuffer* indexBuffer;
+            GL::ShaderGroup* shaderGroup = nullptr;
+            GL::IndexBuffer* indexBuffer = nullptr;
 
 	        void startRender();
 
@@ -31,6 +31,8 @@ namespace ge
             void render();
 
             void rebuffer();
+            
+            bool isComplete();
 
             void setIndexBuffer(ge::IndexBuffer*);
             ge::IndexBuffer* getIndexBuffer();

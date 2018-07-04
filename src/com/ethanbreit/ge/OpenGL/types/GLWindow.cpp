@@ -26,7 +26,7 @@ namespace ge
 
         void glfwErrorCallback(int error, char* err)
         {
-            Log::critErr(LOG_TAG, "GLFW Error: "+std::string(err)+"\n");
+            Log::critErr(LOG_TAG, "GLFW Error: "+std::string(err));
         }
 
         void glfwResizeCallback(); /// TODO: implement @UNFINISHED
@@ -93,17 +93,17 @@ namespace ge
 			ge_DEBUG_TIMER_START
 
 
-            Log::msg(LOG_TAG, "Finding available Monitors:\n");
+            Log::msg(LOG_TAG, "Finding available Monitors:");
             int count;
             GLFWmonitor **monitors =glfwGetMonitors(&count);
             for(int i = 0; i<count; i++)
             {
                 Log::msg(LOG_TAG,
-                        std::string(glfwGetMonitorName(
+                        " - " + std::string(glfwGetMonitorName(
                                 *(monitors + i)
-                        )) + "\n");
+                        )));
             }
-            Log::msg(LOG_TAG, "Total of (" + std::to_string(count) + ") monitors found.\n");
+            Log::msg(LOG_TAG, "Total of (" + std::to_string(count) + ") monitors found.");
 
 			ge_DEBUG_TIMER_END("GLFW Monitor Test")
 
@@ -183,7 +183,7 @@ namespace ge
 
             glewExperimental= (GLboolean) true; /// Needed in core profile
             if (glewInit() != GLEW_OK) {
-                ge_Error_GENERATE("GLEW Failed to Initialize\n");
+                ge_Error_GENERATE("GLEW Failed to Initialize");
             }
 
 			ge_DEBUG_TIMER_END("GLEW Init (E not f)")

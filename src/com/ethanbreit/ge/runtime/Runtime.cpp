@@ -69,7 +69,7 @@ namespace ge
 		nextManage += managerDelta;
 
 
-        Log::msg(LOG_TAG, "Starting runtime \""+context->name+"\" at " + (context->cyclesPerSecond>0 ? std::to_string(context->cyclesPerSecond) : "unlocked")+" cycles per second.\n");
+        Log::scc(LOG_TAG, "Starting runtime \""+context->name+"\" at " + (context->cyclesPerSecond>0 ? std::to_string(context->cyclesPerSecond) : "unlocked")+" cycles per second.\n");
 
         while (context->shouldRun)
         {
@@ -158,17 +158,37 @@ namespace ge
 
     void Runtime::insertGroup(RuntimeGroup *group)
     {
-        groups.push_back(group);
+
+        if(group->runtimeId+1 > groups.capacity())
+        {
+            uint32_t lastCapacity = groups.capacity();
+            
+            groups.resize(group->runtimeId+1);
+            
+            //Set all undefined groups to nullptr
+            for(uint32_t i = lastCapacity; i < groups.capacity()-1; i++)
+            {
+                groups[i] = nullptr;
+            }
+        }
+        groups[group->runtimeId] = group;
     }
 
+    //DEPRECATED @DEPRECATED
     void Runtime::insertGroup(RuntimeGroup *group, uint32_t index)
     {
+        Log::critErr(LOG_TAG, "Runtime::insertGroup(RuntimeGroup*, uint32_t) is now deprecated.");
         if(index+1 > groups.size())
         {
             groups.resize(index+1);
         }
         groups[index] = group;
 
+    }
+    
+    RuntimeGroup* Runtime::getGroup(uint32_t pos)
+    {
+        return groups.at(pos);
     }
 
 	std::string Runtime::getName()
@@ -203,6 +223,8 @@ namespace ge
 
         for (int i = 0; i < groups.size(); ++i)
         {
+            if(groups[i]==nullptr)
+                continue;
             groups[i]->cycle();
         }
     }

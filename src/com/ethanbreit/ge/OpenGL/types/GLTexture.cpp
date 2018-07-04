@@ -2,7 +2,7 @@
 // Created by Ethan Breit on 2017-08-16.
 //
 
-#pragma once
+
 #include <GL/glew.h>
 #include <ge/graphics/abs/OpenGL/types/GLTexture.h>
 #include <ge/memory/GlobalMemory.h>

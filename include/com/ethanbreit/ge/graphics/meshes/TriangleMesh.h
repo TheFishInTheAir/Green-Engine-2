@@ -15,7 +15,7 @@
 namespace ge
 {
 
-	struct TriangleMesh
+	struct TriangleMesh //TODO: @REFACTOR to Mesh.  We only support triangle meshes.
     {
         virtual void render() = 0;
         virtual ~TriangleMesh(){};
@@ -29,15 +29,16 @@ namespace ge
         virtual void setIndexBuffer(ge::IndexBuffer*) = 0;
         virtual ge::IndexBuffer* getIndexBuffer() = 0;
 
+        virtual bool isComplete() = 0;
 
         virtual void registerUniform(std::string) = 0;
         virtual void registerVertexBuffer(std::string, ge::VertexBuffer*) = 0;
         virtual void registerTexture(ge::Texture*, unsigned int) = 0;
 		virtual void registerCubeMap(ge::CubeMap*, unsigned int)  = 0;
 
-        virtual ge::Uniform* getUniform(std::string) = 0;
+        virtual ge::Uniform* getUniform(std::string) = 0; //Deprecated @DEPRECATED TODO: Deprecate
         virtual ge::VertexBuffer* getVertexBuffer(std::string) = 0;
 
-
+//        virtual void setUniform(std::string, , void*) = 0; TODO: IMPLEMENT IT WORKS REALLY WELL DOING IT THIS WAY. The Uniforms in GELite were super good
     };
 }

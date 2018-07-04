@@ -64,7 +64,16 @@ namespace ge
 			}
 		}
 
-
+        bool TriangleMesh::isComplete()
+        {
+            if (shaderGroup==nullptr)
+                return false;
+            if(indexBuffer==nullptr)
+                return false;
+            if(_vertexBuffers.size()==0)
+                return false;
+                return true;
+        }
 
 		void TriangleMesh::registerUniform(std::string name)
 		{
@@ -104,7 +113,7 @@ namespace ge
 		{
 			for (auto u : _uniforms)
 			{
-				delete u.second;
+				free(u.second);
 			}
 
 			glDeleteVertexArrays(1, &_vao);
