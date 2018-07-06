@@ -2,6 +2,8 @@
 #include <ge/engine/types/ModelMat.h>
 #include <ge/engine/empty_types/EmptyStaticObject.h>
 
+#include <ge/entity/Entity.h>
+
 #include <engine/global_settings.pre>
 #include <ge/graphics/meshes/TriangleMesh.h>
 #include <memory>
@@ -14,7 +16,15 @@
 
 namespace ge
 {
+
 	struct Scene;
+
+	Entity* genStaticObject(Empty::StaticObject);
+
+	//Everything below is pre 2.2 and is @DEPRECATED
+
+
+
 
 	struct StaticObject
 	{

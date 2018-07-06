@@ -7,6 +7,10 @@
 #include <ge/util/ResourceUtil.h>
 #include <ge/graphics/GraphicsCore.h>
 #include <ge/util/PreprocessorUtil.h>
+#include <ge/entity/EntityManager.h>
+#include <ge/entity/component/Component.h>
+#include <ge/entity/component/components/MeshRendererComponent.h>
+#include <ge/entity/component/ComponentManager.h>
 
 namespace ge
 {
@@ -212,5 +216,17 @@ namespace ge
 	}
 
 
+
+	Entity * genStaticObject(Empty::StaticObject so)
+	{
+		Entity* ent = new Entity();
+
+		MeshRendererComponent *mrc = new MeshRendererComponent(ent);
+
+		mrc->mesh->registerTexture(so.albedo, ALBEDO_REF);
+
+		EntityManager::registerEntity(ent); //Maybe don't do
+		return ent;
+	}
 
 }

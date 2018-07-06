@@ -22,7 +22,11 @@ namespace ge
 	struct Scene
     {
 
+		static Scene* currentScene = nullptr;
+
 		void loadScene(Empty::Scene);
+
+		void instantiateScene();
 
 		static void init();
 

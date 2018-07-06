@@ -118,6 +118,9 @@ namespace ge
 				ConsoleIO::print("Incorrect SkyBox Name", MessageType::Error);
 			}
 
+			//Do not use Gloa
+
+			/*
 			if (GlobalMemory::exists(MSTR(CURRENT_SKYBOX)))
 			{
 				SkyBox* sb = GlobalMemory::get(MSTR(CURRENT_SKYBOX)).getRawData<SkyBox>();
@@ -129,19 +132,24 @@ namespace ge
 			else
 			{
 				GlobalMemory::insert(MSTR(CURRENT_SKYBOX), { new SkyBox(cubemaps.find(s.skybox)->second.get()),ReadableMemType::OTHER });
-			}
+			}*/
 		}
 
-
-		std::forward_list<StaticObject*>* objsTemp = GlobalMemory::get(MSTR(GE_ENTITES_GM)).getRawData<std::forward_list<StaticObject*>>();
+		std::forward_list<StaticObject*>* objsTemp = GlobalMemory::get(MSTR(GE_ENTITES_GM)).getRawData<std::forward_list<StaticObject*>>(); //TODO: Remove this
 
 		//Initialise Static Objects
 
-		for(Empty::StaticObject staticObjectE : s.staticObjects)
+		for (Empty::StaticObject staticObjectE : s.staticObjects)
 		{
 			objsTemp->push_front(new StaticObject(staticObjectE));
 
 		}
+
+	}
+
+	void Scene::instantiateScene()
+	{
+
 
 	}
 

@@ -6,6 +6,11 @@ namespace ge
     {
         mesh = GraphicsCore::ctx->meshFactory->newTriangleMesh();
     }
+
+	void MeshRendererComponent::defaultInit()
+	{
+		//TODO: Make this good
+	}
     
     void MeshRendererComponent::insertToDefaultBatch()
     {

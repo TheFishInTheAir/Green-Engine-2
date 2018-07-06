@@ -16,7 +16,7 @@ namespace ge
         virtual ComponentBatch* getBatch();
         virtual void setBatch(ComponentBatch*);
         
-        virtual void defaultInit() = 0;
+        virtual void defaultInit() = 0; //I haven't needed to use it yet, maybe remove it? TODO: UPDATE
         virtual void insertToDefaultBatch() = 0;
         
 		virtual void cycle() = 0;
