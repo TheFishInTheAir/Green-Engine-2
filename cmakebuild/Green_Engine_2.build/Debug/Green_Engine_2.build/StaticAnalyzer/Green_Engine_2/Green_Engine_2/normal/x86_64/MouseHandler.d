@@ -1,0 +1,21 @@
+dependencies: \
+  /Users/garthbreit/Desktop/Green-Engine-2/src/com/ethanbreit/ge/input/MouseHandler.cpp \
+  /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/input/MouseHandler.h \
+  /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/graphics/types/Window.h \
+  /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/error/Error.h \
+  /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/util/PreprocessorUtil.h \
+  /Users/garthbreit/Desktop/Green-Engine-2/libs/headers/glm/vec3.hpp \
+  /Users/garthbreit/Desktop/Green-Engine-2/libs/headers/glm/detail/setup.hpp \
+  /Users/garthbreit/Desktop/Green-Engine-2/libs/headers/glm/detail/../simd/platform.h \
+  /Users/garthbreit/Desktop/Green-Engine-2/libs/headers/glm/detail/type_vec3.hpp \
+  /Users/garthbreit/Desktop/Green-Engine-2/libs/headers/glm/detail/type_vec.hpp \
+  /Users/garthbreit/Desktop/Green-Engine-2/libs/headers/glm/detail/qualifier.hpp \
+  /Users/garthbreit/Desktop/Green-Engine-2/libs/headers/glm/detail/type_int.hpp \
+  /Users/garthbreit/Desktop/Green-Engine-2/libs/headers/glm/detail/compute_vector_relational.hpp \
+  /Users/garthbreit/Desktop/Green-Engine-2/libs/headers/glm/detail/type_vec3.inl \
+  /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/runtime/Runtime.h \
+  /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/runtime/RuntimeManager.h \
+  /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/runtime/RuntimeGroup.h \
+  /Users/garthbreit/Libraries/glfw-3.2.1/include/GLFW/glfw3.h \
+  /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/console/ConsoleIO.h \
+  /Users/garthbreit/Desktop/Green-Engine-2/include/com/ethanbreit/ge/console/enum/MessageType.h

@@ -1,8 +1,16 @@
 {
-	"u":
-	[
-		"mvp_vp"
-	],
 	"vertex":"engine/defaults/skybox/skybox.vert",
-	"fragment":"engine/defaults/skybox/skybox.frag"
+	"fragment":"engine/defaults/skybox/skybox.frag",
+
+    "uniforms":
+    [
+        {
+            "name":"MVP_VP",
+            "type":"mat4"
+        },
+        {
+            "name":"CUBEMAP_0",
+            "type":"int"
+        }
+    ]
 }

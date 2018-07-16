@@ -188,8 +188,8 @@ namespace ge
 			}
 			else
 			{
-				mvp_u->setData(camera->vp * model);
-				colour_u->setData(colour);
+				/*mvp_u->setData(camera->vp * model);
+				colour_u->setData(colour);*/
 
 				mesh->render();
 			}

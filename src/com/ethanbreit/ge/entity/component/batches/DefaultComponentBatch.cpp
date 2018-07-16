@@ -20,7 +20,8 @@ namespace ge
         
         for(Component* component : components)
         {
-            component->cycle();
+            if(component!=nullptr)
+                component->cycle();
         }
     }
     
@@ -75,7 +76,7 @@ namespace ge
                 case INSERT: 
                     hardInsert(actionBuffer.front().second);
                     break;
-                case REMOVE: 
+                case REMOVE:
                     hardRemove(actionBuffer.front().second->batchId);
                     break;
             }

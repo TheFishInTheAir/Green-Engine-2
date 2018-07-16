@@ -123,7 +123,6 @@ namespace ge
             glfwWindowHint(GLFW_MAXIMIZED, true);
 
 
-
 			ge_DEBUG_TIMER_END("GLFW Window Hinted")
 
 
@@ -192,7 +191,7 @@ namespace ge
 			ge::GL::registerFeatures(&((*core).supportedFeatures));
 
 
-
+            
 
             /**
              *
@@ -206,6 +205,7 @@ namespace ge
                 _clearMask |= GL_DEPTH_BUFFER_BIT;
             }
 
+            glfwSwapInterval(0); //V-SYNC
 
             glfwSetCursorPos(_window,0,0);
 
@@ -214,7 +214,7 @@ namespace ge
 			 * Release Context
 			 *
 			 */
-			glfwMakeContextCurrent(nullptr);
+			glfwMakeContextCurrent(_window);
 
             return Error();
         }
@@ -261,7 +261,8 @@ namespace ge
 
         void Window::makeCurrentThread(Runtime* r)
         {
-			GlobalMemory::insert("ge_render_context_runtime", GlobalMemory::MemItem(r, ReadableMemType::OTHER));
+            
+//			GlobalMemory::insert("ge_render_context_runtime", GlobalMemory::MemItem(r, ReadableMemType::OTHER));
             glfwMakeContextCurrent(_window);
         }
 

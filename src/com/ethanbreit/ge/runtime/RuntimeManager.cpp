@@ -58,7 +58,7 @@ namespace ge
                 {
 					if (i->uuid == uuid) /// If handler has already been registered, return.
 					{
-						ConsoleIO::print("Attempt to register already registered runtime reference.\n", MessageType::Warning);
+						//ConsoleIO::print("Attempt to register already registered runtime reference.\n", MessageType::Warning);
 						return;
 					}
                 }

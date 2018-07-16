@@ -35,10 +35,14 @@ namespace ge
         virtual void registerVertexBuffer(std::string, ge::VertexBuffer*) = 0;
         virtual void registerTexture(ge::Texture*, unsigned int) = 0;
 		virtual void registerCubeMap(ge::CubeMap*, unsigned int)  = 0;
+        
+        virtual bool containsUniform(std::string) = 0;
+        
+        virtual std::vector<ge::Texture*> getTextures() = 0;
 
         virtual ge::Uniform* getUniform(std::string) = 0; //Deprecated @DEPRECATED TODO: Deprecate
         virtual ge::VertexBuffer* getVertexBuffer(std::string) = 0;
 
-//        virtual void setUniform(std::string, , void*) = 0; TODO: IMPLEMENT IT WORKS REALLY WELL DOING IT THIS WAY. The Uniforms in GELite were super good
+        virtual void setUniform(std::string, ge::Uniform::UniformContent) = 0;// TODO: IMPLEMENT IT WORKS REALLY WELL DOING IT THIS WAY. The Uniforms in GELite were super good
     };
 }

@@ -32,6 +32,8 @@ namespace ge
 			*out = new Image();
 			(*out)->width = width;
 			(*out)->height = height;
+            
+            (*out)->url = path;
 
 			(*out)->data = data;
 			if (nrChannels == 3)
@@ -66,7 +68,9 @@ namespace ge
 			Image *out = new Image();
 			(out)->width = width;
 			(out)->height = height;
-
+            
+            out->url = path;
+            
 			(out)->data = data;
 			if (nrChannels == 3)
 				(out)->model = ColourModelType::RGB;

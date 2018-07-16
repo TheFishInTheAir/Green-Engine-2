@@ -5,6 +5,7 @@
 
 namespace ge
 {
+    Camera* Camera::displayCamera = nullptr;
 
     void Camera::update()
     {

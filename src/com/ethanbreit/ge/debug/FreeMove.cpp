@@ -32,7 +32,7 @@ namespace ge
 
         glm::vec3 up = glm::cross( right, direction );
 
-
+        
 
         if(KeyboardHandler::keyDown(KeyboardKey::W))
         {

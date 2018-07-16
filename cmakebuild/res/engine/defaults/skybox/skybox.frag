@@ -2,7 +2,7 @@
 
 #define FRAGMENT
 
-#pragma include <ge/engine/global_settings.pre>
+#pragma include <engine/global_settings.pre>
 
 out vec4 outColour;
 

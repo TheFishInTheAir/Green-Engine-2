@@ -11,6 +11,8 @@ namespace ge
     struct Image
     {
 
+        std::string url;
+        
         ColourModelType::type model;
 
         int width, height;

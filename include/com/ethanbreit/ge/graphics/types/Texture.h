@@ -12,6 +12,9 @@ namespace ge
 {
     struct Texture
     {
+        //NOTE: we should maybe have a thing here for the name/url
+        std::string url;
+        
         int getWidth() const;
         int getHeight() const;
 

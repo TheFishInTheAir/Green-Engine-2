@@ -13,5 +13,9 @@ namespace ge
         void cycle();
         void destroy();
         std::string getTypeName();
+        
+    private:
+        int i = 0;
+        
     };
 }

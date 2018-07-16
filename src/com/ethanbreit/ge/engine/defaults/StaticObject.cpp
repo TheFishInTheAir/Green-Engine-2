@@ -9,9 +9,11 @@
 #include <ge/util/PreprocessorUtil.h>
 #include <ge/entity/EntityManager.h>
 #include <ge/entity/component/Component.h>
+#include <ge/entity/component/components/TransformComponent.h>
 #include <ge/entity/component/components/MeshRendererComponent.h>
 #include <ge/entity/component/ComponentManager.h>
-
+#include <ge/console/Log.h>
+#include <ge/graphics/abs/OpenGL/types/GLShaderGroup.h>
 namespace ge
 {
 	GraphicsCore* StaticObject::_gCore;
@@ -78,7 +80,7 @@ namespace ge
 	void StaticObject::render()
 	{
 		t += 0.01f;
-		u_vp->setData((currentCamera->vp));
+		/*u_vp->setData((currentCamera->vp));
 		u_model->setData(model.getMat());
 
 		u_camPos->setData(currentCamera->pos);
@@ -90,7 +92,7 @@ namespace ge
 			u_testlight_col->setData(testlight->colour);
 			u_albedo->setData(0);
 			u_specular->setData(1);
-		}
+		}*/
 		mesh->render();
 	}
 
@@ -210,22 +212,51 @@ namespace ge
 	//TEST
 	void StaticObject::initTest()
 	{
-		
-	    
 
 	}
 
 
 
-	Entity * genStaticObject(Empty::StaticObject so)
+    Entity * StandardEntGen::genStaticObject(Empty::StaticObject so)
 	{
 		Entity* ent = new Entity();
 
-		MeshRendererComponent *mrc = new MeshRendererComponent(ent);
+        TransformComponent *tc     = new TransformComponent(ent);
+		MeshRendererComponent *mrc = new MeshRendererComponent(ent,
+                                                  GraphicsCore::ctx->meshFactory->newTriangleMesh(
+                                                  *Scene::currentScene->meshes.find(so.mesh)->second.get()));
 
-		mrc->mesh->registerTexture(so.albedo, ALBEDO_REF);
+        
+        //TODO: put this code into the Triangle Mesh Factory
+        mrc->mesh->setShaderGroup(Scene::currentScene->shaderGroups.find(so.custom_shader)->second.get()); //TODO: make custom_shader just shader
+        mrc->mesh->rebuffer();
+        
+        //MESH
+        Scene::currentScene->textures.at(so.albedo).get()->setFiltering(TextureFilterType::Anisotropic_16x);
 
-		EntityManager::registerEntity(ent); //Maybe don't do
+        mrc->mesh->registerTexture(Scene::currentScene->textures.at(so.albedo).get(), ALBEDO_LOC);
+        mrc->mesh->registerTexture(Scene::currentScene->textures.at(so.specular).get(), SPECULAR_LOC);
+        
+        
+
+        
+        mrc->mesh->setUniform(DBL_STRINGIFY(ALBEDO_REF), Uniform::UniformContent(ALBEDO_LOC)); //TODO: don't do this, memory leak...
+
+        //TRANSFORM
+        tc->setPosition(so.model.pos);
+        tc->setScale(so.model.scale);
+        tc->setRotation(so.model.rot);
+        
+        //NOTE: not good
+        EntityManager::registerEntity(ent); //Maybe don't do, but we are still doing a component init.
+        ent->insertComponent(tc);
+        ent->insertComponent(mrc);
+        
+        Log::dbg("TEST: "+std::to_string(so.model.pos.y)+", "+so.mesh+", "+Scene::currentScene->textures.at(so.albedo).get()->url);
+        
+        tc->insertToDefaultBatch();
+        mrc->insertToDefaultBatch();
+        
 		return ent;
 	}
 

@@ -5,20 +5,59 @@
 
 #include <ge/graphics/abs/OpenGL/Meshes/GLTriangleMesh.h>
 #include <ge/memory/GlobalMemory.h>
-#include <ge/console/ConsoleIO.h>
+#include <ge/console/Log.h>
 #include <iostream>
 
 namespace ge
 {
 	namespace GL
 	{
-
+        const std::string LOG_TAG = "GLTriangleMesh";
+        
+        void TriangleMesh::applyUniform(ge::Uniform u)
+        {
+            switch(u.getUniformType())
+            {
+                case ge::Uniform::FLOAT:
+                    glUniform1f(u.descriptorId, u.fv1);
+                    break;
+                case ge::Uniform::INT:
+                    glUniform1i(u.descriptorId, u.iv1);
+                    break;
+                case ge::Uniform::FVEC2:
+                    glUniform2f(u.descriptorId, u.fv2.x, u.fv2.y);
+                    break;
+                case ge::Uniform::FVEC3:
+                    glUniform3f(u.descriptorId, u.fv3.x, u.fv3.y, u.fv3.z);
+                    break;
+                case ge::Uniform::FVEC4:
+                    glUniform4f(u.descriptorId, u.fv4.x, u.fv4.y, u.fv4.z, u.fv4.w);
+                    break;
+                case ge::Uniform::MAT2:
+                    glUniformMatrix2fv(u.descriptorId, 1,GL_FALSE, &u.fm2[0][0]);
+                    break;
+                case ge::Uniform::MAT3:
+                    glUniformMatrix3fv(u.descriptorId, 1,GL_FALSE, &u.fm3[0][0]);
+                    break;
+                case ge::Uniform::MAT4:
+                    glUniformMatrix4fv(u.descriptorId, 1,GL_FALSE, &u.fm4[0][0]);
+                    break;
+            }
+        }
+        
 		void  TriangleMesh::render()
 		{
+            glDisable(GL_CULL_FACE); //TODO: COMMENT OUT
 			startRender();
-			glBindVertexArray(_vao);
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer->id);
 
+			glBindVertexArray(_vao);
+            
+            for(auto u : shaderGroup->uniforms)
+            {
+                applyUniform(u.second);
+            }
+            
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer->id);
 			for (auto tex : _textures)
 			{
 				//TODO: Check if Texture is already loaded (BATCHING) @UNFINISHED
@@ -77,17 +116,55 @@ namespace ge
 
 		void TriangleMesh::registerUniform(std::string name)
 		{
-			ge::GL::Uniform* uniform = new GL::Uniform;
+			/*//ge::GL::Uniform* uniform = new GL::Uniform;
 			uniform->parentMesh = this;
 			uniform->identifier = name;
 			uniform->id = glGetUniformLocation(shaderGroup->programID, name.c_str());
-			_uniforms.insert({ name, uniform });
+			_uniforms.insert({ name, uniform });*/
 		}
 
 		ge::Uniform* TriangleMesh::getUniform(std::string s)
 		{
 			return _uniforms.find(s)->second;
 		}
+        
+        void TriangleMesh::setUniform(std::string s, ge::Uniform::UniformContent value)
+        {
+            if(shaderGroup->uniforms.count(s))
+            {
+                switch(shaderGroup->uniforms.at(s).getUniformType())
+                {
+                    case ge::Uniform::FLOAT:
+                        shaderGroup->uniforms.at(s).fv1 = value.fv1;
+                        break;
+                    case ge::Uniform::INT:
+                        shaderGroup->uniforms.at(s).iv1 = value.iv1;
+                        break;
+                    case ge::Uniform::FVEC2:
+                        shaderGroup->uniforms.at(s).fv2 = value.fv2;
+                        break;
+                    case ge::Uniform::FVEC3:
+                        shaderGroup->uniforms.at(s).fv3 = value.fv3;
+                        break;
+                    case ge::Uniform::FVEC4:
+                        shaderGroup->uniforms.at(s).fv4 = value.fv4;
+                        break;
+                    case ge::Uniform::MAT2:
+                        shaderGroup->uniforms.at(s).fm2 = value.fm2;
+                        break;
+                    case ge::Uniform::MAT3:
+                        shaderGroup->uniforms.at(s).fm3 = value.fm3;
+                        break;
+                    case ge::Uniform::MAT4:
+                        shaderGroup->uniforms.at(s).fm4 = value.fm4;
+                        break;
+                }
+            }
+            else
+            {
+                Log::err("Uniform '"+s+"' is not available in Current Program.");
+            }
+        }
 
 		ge::VertexBuffer* TriangleMesh::getVertexBuffer(std::string s)
 		{
@@ -102,7 +179,19 @@ namespace ge
 		void TriangleMesh::setShaderGroup(ge::ShaderGroup* sg)
 		{
 			shaderGroup = (GL::ShaderGroup *) sg;
+            
+            //NOTE: THIS SHOULD NOT BE HERE
+            for(auto key : shaderGroup->uniforms)
+            {
+                shaderGroup->uniforms.at(key.first).descriptorId = glGetUniformLocation(shaderGroup->programID, key.first.c_str());
+            }
 		}
+        
+        bool TriangleMesh::containsUniform(std::string u)
+        {
+            return (bool) shaderGroup->uniforms.count(u);
+        }
+
 
 		ge::ShaderGroup* TriangleMesh::getShaderGroup()
 		{
@@ -122,9 +211,7 @@ namespace ge
 
 		TriangleMesh::TriangleMesh()
 		{
-			ConsoleIO::print(std::to_string(_vao) + std::string("\n"));
 			glGenVertexArrays(1, &_vao);
-			ConsoleIO::print(std::to_string(_vao) + std::string("\n"));
 		}
 
 
@@ -147,10 +234,16 @@ namespace ge
 			}
 			else
 			{
-				ConsoleIO::print("GL: texture unit ID(" + std::to_string(unitId) + ") exceeds maximum(" + std::to_string(GlobalMemory::get("ge_max_texture_units").getData<int>()) + ")!", MessageType::Error);
+                Log::critErr(LOG_TAG, "GL: texture unit ID(" + std::to_string(unitId) + ") exceeds maximum(" + std::to_string(GlobalMemory::get("ge_max_texture_units").getData<int>()) + ")!");
 			}
         }
-
+        std::vector<ge::Texture*> TriangleMesh::getTextures()
+        {
+            std::vector<ge::Texture*> outTexs;
+            for(auto t : _textures)
+                outTexs.push_back((ge::Texture*)t.second);
+            return outTexs;
+        }
 		void TriangleMesh::registerCubeMap(ge::CubeMap* cMap, unsigned int unitId)
         {
 			if (unitId <= GlobalMemory::get("ge_max_texture_units").getData<int>())
@@ -159,7 +252,7 @@ namespace ge
 			}
 			else
 			{
-				ConsoleIO::print("GL: texture unit ID(" + std::to_string(unitId) + ") exceeds maximum(" + std::to_string(GlobalMemory::get("ge_max_texture_units").getData<int>()) + ")!", MessageType::Error);
+				Log::critErr(LOG_TAG, "GL: texture unit ID(" + std::to_string(unitId) + ") exceeds maximum(" + std::to_string(GlobalMemory::get("ge_max_texture_units").getData<int>()) + ")!");
 			}
         }
 
@@ -168,9 +261,7 @@ namespace ge
 			if (!isRendering)
 			{
 				isRendering = true;
-
 				glUseProgram(shaderGroup->programID);
-
 			}
 	    }
     }

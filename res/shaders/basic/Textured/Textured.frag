@@ -3,7 +3,7 @@
 #define FRAGMENT
 
 #define NO_UNIFORMS //TODO: finish uniform work.
-#pragma include <ge/engine/shader/lighting/lights.glsl>
+#pragma include <engine/shader/lighting/lights.glsl>
 
 
 out vec4 colour;

@@ -4,6 +4,7 @@
 
 #include <ge/graphics/abs/OpenGL/Meshes/GLTriangleMesh.h>
 #include <ge/graphics/abs/OpenGL/factories/GLMeshFactory.h>
+#include <ge/console/Log.h>
 #include <cstring>
 
 namespace ge
@@ -16,6 +17,7 @@ namespace ge
         }
 		ge::TriangleMesh* MeshFactory::newTriangleMesh(Empty::MeshData m)
 		{
+
 			ge::TriangleMesh* tm = new GL::TriangleMesh();
 
 			if (m.hasShaderGroup)
@@ -62,7 +64,6 @@ namespace ge
 
 				}
 			}
-
 
 			return tm;
 

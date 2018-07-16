@@ -2,10 +2,13 @@
 #include <ge/console/Log.h>
 #include <ge/entity/component/ComponentManager.h>
 #include <ge/entity/component/batches/DefaultComponentBatch.h>
+#include <ge/entity/EntityManager.h>
 #include <string>
 
 namespace ge
 {
+
+    
     const std::string LOG_TAG = "TestCopmonent";
     
     void TestComponent::defaultInit()
@@ -28,12 +31,22 @@ namespace ge
     
     void TestComponent::cycle()
     {
-        Log::dbg(LOG_TAG, "Update");
+        /*if(i==25)
+        {
+            
+            destroy();
+            return;
+        }
+        i++;
+        Log::dbg(LOG_TAG, "Update: " + std::to_string(i));*/
+        
     }
     
     void TestComponent::destroy()
     {
         Log::dbg(LOG_TAG, "Destroy");
+        getBatch()->softRemove(this); //add this to the Copmonent Batch's gc removal queue
+
     }
     
     std::string TestComponent::getTypeName()

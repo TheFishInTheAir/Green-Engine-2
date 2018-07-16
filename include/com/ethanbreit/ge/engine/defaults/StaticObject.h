@@ -18,9 +18,10 @@ namespace ge
 {
 
 	struct Scene;
-
-	Entity* genStaticObject(Empty::StaticObject);
-
+    namespace StandardEntGen
+    {
+        Entity* genStaticObject(Empty::StaticObject);
+    }
 	//Everything below is pre 2.2 and is @DEPRECATED
 
 

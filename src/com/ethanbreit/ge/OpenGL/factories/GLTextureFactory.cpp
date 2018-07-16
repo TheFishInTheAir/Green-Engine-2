@@ -53,7 +53,7 @@ namespace ge
 			bool hasChannelDisconnect = false;
             channels = realCMT(img.model);
             glTexImage2D(GL_TEXTURE_2D, 0, hasChannelDisconnect ? coreChannel : channels, img.width, img.height, 0, channels, GL_UNSIGNED_BYTE, img.data);
-
+            glTex->url = img.url;
 			*outTex = glTex;
             return ge::Error();
         }

@@ -48,11 +48,19 @@ namespace ge
 
 			void registerCubeMap(ge::CubeMap*, unsigned int);
 
+            std::vector<ge::Texture*> getTextures();
+            
             ge::Uniform* getUniform(std::string);
+            
+            void setUniform(std::string, ge::Uniform::UniformContent);
+            
+            bool containsUniform(std::string);
 
             ge::VertexBuffer *getVertexBuffer(std::string);
         private:
-
+            
+            void applyUniform(ge::Uniform);
+            
             unsigned int _vao;
 
             std::map<unsigned int, ge::GL::Texture*> _textures;

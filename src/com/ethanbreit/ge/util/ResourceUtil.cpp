@@ -1,10 +1,19 @@
 #include <ge/util/ResourceUtil.h>
 #include <ge/console/ConsoleIO.h>
 
+#define DEV
+
 #ifndef GE_RES_PATH
 //#define GE_RES_PATH "../res/"
-#define GE_RES_PATH   "C:/Users/Ethan Breit/CMakeBuilds/7f623dd2-acf9-3a38-a2a7-973bf10a64cd/build/x64-Debug/res/"
+    #ifdef DEV
+        #ifdef WIN32
+            #define GE_RES_PATH   "C:/Users/Ethan Breit/CMakeBuilds/7f623dd2-acf9-3a38-a2a7-973bf10a64cd/build/x64-Debug/res/" //TODO: MAKE PORTABLE
+        #else
+            #define GE_RES_PATH    "/Users/garthbreit/Desktop/Green-Engine-2/res/" //TODO: MAKE PORTABLE
+        #endif
+    #endif
 #endif
+
 namespace ge
 {
 

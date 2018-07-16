@@ -111,8 +111,8 @@ namespace ge
 		//TEMP GL
 		glDepthFunc(GL_LEQUAL);
 
-		u_vp->setData(currentCamera->proj * glm::mat4(glm::mat3(currentCamera->view)));
- 		u_cubemap->setData(0);
+		/*u_vp->setData(currentCamera->proj * glm::mat4(glm::mat3(currentCamera->view)));
+ 		u_cubemap->setData(0);*/
 
 		mesh->render();
 

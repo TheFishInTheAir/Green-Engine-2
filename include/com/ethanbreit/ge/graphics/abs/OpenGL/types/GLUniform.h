@@ -13,6 +13,7 @@ namespace ge
 {
     namespace GL
     {
+        //Don't use anymore TODO: @DEPRECATED
         struct Uniform : ge::Uniform
         {
             std::string identifier;

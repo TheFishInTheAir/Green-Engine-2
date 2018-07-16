@@ -13,7 +13,9 @@ namespace ge
     {
         components.insert({cmp->getTypeName(), cmp});
     }
+    
 
+    
 	void Entity::destroy()
 	{
 		//TODO: IMPLEMENT

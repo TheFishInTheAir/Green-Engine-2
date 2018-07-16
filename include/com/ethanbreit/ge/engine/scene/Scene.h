@@ -22,13 +22,11 @@ namespace ge
 	struct Scene
     {
 
-		static Scene* currentScene = nullptr;
+        static Scene* currentScene;
 
 		void loadScene(Empty::Scene);
 
 		void instantiateScene();
-
-		static void init();
 
 		//Contains:
     	/*
@@ -48,10 +46,10 @@ namespace ge
 		std::unordered_map<std::string, std::shared_ptr<ge::Empty::MeshData>>	meshes;
 		std::unordered_map<std::string, std::shared_ptr<ge::ShaderGroup>>		shaderGroups;
 		std::unordered_map<std::string, std::shared_ptr<ge::Shader>>			shaders;
-
-
-		std::forward_list<void*>											SuperSketchyEntityHandler; //Should fix this I think I might of actually...
-
+        
+		std::forward_list<Entity*>                                          uninstantiatedEntities; //Should fix this
+        
+        Entity* skybox;
 		
 
 		//TODO: create light class/struct @UNFINISHED

@@ -1,6 +1,8 @@
 #include <ge/entity/component/components/TransformComponent.h>
 #include <ge/entity/component/ComponentManager.h>
 #include <ge/entity/component/batches/DefaultComponentBatch.h>
+#include <ge/graphics/Camera.h>
+#include <ge/console/Log.h>
 
 
 namespace ge
@@ -23,10 +25,15 @@ namespace ge
         ComponentManager::getComponentBatch("DefaultComponentBatch", getTypeName())->softInsert(this);
 
     }
-    
+
     void TransformComponent::destroy()
     {
         
+    }
+    
+    void TransformComponent::reCalc()
+    {
+        shouldUpdate=true;
     }
     
     void TransformComponent::cycle()
@@ -34,29 +41,33 @@ namespace ge
         if(shouldUpdate)
         {
             shouldUpdate=false;
-            model = glm::mat4(1); // I think this is an identity matrix
-            glm::translate(model, pos);
+            model = glm::translate(glm::mat4(1), pos);
             model *= glm::toMat4(rot);
-            model *= glm::scale(model, scale);
+            model = glm::scale(model, scale);
+
+            if(Camera::displayCamera==nullptr)
+                mvp = model;
+            else
+                mvp = Camera::displayCamera->vp * model;
         }
     }
     
     void TransformComponent::setPosition(glm::vec3 v)
     {
-        shouldUpdate = true;
         pos = v;
+        shouldUpdate = true;
     }
     
     void TransformComponent::setScale(glm::vec3 v)
     {
-        shouldUpdate = true;
         scale = v;
+        shouldUpdate = true;
     }
     
     void TransformComponent::setRotation(glm::quat q)
     {
-        shouldUpdate = true;
         rot = q;
+        shouldUpdate = true;
     }
     
     glm::vec3 TransformComponent::getPosition()
@@ -76,7 +87,45 @@ namespace ge
     {
         return model;
     }
+    
+    glm::mat4 TransformComponent::getMVP()
+    {
+        if(Camera::displayCamera==nullptr)
+            mvp = model;
+        else
+            mvp = Camera::displayCamera->vp * model;
+        return mvp;
+    }
 
+    
+    //All below are deprecated
+    glm::vec3* TransformComponent::getUPosition()
+    {
+        return &pos;
+    }
+    glm::vec3* TransformComponent::getUScale()
+    {
+        return &scale;
+    }
+    glm::quat* TransformComponent::getURotation()
+    {
+        return &rot;
+    }
+    
+    glm::mat4* TransformComponent::getUModel()
+    {
+        return &model;
+    }
+    
+    glm::mat4* TransformComponent::getUMVP()
+    {
+        if(Camera::displayCamera==nullptr)
+            mvp = model;
+        else
+            mvp = Camera::displayCamera->vp * model;
+        return &mvp;
+    }
+    
     std::string TransformComponent::getTypeName()
     {
         return "TransformComponent";

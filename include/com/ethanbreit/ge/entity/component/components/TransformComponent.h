@@ -11,6 +11,9 @@ namespace ge
 {
     struct TransformComponent : public Component
     {
+        
+        TransformComponent(Entity* e) : Component(e){};
+
         //TODO: add camera stuff
         //TODO: make Transform struct and deprecate modelmat
         void defaultInit();
@@ -19,6 +22,8 @@ namespace ge
         void destroy();
         void cycle();
         std::string getTypeName();
+        
+        void reCalc();
         
         void setPosition(glm::vec3);
         void setScale(glm::vec3);
@@ -32,11 +37,24 @@ namespace ge
         
         glm::mat4 getModel();
         
+        glm::mat4 getMVP();
+        
+        glm::vec3* getUPosition();
+        glm::vec3* getUScale();
+        glm::quat* getURotation();
+        
+        
+        
+        glm::mat4* getUModel();
+        
+        glm::mat4* getUMVP();
+        
     private:
-        glm::vec3 pos, scale;
-        glm::quat rot;
+        glm::vec3 pos = glm::vec3(0,0,0), scale = glm::vec3(1);
+        glm::quat rot = glm::quat();
         
         glm::mat4 model;
+        glm::mat4 mvp = glm::mat4(1);
         
         bool shouldUpdate = false;
     };

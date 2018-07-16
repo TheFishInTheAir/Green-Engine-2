@@ -3,14 +3,21 @@
 #include <ge/memory/GlobalMemory.h>
 #include <engine/global_settings.pre>
 #include <ge/engine/defaults/StaticObject.h>
+#include <ge/entity/component/components/MeshRendererComponent.h>
 #include <ge/loader/LoadShader.h>
-
+#include <ge/console/Log.h>
+#include <ge/default_geom/Cube.h>
+#include <ge/graphics/types/Uniform.h>
 namespace ge
 {
+    Scene* Scene::currentScene = nullptr;
+    
+    const std::string LOG_TAG = "Scene";
+
+    
 	void Scene::loadScene(Empty::Scene s)
 	{
-		GraphicsCore* gc = GlobalMemory::get("ge_renderer_instance").getRawData<GraphicsCore>(); //TODO: replace string with A macro @MACRONAME
-		
+        GraphicsCore* gc = GraphicsCore::ctx;
 
 		//Clear
 		{
@@ -50,7 +57,6 @@ namespace ge
 					continue;
 				}
 			}
-
 			textures.clear();
 			for (auto t : texturesK)
 				textures.insert({t.first,t.second});
@@ -65,7 +71,6 @@ namespace ge
 				shaderGroups.insert({ s.first,s.second });
 		}
 
-
 		//Textures
 	
 		for (auto img : s.images)
@@ -74,6 +79,7 @@ namespace ge
 			gc->textureFactory->genTexture(img.second, &tex);
 
 			textures.insert({ img.first, std::shared_ptr<Texture>(tex) });
+            Log::tVrb(LOG_TAG, "Loaded Texture '"+img.first+"'");
 		}
 
 		//Cubemaps
@@ -84,6 +90,7 @@ namespace ge
 			gc->textureFactory->genCubeMap(cmap.second, &realCMap);
 
 			cubemaps.insert({ cmap.first, std::shared_ptr<CubeMap>(realCMap) });
+            Log::tVrb(LOG_TAG, "Loaded Cubemap '"+cmap.first+"'");
 		}
 
 
@@ -95,6 +102,7 @@ namespace ge
 			Empty::MeshData* md = new Empty::MeshData;
 			*md = meshdat.second;
 			meshes.insert({ meshdat.first, std::shared_ptr<ge::Empty::MeshData> ( md )});
+            Log::tVrb(LOG_TAG, "Loaded Mesh    '"+meshdat.first+"'");
 
 		}
 
@@ -106,6 +114,8 @@ namespace ge
 			ShaderGroup* sg;
 			ShaderLoader::loadShader(shaderManifest, &sg, this);
 			shaderGroups.insert({shaderManifest, std::shared_ptr<ShaderGroup>(sg)});
+            Log::tVrb(LOG_TAG, "Loaded Shader '"+shaderManifest+"'");
+
 		}
 		
 
@@ -118,53 +128,30 @@ namespace ge
 				ConsoleIO::print("Incorrect SkyBox Name", MessageType::Error);
 			}
 
-			//Do not use Gloa
+			//Do not use Gloable Memory
 
-			/*
-			if (GlobalMemory::exists(MSTR(CURRENT_SKYBOX)))
-			{
-				SkyBox* sb = GlobalMemory::get(MSTR(CURRENT_SKYBOX)).getRawData<SkyBox>();
-				delete sb;
-
-				GlobalMemory::insert(MSTR(CURRENT_SKYBOX), { new SkyBox(cubemaps.find(s.skybox)->second.get()),ReadableMemType::OTHER });
-
-			}
-			else
-			{
-				GlobalMemory::insert(MSTR(CURRENT_SKYBOX), { new SkyBox(cubemaps.find(s.skybox)->second.get()),ReadableMemType::OTHER });
-			}*/
+            skybox = new Entity();
+            
+            MeshRendererComponent* mrc = new MeshRendererComponent(skybox, GraphicsCore::ctx->meshFactory->newTriangleMesh(ge::dgeo::cube::getMeshData()));
+            
+            mrc->mesh->setShaderGroup(shaderGroups["engine/defaults/skybox/skybox.gesm"].get());
+            ge::Uniform::UniformContent uc;
+            uc.iv1 = 0;
+            mrc->mesh->setUniform("CUBEMAP_0", uc);
+            
+            mrc->insertToDefaultBatch();
+            
 		}
 
-		std::forward_list<StaticObject*>* objsTemp = GlobalMemory::get(MSTR(GE_ENTITES_GM)).getRawData<std::forward_list<StaticObject*>>(); //TODO: Remove this
-
 		//Initialise Static Objects
-
 		for (Empty::StaticObject staticObjectE : s.staticObjects)
 		{
-			objsTemp->push_front(new StaticObject(staticObjectE));
-
+            StandardEntGen::genStaticObject(staticObjectE); //TODO: THIS DOESN'T WORK, I MEAN IT DOES BUT DON'T USE IT
 		}
 
 	}
 
 	void Scene::instantiateScene()
 	{
-
-
-	}
-
-
-
-	void Scene::init()
-	{
-		if(!GlobalMemory::exists(MSTR(GE_ENTITES_GM)))
-		{
-			//TODO: proper stuff (remove and make good) I.E. Nested Hashmap
-			std::forward_list<StaticObject*>* objsTemp = new std::forward_list<StaticObject*>();
-			
-			GlobalMemory::insert(MSTR(GE_ENTITES_GM), {objsTemp, ReadableMemType::OTHER});
-
-
-		}
 	}
 }

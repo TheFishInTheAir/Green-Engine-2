@@ -11,6 +11,7 @@
 
 #include <ge/memory/GlobalMemory.h>
 #include <ge/engine/scene/Scene.h>
+#include <ge/console/Log.h>
 using json = nlohmann::json;
 
 
@@ -18,13 +19,24 @@ namespace ge
 {
 
 	namespace SceneLoader
-	{		
+	{
+        
+        const std::string LOG_TAG = "Scene Loader";
+        
+        void errIfNotExist(std::string scenePath, json jobj, std::string str)
+        {
+            if(!jobj.count(str))
+            {
+                Log::critErr(LOG_TAG, "Scene '"+scenePath+"' Does not Contain json value '"+str+"'");
+            }
+        }
+        
 		Error loadSceneJson(std::string path, Empty::Scene* outScene, bool isResource)
 		{	
 
 			Empty::Scene scene;
-
-			ConsoleIO::print("Loading Scene: "+path+"\n");
+            
+            Log::vrb(LOG_TAG, "Loading Scene: "+path);
 
 
 			std::string file;
@@ -34,14 +46,27 @@ namespace ge
 				ResourceUtil::getRawStrFile(path, &file);
 			json data = json::parse(file.c_str());
 
-			ConsoleIO::print("Version Number (not included yet)\n");
-
+            if(!data.count("version"))
+                Log::wrn(LOG_TAG, "No Scene Format Version Givin! Assuming latest.");
+            else
+            {   //TODO: Make this do something
+                std::string vrs("");
+                vrs += std::to_string((int)data["version"]["major"]);
+                vrs += ".";
+                vrs += std::to_string((int)data["version"]["minor"]);
+                
+                Log::vrb(LOG_TAG, "Scene Format Version: "+vrs);
+            }
 			/**
 			 *
 			 * Resource Loading
 			 *
 			 */
-			json res  = data["preloaded_resources"];
+            
+            //TODO: make tasks into individual functions (organisation)
+            
+            errIfNotExist(path, data, "preloaded_resources");
+            json res  = data["preloaded_resources"];
 
 			bool hasCustomShaders = res.count("shaders") != 0;
 			bool hasCubeMaps = res.count("cubemaps") != 0;
@@ -52,20 +77,25 @@ namespace ge
 
 
 			//std::vector<std::string> kept;
-			
-			ge::Scene* currentScene = GlobalMemory::get("ge_current_scene").getRawData<ge::Scene>();
+            if(ge::Scene::currentScene==nullptr) //NOTE: maybe not the best place for this
+                ge::Scene::currentScene = new ge::Scene();
+            
+            ge::Scene* currentScene = ge::Scene::currentScene;
+
 
 			for(auto s : textures)
 			{
 				if(currentScene->textures.count(s)!=0)
 				{
 					scene.keptRes.push_back(s);
+                    Log::tVrb(LOG_TAG, "Keeping Texture '"+s+"'");
 					continue;
 				}
 				Image *i;
 				ImageLoader::loadImage(s, &i);
 
 				scene.images.insert({ std::string(s), *i });
+                Log::tVrb(LOG_TAG, "Loading Texture '"+s+"'");
 
 			}
 			
@@ -76,13 +106,16 @@ namespace ge
 				if (currentScene->meshes.count(s) != 0)
 				{
 					scene.keptRes.push_back(s);
+                    Log::tVrb(LOG_TAG, "Keeping Mesh    '"+s+"'");
+
 					continue;
 				}
-
 				Empty::MeshData md;
 				MeshLoader::loadTriangleMesh(s, &md);
 			
 				scene.meshes.insert({ std::string(s), md });
+                Log::tVrb(LOG_TAG, "Loading Mesh    '"+s+"'");
+
 			}
 
 			//Tagged Resources
@@ -115,10 +148,11 @@ namespace ge
 						ImageLoader::loadImage(cmap["zneg"], &zneg);
 
 						scene.cubemaps.insert({ cmap["tag"],{ {*xpos,*xneg, *ypos,*yneg, *zpos,*zneg} } }); //Weird thing Xcode suggested...
-
-					}else
+                        Log::tVrb(LOG_TAG, std::string()+"Loading Cubemap '"+cmap["tag"].get<std::string>()+"'");
+					}
+                    else
 					{
-						ConsoleIO::print("Invalid Cubemap syntax, must give image coordinates.\n", MessageType::Warning);
+                        Log::wrn(LOG_TAG, "Invalid Cubemap syntax, must give image coordinates. -Skipping");
 					}
 				}
 			}
@@ -133,10 +167,12 @@ namespace ge
 					if (currentScene->shaders.count(s) != 0)
 					{
 						scene.keptRes.push_back(s);
+                        Log::tVrb(LOG_TAG, "Keeping Shader  '"+s+"'");
 						continue;
 					}
 
 					scene.shaders.push_front( std::string(s) );
+                    Log::tVrb(LOG_TAG, "Loading Shader  '"+s+"'");
 				}
 
 			}
