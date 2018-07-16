@@ -2,7 +2,7 @@
 #include <ge/graphics/empty_types/MeshData.h>
 #include <engine/global_settings.pre>
 
-//TODO: Refactor default_geom into the engine folder.
+//TODO: Refactor default_geom into the engine folder. NOTE: Should do soon
 
 namespace ge
 {
