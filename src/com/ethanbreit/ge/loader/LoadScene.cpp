@@ -44,6 +44,8 @@ namespace ge
 				ResourceUtil::getRawStrResource(path, &file);
 			else
 				ResourceUtil::getRawStrFile(path, &file);
+			
+			//Log::dbg(file);
 			json data = json::parse(file.c_str());
 
             if(!data.count("version"))
@@ -182,7 +184,7 @@ namespace ge
 
 			if(data.count("skybox")!=0)
 			{
-				scene.skybox = data["skybox"]; // Not an error
+				scene.skybox = data["skybox"]; // Not an error INTELLISENSE!
 			}
 
 			/**

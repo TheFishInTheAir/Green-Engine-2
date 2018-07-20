@@ -43,7 +43,7 @@ namespace ge
 
         Error Window::init(WindowConstructorInfo windowConstructorInfo)
         {
-/**
+			/**
              *
              * Setup Variables
              *
@@ -187,6 +187,8 @@ namespace ge
 
 			ge_DEBUG_TIMER_END("GLEW Init (E not f)")
 
+			setClearColour(windowConstructorInfo.clear_colour);
+			glDepthFunc(GL_LEQUAL);
 
 			ge::GL::registerFeatures(&((*core).supportedFeatures));
 
@@ -214,7 +216,8 @@ namespace ge
 			 * Release Context
 			 *
 			 */
-			glfwMakeContextCurrent(_window);
+			//glfwMakeContextCurrent(_window);
+			glfwMakeContextCurrent(nullptr);
 
             return Error();
         }
@@ -263,9 +266,11 @@ namespace ge
         {
             
 //			GlobalMemory::insert("ge_render_context_runtime", GlobalMemory::MemItem(r, ReadableMemType::OTHER));
+			glfwMakeContextCurrent(nullptr);
+
             glfwMakeContextCurrent(_window);
         }
-
+		
 
     }
 }

@@ -14,5 +14,5 @@ void main()
 {
 
 	outColour = texture(CUBEMAP_0, texCoords);
-	//outColour = vec4(texCoords, 1);
+    //outColour = vec4(1);
 }

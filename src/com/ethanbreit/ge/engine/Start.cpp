@@ -9,7 +9,7 @@ namespace ge
 	{
 		GraphicsCore* gc = new GraphicsCore(seci.g_api);
 		gc->window->init(seci.wci);
-        gc->window->setClearColour(seci.clear_colour);
+        //gc->window->setClearColour(seci.clear_colour);
 		for(auto r : seci.runtimes)
 		{
 			RuntimeManager::registerRuntime(r);

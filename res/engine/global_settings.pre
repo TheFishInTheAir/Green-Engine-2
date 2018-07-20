@@ -42,9 +42,12 @@
 
 #define MVP			 ge_mvp
 #define MVP_M		 ge_mvp_m
+#define MVP_V		 ge_mvp_v
+#define MVP_P		 ge_mvp_p
 #define MVP_VP		 ge_mvp_vp
 
 #define MVP_M_VP	 ge_mvp_vp * ge_mvp_m
+#define MVP_M_V_P	 ge_mvp_p * ge_mvp_v * ge_mvp_m
 
 //LIGHTING
 
@@ -114,6 +117,8 @@ std::unordered_map<std::string, std::string> ge_global_settings_map = {
     {GE_STRFY(CAMERA_DIR),GE_DBL_STRFY(CAMERA_POS)},
     {GE_STRFY(MVP),GE_DBL_STRFY(MVP)},
     {GE_STRFY(MVP_M),GE_DBL_STRFY(MVP_M)},
+    {GE_STRFY(MVP_V),GE_DBL_STRFY(MVP_V)},
+    {GE_STRFY(MVP_P),GE_DBL_STRFY(MVP_P)},
     {GE_STRFY(MVP_VP),GE_DBL_STRFY(MVP_VP)},
     {GE_STRFY(CUBEMAP_0),GE_DBL_STRFY(CUBEMAP_0)},
     {GE_STRFY(CUBEMAP_1),GE_DBL_STRFY(CUBEMAP_1)},

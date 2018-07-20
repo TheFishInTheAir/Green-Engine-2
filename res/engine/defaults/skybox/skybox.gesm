@@ -5,7 +5,11 @@
     "uniforms":
     [
         {
-            "name":"MVP_VP",
+            "name":"MVP_V",
+            "type":"mat4"
+        },
+        {
+            "name":"MVP_P",
             "type":"mat4"
         },
         {

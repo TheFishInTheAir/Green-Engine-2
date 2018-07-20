@@ -28,6 +28,8 @@ namespace ge
         bool is_forward_compatible		= true          ;
 		bool hidden_cursor				= true			;
         const char *window_name			= "NULL"        ;
+
+		glm::vec3 clear_colour          = glm::vec3(1)  ;
     };
 
 

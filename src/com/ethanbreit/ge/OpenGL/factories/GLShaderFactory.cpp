@@ -29,6 +29,8 @@ namespace ge
 
             Log::msg(LOG_TAG, std::string("Compiling Shader")  + " ..."); //TODO: maybe make vrb
 
+			//Log::tVrb(LOG_TAG, in_data);
+
             const char * shaderCode = data.c_str();
 
             glShaderSource(id, 1, &shaderCode , NULL);

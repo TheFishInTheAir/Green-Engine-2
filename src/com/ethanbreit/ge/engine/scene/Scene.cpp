@@ -121,15 +121,14 @@ namespace ge
 
 		if (s.skybox != "")
 		{
-			ConsoleIO::print("Setting SkyBox to " + s.skybox + "\n");
+			Log::msg("Setting SkyBox to " + s.skybox);
 
 			if(!cubemaps.count(s.skybox))
 			{
-				ConsoleIO::print("Incorrect SkyBox Name", MessageType::Error);
+				Log::err("Incorrect SkyBox Name");
 			}
 
 			//Do not use Gloable Memory
-
             skybox = new Entity();
             
             MeshRendererComponent* mrc = new MeshRendererComponent(skybox, GraphicsCore::ctx->meshFactory->newTriangleMesh(ge::dgeo::cube::getMeshData()));
@@ -137,8 +136,12 @@ namespace ge
             mrc->mesh->setShaderGroup(shaderGroups["engine/defaults/skybox/skybox.gesm"].get());
             ge::Uniform::UniformContent uc;
             uc.iv1 = 0;
-            mrc->mesh->setUniform("CUBEMAP_0", uc);
-            
+
+            mrc->mesh->setUniform(DBL_STRINGIFY(CUBEMAP_0), uc);
+			mrc->mesh->registerCubeMap(cubemaps[s.skybox].get(), 0);
+			cubemaps[s.skybox].get()->setFiltering(TextureFilterType::Anisotropic_16x);
+
+			mrc->mesh->rebuffer();
             mrc->insertToDefaultBatch();
             
 		}
