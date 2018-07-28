@@ -17,12 +17,19 @@ namespace ge
         }
         void resetMousePos()
         {
+
+            if(disabled)
+                return;
+                
             x = 0;
             y = 0;
         }
 
         void _mouseHandler(GLFWwindow *window, double xpos, double ypos)
         {
+
+            if(disabled)
+                return;
 
 			static bool initialised = false;
 

@@ -110,7 +110,7 @@ namespace ge
 
 			vbe.data = &vertecies;
 			vbe.attributeId = VERTEX_POSITION;
-			vbe.dataType = DataType::Float;
+			vbe.dataType = BasicDataType::Float;
 			vbe.memoryType = BufferMemoryType::Static;
 			vbe.normalized = false;
 			vbe.offset = 0;

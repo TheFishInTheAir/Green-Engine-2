@@ -31,28 +31,28 @@ namespace ge
                     case BufferMemoryType::Stream:return GL_STREAM_DRAW;
                 }
             }
-            unsigned int getTrueDataType(DataType::type type)
+            unsigned int getTrueDataType(BasicDataType::type type)
             {
                 switch (type)
                 {
 
 
-                    case DataType::Int:return GL_INT;
-                    case DataType::Int2:return GL_INT_VEC2;
-                    case DataType::Int3:return GL_INT_VEC3;
-                    case DataType::Int4:return GL_INT_VEC4;
-                    case DataType::UInt:return GL_UNSIGNED_INT;
-                    case DataType::UInt2:return GL_UNSIGNED_INT_VEC2;
-                    case DataType::UInt3:return GL_UNSIGNED_INT_VEC3;
-                    case DataType::UInt4:return GL_UNSIGNED_INT_VEC4;
-                    case DataType::Float:return GL_FLOAT;
-                    case DataType::Float2:return GL_FLOAT_VEC2;
-                    case DataType::Float3:return GL_FLOAT_VEC3;
-                    case DataType::Float4:return GL_FLOAT_VEC4;
-                    case DataType::Double:return GL_DOUBLE;
-                    case DataType::Double2:return GL_DOUBLE_VEC2;
-                    case DataType::Double3:return GL_DOUBLE_VEC3;
-                    case DataType::Double4:return GL_DOUBLE_VEC4;
+                    case BasicDataType::Int:return GL_INT;
+                    case BasicDataType::Int2:return GL_INT_VEC2;
+                    case BasicDataType::Int3:return GL_INT_VEC3;
+                    case BasicDataType::Int4:return GL_INT_VEC4;
+                    case BasicDataType::UInt:return GL_UNSIGNED_INT;
+                    case BasicDataType::UInt2:return GL_UNSIGNED_INT_VEC2;
+                    case BasicDataType::UInt3:return GL_UNSIGNED_INT_VEC3;
+                    case BasicDataType::UInt4:return GL_UNSIGNED_INT_VEC4;
+                    case BasicDataType::Float:return GL_FLOAT;
+                    case BasicDataType::Float2:return GL_FLOAT_VEC2;
+                    case BasicDataType::Float3:return GL_FLOAT_VEC3;
+                    case BasicDataType::Float4:return GL_FLOAT_VEC4;
+                    case BasicDataType::Double:return GL_DOUBLE;
+                    case BasicDataType::Double2:return GL_DOUBLE_VEC2;
+                    case BasicDataType::Double3:return GL_DOUBLE_VEC3;
+                    case BasicDataType::Double4:return GL_DOUBLE_VEC4;
 
                 }
             }

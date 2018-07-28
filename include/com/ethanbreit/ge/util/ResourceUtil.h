@@ -11,6 +11,7 @@ namespace ge
 	{
 		int getRawStrResource(std::string path, std::string *fileOut);
 		int getRawStrFile(std::string path, std::string *fileOut);
+        int writeRawStrResource(std::string path, std::string fileIn);
 		std::string getResPath(std::string);
 	}
 }

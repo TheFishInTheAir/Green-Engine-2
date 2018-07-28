@@ -47,7 +47,12 @@ namespace ge
         
 		void  TriangleMesh::render()
 		{
-            glDisable(GL_CULL_FACE); //TODO: COMMENT OUT
+            if(cullBackface)
+                glEnable(GL_CULL_FACE); //TODO: COMMENT OUT
+            else
+                glDisable(GL_CULL_FACE);
+
+                
 			startRender();
 
 			glBindVertexArray(_vao);
@@ -173,7 +178,7 @@ namespace ge
 
 		void TriangleMesh::registerVertexBuffer(std::string s, ge::VertexBuffer* vertexBuffer)
 		{
-			_vertexBuffers.insert({ s, (GL::VertexBuffer *) vertexBuffer });
+			_vertexBuffers[s] = (GL::VertexBuffer *) vertexBuffer;
 		}
 
 		void TriangleMesh::setShaderGroup(ge::ShaderGroup* sg)
@@ -230,7 +235,7 @@ namespace ge
         {
 			if (unitId <= GlobalMemory::get("ge_max_texture_units").getData<int>())
 			{
-				_textures.insert({ unitId, (GL::Texture*)tex });
+				_textures[unitId] = (GL::Texture*)tex;
 			}
 			else
 			{
@@ -248,7 +253,7 @@ namespace ge
         {
 			if (unitId <= GlobalMemory::get("ge_max_texture_units").getData<int>())
 			{
-				_cMaps.insert({ unitId, (GL::CubeMap*)cMap });
+				_cMaps[unitId] =  (GL::CubeMap*)cMap;
 			}
 			else
 			{
@@ -264,5 +269,26 @@ namespace ge
 				glUseProgram(shaderGroup->programID);
 			}
 	    }
+
+
+
+
+        void TriangleMesh::deepDestroy()
+        {
+            if(indexBuffer != nullptr)
+                delete indexBuffer;
+            for(auto v : _vertexBuffers)
+                delete v.second;
+            
+
+
+            /*//NOTE: I just copied this from the destructor, is it safe for an object to delete itself? TODO: maybe delete this...
+            for (auto u : _uniforms)
+			{
+				free(u.second);
+			}
+
+			glDeleteVertexArrays(1, &_vao);*/
+        }
     }
 }

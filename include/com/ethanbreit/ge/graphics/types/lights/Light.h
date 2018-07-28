@@ -4,9 +4,19 @@
 
 namespace ge
 {
+	//NOTE: DEPRECATED TODO: REMOVE
 	struct Light
 	{
-		//Global:
+
+		glm::vec3 pos;
+		glm::vec3 dir;
+		float angle;
+
+		glm::vec3 colour;
+
+		LightType::type LightType;
+		
+		/* //Global:
 				
 		glm::vec3 pos;
 
@@ -15,7 +25,7 @@ namespace ge
 
 		virtual LightType::type getLightType() = 0;
 
-		//TODO: add more parameters. @UNFINISHED
+		//TODO: add more parameters. @UNFINISHED */
 
 	};
 }

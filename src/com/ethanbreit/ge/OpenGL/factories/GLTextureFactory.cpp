@@ -68,6 +68,22 @@ namespace ge
 			for (int i = 0; i < 6; i++)
 			{
                 Image img =  images[i];
+                switch(i)
+                {
+                    case 0:
+                        glTex->xp_url = img.url;
+                    case 1:
+                        glTex->xn_url = img.url;
+                    case 2:
+                        glTex->yp_url = img.url;
+                    case 3:
+                        glTex->yn_url = img.url;
+                    case 4:
+                        glTex->zp_url = img.url;
+                    case 5:
+                        glTex->zn_url = img.url;
+                }
+                
                 unsigned int channels = 0;
                 unsigned int coreChannel = 0;
                 bool hasChannelDisconnect = false;

@@ -4,7 +4,9 @@
 #include <ge/loader/LoadShader.h>
 
 #define DEF_GS_TABLE
+#define DEF_GS_TABLE_IMPLEMENTATION //Arbitrary placement of implementation...
 #include <engine/global_settings.pre>
+
 
 #include <ge/util/ResourceUtil.h>
 #include "json/json.hpp"
@@ -15,6 +17,8 @@
 #include <ge/util/PreprocessorUtil.h>
 #include <ge/console/Log.h>
 #include <unordered_map>
+
+
 
 
 #ifdef _WIN32
@@ -32,6 +36,8 @@ namespace ge
     const std::string LOG_TAG = "ShaderLoader";
     namespace ShaderLoader
     {
+
+
         std::vector<std::shared_ptr<Shader>> loadManifest(nlohmann::json, Scene*);
         std::unordered_map<std::string, Uniform> loadUniforms(nlohmann::json);
         std::vector<std::shared_ptr<Shader>> loadMrgManifest(nlohmann::json, Scene*);
@@ -109,6 +115,7 @@ namespace ge
             else if(type == "mat4")
                 return Uniform(Uniform::MAT4);
             
+            
             return Uniform(Uniform::INT);
 
         }
@@ -117,12 +124,47 @@ namespace ge
         {
             std::unordered_map<std::string, Uniform> uniforms;
             
+            std::string prefix = "";
+            if(jsn.count("_prefix"))
+                prefix = jsn["_prefix"];
             for(auto uni : jsn["uniforms"])
             {
                 std::string name = uni["name"];
-                if(ge_global_settings_map.count(name))
-                    name = ge_global_settings_map.at(name);
-                //Log::dbg(name);
+                if(ge_global_settings::map.count(name))
+                    name = ge_global_settings::map.at(name);
+
+                name = prefix+name;
+
+                if(uni["type"]=="struct_array")
+                {
+
+                    int array_size = 0;
+                    if(uni["array_size"].is_string())
+                        array_size = std::stoi(ge_global_settings::map.at(uni["array_size"]));
+                    else
+                        array_size = uni["array_size"];
+
+                    uniforms.insert({name,Uniform(Uniform::INT)});
+
+                    for(int i = 0; i < array_size; i++)
+                    {
+                        std::string localPrefix = name+"["+std::to_string(i)+"]."; //NOTE: REMEMBER THE PERIOD!!!!
+                        nlohmann::json localJsn = uni["struct_members"];
+
+                        localJsn["_prefix"] = localPrefix;
+                        //Log::dbg("test23");
+
+                        std::unordered_map<std::string, Uniform> localUniforms = loadUniforms(localJsn);
+
+                        for(auto su : localUniforms)
+                        {
+                            //Log::critErr(su.first);
+                            uniforms.insert(su);
+                        }
+                    }
+                }
+
+                Log::dbg(name);
                 Uniform u = genRightUniformFromType(uni["type"]);
                 uniforms.insert({name, u});
             }
@@ -247,9 +289,34 @@ namespace ge
                         
                         scn->shaders.insert({shaderURL+"_VERT", frag });
                         
+                     
                         shaders.push_back(frag);
                     }
 
+                }
+                else if(shaderType=="GEOMETRY")
+                {
+                    if (scn->shaders.count(shaderURL+"_GEOM")>0)
+                    {
+                        shaders.push_back(scn->shaders.find(shaderURL+"_GEOM")->second);
+                    }
+                    else
+                    {
+                        std::shared_ptr<Shader> geom;
+                        
+                        std::string geomData;
+                        ResourceUtil::getRawStrResource(shaderURL, &geomData);
+                        
+                        geomData = geomData.substr(0,geomData.find_first_of('\n')+1)+
+                        "#define GEOMETRY"+
+                        geomData.substr(geomData.find_first_of('\n')+1, geomData.length());
+                        
+                        GraphicsCore::ctx->shaderFactory->genShader(geomData, ShaderType::Shader_Geometry, &geom);
+                        
+                        scn->shaders.insert({shaderURL+"_GEOM", geom });
+                        
+                        shaders.push_back(geom);
+                    }
                 }
                 else if(shaderType=="FRAGMENT")
                 {

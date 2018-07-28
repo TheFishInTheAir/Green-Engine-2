@@ -10,12 +10,13 @@ namespace ge
         setBatchType("DefaultComponentBatch");
         
         RuntimeManager::getRuntime(RUNTIME_MAIN)->getGroup(UPDATE)->
-        ge_RUNTIME_GROUP_INSERT_HEAP(this);
+            ge_RUNTIME_GROUP_INSERT_HEAP(this);
         
     }
     
     void DefaultComponentBatch::cycle()
     {
+        //Log::dbg(componentType+", start");
         performPendingActions();
         
         for(Component* component : components)
@@ -23,6 +24,7 @@ namespace ge
             if(component!=nullptr)
                 component->cycle();
         }
+        //Log::dbg(componentType+", stop");
     }
     
     void DefaultComponentBatch::softInsert(Component* cmp)
@@ -55,7 +57,10 @@ namespace ge
         else
         {
             uint32_t i = emptyIndicies.front();
+            emptyIndicies.pop();
+
             components.at(i) = cmp;
+            cmp->batchId = i;
             return i;
         }
     }

@@ -17,7 +17,7 @@ namespace ge
         {
             unsigned int getTrueShaderType(ge::ShaderType::type);
             unsigned int getTrueBufferMemoryType(ge::BufferMemoryType::type);
-            unsigned int getTrueDataType(ge::DataType::type);
+            unsigned int getTrueDataType(ge::BasicDataType::type);
         }
     }
 }

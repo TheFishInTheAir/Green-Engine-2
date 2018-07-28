@@ -1,5 +1,6 @@
 #pragma once
 #include <ge/entity/component/Component.h>
+#include <ge/entity/component/ComponentConstructorRegistry.h>
 
 namespace ge
 {
@@ -16,6 +17,7 @@ namespace ge
         
     private:
         int i = 0;
-        
+        static ComponentConstructorRegistry::StartupHook _hook;
+
     };
 }

@@ -8,6 +8,7 @@
 #include <ge/console/Log.h>
 #include <ge/default_geom/Cube.h>
 #include <ge/graphics/types/Uniform.h>
+#include <ge/entity/EntityManager.h>
 namespace ge
 {
     Scene* Scene::currentScene = nullptr;
@@ -24,6 +25,7 @@ namespace ge
 
 			std::vector<std::pair<std::string, std::shared_ptr<ge::Texture>>> texturesK;
 			std::vector<std::pair<std::string, std::shared_ptr<ge::CubeMap>>> cubemapsK;
+			//std::vector<std::pair<std::string, ge::Material>> 				  materialK;
 
 			std::vector<std::pair<std::string, std::shared_ptr<ge::Empty::MeshData>>> meshesK;
 			std::vector<std::pair<std::string, std::shared_ptr<ge::ShaderGroup>>> shadersK;
@@ -69,6 +71,8 @@ namespace ge
 			shaders.clear();
 			for (auto s : shadersK)
 				shaderGroups.insert({ s.first,s.second });
+
+			materials.clear(); //NOTE: materials are so small we dont really care that they don't get kept...
 		}
 
 		//Textures
@@ -77,6 +81,12 @@ namespace ge
 		{
 			Texture* tex;
 			gc->textureFactory->genTexture(img.second, &tex);
+			
+
+			//TODO: add a proper global state for default texture filter, but I am tired of setting this everytime.
+			tex->setFiltering(TextureFilterType::Anisotropic_16x);
+
+
 
 			textures.insert({ img.first, std::shared_ptr<Texture>(tex) });
             Log::tVrb(LOG_TAG, "Loaded Texture '"+img.first+"'");
@@ -117,6 +127,12 @@ namespace ge
             Log::tVrb(LOG_TAG, "Loaded Shader '"+shaderManifest+"'");
 
 		}
+
+		for(auto m : s.materials)
+		{
+			materials.insert({m.name, m});
+			Log::tVrb(LOG_TAG, "Loaded Material '"+m.name+"'");
+		}
 		
 
 		if (s.skybox != "")
@@ -131,18 +147,27 @@ namespace ge
 			//Do not use Gloable Memory
             skybox = new Entity();
             
+			skybox->name = "skybox";
+	
+
             MeshRendererComponent* mrc = new MeshRendererComponent(skybox, GraphicsCore::ctx->meshFactory->newTriangleMesh(ge::dgeo::cube::getMeshData()));
             
-            mrc->mesh->setShaderGroup(shaderGroups["engine/defaults/skybox/skybox.gesm"].get());
+            mrc->mesh->setShaderGroup(shaderGroups["engine/defaults/forward/skybox/skybox.gesm"].get()); //NOTE: TEMP
             ge::Uniform::UniformContent uc;
             uc.iv1 = 0;
 
-            mrc->mesh->setUniform(DBL_STRINGIFY(CUBEMAP_0), uc);
+            mrc->mesh->setUniform(DBL_STRINGIFY(SKYBOX), uc);
 			mrc->mesh->registerCubeMap(cubemaps[s.skybox].get(), 0);
+			mrc->mesh->cullBackface = false;
 			cubemaps[s.skybox].get()->setFiltering(TextureFilterType::Anisotropic_16x);
+			skyboxCubemapName = s.skybox;
+
+			//cubemaps[DBL_STRINGIFY(SKYBOX)] = cubemaps[s.skybox];
 
 			mrc->mesh->rebuffer();
             mrc->insertToDefaultBatch();
+			skybox->insertComponent(mrc);
+			EntityManager::registerEntity(skybox);
             
 		}
 

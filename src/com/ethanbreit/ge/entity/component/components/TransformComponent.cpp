@@ -7,6 +7,25 @@
 
 namespace ge
 {
+
+    Component* _constructor_TransformComponent(Entity* ent)
+    {
+        return new TransformComponent(ent);
+    }
+
+    ComponentConstructorRegistry::StartupHook TransformComponent::_hook("TransformComponent", _constructor_TransformComponent);
+
+
+    TransformComponent::TransformComponent(Entity* e) : Component(e)
+    {
+        addPublicVar("Position",  {DataType::FVEC3, &pos});
+        addPublicVar("Scale",     {DataType::FVEC3, &scale});
+        addPublicVar("Rotation",  {DataType::QUAT, &rot});
+        addPublicVar("Should Recalculate",  {DataType::BOOL, &shouldUpdate});
+        addPublicVar("Is Dynamic",  {DataType::BOOL, &dynamic});
+
+    }
+
     void TransformComponent::defaultInit()
     {
         
@@ -38,12 +57,22 @@ namespace ge
     
     void TransformComponent::cycle()
     {
-        if(shouldUpdate)
+        if(shouldUpdate || dynamic)
         {
             shouldUpdate=false;
-            model = glm::translate(glm::mat4(1), pos);
-            model *= glm::toMat4(rot);
-            model = glm::scale(model, scale);
+            // model = glm::translate(glm::mat4(1), pos);
+            // model *= glm::toMat4(rot);
+            // model = glm::scale(model, scale);
+
+		    glm::mat4 sMat(1);
+		    glm::mat4 tMat(1);
+		    glm::mat4 rMat;
+
+		    tMat = glm::translate(tMat, pos);
+		    rMat = glm::toMat4(rot);
+		    sMat = glm::scale(sMat, scale);
+
+		    model = tMat* rMat * sMat;
 
             if(Camera::displayCamera==nullptr)
                 mvp = model;

@@ -13,6 +13,8 @@
 #include <ge/graphics/empty_types/Scene.h>
 #include <ge/graphics/meshes/TriangleMesh.h>
 #include <ge/engine/defaults/SkyBox.h>
+#include <ge/graphics/types/Light.h>
+#include <ge/graphics/types/Material.h>
 
 
 namespace ge
@@ -44,17 +46,19 @@ namespace ge
 		std::unordered_map<std::string, std::shared_ptr<ge::CubeMap>>		cubemaps;
 
 		std::unordered_map<std::string, std::shared_ptr<ge::Empty::MeshData>>	meshes;
+		std::unordered_map<std::string, ge::Material>						materials;
+
 		std::unordered_map<std::string, std::shared_ptr<ge::ShaderGroup>>		shaderGroups;
 		std::unordered_map<std::string, std::shared_ptr<ge::Shader>>			shaders;
         
 		std::forward_list<Entity*>                                          uninstantiatedEntities; //Should fix this
         
         Entity* skybox;
-		
+		std::string skyboxCubemapName = "";
 
 		//TODO: create light class/struct @UNFINISHED
 
-		//std::vector<Light> lights;
+		std::vector<Light*> lights;
 
 	};
 }

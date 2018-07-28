@@ -6,7 +6,7 @@
 
 namespace ge
 {
-    namespace GL
+    namespace GL //TODO: maybe don't do RAII, then we wouldn't actually need empty types.
     {
         void IndexBuffer::bufferData()
         {

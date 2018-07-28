@@ -1,5 +1,6 @@
 #pragma once
 #include <ge/entity/component/Component.h>
+#include <ge/entity/component/ComponentConstructorRegistry.h>
 
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/glm.hpp>
@@ -12,7 +13,7 @@ namespace ge
     struct TransformComponent : public Component
     {
         
-        TransformComponent(Entity* e) : Component(e){};
+        TransformComponent(Entity* e);
 
         //TODO: add camera stuff
         //TODO: make Transform struct and deprecate modelmat
@@ -23,6 +24,8 @@ namespace ge
         void cycle();
         std::string getTypeName();
         
+        bool dynamic = false;
+
         void reCalc();
         
         void setPosition(glm::vec3);
@@ -57,5 +60,10 @@ namespace ge
         glm::mat4 mvp = glm::mat4(1);
         
         bool shouldUpdate = false;
+
+
+
+        static ComponentConstructorRegistry::StartupHook _hook;
+
     };
 }

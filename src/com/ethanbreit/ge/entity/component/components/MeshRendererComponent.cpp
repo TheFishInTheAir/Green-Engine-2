@@ -6,18 +6,38 @@
 #include <ge/entity/Entity.h>
 #include <ge/entity/component/components/TransformComponent.h>
 #include <ge/graphics/Camera.h>
+#include <ge/engine/scene/Scene.h>
+#include <ge/graphics/UniformAutomator.h>
 namespace ge
 {
+
+    Component* _constructor_MeshRendererComponent(Entity* ent)
+    {
+        return new MeshRendererComponent(ent);
+    }
+
+    ComponentConstructorRegistry::StartupHook MeshRendererComponent::_hook("MeshRendererComponent", _constructor_MeshRendererComponent);
+
+
+
+
     MeshRendererComponent::MeshRendererComponent(Entity* ent) : ge::Component(ent)
     {
         mesh = GraphicsCore::ctx->meshFactory->newTriangleMesh();
+        init();
     }
 
     MeshRendererComponent::MeshRendererComponent(Entity* ent, TriangleMesh* mesh) : ge::Component(ent)
     {
         this->mesh = mesh;
+        init();
     }
+    
+    void MeshRendererComponent::init()
+    {
+        addPublicVar("Cull Backface",  {DataType::BOOL, &mesh->cullBackface});
 
+    }
     
 	void MeshRendererComponent::defaultInit()
 	{
@@ -56,9 +76,13 @@ namespace ge
 					mesh->setUniform(DBL_STRINGIFY(MVP), ge::Uniform::UniformContent(ent->getComponent<TransformComponent>("TransformComponent")->getMVP()));
 
 				if(mesh->containsUniform(DBL_STRINGIFY(MVP_M)))
+                {
+                    //Log::dbg(ent->name);
 					mesh->setUniform(DBL_STRINGIFY(MVP_M), ge::Uniform::UniformContent(ent->getComponent<TransformComponent>("TransformComponent")->getModel()));
+                }
             }
 
+            //NOTE: THIS STUFF SHOULD NOT BE HERE BUT IT IS EASY AND CONVENIENT FOR TESTS
 			if (mesh->containsUniform(DBL_STRINGIFY(MVP_VP)) && Camera::displayCamera != nullptr)
 				mesh->setUniform(DBL_STRINGIFY(MVP_VP), ge::Uniform::UniformContent(Camera::displayCamera->vp));
 
@@ -67,7 +91,9 @@ namespace ge
 			
 			if (mesh->containsUniform(DBL_STRINGIFY(MVP_P)) && Camera::displayCamera != nullptr)
 				mesh->setUniform(DBL_STRINGIFY(MVP_P), ge::Uniform::UniformContent(Camera::displayCamera->proj));
-			
+
+			UniformAutomator::cycledUniformSetup(mesh);
+            //Log::dbg("RENDER");
             mesh->render();
 
         }

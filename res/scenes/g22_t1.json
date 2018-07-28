@@ -21,13 +21,16 @@
         "meshes":
         [
             "demo/meshes/cube.obj",
-            "demo/meshes/VSK_S.obj"
+            "demo/meshes/VSK_S.obj",
+            "demo/meshes/plane.obj"
 
         ],
         "shaders":
         [
-            "engine/defaults/unlit/textured.gesm",
-            "engine/defaults/skybox/skybox.gesm"
+            "engine/defaults/forward/unlit/textured.gesm",
+            "engine/defaults/forward/test/Ice.gesm",
+            "engine/defaults/forward/test/Gloss.gesm",
+            "engine/defaults/forward/skybox/skybox.gesm"
 
         ],
         "cubemaps":
@@ -68,7 +71,7 @@
                 "override_tex": true,
                 "albedo":"demo/textures/ONYX_COL.jpg",
                 "specular":"demo/textures/ONYX_REFL.jpg",
-                "custom_shader" : "engine/defaults/unlit/textured.gesm"
+                "custom_shader" : "engine/defaults/test/Gloss.gesm"
             },
             "mesh" : "demo/meshes/cube.obj"
         },
@@ -80,7 +83,7 @@
                 "override_tex": true,
                 "albedo":"demo/textures/ONYX_COL.jpg",
                 "specular":"demo/textures/ONYX_REFL.jpg",
-                "custom_shader" : "engine/defaults/unlit/textured.gesm"
+                "custom_shader" : "engine/defaults/forward/unlit/textured.gesm"
             },
             "mesh" : "demo/meshes/cube.obj"
         },
@@ -92,7 +95,7 @@
                 "override_tex": true,
                 "albedo":"demo/textures/VSK_COL.png",
                 "specular":"demo/textures/VSK_ROUGH.png",
-                "custom_shader" : "engine/defaults/unlit/textured.gesm"
+                "custom_shader" : "engine/defaults/forward/unlit/textured.gesm"
             },
             "mesh" : "demo/meshes/VSK_S.obj"
         }

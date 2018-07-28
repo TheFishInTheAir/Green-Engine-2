@@ -9,7 +9,6 @@
 #include <memory>
 #include <ge/runtime/Runtime.h>
 #include <ge/graphics/Camera.h>
-#include <ge/graphics/types/lights/LightDirectional.h>
 #include <ge/graphics/GraphicsCore.h>
 
 //TODO: fix textures, we don't need each Texture passed to us seperatly
@@ -88,7 +87,7 @@ namespace ge
 		Uniform* u_testlight_col;
 		Uniform* u_testlight_dir;
 		
-		LightDirectional* testlight;
+		//LightDirectional* testlight;
 
 		void initTest();
 

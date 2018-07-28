@@ -1,12 +1,13 @@
 #pragma once
 #include <ge/entity/component/Component.h>
+#include <ge/entity/component/ComponentConstructorRegistry.h>
 
 namespace ge
 {
     struct TransformComponent;
     struct FreeCamControllerComponent : public Component
     {
-        FreeCamControllerComponent(Entity* e) : Component(e){}
+        FreeCamControllerComponent(Entity* e);
 
         void defaultInit();
         void insertToDefaultBatch();
@@ -15,13 +16,15 @@ namespace ge
         void destroy();
         std::string getTypeName();
         
-        float moveSpeed = 0.0035f;
-        float lookSpeed = 0.0015f;
+        float moveSpeed = 35.0f;
+        float lookSpeed = 15.0f;
         
         float sprintModif = 2;
         
         
     private:
+        static ComponentConstructorRegistry::StartupHook _hook;
+
         bool hasTransformComponent = false;
         TransformComponent* tComp = nullptr;
         

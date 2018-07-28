@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
-
+#include <ge/engine/enum/DataTypes.h>
+#include <unordered_map>
+#include <list>
 namespace ge
 {
     
@@ -25,8 +27,14 @@ namespace ge
         uint32_t batchId = 0;
         
         Entity* getEntity();
+
+
+        std::list <std::string> publicVarsDisplayOrder;
+        std::unordered_map<std::string, std::pair<ge::DataType::type, void*>> publicVars;
         
     protected:
+        void addPublicVar(std::string, std::pair<ge::DataType::type, void*>);
+
         ComponentBatch* currentBatch = nullptr;
         Entity* ent;
 	};

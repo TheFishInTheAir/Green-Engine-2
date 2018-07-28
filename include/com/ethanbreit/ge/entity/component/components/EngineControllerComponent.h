@@ -1,5 +1,6 @@
 #pragma once
 #include <ge/entity/component/Component.h>
+//#include <ge/entity/component/ComponentConstructorRegistry.h>
 
 namespace ge
 {

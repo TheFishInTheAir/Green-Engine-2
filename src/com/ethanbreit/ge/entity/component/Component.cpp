@@ -23,4 +23,10 @@ namespace ge
     {
         return ent;
     }
+    void Component::addPublicVar(std::string name, std::pair<ge::DataType::type, void*> data)
+    {
+        publicVars.insert({name, data});
+        publicVarsDisplayOrder.push_back(name);
+    }
+
 }

@@ -57,6 +57,9 @@ namespace ge
             bool containsUniform(std::string);
 
             ge::VertexBuffer *getVertexBuffer(std::string);
+
+
+            void deepDestroy();
         private:
             
             void applyUniform(ge::Uniform);

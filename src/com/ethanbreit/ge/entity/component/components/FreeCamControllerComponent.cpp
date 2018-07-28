@@ -11,6 +11,24 @@
 #include <math.h>
 namespace ge
 {
+
+    Component* _constructor_FreeCamControllerComponent(Entity* ent)
+    {
+        return new FreeCamControllerComponent(ent);
+    }
+
+    ComponentConstructorRegistry::StartupHook FreeCamControllerComponent::_hook("FreeCamControllerComponent", _constructor_FreeCamControllerComponent);
+
+    
+    
+    
+    FreeCamControllerComponent::FreeCamControllerComponent(Entity* e) : Component(e)
+    {
+        addPublicVar("Look Speed",  {DataType::FLOAT, &lookSpeed});
+        addPublicVar("Move Speed",  {DataType::FLOAT, &moveSpeed});    
+    }
+
+
     void FreeCamControllerComponent::defaultInit()
     {
         //TODO: probably should remove this.
@@ -43,14 +61,17 @@ namespace ge
             Log::wrn("FreeCamController", "A FreeCamController requires a TransformComponent.");
             return;
         }
+
+        Runtime* r = RuntimeManager::getRuntime(RUNTIME_MAIN);
+
         
-        float localMoveSpeed = moveSpeed;
+        float localMoveSpeed = (moveSpeed/10000) * r->getLastDelta();
         
         double x = 0, y = 0;
         
         MouseHandler::getMousePos(&x, &y);
-        horizontalAngle += float(-x)*lookSpeed;
-        verticalAngle  +=  float(-y)*lookSpeed;
+        horizontalAngle += float(-x)*(lookSpeed/10000);
+        verticalAngle  +=  float(-y)*(lookSpeed/10000);
         MouseHandler::resetMousePos();
 
         if(verticalAngle>=glm::pi<float>()/2)

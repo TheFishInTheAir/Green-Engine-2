@@ -27,6 +27,7 @@ namespace ge
         }
         
         void insertComponent(Component*);
+		void removeComponent(std::string);
         
 		bool isDestroyed();
 		void destroy();

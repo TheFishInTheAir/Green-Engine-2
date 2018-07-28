@@ -25,7 +25,7 @@ namespace ge
     }
     
     void EngineControllerComponent::cycle()
-    {
+    { //NOTE: this shouldn't be in a component...
         static bool first = true;
         if(first)
         {

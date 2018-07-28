@@ -1,6 +1,7 @@
 #include <ge/entity/EntityManager.h>
 #include <ge/entity/Entity.h>
 #include <ge/entity/EntityTag.h>
+#include <ge/console/Log.h>
 #include <vector>
 #include <queue>
 
@@ -36,10 +37,13 @@ namespace ge
                 entities->at(i) = ent;
 
                 emptyIndexs->pop();
+                ent->id = i;
                 return i;
             }
 
             entities->push_back(ent);
+            ent->id = entities->size()-1;
+
             return entities->size()-1;
 
         }
@@ -49,12 +53,12 @@ namespace ge
             _init();
 
             entities->at(id) = nullptr;
-
+            emptyIndexs->push(id);
         }
 
         void removeEntity(Entity* ent)
         {
-
+            removeEntity(ent->id);
         }
 
 
@@ -71,6 +75,11 @@ namespace ge
         void removeTag(std::string str)
         {
 
+        }
+
+        std::vector<Entity*>* getAllEntities()
+        {
+            return entities;
         }
 
     }

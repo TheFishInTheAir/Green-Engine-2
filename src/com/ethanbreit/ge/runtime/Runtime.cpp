@@ -80,12 +80,24 @@ namespace ge
 
             if(currentTime>=nextCycle)
             {
+                std::chrono::steady_clock::time_point uStart = std::chrono::steady_clock::now();
+
                 nextCycle =  currentTime;
                 nextCycle += delta;
                 context->cyclesSinceLastClear++;
                 context->cyclesSinceLastManage++;
 
                 context->cycle(); /// Cycle Groups;
+
+                std::chrono::steady_clock::time_point uEnd = std::chrono::steady_clock::now();
+
+                std::chrono::duration<float, std::milli> currentDelta(uEnd - uStart);
+
+                context->miliLastDelta  = currentDelta.count();
+                context->tempMiliValue  += currentDelta.count();
+
+                //Time calculations
+                context->smoothTime += (currentDelta.count()/1000)*3.1415926536;
             }
 
             if(currentTime>=nextManage)
@@ -116,6 +128,10 @@ namespace ge
                 {
                     //delta = nanoseconds(nanoseconds(seconds(1)).count()/context->cyclesPerSecond); ///recalculate Delta
                 }
+
+                context->lastManagesCycles = context->cyclesSinceLastManage;
+                context->lastManagesAverageDelta = context->tempMiliValue/context->cyclesSinceLastManage;
+                context->tempMiliValue = 0;
 
                 ///Correct Delta
 
@@ -154,6 +170,31 @@ namespace ge
     uint64_t Runtime::getCyclesSinceClear()
     {
         return cyclesSinceLastClear;
+    }
+
+    uint32_t Runtime::getCyclesSinceManage()
+    {
+        return cyclesSinceLastManage;
+    }
+    
+    float Runtime::getLastManagesAverageDelta()
+    {
+        return lastManagesAverageDelta;
+    }
+
+    float Runtime::getLastDelta()
+    {
+        return miliLastDelta;
+    }
+
+    uint32_t Runtime::getLastManagesCycles()
+    {
+        return lastManagesCycles;
+    }
+
+    float Runtime::getTime()
+    {
+        return smoothTime;
     }
 
     void Runtime::insertGroup(RuntimeGroup *group)

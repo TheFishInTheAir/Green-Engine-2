@@ -24,7 +24,10 @@ namespace ge
         //NOT VERY GOOD
         Entity *engineCore = new Entity();
         EngineControllerComponent *ecc = new EngineControllerComponent(engineCore);
-        
+		
+		engineCore->name = "engine_core";
+		engineCore->insertComponent(ecc);
+
         EntityManager::registerEntity(engineCore);
         ecc->insertToDefaultBatch();
 	}

@@ -40,7 +40,7 @@ namespace ge
 
 		currentCamera = GlobalMemory::get(DBL_STRINGIFY(CURRENT_CAMERA)).getRawData<Camera>();
 
-		testlight = GlobalMemory::get("testlight").getRawData<LightDirectional>();
+		//testlight = GlobalMemory::get("testlight").getRawData<LightDirectional>();
 
 		model = eso.model;
 		mesh  = _gCore->meshFactory->newTriangleMesh(*s.meshes.find(eso.mesh)->second.get()); //TODO: fix to be shared pointer
@@ -162,13 +162,13 @@ namespace ge
 
 			mesh->registerUniform(DBL_STRINGIFY(ALBEDO_REF));
 			mesh->registerUniform(DBL_STRINGIFY(SPECULAR_REF));
-			mesh->registerUniform("testLight.dir");
-			mesh->registerUniform("testLight.colour");
+			// mesh->registerUniform("testLight.dir");
+			// mesh->registerUniform("testLight.colour");
 
-			u_albedo = mesh->getUniform(DBL_STRINGIFY(ALBEDO_REF));
-			u_specular = mesh->getUniform(DBL_STRINGIFY(SPECULAR_REF));
-			u_testlight_col = mesh->getUniform("testLight.colour");
-			u_testlight_dir = mesh->getUniform("testLight.dir");
+			// u_albedo = mesh->getUniform(DBL_STRINGIFY(ALBEDO_REF));
+			// u_specular = mesh->getUniform(DBL_STRINGIFY(SPECULAR_REF));
+			// u_testlight_col = mesh->getUniform("testLight.colour");
+			// u_testlight_dir = mesh->getUniform("testLight.dir");
 
 			mesh->registerTexture(albedo, 0);
 			mesh->registerTexture(specular.get(), 1);
@@ -221,6 +221,8 @@ namespace ge
 	{
 		Entity* ent = new Entity();
 
+		ent->name = "stat_obj";
+
         TransformComponent *tc     = new TransformComponent(ent);
 		MeshRendererComponent *mrc = new MeshRendererComponent(ent,
                                                   GraphicsCore::ctx->meshFactory->newTriangleMesh(
@@ -228,19 +230,30 @@ namespace ge
 
         
         //TODO: put this code into the Triangle Mesh Factory
+		if(Scene::currentScene->shaderGroups.count(so.custom_shader)==0) //NOTE: TEMP  TODO: PUT THIS CHECK IN THE SCENE LOADER
+			Log::critErr("StaticObject","Couldn't find shader group '"+so.custom_shader+"'");
+
         mrc->mesh->setShaderGroup(Scene::currentScene->shaderGroups.find(so.custom_shader)->second.get()); //TODO: make custom_shader just shader
         mrc->mesh->rebuffer();
         
         //MESH
         Scene::currentScene->textures.at(so.albedo).get()->setFiltering(TextureFilterType::Anisotropic_16x);
+        Scene::currentScene->textures.at(so.specular).get()->setFiltering(TextureFilterType::Anisotropic_16x);
 
         mrc->mesh->registerTexture(Scene::currentScene->textures.at(so.albedo).get(), ALBEDO_LOC);
         mrc->mesh->registerTexture(Scene::currentScene->textures.at(so.specular).get(), SPECULAR_LOC);
         
-        
+        if(mrc->mesh->containsUniform(DBL_STRINGIFY(SKYBOX)))
+		{
 
-        
-        mrc->mesh->setUniform(DBL_STRINGIFY(ALBEDO_REF), Uniform::UniformContent(ALBEDO_LOC)); //TODO: don't do this, memory leak...
+			mrc->mesh->registerCubeMap(Scene::currentScene->cubemaps[Scene::currentScene->skyboxCubemapName].get(), 0);
+			mrc->mesh->setUniform(DBL_STRINGIFY(SKYBOX),Uniform::UniformContent(0));
+
+			Scene::currentScene->cubemaps[Scene::currentScene->skyboxCubemapName].get()->setFiltering(TextureFilterType::Anisotropic_16x);
+
+		}
+		mrc->mesh->setUniform(DBL_STRINGIFY(ALBEDO_REF), Uniform::UniformContent(ALBEDO_LOC)); 
+		mrc->mesh->setUniform(DBL_STRINGIFY(SPECULAR_REF), Uniform::UniformContent(SPECULAR_LOC)); 
 
         //TRANSFORM
         tc->setPosition(so.model.pos);
@@ -252,7 +265,7 @@ namespace ge
         ent->insertComponent(tc);
         ent->insertComponent(mrc);
         
-        Log::dbg("TEST: "+std::to_string(so.model.pos.y)+", "+so.mesh+", "+Scene::currentScene->textures.at(so.albedo).get()->url);
+        Log::dbg("StaticObject", "TEST: "+std::to_string(so.model.pos.y)+", "+so.mesh+", "+Scene::currentScene->textures.at(so.albedo).get()->url);
         
         tc->insertToDefaultBatch();
         mrc->insertToDefaultBatch();

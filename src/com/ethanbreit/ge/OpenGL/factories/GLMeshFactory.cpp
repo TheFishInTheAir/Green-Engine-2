@@ -40,7 +40,7 @@ namespace ge
 				{
 					GL::VertexBuffer* vertex = new GL::VertexBuffer();
 					
-					if (!i.first->unique)
+					if (!i.first->unique) //TODO: make this a reallistically accessable flag
 					{
 						vertex->data = (Empty::VertexBuffer*) malloc(sizeof(*i.first));
 						memcpy(vertex->data, i.first, sizeof(Empty::VertexBuffer));

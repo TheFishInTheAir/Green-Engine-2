@@ -9,7 +9,7 @@
 #include <unordered_map>
 #include <ge/engine/empty_types/EmptyStaticObject.h>
 #include <array>
-
+#include <ge/graphics/types/Material.h>
 namespace ge
 {
 	namespace Empty
@@ -27,7 +27,7 @@ namespace ge
 
 
 			std::forward_list<std::string>							shaders;
-
+			std::forward_list<Material>							materials;
 
 			std::forward_list<Empty::StaticObject>					staticObjects;
 

@@ -128,7 +128,7 @@ namespace ge
 			Empty::IndexBuffer  *indexBuffer = new Empty::IndexBuffer();
 
 
-			vertexBuffer->dataType = DataType::Float;
+			vertexBuffer->dataType = BasicDataType::Float;
 			vertexBuffer->attributeId = 0;
 			vertexBuffer->sizePerAttrib = 3;
 			vertexBuffer->offset = 0;
@@ -151,7 +151,7 @@ namespace ge
 
 				Empty::VertexBuffer *normalBuffer = new Empty::VertexBuffer();
 
-				normalBuffer->dataType = DataType::Float;
+				normalBuffer->dataType = BasicDataType::Float;
 				normalBuffer->attributeId = 1;
 				normalBuffer->sizePerAttrib = 3;
 				normalBuffer->offset = 0;
@@ -166,7 +166,7 @@ namespace ge
 			if (hasUVs)
 			{
 				Empty::VertexBuffer *UVBuffer = new Empty::VertexBuffer();
-				UVBuffer->dataType = DataType::Float;
+				UVBuffer->dataType = BasicDataType::Float;
 				UVBuffer->attributeId = 2;
 				UVBuffer->sizePerAttrib = 2;
 				UVBuffer->offset = 0;

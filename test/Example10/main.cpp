@@ -1,6 +1,5 @@
 
 #include "../ExampleController.h"
-#include "GroupIDs.h"
 
 #ifdef Enable_Example10
 
@@ -10,7 +9,7 @@
 #include <ge/engine/Start.h>
 #include <ge/entity/Entity.h>
 #include <ge/entity/EntityManager.h>
-#include <ge/entity/component/components/TestComponent.h>
+#include <ge/entity/component/components/LightComponent.h>
 #include <ge/entity/component/components/CameraComponent.h>
 #include <ge/entity/component/components/TransformComponent.h>
 #include <ge/entity/component/components/FreeCamControllerComponent.h>
@@ -23,6 +22,8 @@
 #include <engine/global_settings.pre>
 #include <ge/entity/component/ComponentManager.h>
 #include <ge/input/KeyboardHandler.h>
+#include <ge/debug/DebugGUI.h>
+
 ge::GraphicsCore *gc;
 
 bool uninitialised = true;
@@ -31,6 +32,8 @@ void runtimeInitHook()
 {
 
     uninitialised = false;
+
+
 }
 
 void sceneInit(void* d)
@@ -38,6 +41,48 @@ void sceneInit(void* d)
     std::pair<ge::Scene*, ge::Empty::Scene*>* data = (std::pair<ge::Scene*, ge::Empty::Scene*>*) d;
     
     data->first->loadScene(*(data->second));
+
+    ge::Debug::DebugGUI::enable();
+
+
+    //NOTE: HACK
+
+        
+    ge::Entity* ent = new ge::Entity();
+    ent->name = "test_light";
+
+    ge::LightComponent* testCmp = new ge::LightComponent(ent);
+    ge::TransformComponent* testTCmp        = new ge::TransformComponent(ent);
+
+    testCmp->light.colour = glm::vec3(1);
+    testTCmp->setRotation(glm::quat(0.444,0.7777,0.444,0));
+
+    testCmp->insertToDefaultBatch();
+    testTCmp->insertToDefaultBatch();
+
+    ent->insertComponent(testCmp);
+    ent->insertComponent(testTCmp);
+
+    ge::EntityManager::registerEntity(ent);
+
+
+
+    ge::Entity* ent2 = new ge::Entity();
+    ent2->name = "test_light2";
+
+    ge::LightComponent* testCmp2            = new ge::LightComponent(ent2);
+    ge::TransformComponent* testTCmp2        = new ge::TransformComponent(ent2);
+
+    testCmp2->light.colour = glm::vec3(1,0,1);
+    testTCmp2->setRotation(glm::quat(0.444,0.7777,-0.444,0));
+
+    testCmp2->insertToDefaultBatch();
+    testTCmp2->insertToDefaultBatch();
+
+    ent2->insertComponent(testCmp2);
+    ent2->insertComponent(testTCmp2);
+
+    ge::EntityManager::registerEntity(ent2);
 };
 
 struct TestERComponent : public ge::Component
@@ -106,8 +151,8 @@ int main()
     
     seci.wci.height = 1080;
     seci.wci.width = 1920;
-    seci.wci.gl_major_version = 4;
-    seci.wci.gl_minor_version = 1;
+    seci.wci.gl_major_version = 3;
+    seci.wci.gl_minor_version = 3;
     seci.wci.clear_colour = glm::vec3(79.0f/255, 100.0f/255, 144.0f/255);
     //seci.wci.has_depth_buffer = false; //NOTE: TEST
     seci.runtimes.push_back(new ge::Runtime(RUNTIME_MAIN));
@@ -126,22 +171,15 @@ int main()
     
  
     
-    //Entity Test:
-    
-    ge::Entity* ent = new ge::Entity();
-    ge::TestComponent* testCmp = new ge::TestComponent(ent);
-    
-    testCmp->insertToDefaultBatch();
-    
-    ent->insertComponent(testCmp);
-    
-    ge::EntityManager::registerEntity(ent);
+    //Light Test:
+
     
     //Camera Test:
     
     ge::Entity* camEnt = new ge::Entity();
-    ge::FreeCamControllerComponent* fcc = new ge::FreeCamControllerComponent(camEnt);
+    camEnt->name = "main_cam";
 
+    ge::FreeCamControllerComponent* fcc = new ge::FreeCamControllerComponent(camEnt);
     ge::CameraComponent* cmpComponent   = new ge::CameraComponent(camEnt);
     ge::TransformComponent* tCmp        = new ge::TransformComponent(camEnt);
     //TestERComponent *TESTBOI = new TestERComponent(camEnt);
@@ -163,7 +201,7 @@ int main()
     
     //Scene Test
     ge::Empty::Scene* emptyScene = new ge::Empty::Scene();
-    ge::SceneLoader::loadSceneJson("scenes/g22_t1.json", emptyScene, true);
+    ge::SceneLoader::loadSceneJson("scenes/g22_t4.json", emptyScene, true);
     
     ge::Scene *scene = new ge::Scene();
     ge::Scene::currentScene = scene;
@@ -176,6 +214,7 @@ int main()
     //testCmp->destroy();
     //batch->hardRemove(testCmp->batchId);
     
+
     ge::Log::dbg("UPDATE");
     while(!gc->window->shouldClose()) // 79 148 248
         gc->window->poll();

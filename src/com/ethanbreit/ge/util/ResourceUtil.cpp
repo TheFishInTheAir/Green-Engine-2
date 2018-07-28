@@ -1,5 +1,5 @@
 #include <ge/util/ResourceUtil.h>
-#include <ge/console/ConsoleIO.h>
+#include <ge/console/Log.h>
 
 #define DEV
 
@@ -19,6 +19,7 @@ namespace ge
 
     namespace ResourceUtil
     {
+        const std::string LOG_TAG = "ResourceUtil";
 
 		std::string getResPath(std::string path)
 		{
@@ -32,7 +33,7 @@ namespace ge
 
             if(!file)
             {
-                ConsoleIO::print("Couldn't Open File: "+getResPath(path)+", "+path+"\n",MessageType::Error);
+                Log::critErr(LOG_TAG, "Couldn't Open File: "+getResPath(path)+", "+path+"\n");
 				return -1;
             }
 
@@ -54,7 +55,7 @@ namespace ge
 
 			if (!file)
 			{
-				ConsoleIO::print("Couldn't Open File: " + getResPath(path) + ", " + path + "\n", MessageType::Error);
+				Log::critErr(LOG_TAG, "Couldn't Open File: " + getResPath(path) + ", " + path + "\n");
 				return -1;
 
 			}
@@ -70,5 +71,20 @@ namespace ge
 			return 0;
 
 		}
+        int writeRawStrResource(std::string path, std::string fileIn)
+        {
+            std::ofstream file = std::ofstream(getResPath(path));
+
+            if(!file)
+            {
+                Log::err("Couldn't Open File: "+getResPath(path)+", "+path+"\n");
+				return -1;
+            }
+
+            file << fileIn;
+
+            file.close();
+            return 0;
+        }
     }
 }

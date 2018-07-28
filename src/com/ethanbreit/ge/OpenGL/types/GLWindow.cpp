@@ -95,7 +95,7 @@ namespace ge
 
             Log::msg(LOG_TAG, "Finding available Monitors:");
             int count;
-            GLFWmonitor **monitors =glfwGetMonitors(&count);
+            GLFWmonitor **monitors = glfwGetMonitors(&count);
             for(int i = 0; i<count; i++)
             {
                 Log::msg(LOG_TAG,

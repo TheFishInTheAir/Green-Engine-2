@@ -3,6 +3,7 @@
 #include <json/json.hpp>
 #include <ge/loader/LoadImage.h>
 #include <ge/loader/LoadMesh.h>
+#include <ge/loader/LoadMaterial.h>
 #include <ge/engine/empty_types/EmptyStaticObject.h>
 #define GLM_ENABLE_EXPERIMENTAL
 #include "glm/ext.hpp"
@@ -21,177 +22,21 @@ namespace ge
 	namespace SceneLoader
 	{
         
-        const std::string LOG_TAG = "Scene Loader";
+        const std::string LOG_TAG = "SceneLoader";
         
-        void errIfNotExist(std::string scenePath, json jobj, std::string str)
-        {
-            if(!jobj.count(str))
-            {
-                Log::critErr(LOG_TAG, "Scene '"+scenePath+"' Does not Contain json value '"+str+"'");
-            }
-        }
-        
-		Error loadSceneJson(std::string path, Empty::Scene* outScene, bool isResource)
-		{	
-
-			Empty::Scene scene;
-            
-            Log::vrb(LOG_TAG, "Loading Scene: "+path);
-
-
-			std::string file;
-			if (isResource)
-				ResourceUtil::getRawStrResource(path, &file);
-			else
-				ResourceUtil::getRawStrFile(path, &file);
-			
-			//Log::dbg(file);
-			json data = json::parse(file.c_str());
-
-            if(!data.count("version"))
-                Log::wrn(LOG_TAG, "No Scene Format Version Givin! Assuming latest.");
-            else
-            {   //TODO: Make this do something
-                std::string vrs("");
-                vrs += std::to_string((int)data["version"]["major"]);
-                vrs += ".";
-                vrs += std::to_string((int)data["version"]["minor"]);
-                
-                Log::vrb(LOG_TAG, "Scene Format Version: "+vrs);
-            }
-			/**
-			 *
-			 * Resource Loading
-			 *
-			 */
-            
-            //TODO: make tasks into individual functions (organisation)
-            
-            errIfNotExist(path, data, "preloaded_resources");
-            json res  = data["preloaded_resources"];
-
-			bool hasCustomShaders = res.count("shaders") != 0;
-			bool hasCubeMaps = res.count("cubemaps") != 0;
-
-			std::vector<std::string> textures = res["textures"];
-			std::vector<std::string> meshes = res["meshes"];
 
 
 
-			//std::vector<std::string> kept;
-            if(ge::Scene::currentScene==nullptr) //NOTE: maybe not the best place for this
-                ge::Scene::currentScene = new ge::Scene();
-            
-            ge::Scene* currentScene = ge::Scene::currentScene;
-
-
-			for(auto s : textures)
-			{
-				if(currentScene->textures.count(s)!=0)
-				{
-					scene.keptRes.push_back(s);
-                    Log::tVrb(LOG_TAG, "Keeping Texture '"+s+"'");
-					continue;
-				}
-				Image *i;
-				ImageLoader::loadImage(s, &i);
-
-				scene.images.insert({ std::string(s), *i });
-                Log::tVrb(LOG_TAG, "Loading Texture '"+s+"'");
-
-			}
-			
-
-			for(auto s : meshes)
-			{
-
-				if (currentScene->meshes.count(s) != 0)
-				{
-					scene.keptRes.push_back(s);
-                    Log::tVrb(LOG_TAG, "Keeping Mesh    '"+s+"'");
-
-					continue;
-				}
-				Empty::MeshData md;
-				MeshLoader::loadTriangleMesh(s, &md);
-			
-				scene.meshes.insert({ std::string(s), md });
-                Log::tVrb(LOG_TAG, "Loading Mesh    '"+s+"'");
-
-			}
-
-			//Tagged Resources
-
-			if (hasCubeMaps)
-			{
-				std::vector<json> cubemaps = res["cubemaps"];
-				for (auto cmap : cubemaps)
-				{
-
-					if (cmap.count("xpos"))
-					{
-						ge::Image* xpos;
-						ge::Image* xneg;
-
-						ge::Image* ypos;
-						ge::Image* yneg;
-
-						ge::Image* zpos;
-						ge::Image* zneg;
-
-
-						ImageLoader::loadImage(cmap["xpos"], &xpos);
-						ImageLoader::loadImage(cmap["xneg"], &xneg);
-
-						ImageLoader::loadImage(cmap["ypos"], &ypos);
-						ImageLoader::loadImage(cmap["yneg"], &yneg);
-
-						ImageLoader::loadImage(cmap["zpos"], &zpos);
-						ImageLoader::loadImage(cmap["zneg"], &zneg);
-
-						scene.cubemaps.insert({ cmap["tag"],{ {*xpos,*xneg, *ypos,*yneg, *zpos,*zneg} } }); //Weird thing Xcode suggested...
-                        Log::tVrb(LOG_TAG, std::string()+"Loading Cubemap '"+cmap["tag"].get<std::string>()+"'");
-					}
-                    else
-					{
-                        Log::wrn(LOG_TAG, "Invalid Cubemap syntax, must give image coordinates. -Skipping");
-					}
-				}
-			}
-			
-			if (hasCustomShaders) 
-			{
-				std::vector<std::string> shaders = res["shaders"];
-
-				for (auto s : shaders)
-				{
-
-					if (currentScene->shaders.count(s) != 0)
-					{
-						scene.keptRes.push_back(s);
-                        Log::tVrb(LOG_TAG, "Keeping Shader  '"+s+"'");
-						continue;
-					}
-
-					scene.shaders.push_front( std::string(s) );
-                    Log::tVrb(LOG_TAG, "Loading Shader  '"+s+"'");
-				}
-
-			}
-			/**
-			* SkyBox
-			*/
-
-			if(data.count("skybox")!=0)
-			{
-				scene.skybox = data["skybox"]; // Not an error INTELLISENSE!
-			}
+	//DEPRECATED... but will add back in soon and it will actually make sense.
+	void loadStaticObjects(json data, Empty::Scene * scene)
+	{
 
 			/**
 			*
 			* Static Object
 			*
 			*/
+
 
 			std::vector<json> static_objects = data["static_objects"];
 
@@ -298,8 +143,191 @@ namespace ge
 				obj.mesh = string_temp;
 
 
-				scene.staticObjects.push_front(obj);
+				scene->staticObjects.push_front(obj);
 			}
+
+	}
+
+        void errIfNotExist(std::string scenePath, json jobj, std::string str)
+        {
+            if(!jobj.count(str))
+            {
+                Log::critErr(LOG_TAG, "Scene '"+scenePath+"' Does not Contain json value '"+str+"'");
+            }
+        }
+        
+		Error loadSceneJson(std::string path, Empty::Scene* outScene, bool isResource)
+		{	
+
+			Empty::Scene scene;
+            
+            Log::vrb(LOG_TAG, "Loading Scene: "+path);
+
+
+			std::string file;
+			if (isResource)
+				ResourceUtil::getRawStrResource(path, &file);
+			else
+				ResourceUtil::getRawStrFile(path, &file);
+			
+			//Log::dbg(file);
+			json data = json::parse(file.c_str());
+
+            if(!data.count("version"))
+                Log::wrn(LOG_TAG, "No Scene Format Version Given! Assuming latest.");
+            else
+            {   //TODO: Make this do something
+                std::string vrs("");
+                vrs += std::to_string((int)data["version"]["major"]);
+                vrs += ".";
+                vrs += std::to_string((int)data["version"]["minor"]);
+                
+                Log::vrb(LOG_TAG, "Scene Format Version: "+vrs);
+            }
+			/**
+			 *
+			 * Resource Loading
+			 *
+			 */
+            
+            //TODO: make tasks into individual functions (organisation)
+            
+            errIfNotExist(path, data, "preloaded_resources");
+            json res  = data["preloaded_resources"];
+
+			bool hasCustomShaders = res.count("shaders") != 0;
+			bool hasCubeMaps = res.count("cubemaps") != 0;
+			bool hasMaterials = res.count("materials") != 0;
+
+			std::vector<std::string> textures = res["textures"];
+			std::vector<std::string> meshes = res["meshes"];
+
+
+
+			//std::vector<std::string> kept;
+            if(ge::Scene::currentScene==nullptr) //NOTE: maybe not the best place for this
+                ge::Scene::currentScene = new ge::Scene();
+            
+            ge::Scene* currentScene = ge::Scene::currentScene;
+
+
+			for(auto s : textures)
+			{
+				if(currentScene->textures.count(s)!=0)
+				{
+					scene.keptRes.push_back(s);
+                    Log::tVrb(LOG_TAG, "Keeping Texture '"+s+"'");
+					continue;
+				}
+				Image *i;
+				ImageLoader::loadImage(s, &i);
+
+				scene.images.insert({ std::string(s), *i });
+                Log::tVrb(LOG_TAG, "Loading Texture '"+s+"'");
+
+			}
+			
+
+			for(auto s : meshes)
+			{
+
+				if (currentScene->meshes.count(s) != 0)
+				{
+					scene.keptRes.push_back(s);
+                    Log::tVrb(LOG_TAG, "Keeping Mesh    '"+s+"'");
+
+					continue;
+				}
+				Empty::MeshData md;
+				MeshLoader::loadTriangleMesh(s, &md);
+			
+				scene.meshes.insert({ std::string(s), md });
+                Log::tVrb(LOG_TAG, "Loading Mesh    '"+s+"'");
+
+			}
+
+			//Tagged Resources
+
+			if (hasCubeMaps)
+			{
+				std::vector<json> cubemaps = res["cubemaps"];
+				for (auto cmap : cubemaps)
+				{
+
+					if (cmap.count("xpos"))
+					{
+						ge::Image* xpos;
+						ge::Image* xneg;
+
+						ge::Image* ypos;
+						ge::Image* yneg;
+
+						ge::Image* zpos;
+						ge::Image* zneg;
+
+
+						ImageLoader::loadImage(cmap["xpos"], &xpos);
+						ImageLoader::loadImage(cmap["xneg"], &xneg);
+
+						ImageLoader::loadImage(cmap["ypos"], &ypos);
+						ImageLoader::loadImage(cmap["yneg"], &yneg);
+
+						ImageLoader::loadImage(cmap["zpos"], &zpos);
+						ImageLoader::loadImage(cmap["zneg"], &zneg);
+
+						scene.cubemaps.insert({ cmap["tag"],{ {*xpos,*xneg, *ypos,*yneg, *zpos,*zneg} } }); //Weird thing Xcode suggested...
+                        Log::tVrb(LOG_TAG, std::string()+"Loading Cubemap '"+cmap["tag"].get<std::string>()+"'");
+					}
+                    else
+					{
+                        Log::wrn(LOG_TAG, "Invalid Cubemap syntax, must give image coordinates. -Skipping");
+					}
+				}
+			}
+			
+			if (hasCustomShaders) 
+			{
+				std::vector<std::string> shaders = res["shaders"];
+
+				for (auto s : shaders)
+				{
+
+					if (currentScene->shaders.count(s) != 0)
+					{
+						scene.keptRes.push_back(s);
+                        Log::tVrb(LOG_TAG, "Keeping Shader  '"+s+"'");
+						continue;
+					}
+
+					scene.shaders.push_front( std::string(s) );
+                    Log::tVrb(LOG_TAG, "Loading Shader  '"+s+"'");
+				}
+
+			}
+
+			if (hasMaterials) 
+			{
+				std::vector<std::string> materials = res["materials"];
+
+				for (auto s : materials) //NOTE: materials are small enough we don't even care if they are kept between scene transfer.
+				{
+					Material mat = MaterialLoader::loadMaterial(s, true);
+					scene.materials.push_front( mat );
+                    Log::tVrb(LOG_TAG, "Loading Material  '"+s+"'");
+				}
+
+			}
+			/**
+			* SkyBox
+			*/
+
+			if(data.count("skybox")!=0)
+			{
+				scene.skybox = data["skybox"]; // Not an error INTELLISENSE!
+			}
+
+			if(data.count("static_objects") != 0)
+				loadStaticObjects(data, &scene);
 
 			*outScene = scene;
 
@@ -308,4 +336,6 @@ namespace ge
 		}
 
 	}
+
+
 }

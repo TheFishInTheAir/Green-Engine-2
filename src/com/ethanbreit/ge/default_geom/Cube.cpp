@@ -25,7 +25,7 @@ namespace ge
 					ge::Empty::VertexBuffer* v = new ge::Empty::VertexBuffer();
 					v->data = &vertecies;
 					v->attributeId = VERTEX_POSITION;
-					v->dataType = DataType::Float;
+					v->dataType = BasicDataType::Float;
 					v->memoryType = BufferMemoryType::Static;
 					v->normalized = false;
 					v->size = 3 * 36 * sizeof(float);

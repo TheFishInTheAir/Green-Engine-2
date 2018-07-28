@@ -19,6 +19,7 @@ namespace ge
     {
         virtual void render() = 0;
         virtual ~TriangleMesh(){};
+        bool cullBackface = true;
 
         virtual void rebuffer() = 0;
 
@@ -40,9 +41,14 @@ namespace ge
         
         virtual std::vector<ge::Texture*> getTextures() = 0;
 
-        virtual ge::Uniform* getUniform(std::string) = 0; //Deprecated @DEPRECATED TODO: Deprecate
+        virtual ge::Uniform* getUniform(std::string) = 0; //Deprecated @DEPRECATED TODO: Deprecate, NOTE: is this enough deprecates?
         virtual ge::VertexBuffer* getVertexBuffer(std::string) = 0;
 
-        virtual void setUniform(std::string, ge::Uniform::UniformContent) = 0;// TODO: IMPLEMENT IT WORKS REALLY WELL DOING IT THIS WAY. The Uniforms in GELite were super good
+        virtual void setUniform(std::string, ge::Uniform::UniformContent) = 0;
+
+        virtual void deepDestroy() = 0; //Destroy EVERYTHING, except for the shader and the textures and the cubemaps...
+
+        //TODO: add like a 'virtual void turboDeepUltraDestructionDestroy() = 0;' to destroy literally everything.
+
     };
 }

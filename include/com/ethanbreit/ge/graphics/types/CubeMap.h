@@ -12,6 +12,15 @@ namespace ge
 {
 	struct CubeMap
 	{
+		std::string xp_url;
+		std::string xn_url;
+		
+		std::string yp_url;
+		std::string yn_url;
+
+		std::string zp_url;
+		std::string zn_url;
+		
 		int getDimension() const;
 
 		TextureFilterType::type getFiltering();

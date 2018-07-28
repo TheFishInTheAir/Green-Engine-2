@@ -7,6 +7,12 @@
 
 namespace ge
 {
+    Component* _constructor_TestComponent(Entity* ent)
+    {
+        return new TestComponent(ent);
+    }
+
+    ComponentConstructorRegistry::StartupHook TestComponent::_hook("TestComponent", _constructor_TestComponent);
 
     
     const std::string LOG_TAG = "TestCopmonent";

@@ -2,6 +2,7 @@
 
 #include <string>
 #include <cstdint>
+#include <vector>
 
 namespace ge
 {
@@ -18,5 +19,7 @@ namespace ge
         void     registerTag(EntityTag*);
         void     removeTag(EntityTag*);
         void     removeTag(std::string);
+
+        std::vector<Entity*>* getAllEntities();
     }
 }

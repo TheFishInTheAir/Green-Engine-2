@@ -7,6 +7,20 @@
 #include <ge/entity/component/components/TransformComponent.h>
 namespace ge
 {
+    Component* _constructor_CameraComponent(Entity* ent)
+    {
+        return new CameraComponent(ent);
+    }
+
+    ComponentConstructorRegistry::StartupHook CameraComponent::_hook("CameraComponent", _constructor_CameraComponent);
+
+    CameraComponent::CameraComponent(Entity* e) : Component(e)
+    {
+        addPublicVar("FOV", {DataType::FLOAT, &camera.fov});
+        addPublicVar("Near Cull Plane", {DataType::FLOAT, &camera.nearCull});
+        addPublicVar("Far Cull Plane", {DataType::FLOAT, &camera.farCull});
+    }
+
     void CameraComponent::defaultInit()
     {
         //TODO: probably should remove this.
@@ -48,6 +62,9 @@ namespace ge
         camera.update(); //we only use this to recalculate the projection
         //NOTE: INNEFICIENT DOING AN UPDATE THEN RECALCULATING VIEW MATRIX
 
+        camera.dir = glm::vec3(0,1,0) * transformComponent->getRotation(); //transform quaternion into vector
+        camera.pos = transformComponent->getPosition();
+        
         camera.view = glm::mat4(1);
         camera.view *= glm::translate(glm::mat4(1), transformComponent->getPosition());
         camera.view *= glm::toMat4(transformComponent->getRotation());
@@ -60,7 +77,8 @@ namespace ge
 
     void CameraComponent::destroy()
     {
-
+        if(Camera::displayCamera==&camera)
+            Camera::displayCamera=nullptr;
     }
 
     std::string CameraComponent::getTypeName()

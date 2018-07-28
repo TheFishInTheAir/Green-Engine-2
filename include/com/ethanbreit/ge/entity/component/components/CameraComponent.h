@@ -1,12 +1,13 @@
 #pragma once
 #include <ge/entity/component/Component.h>
 #include <ge/graphics/Camera.h>
+#include <ge/entity/component/ComponentConstructorRegistry.h>
 namespace ge
 {
     struct TransformComponent;
     struct CameraComponent : public Component
     {
-        CameraComponent(Entity* e) : Component(e){};
+        CameraComponent(Entity* e);
 
         void defaultInit();
         void insertToDefaultBatch();
@@ -18,6 +19,8 @@ namespace ge
         Camera camera;
         void makeDisplay();
     private:
+        static ComponentConstructorRegistry::StartupHook _hook;
+
         bool hasTransformComponent = false;
         TransformComponent* transformComponent;
     };

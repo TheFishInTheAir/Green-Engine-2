@@ -2,6 +2,7 @@
 
 #include <ge/graphics/enums/DataType.h>
 #include <ge/graphics/enums/BufferMemoryType.h>
+#include <stdlib.h>
 
 namespace ge
 {
@@ -12,7 +13,7 @@ namespace ge
 			unsigned int attributeId;
 			int sizePerAttrib;
 			void* offset;
-			ge::DataType::type dataType;
+			ge::BasicDataType::type dataType;
 			bool normalized;
 
 			bool unique = false;

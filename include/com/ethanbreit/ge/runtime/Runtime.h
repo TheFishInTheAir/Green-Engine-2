@@ -53,10 +53,16 @@ namespace ge
         void        end();
 
         uint32_t    cyclesPerSecond;
-        uint32_t    managesBetweenClear;
+        uint32_t    managesBetweenClear = 10;
 
         uint16_t    getAmountOfGroups();
         uint64_t    getCyclesSinceClear();
+        uint32_t    getCyclesSinceManage();
+        float       getLastDelta();
+        float       getLastManagesAverageDelta();
+        uint32_t    getLastManagesCycles();
+
+        float       getTime(); //a value that goes from 0 to PI in a second
 
         void        enqueFunctionStatic(void (*)());
 
@@ -84,6 +90,12 @@ namespace ge
         uint32_t                        managesSinceLastClear       = 0;
         uint64_t                        cyclesSinceLastClear        = 0;
         uint32_t                        cyclesSinceLastManage       = 0;
+        float                           smoothTime                  = 0;
+
+        float                           miliLastDelta               = 0;
+        float                           tempMiliValue               = 0;
+        float                           lastManagesAverageDelta     = 0;
+        uint32_t                        lastManagesCycles           = 0;
         std::vector<RuntimeGroup*>      groups; //Maybe make a bst  TODO: OPTOMIZE
         std::thread                    *runtime;
         std::queue<void(*)()>			staticQueue;

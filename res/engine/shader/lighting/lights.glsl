@@ -1,51 +1,71 @@
-    #ifndef ge_lights
+#ifndef ge_lights
 #define ge_lights
+
+//TODO: Move somewhere else maybe to something like defaults/util/
 
 #pragma include <engine/global_settings.pre>
 
 ///Lighting Structs
 
 
-struct PointLight
+struct Light
 {
-	vec3 pos;
+	vec3 pos; //Point and Spot
+    vec3 dir; //Directional and Spot
+    float angle; //Spot
 
-	vec3 colour;
-	float intensity;
+    //NOTE: this should include intensity (multiplied alpha I.E. vec3(R*A, G*A, B*A))
+	vec3 colour; //All
+
+    //TODO: add light falloff
+
+    int light_type; //All, NOTE: see Global Settings
+
+    //float intensity;
 };
 
 
-struct DirectionalLight
-{
-	vec3 dir;
-
-	vec3 colour;
-	float intensity;
-};
 
 
-struct SpotLight
-{
-	vec3 pos;
+//
+//WARNING: DO NOT LOOK ANY FURTHER, BAD DESIGN DECISIONS LAY BELOW
+//
 
-	vec3 dir;
 
-	float angle;
+/*
 
-	vec3 colour;
-	float intensity;
-};
+
+  struct DirectionalLight
+  {
+  vec3 dir;
+
+  vec3 colour;
+  float intensity;
+  };
+
+
+  struct SpotLight
+  {
+  vec3 pos;
+
+  vec3 dir;
+
+  float angle;
+
+  vec3 colour;
+  float intensity;
+  };
+
 
 
 //Uniforms
-#ifndef NO_UNIFORMS
+#ifdef LIGHTING_UNIFORMS
 
 uniform PointLight UNIFORM_DIRECTIONAL_LIGHTS_IN[MAX_DIRECTIONAL_LIGHTS];
 uniform PointLight UNIFORM_POINT_LIGHTS_IN[MAX_POINT_LIGHTS];
 //TODO: Implement more
 
-
-#endif
+#endif //NO_UNIFORMS
 
 
 
@@ -79,6 +99,6 @@ float calcDirectionalLightSPEC(DirectionalLight light, vec3 normal, vec3 cameraP
 }
 
 #endif
-
+*/
 
 #endif
