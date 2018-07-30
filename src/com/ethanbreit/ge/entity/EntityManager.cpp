@@ -9,6 +9,7 @@ namespace ge
 {
     namespace EntityManager
     {
+		std::unordered_map<std::string, EntityTag*>* tags;
 
         std::vector<Entity*>* entities;
         std::queue<uint32_t>* emptyIndexs;
@@ -23,6 +24,8 @@ namespace ge
 
                 entities = new std::vector<Entity*>();
                 emptyIndexs = new std::queue<uint32_t>();
+
+				tags = new std::unordered_map<std::string, EntityTag*>();
             }
         }
 
@@ -58,29 +61,64 @@ namespace ge
 
         void removeEntity(Entity* ent)
         {
+			_init();
+
             removeEntity(ent->id);
         }
+
+		std::vector<Entity*>* getAllEntities()
+		{
+			_init();
+
+			return entities;
+		}
 
 
         void regsiterTag(EntityTag* tag)
         {
+			_init();
 
+			tags->insert({tag->name, tag});
         }
 
         void removeTag(EntityTag* tag)
         {
+			_init();
 
+			removeTag(tag->name);
         }
 
         void removeTag(std::string str)
         {
+			_init();
 
+			tags->erase(str);
         }
 
-        std::vector<Entity*>* getAllEntities()
-        {
-            return entities;
-        }
+		bool tagExists(std::string str)
+		{
+			_init();
+
+			return tags->count(str) != 0;
+		}
+
+		EntityTag*	getTag(std::string str)
+		{
+			_init();
+
+			return tags->at(str);
+		}
+		EntityTag*	getOrCreateTag(std::string str)
+		{
+			_init();
+
+			EntityTag* tag;
+			if (!tagExists(str))
+				regsiterTag(tag = new EntityTag(str));
+			else
+				tag = getTag(str);
+			return tag;
+		}
 
     }
 }

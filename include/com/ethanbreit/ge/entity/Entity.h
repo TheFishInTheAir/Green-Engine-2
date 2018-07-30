@@ -28,6 +28,8 @@ namespace ge
         
         void insertComponent(Component*);
 		void removeComponent(std::string);
+
+		void registerToTag(EntityTag*);
         
 		bool isDestroyed();
 		void destroy();

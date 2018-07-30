@@ -70,8 +70,8 @@ namespace ge
         double x = 0, y = 0;
         
         MouseHandler::getMousePos(&x, &y);
-        horizontalAngle += float(-x)*(lookSpeed/10000);
-        verticalAngle  +=  float(-y)*(lookSpeed/10000);
+        horizontalAngle = float(-x)*(lookSpeed/10000);
+        verticalAngle  =  float(-y)*(lookSpeed/10000);
         MouseHandler::resetMousePos();
 
         if(verticalAngle>=glm::pi<float>()/2)

@@ -148,7 +148,7 @@ namespace ge
             skybox = new Entity();
             
 			skybox->name = "skybox";
-	
+			skybox->registerToTag(EntityManager::getOrCreateTag("no_export"));
 
             MeshRendererComponent* mrc = new MeshRendererComponent(skybox, GraphicsCore::ctx->meshFactory->newTriangleMesh(ge::dgeo::cube::getMeshData()));
             

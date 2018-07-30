@@ -5,6 +5,8 @@
 #include <ge/console/Log.h>
 
 #include <glm/glm.hpp>
+
+//NOTE: this shouldn't be here. maybe make the loader thing and io thing...
 using json = nlohmann::json;
 namespace ge
 {

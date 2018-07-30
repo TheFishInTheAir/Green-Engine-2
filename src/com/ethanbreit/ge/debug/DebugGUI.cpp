@@ -25,9 +25,12 @@
 #define NK_INCLUDE_FONT_BAKING
 #define NK_INCLUDE_DEFAULT_FONT
 #define NK_IMPLEMENTATION
-#define NK_GLFW_GL3_IMPLEMENTATION
+
+//#define NK_GLFW_GL3_IMPLEMENTATION
+#define NK_GLFW_GL4_IMPLEMENTATION
+
 #include <nuklear.h> //TODO: use GELly when the port is done
-#include <nuklear_glfw_gl3.h>
+#include <nuklear_glfw_gl4.h>
 
 #define MAX_VERTEX_BUFFER 512 * 1024
 #define MAX_ELEMENT_BUFFER 128 * 1024
@@ -92,7 +95,7 @@ namespace ge
                             MouseHandler::disabled = false;
                         }
                         else
-                        { //OPEN
+                        { //OPEN NOTE: only works on osx
                             glfwSetInputMode(((ge::GL::Window*) GraphicsCore::ctx->window)->_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
                             MouseHandler::disabled = true;
 
@@ -137,8 +140,9 @@ namespace ge
                     drawEntProbe();
             }
             //Log::dbg("TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1");
-            nk_glfw3_render(NK_ANTI_ALIASING_ON, MAX_VERTEX_BUFFER, MAX_ELEMENT_BUFFER);
-            //Log::dbg("TEST2");
+            //nk_glfw3_render(NK_ANTI_ALIASING_ON, MAX_VERTEX_BUFFER, MAX_ELEMENT_BUFFER);
+			nk_glfw3_render(NK_ANTI_ALIASING_ON);
+			//Log::dbg("TEST2");
 
             glEnable(GL_DEPTH_TEST); // shouldn't be here
 
@@ -406,7 +410,7 @@ namespace ge
             ge_REGISTER_RUNTIME_HANDLER
 
             ge::GL::Window* w = (ge::GL::Window*) GraphicsCore::ctx->window;
-            nctx = nk_glfw3_init(w->_window, NK_GLFW3_INSTALL_CALLBACKS); //last two are arbitrary defaults
+            nctx = nk_glfw3_init(w->_window, NK_GLFW3_INSTALL_CALLBACKS, MAX_VERTEX_BUFFER, MAX_ELEMENT_BUFFER); //last two are arbitrary defaults
 
             {struct nk_font_atlas *atlas;
             nk_glfw3_font_stash_begin(&atlas);

@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <vector>
 
+
 namespace ge
 {
     struct Entity;
@@ -19,6 +20,9 @@ namespace ge
         void     registerTag(EntityTag*);
         void     removeTag(EntityTag*);
         void     removeTag(std::string);
+		bool	 tagExists(std::string);
+		EntityTag*	getTag(std::string);
+		EntityTag*  getOrCreateTag(std::string);
 
         std::vector<Entity*>* getAllEntities();
     }

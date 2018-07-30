@@ -2,7 +2,7 @@
 // Created by Ethan Breit on 2017-08-10.
 //
 #include <ge/input/MouseHandler.h>
-#include <ge/console/ConsoleIO.h>
+#include <ge/console/Log.h>
 
 namespace ge
 {
@@ -18,11 +18,12 @@ namespace ge
         void resetMousePos()
         {
 
-            if(disabled)
-                return;
-                
-            x = 0;
-            y = 0;
+            //if(disabled)
+            //    return;
+               
+			//Log::dbg("TEST MOUSE MOVE");
+            //x = 0;
+            //y = 0;
         }
 
         void _mouseHandler(GLFWwindow *window, double xpos, double ypos)
@@ -49,10 +50,14 @@ namespace ge
 			if (!moveMouse)
 			{
 				
-				glfwSetCursorPos(window, centerMouse ? halfWidth : 0, centerMouse ? halfHeight : 0);
+				//glfwSetCursorPos(window, centerMouse ? halfWidth : 0, centerMouse ? halfHeight : 0);
+				//Log::dbg("TEST");
 
-				x += centerMouse ? xpos - halfWidth  : xpos;
-				y += centerMouse ? ypos - halfHeight : ypos;
+
+				//x += (centerMouse ? xpos - halfWidth  : xpos)-x;
+				//y += (centerMouse ? ypos - halfHeight : ypos)-y;
+				x = centerMouse ? xpos - halfWidth : xpos;
+				y = centerMouse ? ypos - halfHeight : ypos;
 			}
         }
     }

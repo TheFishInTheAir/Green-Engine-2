@@ -4,6 +4,7 @@
 #include <ge/entity/component/ComponentBatch.h>
 #include <ge/console/Log.h>
 #include <stdlib.h>
+
 namespace ge
 {
 	const std::string LOG_TAG = "Entity";
@@ -33,6 +34,11 @@ namespace ge
 		components.erase(type);
 	}
     
+	void Entity::registerToTag(EntityTag* tag)
+	{
+		tag->entities.push_back(this);
+		tags.push_back(tag);
+	}
 
     
 	void Entity::destroy()
@@ -40,7 +46,7 @@ namespace ge
 		//TODO: IMPLEMENT
 		for(auto tag : tags)
 		{
-			tag->entities.remove(id);
+			tag->entities.remove(this);
 		}
         
         for(auto cmp : components)

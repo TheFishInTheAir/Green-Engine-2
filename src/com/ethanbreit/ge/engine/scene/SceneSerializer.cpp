@@ -3,6 +3,8 @@
 #include <ge/entity/EntityManager.h>
 #include <ge/entity/component/Component.h>
 #include <glm/ext.hpp>
+#include <ge/console/Log.h>
+#include <ge/entity/EntityTag.h>
 
 using json = nlohmann::json;
 namespace ge
@@ -73,6 +75,13 @@ namespace ge
             std::list<json> jEnts;
             for(Entity* e : *ents)
             {
+				if (EntityManager::tagExists("no_export"))
+				{
+					Log::dbg("E test");
+					for (auto i : e->tags)
+						if (i->name == EntityManager::getTag("no_export")->name)
+							continue;
+				}
                 json j;
                 j["name"] = e->name;
 

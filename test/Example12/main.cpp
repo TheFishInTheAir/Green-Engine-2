@@ -84,6 +84,7 @@ int main()
     seci.wci.width = 1920;
     seci.wci.gl_major_version = 3;
     seci.wci.gl_minor_version = 3;
+	seci.wci.hidden_cursor = false; //TODO: enable
     seci.wci.clear_colour = glm::vec3(79.0f/255, 100.0f/255, 144.0f/255);
     //seci.wci.has_depth_buffer = false; //NOTE: TEST
     seci.runtimes.push_back(new ge::Runtime(RUNTIME_MAIN));

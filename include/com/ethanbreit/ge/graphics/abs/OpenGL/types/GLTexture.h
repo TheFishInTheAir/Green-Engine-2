@@ -19,9 +19,7 @@ namespace ge
             unsigned int id;
 
 
-            ge::Error setFiltering(TextureFilterType::type);
-
-
+			ge::Error setFiltering(TextureFilterType::type);
 
         };
 

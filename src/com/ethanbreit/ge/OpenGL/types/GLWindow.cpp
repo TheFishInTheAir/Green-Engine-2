@@ -115,12 +115,12 @@ namespace ge
              */
 			ge_DEBUG_TIMER_START
 
-            glfwWindowHint(GLFW_SAMPLES, _samples); // antialiasing
+            //glfwWindowHint(GLFW_SAMPLES, _samples); // antialiasing
             glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, _majorVersion); // We want OpenGL 3.3
             glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, _minorVersion);
-            glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, _isForwardCompatible); // To make MacOS happy; should not be needed
+            //glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, _isForwardCompatible); // To make MacOS happy; should not be needed
             glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //We don't want the old OpenGL
-            glfwWindowHint(GLFW_MAXIMIZED, true);
+            //glfwWindowHint(GLFW_MAXIMIZED, true);
 
 
 			ge_DEBUG_TIMER_END("GLFW Window Hinted")
@@ -207,9 +207,9 @@ namespace ge
                 _clearMask |= GL_DEPTH_BUFFER_BIT;
             }
 
-            glfwSwapInterval(0); //V-SYNC
+            glfwSwapInterval(0); //Disable V-SYNC
 
-            glfwSetCursorPos(_window,0,0);
+            //glfwSetCursorPos(_window,0,0);
 
 			/**
 			 *
