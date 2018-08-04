@@ -51,11 +51,10 @@ void sceneInit(void* d)
 		ge::ResourceUtil::getRawStrResource("ge/t1.gesc", &_file);
 
         nlohmann::json tempJ = nlohmann::json::parse(_file);
-        ge::Log::dbg("test1_");
+
         auto eList = ge::EntityDeserializer::deserializeJson(tempJ["entities"]);
-        ge::Log::dbg("test2_");
+
         ge::EntityDeserializer::activateEntities(eList);
-        ge::Log::dbg("test3_");
     }
 };
 
@@ -115,7 +114,9 @@ int main()
     camEnt->insertComponent(tCmp);
     camEnt->insertComponent(cmpComponent);
     camEnt->insertComponent(fcc);
-    
+		
+	camEnt->registerToTag(ge::EntityManager::getOrCreateTag("no_export"));
+
     tCmp->insertToDefaultBatch();
     cmpComponent->insertToDefaultBatch();
     fcc->insertToDefaultBatch();

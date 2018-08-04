@@ -77,10 +77,18 @@ namespace ge
             {
 				if (EntityManager::tagExists("no_export"))
 				{
+					bool shouldSkip = false;
+
 					Log::dbg("E test");
+
 					for (auto i : e->tags)
 						if (i->name == EntityManager::getTag("no_export")->name)
-							continue;
+						{
+							shouldSkip = true;
+							break;
+						}
+					if (shouldSkip)
+						continue;
 				}
                 json j;
                 j["name"] = e->name;

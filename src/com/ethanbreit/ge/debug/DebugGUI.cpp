@@ -330,7 +330,7 @@ namespace ge
                         ResourceUtil::writeRawStrResource(probeSaveLoc, SceneSerializer::serializeCurrentSceneJson().dump(2));
                 }
                 {//TextEdit
-                    char* editStr = (char*) malloc(probeSaveLoc.size()+1);
+                    char* editStr = (char*) malloc(probeSaveLoc.size()+2);
                     strcpy(editStr, probeSaveLoc.c_str());
                     nk_edit_string_zero_terminated(nctx, NK_EDIT_SIMPLE, editStr, 64, 0);
                     probeSaveLoc = std::string(editStr);
