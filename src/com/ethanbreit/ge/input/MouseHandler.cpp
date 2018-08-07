@@ -8,6 +8,9 @@ namespace ge
 {
     namespace MouseHandler
     {
+		bool newEvent = false; //NOTE: really bad, have an action queue and ALSO TODO: REALLY MAKE THIS NOT A GLFW SPECIFIC THING...
+		bool mmDisableState = true;
+
         double x = 0,y = 0;
 
         void getMousePos(double* xIn,double* yIn)
@@ -26,11 +29,31 @@ namespace ge
             //y = 0;
         }
 
+		void queueMouseDisableStateChange(bool isDisabled)
+		{
+			newEvent = true;
+			mmDisableState = isDisabled;
+		}
+
         void _mouseHandler(GLFWwindow *window, double xpos, double ypos)
         {
 
+			if (newEvent)
+			{
+				newEvent = false;
+				if (mmDisableState)
+				{
+					glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+				}
+				else
+				{
+					glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+				}
+			}
+
             if(disabled)
                 return;
+
 
 			static bool initialised = false;
 

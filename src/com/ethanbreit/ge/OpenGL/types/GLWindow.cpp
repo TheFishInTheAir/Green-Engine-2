@@ -151,7 +151,7 @@ namespace ge
             
 			if (windowConstructorInfo.hidden_cursor)
 			{
-				glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+				glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); //Fuuuuuuck, this has to be called  on the main thread
 			}
         	else
 			{

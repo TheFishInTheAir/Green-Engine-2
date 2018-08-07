@@ -91,13 +91,14 @@ namespace ge
                     {
                         if(shouldRender)
                         { //CLOSE
-                            glfwSetInputMode(((ge::GL::Window*) GraphicsCore::ctx->window)->_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+							MouseHandler::queueMouseDisableStateChange(true);
+                            //glfwSetInputMode(((ge::GL::Window*) GraphicsCore::ctx->window)->_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
                             MouseHandler::disabled = false;
                         }
                         else
                         { //OPEN NOTE: only works on osx
-                            glfwSetInputMode(((ge::GL::Window*) GraphicsCore::ctx->window)->_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-                            MouseHandler::disabled = true;
+							MouseHandler::queueMouseDisableStateChange(false);
+							MouseHandler::disabled = true;
 
                         }
                         shouldRender = !shouldRender;

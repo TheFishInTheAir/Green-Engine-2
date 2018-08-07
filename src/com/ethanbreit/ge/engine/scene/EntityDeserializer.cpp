@@ -1,5 +1,6 @@
 #include <ge/engine/scene/EntityDeserializer.h>
 #include <ge/entity/component/Component.h>
+#include <ge/entity/component/components/TransformComponent.h>
 #include <ge/entity/component/ComponentConstructorRegistry.h>
 #include <ge/entity/EntityManager.h>
 #include <ge/console/Log.h>
@@ -162,6 +163,9 @@ namespace ge
             {
                 for(auto c : e->components)
                 {
+					if (c.second->getTypeName() == "TransformComponent") //hack
+						((TransformComponent*)c.second)->reCalc();
+
                     c.second->insertToDefaultBatch();
                 }
                 EntityManager::registerEntity(e);
