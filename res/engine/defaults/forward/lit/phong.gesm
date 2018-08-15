@@ -30,9 +30,9 @@
             "type":"int"
         },
         {
-            "name":"LIGHT_IN",
+            "name":"LIGHT_DIR_IN",
             "type":"struct_array",
-            "array_size":"MAX_LIGHTS",
+            "array_size":"LIGHT_DIR_MAX",
 
             "struct_members":
             {
@@ -43,6 +43,32 @@
                         "type":"vec3"
                     },
                     {
+                        "name":"colour",
+                        "type":"vec3"
+                    },
+                    {
+                        "name":"ambient",
+                        "type":"float"
+                    }
+                ]
+            }
+        },
+        {
+            "name":"LIGHT_DIR_NUM",
+            "type":"int"
+        },
+
+
+        {
+            "name":"LIGHT_POINT_IN",
+            "type":"struct_array",
+            "array_size":"LIGHT_POINT_MAX",
+
+            "struct_members":
+            {
+                "uniforms":
+                [
+                    {
                         "name":"pos",
                         "type":"vec3"
                     },
@@ -51,18 +77,22 @@
                         "type":"vec3"
                     },
                     {
-                        "name":"angle",
+                        "name":"constant",
                         "type":"float"
                     },
                     {
-                        "name":"light_type",
-                        "type":"int"
+                        "name":"linear",
+                        "type":"float"
+                    },
+                    {
+                        "name":"quadratic",
+                        "type":"float"
                     }
                 ]
             }
         },
         {
-            "name":"LIGHT_NUM",
+            "name":"LIGHT_POINT_NUM",
             "type":"int"
         }
     ],

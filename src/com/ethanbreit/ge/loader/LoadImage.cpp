@@ -3,7 +3,6 @@
 //
 
 #include <ge/loader/LoadImage.h>
-#define STB_IMAGE_IMPLEMENTATION
 #include <stb/stb_image.h>
 #include <ge/util/ResourceUtil.h>
 #include <ge/console/ConsoleIO.h>

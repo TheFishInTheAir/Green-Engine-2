@@ -4,6 +4,9 @@
 #include <iostream>
 #include <fstream>
 
+#define DEV
+
+
 namespace ge
 {
 

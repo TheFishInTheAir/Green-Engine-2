@@ -62,7 +62,8 @@ namespace ge
         camera.update(); //we only use this to recalculate the projection
         //NOTE: INNEFICIENT DOING AN UPDATE THEN RECALCULATING VIEW MATRIX
 
-        camera.dir = glm::vec3(0,1,0) * transformComponent->getRotation(); //transform quaternion into vector
+        camera.dir = glm::vec3(0,0,-1) * transformComponent->getRotation(); //transform quaternion into vector
+        camera.up  = glm::vec3(0,1,0) * transformComponent->getRotation(); //transform quaternion into vector
         camera.pos = transformComponent->getPosition();
         
         camera.view = glm::mat4(1);

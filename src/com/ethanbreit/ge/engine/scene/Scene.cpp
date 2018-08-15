@@ -73,6 +73,11 @@ namespace ge
 				shaderGroups.insert({ s.first,s.second });
 
 			materials.clear(); //NOTE: materials are so small we dont really care that they don't get kept...
+			directionalLights.resize(LIGHT_DIR_MAX);
+			directionalLights.clear();
+			pointLights.resize(LIGHT_POINT_MAX);
+			pointLights.clear();
+			//directionalLights.(nullptr);
 		}
 
 		//Textures

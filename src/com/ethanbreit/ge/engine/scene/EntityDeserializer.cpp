@@ -23,6 +23,7 @@ namespace ge
                 Entity *ent = new Entity();
                 ent->name = e["name"];
                 ents.push_front(ent);
+                //Log::dbg(ent->name);
                 for(json jCmp : e["components"])
                 {
                     Component* cmp = ComponentConstructorRegistry::newComponent(jCmp["type"], ent);

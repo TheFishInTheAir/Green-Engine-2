@@ -1,15 +1,19 @@
 #pragma once
-#include "Light.h"
+#include <glm/glm.hpp>
+#include <ge/graphics/meshes/TriangleMesh.h>
 
 namespace ge
 {
-	struct LightPoint : Light
+	struct LightPoint
 	{
+		glm::vec3 pos;
+		glm::vec3 colour;
 
-		LightType::type getLightType()
-		{
-			return LightType::Point;
-		}
+		float constant;
+		float linear;
+		float quadratic;
+
+		void pushUnifValues(TriangleMesh* mesh, std::string prefix);
 
 	};
 }

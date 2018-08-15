@@ -19,7 +19,7 @@
 
 #include <ge/util/ResourceUtil.h>
 
-#define LOG
+//#define LOG
 
 namespace ge
 {
@@ -44,7 +44,8 @@ namespace ge
 		}
 
 //TODO: do more complicated stuff with buffering to seperate consoles, I.E. stringbuf, stringstream, or vector of strings.
-        void print(std::string msg) {
+        void print(std::string msg) 
+		{
             RawOut(msg);
         }
 

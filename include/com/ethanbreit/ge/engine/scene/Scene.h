@@ -13,7 +13,8 @@
 #include <ge/graphics/empty_types/Scene.h>
 #include <ge/graphics/meshes/TriangleMesh.h>
 #include <ge/engine/defaults/SkyBox.h>
-#include <ge/graphics/types/Light.h>
+#include <ge/graphics/types/lights/LightDirectional.h>
+#include <ge/graphics/types/lights/LightPoint.h>
 #include <ge/graphics/types/Material.h>
 
 
@@ -58,7 +59,8 @@ namespace ge
 
 		//TODO: create light class/struct @UNFINISHED
 
-		std::vector<Light*> lights;
+		std::vector<LightDirectional*> 	directionalLights;
+		std::vector<LightPoint*> 	pointLights;
 
 	};
 }

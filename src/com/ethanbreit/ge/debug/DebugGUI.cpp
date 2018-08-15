@@ -1,5 +1,7 @@
 #include <ge/debug/DebugGUI.h>
 
+#define GE_NK_GLFW_3
+
 //NOTE: this uses OpenGL and I am trying to make this API agnostic so, TODO: make good
 #include <ge/console/Log.h>
 #include <GL/glew.h>
@@ -27,10 +29,15 @@
 #define NK_IMPLEMENTATION
 
 //#define NK_GLFW_GL3_IMPLEMENTATION
-#define NK_GLFW_GL4_IMPLEMENTATION
 
 #include <nuklear.h> //TODO: use GELly when the port is done
+#ifdef GE_NK_GLFW_4
+#define NK_GLFW_GL4_IMPLEMENTATION
 #include <nuklear_glfw_gl4.h>
+#elif defined GE_NK_GLFW_3
+#define NK_GLFW_GL3_IMPLEMENTATION
+#include <nuklear_glfw_gl3.h>
+#endif
 
 #define MAX_VERTEX_BUFFER 512 * 1024
 #define MAX_ELEMENT_BUFFER 128 * 1024
@@ -111,6 +118,7 @@ namespace ge
                 }
                 
             }
+            
             nk_glfw3_new_frame();
 
             if(shouldDrawInfoOverlay)
@@ -142,8 +150,11 @@ namespace ge
             }
             //Log::dbg("TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1");
             //nk_glfw3_render(NK_ANTI_ALIASING_ON, MAX_VERTEX_BUFFER, MAX_ELEMENT_BUFFER);
+#ifdef GE_NK_GLFW_4
 			nk_glfw3_render(NK_ANTI_ALIASING_ON);
-			//Log::dbg("TEST2");
+#elif defined GE_NK_GLFW_3
+            nk_glfw3_render(NK_ANTI_ALIASING_ON, MAX_VERTEX_BUFFER, MAX_ELEMENT_BUFFER);
+#endif			//Log::dbg("TEST2");
 
             glEnable(GL_DEPTH_TEST); // shouldn't be here
 
@@ -411,8 +422,12 @@ namespace ge
             ge_REGISTER_RUNTIME_HANDLER
 
             ge::GL::Window* w = (ge::GL::Window*) GraphicsCore::ctx->window;
-            nctx = nk_glfw3_init(w->_window, NK_GLFW3_INSTALL_CALLBACKS, MAX_VERTEX_BUFFER, MAX_ELEMENT_BUFFER); //last two are arbitrary defaults
 
+#ifdef GE_NK_GLFW_4
+            nctx = nk_glfw3_init(w->_window, NK_GLFW3_INSTALL_CALLBACKS, MAX_VERTEX_BUFFER, MAX_ELEMENT_BUFFER); //last two are arbitrary defaults
+#elif defined GE_NK_GLFW_3
+            nctx = nk_glfw3_init(w->_window, NK_GLFW3_INSTALL_CALLBACKS); //last two are arbitrary defaults
+#endif
             {struct nk_font_atlas *atlas;
             nk_glfw3_font_stash_begin(&atlas);
             /*struct nk_font *droid = nk_font_atlas_add_from_file(atlas, "../../../extra_font/DroidSans.ttf", 14, 0);*/

@@ -59,10 +59,14 @@
 #define LIGHT_DIRECTIONAL  1
 #define LIGHT_SPOT         2
 
-#define LIGHT_IN           ge_light_in_uniform
-#define LIGHT_NUM          ge_light_in_num_uniform
+#define LIGHT_DIR_IN        ge_light_dir_in_uniform
+#define LIGHT_DIR_NUM       ge_light_dir_in_num_uniform
+#define LIGHT_DIR_MAX       2
 
-#define MAX_LIGHTS         32
+#define LIGHT_POINT_IN      ge_light_point_in_uniform
+#define LIGHT_POINT_NUM     ge_light_point_in_num_uniform
+#define LIGHT_POINT_MAX     16
+
 
 //NOTE: OLD
 #define MAX_POINT_LIGHTS	   	6
@@ -143,8 +147,6 @@ std::unordered_map<std::string, std::string> ge_global_settings::map = {
     {GE_STRFY(CAMERA_DIR),GE_DBL_STRFY(CAMERA_DIR)},
     {GE_STRFY(CAMERA_POS),GE_DBL_STRFY(CAMERA_POS)},
     {GE_STRFY(GE_TIME),GE_DBL_STRFY(GE_TIME)},
-    {GE_STRFY(LIGHT_IN),GE_DBL_STRFY(LIGHT_IN)},
-    {GE_STRFY(LIGHT_NUM),GE_DBL_STRFY(LIGHT_NUM)},
     {GE_STRFY(MVP),GE_DBL_STRFY(MVP)},
     {GE_STRFY(MVP_M),GE_DBL_STRFY(MVP_M)},
     {GE_STRFY(MVP_V),GE_DBL_STRFY(MVP_V)},
@@ -153,9 +155,12 @@ std::unordered_map<std::string, std::string> ge_global_settings::map = {
     {GE_STRFY(SKYBOX),GE_DBL_STRFY(SKYBOX)},
     {GE_STRFY(CUBEMAP_1), GE_DBL_STRFY(CUBEMAP_1)},
     {GE_STRFY(CUBEMAP_2), GE_DBL_STRFY(CUBEMAP_2)},
-    {GE_STRFY(LIGHT_IN),  GE_DBL_STRFY(LIGHT_IN)},
-    {GE_STRFY(LIGHT_NUM), GE_DBL_STRFY(LIGHT_NUM)},
-    {GE_STRFY(MAX_LIGHTS),GE_DBL_STRFY(MAX_LIGHTS)}
+    {GE_STRFY(LIGHT_DIR_IN),  GE_DBL_STRFY(LIGHT_DIR_IN)},
+    {GE_STRFY(LIGHT_DIR_NUM), GE_DBL_STRFY(LIGHT_DIR_NUM)},
+    {GE_STRFY(LIGHT_DIR_MAX),GE_DBL_STRFY(LIGHT_DIR_MAX)},
+    {GE_STRFY(LIGHT_POINT_IN),  GE_DBL_STRFY(LIGHT_POINT_IN)},
+    {GE_STRFY(LIGHT_POINT_NUM), GE_DBL_STRFY(LIGHT_POINT_NUM)},
+    {GE_STRFY(LIGHT_POINT_MAX),GE_DBL_STRFY(LIGHT_POINT_MAX)}
 };
 
 #endif

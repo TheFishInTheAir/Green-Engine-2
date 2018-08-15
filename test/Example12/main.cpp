@@ -9,10 +9,11 @@
 #include <ge/engine/Start.h>
 #include <ge/entity/Entity.h>
 #include <ge/entity/EntityManager.h>
-#include <ge/entity/component/components/LightComponent.h>
+#include <ge/entity/component/components/DirectionalLightComponent.h>
 #include <ge/entity/component/components/CameraComponent.h>
 #include <ge/entity/component/components/TransformComponent.h>
 #include <ge/entity/component/components/FreeCamControllerComponent.h>
+#include <ge/entity/component/components/AudioListinerComponent.h>
 #include <ge/entity/component/batches/DefaultComponentBatch.h>
 #include <ge/entity/component/components/HLMeshComponent.h>
 
@@ -27,6 +28,12 @@
 #include <ge/util/ResourceUtil.h>
 #include <ge/engine/scene/EntityDeserializer.h>
 
+#include <ge/audio/AudioSource.h>
+#include <ge/audio/AudioClip.h>
+#include <ge/audio/AudioController.h>
+
+#include <ge/loader/LoadAudioClip.h>
+
 #include <json/json.hpp>
 
 ge::GraphicsCore *gc;
@@ -37,6 +44,7 @@ void runtimeInitHook()
 {
     uninitialised = false;
 }
+const std::string MAP_LOC = "ge/t3.gesc";
 
 void sceneInit(void* d)
 {
@@ -48,7 +56,7 @@ void sceneInit(void* d)
 
     {
         std::string _file;
-		ge::ResourceUtil::getRawStrResource("ge/t1.gesc", &_file);
+		ge::ResourceUtil::getRawStrResource(MAP_LOC, &_file);
 
         nlohmann::json tempJ = nlohmann::json::parse(_file);
 
@@ -109,25 +117,40 @@ int main()
     ge::FreeCamControllerComponent* fcc = new ge::FreeCamControllerComponent(camEnt);
     ge::CameraComponent* cmpComponent   = new ge::CameraComponent(camEnt);
     ge::TransformComponent* tCmp        = new ge::TransformComponent(camEnt);
-    
+    ge::AudioListinerComponent* aCmp        = new ge::AudioListinerComponent(camEnt);
+
     camEnt->insertComponent(tCmp);
     camEnt->insertComponent(cmpComponent);
     camEnt->insertComponent(fcc);
+    camEnt->insertComponent(aCmp);
 		
 	camEnt->registerToTag(ge::EntityManager::getOrCreateTag("no_export"));
 
     tCmp->insertToDefaultBatch();
     cmpComponent->insertToDefaultBatch();
     fcc->insertToDefaultBatch();
+    aCmp->insertToDefaultBatch();
     
     cmpComponent->makeDisplay();
     
     ge::EntityManager::registerEntity(camEnt);
 
-    
+    //TEST
+    //ge::runOpenALTest();
+    ge::Audio::standardInit();
+    ge::Audio::AudioClip* clip_bababooi = ge::AudioClipLoader::loadAudioClip("ge_test_2.ogg", true);
+    clip_bababooi->upload();
+
+    ge::Audio::AudioSource* source = new ge::Audio::AudioSource();
+    source->create();
+    source->setClip(clip_bababooi);
+    source->loop = true;
+    source->position = glm::vec3(2,0,0);
+    source->update();
+    source->play();
     //Scene Test
     ge::Empty::Scene* emptyScene = new ge::Empty::Scene();
-    ge::SceneLoader::loadSceneJson("ge/t1.gesc", emptyScene, true);
+    ge::SceneLoader::loadSceneJson(MAP_LOC, emptyScene, true);
 
 
     

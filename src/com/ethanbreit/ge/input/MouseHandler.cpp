@@ -25,7 +25,7 @@ namespace ge
             //    return;
                
 			//Log::dbg("TEST MOUSE MOVE");
-            //x = 0;
+            //x = 0;	
             //y = 0;
         }
 

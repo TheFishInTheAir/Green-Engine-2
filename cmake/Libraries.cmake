@@ -17,7 +17,12 @@ endif()
 
 list(APPEND Green_Engine_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/libs/headers) #Define the Green Engine include directories
 
-
+find_package(OpenAL REQUIRED)
+if (OPENAL_FOUND)
+    message("${OPENAL_INCLUDE_DIR} and ${OPENAL_LIBRARY} TEST: ${ALUT_INCLUDE_DIR}\n")
+    list(APPEND Green_Engine_INCLUDES ${OPENAL_INCLUDE_DIR})
+    list(APPEND Green_Engine_LIBS ${OPENAL_LIBRARY})
+endif ()
 
 find_package(OpenGL REQUIRED)
 if (OPENGL_FOUND)

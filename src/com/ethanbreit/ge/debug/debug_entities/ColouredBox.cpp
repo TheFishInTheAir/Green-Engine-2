@@ -4,6 +4,7 @@
 #include <ge/util/ResourceUtil.h>
 #include <ge/graphics/empty_types/IndexBuffer.h>
 
+//NOTE: DEPRECATED
 namespace ge
 {
 	namespace Debug {

@@ -44,12 +44,15 @@ uniform sampler2D ALBEDO_REF;
 uniform sampler2D SPECULAR_REF;
 //TODO: add normal maps
 
-uniform Light LIGHT_IN[MAX_LIGHTS];
-uniform int LIGHT_NUM;
+uniform DirLight LIGHT_DIR_IN[LIGHT_DIR_MAX];
+uniform int LIGHT_DIR_NUM;
+
+uniform PointLight LIGHT_POINT_IN[LIGHT_POINT_MAX];
+uniform int LIGHT_POINT_NUM;
 
 //Phong Lighting
 
-vec3 computeDirectionalLight(Light l)
+vec3 computeDirectionalLight(DirLight l)
 {
     vec4 lCol = vec4(normalize(l.colour), 1); //the normalize is just a test
     vec4 colour = vec4(0);
@@ -57,21 +60,59 @@ vec3 computeDirectionalLight(Light l)
     vec3 normalLightDir = normalize(l.dir);
 
     //AMBIENT
-    colour += texture(ALBEDO_REF, tTexcoord) * vec4(0.1);
+    vec4 ambient = l.ambient * lCol;
 
     //Diffuse
-    colour +=
-        texture(ALBEDO_REF, tTexcoord) *
+    vec4 diff = 
         max(dot(-normalLightDir, tNormals),0) *
         lCol;
 
+
     //Specular
-    float spec = dot(reflect(normalLightDir, tNormals),
+    float specAmnt = dot(reflect(normalLightDir, tNormals),
                      normalize(CAMERA_POS-vec3(tFragcoord)));
-    colour +=
-        pow(max(spec,0),32) * //32 is an arbitrary default, I might change it to 64 or something
+    vec4 spec =
+        pow(max(specAmnt,0),32) * //32 is an arbitrary default, I might change it to 64 or something
         lCol *
         texture(SPECULAR_REF, tTexcoord);
+
+    colour += texture(ALBEDO_REF, tTexcoord) * (ambient + diff + spec);
+
+
+    return vec3(colour);
+}
+
+vec3 computePointLight(PointLight l)
+{
+    vec4 lCol = vec4(normalize(l.colour), 1); //the normalize is just a test
+    vec4 colour = vec4(0);
+
+    vec3 normalLightDir = normalize(tFragcoord.xyz - l.pos);
+
+    //Attenuation
+    float distance    = length(tFragcoord.xyz - l.pos );
+    float attenuation = 1.0 / (l.constant + l.linear * distance +
+                l.quadratic * (distance * distance));
+
+    //AMBIENT
+    //vec4 ambient = l.ambient * lCol * attenuation;
+
+    //Diffuse
+    vec4 diff = 
+        max(dot(-normalLightDir, tNormals),0) *
+        lCol * attenuation;
+
+
+    //Specular
+    float specAmnt = dot(reflect(normalLightDir, tNormals),
+                     normalize(CAMERA_POS-vec3(tFragcoord)));
+    vec4 spec =
+        pow(max(specAmnt,0),32) * //32 is an arbitrary default, I might change it to 64 or something
+        lCol *
+        texture(SPECULAR_REF, tTexcoord) * attenuation;
+
+    colour += texture(ALBEDO_REF, tTexcoord) * (diff + spec);
+
 
     return vec3(colour);
 }
@@ -82,18 +123,12 @@ vec3 computeLights()
 {
     vec3 currentColour = vec3(0);
 
-    for(int i = 0; i < LIGHT_NUM; i++)
-    {
-        Light currentLight = LIGHT_IN[i];
+    for(int i = 0; i < LIGHT_DIR_NUM; i++)
+        currentColour += computeDirectionalLight(LIGHT_DIR_IN[i]);
+    for(int i = 0; i < LIGHT_POINT_NUM; i++)
+        currentColour += computePointLight(LIGHT_POINT_IN[i]);
 
-        switch(currentLight.light_type)
-        {
-        case LIGHT_DIRECTIONAL:
-            currentColour += computeDirectionalLight(currentLight);
-            break;
-        }
 
-    }
     return currentColour;
 }
 

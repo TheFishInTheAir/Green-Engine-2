@@ -79,7 +79,6 @@ namespace ge
 				{
 					bool shouldSkip = false;
 
-					Log::dbg("E test");
 
 					for (auto i : e->tags)
 						if (i->name == EntityManager::getTag("no_export")->name)
@@ -255,6 +254,7 @@ namespace ge
 
             serializeSceneJson_Materials(jScene, s);
             serializeSceneJson_Entities(jScene, s);
+            Log::scc("Serialized Scene.");
 
             return jScene;
         }

@@ -40,24 +40,37 @@ namespace ge
                 
             }
 
-            if(mesh->containsUniform(DBL_STRINGIFY(LIGHT_NUM)))
-            	mesh->setUniform(DBL_STRINGIFY(LIGHT_NUM), ge::Uniform::UniformContent((int)Scene::currentScene->lights.size()));
+            //Directional Lights
+            if(mesh->containsUniform(DBL_STRINGIFY(LIGHT_DIR_NUM)))
+            	mesh->setUniform(DBL_STRINGIFY(LIGHT_DIR_NUM), ge::Uniform::UniformContent((int)Scene::currentScene->directionalLights.size()));
 
-            if(mesh->containsUniform(DBL_STRINGIFY(LIGHT_IN))) //NOTE: there must be a faster way of doing this
+            if(mesh->containsUniform(DBL_STRINGIFY(LIGHT_DIR_IN))) //NOTE: there must be a faster way of doing this
             {
                 int i = 0;
-                for(auto light : Scene::currentScene->lights)
-                { 
-                    std::string prefix = std::string() + DBL_STRINGIFY(LIGHT_IN)+"["+ std::to_string(i++) +"].";
-                    //Log::dbg("test");
-                    mesh->setUniform(prefix+"colour", ge::Uniform::UniformContent(light->colour));
-                    mesh->setUniform(prefix+"pos", ge::Uniform::UniformContent(light->pos));
-                    mesh->setUniform(prefix+"dir", ge::Uniform::UniformContent(light->dir));
-                    mesh->setUniform(prefix+"light_type", ge::Uniform::UniformContent(light->light_type));
-                    mesh->setUniform(prefix+"angle", ge::Uniform::UniformContent(light->angle));
-
+                for(auto light : Scene::currentScene->directionalLights)
+                {
+                    std::string prefix = std::string() + DBL_STRINGIFY(LIGHT_DIR_IN)+"["+ std::to_string(i++) +"].";
+                    
+                    light->pushUnifValues(mesh, prefix);
                 }
             }
+
+            //Point Lights
+            if(mesh->containsUniform(DBL_STRINGIFY(LIGHT_POINT_NUM)))
+            	mesh->setUniform(DBL_STRINGIFY(LIGHT_POINT_NUM), ge::Uniform::UniformContent((int)Scene::currentScene->pointLights.size()));
+
+            if(mesh->containsUniform(DBL_STRINGIFY(LIGHT_POINT_IN))) //NOTE: there must be a faster way of doing this
+            {
+                int i = 0;
+                for(auto light : Scene::currentScene->pointLights)
+                {
+                    std::string prefix = std::string() + DBL_STRINGIFY(LIGHT_POINT_IN)+"["+ std::to_string(i++) +"].";
+                    
+                    light->pushUnifValues(mesh, prefix);
+                }
+            }
+
+
 
 
         }

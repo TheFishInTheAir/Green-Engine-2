@@ -1,18 +1,53 @@
 #include <ge/util/ResourceUtil.h>
 #include <ge/console/Log.h>
 
-#define DEV
+//#include <experimental/filesystem>
 
-#ifndef GE_RES_PATH
-//#define GE_RES_PATH "../res/"
-    #ifdef DEV
-        #ifdef WIN32
-            #define GE_RES_PATH   "C:/Users/Ethan Breit/CMakeBuilds/7f623dd2-acf9-3a38-a2a7-973bf10a64cd/build/x64-Debug/res/" //TODO: MAKE PORTABLE
-        #else
-            #define GE_RES_PATH    "/Users/garthbreit/Desktop/Green-Engine-2/res/" //TODO: MAKE PORTABLE
-        #endif
-    #endif
-#endif
+//this is osx only
+#include <stdlib.h>
+#include <libproc.h>
+#include <unistd.h>
+
+#include <mach-o/dyld.h>
+std::string _get_os_bin_path()
+{
+    std::string path;
+    uint32_t size = 256;
+    char* _temp_path = (char*) malloc(size);
+    ge::Log::dbg("test");
+    if(_NSGetExecutablePath(_temp_path, &size)!=0)
+    {
+        ge::Log::dbg("ResourceUtil", "BAD STUFF!!!!!");
+    }
+    path = _temp_path;
+    ge::Log::dbg("ResourceUtil", path);
+
+    free(_temp_path);
+    return path;
+}
+
+std::string _get_os_pid_bin_path()
+{
+    std::string path;
+    
+    int ret;
+    pid_t pid;
+    char pathbuf[PROC_PIDPATHINFO_MAXSIZE];
+
+    pid = getpid();
+    ret = proc_pidpath(pid, pathbuf, sizeof(pathbuf));
+    
+    if(ret <= 0)
+    {
+        ge::Log::err("BADFOOD HAPPENED", "HELPHELPHELPHLEPHLPELHPELHPELPELHPLHPELHPELHPEHL");
+    }
+    else
+    {
+        ge::Log::dbg("good stuff :)", std::to_string(pid)+", '"+pathbuf+"'");
+    }
+    path = pathbuf;
+    return path;
+}
 
 namespace ge
 {
@@ -20,14 +55,30 @@ namespace ge
     namespace ResourceUtil
     {
         const std::string LOG_TAG = "ResourceUtil";
+        std::string GE_RES_PATH;
+
+        bool initialised = false;
+        void init()
+        {
+            if(initialised)
+                return;
+            initialised=true;
+            std::string path = _get_os_pid_bin_path();
+            path = path.substr(0, path.find_last_of('/'));
+            path = path.substr(0, path.find_last_of('/'));
+            GE_RES_PATH = path+"/res/";
+            //Log::critErr(GE_RES_PATH);
+        }
 
 		std::string getResPath(std::string path)
 		{
+            init();
 			return GE_RES_PATH + path;
 		}
 
         int getRawStrResource(std::string path, std::string *fileOut)
         {
+            init();
             //TODO: ERROR STANDARDIZATION PLEASE
             std::ifstream file = std::ifstream(getResPath(path));
 
@@ -50,6 +101,7 @@ namespace ge
         }
 		int getRawStrFile(std::string path, std::string *fileOut)
 		{
+            init();
 
 			std::ifstream file = std::ifstream(path);
 
@@ -73,6 +125,7 @@ namespace ge
 		}
         int writeRawStrResource(std::string path, std::string fileIn)
         {
+            init();
             std::ofstream file = std::ofstream(getResPath(path));
 
             if(!file)

@@ -115,10 +115,10 @@ namespace ge
              */
 			ge_DEBUG_TIMER_START
 
-            //glfwWindowHint(GLFW_SAMPLES, _samples); // antialiasing
+            glfwWindowHint(GLFW_SAMPLES, _samples); // antialiasing
             glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, _majorVersion); // We want OpenGL 3.3
             glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, _minorVersion);
-            //glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, _isForwardCompatible); // To make MacOS happy; should not be needed
+            glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, _isForwardCompatible); // To make MacOS happy; should not be needed
             glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //We don't want the old OpenGL
             //glfwWindowHint(GLFW_MAXIMIZED, true);
 
@@ -162,6 +162,8 @@ namespace ge
             glfwSetCursorPosCallback(_window, MouseHandler::_mouseHandler);
 
 			ge_DEBUG_TIMER_END("GLFW Input Init")
+
+
 
 
             /**

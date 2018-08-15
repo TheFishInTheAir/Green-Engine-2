@@ -41,7 +41,7 @@
           ]
         },
         {
-          "type": "LightComponent",
+          "type": "DirectionalLightComponent",
           "vars": [
             {
               "name": "Colour",
@@ -50,14 +50,6 @@
                 "y": 0.3200899660587311,
                 "z": 0.3200899660587311
               }
-            },
-            {
-              "name": "Angle",
-              "value": 4.203895392974451e-45
-            },
-            {
-              "name": "Light Type",
-              "value": 1
             }
           ]
         }

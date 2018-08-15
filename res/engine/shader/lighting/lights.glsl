@@ -8,22 +8,24 @@
 ///Lighting Structs
 
 
-struct Light
+struct DirLight
 {
-	vec3 pos; //Point and Spot
-    vec3 dir; //Directional and Spot
-    float angle; //Spot
+    vec3 dir;
+    float ambient;
+    //NOTE: this should include intensity (multiplied alpha I.E. vec3(R*A, G*A, B*A))
+	vec3 colour; //All
+};
 
+struct PointLight
+{
+    vec3 pos;
     //NOTE: this should include intensity (multiplied alpha I.E. vec3(R*A, G*A, B*A))
 	vec3 colour; //All
 
-    //TODO: add light falloff
-
-    int light_type; //All, NOTE: see Global Settings
-
-    //float intensity;
+    float constant;
+    float linear;
+    float quadratic;
 };
-
 
 
 
