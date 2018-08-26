@@ -42,6 +42,10 @@ namespace ge
 
             void clear();
 
+            void bindFrameBuffer();
+
+            uint8_t getSamples();
+
             void getSize(int *, int *);
 			GLFWwindow *_window;
         private:
@@ -49,6 +53,8 @@ namespace ge
             int _width;
             int _height;
             int _samples;
+            int _glfwWidth;
+            int _glfwHeight;
             int _majorVersion;
             int _minorVersion;
             int _isForwardCompatible;

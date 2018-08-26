@@ -202,7 +202,7 @@ namespace ge
 			std::vector<std::string> textures = res["textures"];
 			std::vector<std::string> meshes = res["meshes"];
 
-
+			scene.url = path;
 
 			//std::vector<std::string> kept;
             if(ge::Scene::currentScene==nullptr) //NOTE: maybe not the best place for this
@@ -316,6 +316,12 @@ namespace ge
                     Log::tVrb(LOG_TAG, "Loading Material  '"+s+"'");
 				}
 
+			}
+
+			if(data.count("entities"))
+			{
+				
+				scene.ents = data["entities"];
 			}
 			/**
 			* SkyBox

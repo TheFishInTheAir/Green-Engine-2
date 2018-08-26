@@ -44,11 +44,14 @@
 
 //GL
 #include <ge/graphics/abs/OpenGL/types/GLWindow.h>
+#include <ge/graphics/abs/OpenGL/types/GLTexture.h>
+
 #include <ge/graphics/GraphicsCore.h>
 #include <ge/input/KeyboardHandler.h>
 #include <ge/input/MouseHandler.h>
 #include <ge/entity/EntityManager.h>
 #include <ge/entity/Entity.h>
+#include <ge/entity/EntitySerial.h>
 #include <ge/entity/component/Component.h>
 #include <ge/engine/scene/Scene.h>
 #include <ge/engine/scene/SceneSerializer.h>
@@ -88,6 +91,9 @@ namespace ge
         {
 
             if(!isEnabled)
+                return;
+
+            if(GraphicsCore::ctx->currentPipeline->getState()!=PipelineState::PostRender)
                 return;
 
             {
@@ -133,11 +139,16 @@ namespace ge
                 {
                     nk_layout_row_dynamic(nctx, 30, 1);
                     if(nk_button_label(nctx, "Toggle Entity Tree"))
-                      shouldDrawEntTree = !shouldDrawEntTree;
+                        shouldDrawEntTree = !shouldDrawEntTree;
                     if(nk_button_label(nctx, "Toggle Scene Probe"))
-                      shouldDrawCurrentRes = !shouldDrawCurrentRes;
-                  if(nk_button_label(nctx, "Toggle Info Overlay"))
+                        shouldDrawCurrentRes = !shouldDrawCurrentRes;
+                    if(nk_button_label(nctx, "Toggle Info Overlay"))
                         shouldDrawInfoOverlay = !shouldDrawInfoOverlay;
+                    if(nk_button_label(nctx, "Toggle FrameBuffer View"))
+                        shouldDrawFrameBuffers = !shouldDrawFrameBuffers;
+                    //if(nk_button_label(nctx, "Toggle Pipeline View"))
+                      //  shouldDrawPipeline = !shouldDrawPipeline;
+                        
                 }
                 nk_end(nctx);
 
@@ -147,6 +158,8 @@ namespace ge
                     drawSceneProbe();
                 if(selectedEnt!=nullptr)
                     drawEntProbe();
+                if(shouldDrawFrameBuffers)
+                    drawFrameBuffers();
             }
             //Log::dbg("TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1TEST1");
             //nk_glfw3_render(NK_ANTI_ALIASING_ON, MAX_VERTEX_BUFFER, MAX_ELEMENT_BUFFER);
@@ -160,9 +173,11 @@ namespace ge
 
 
         }
+        
 
         void DebugGUI::drawEntTree()
         {
+            
             if (nk_begin(nctx, "DebugGUI: Entity Tree", nk_rect(350, 50, 230, 250),
                 NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|NK_WINDOW_SCALABLE|
                 NK_WINDOW_MINIMIZABLE|NK_WINDOW_TITLE))
@@ -206,6 +221,33 @@ namespace ge
                 nk_end(nctx);
         }
 
+        void DebugGUI::drawFrameBuffers()
+        {
+            //auto lastStyle = nctx->style.window.fixed_background;
+            //nctx->style.window.fixed_background = nk_style_item_color(nk_rgba(0,0,0,0));
+            int x, y;
+            GraphicsCore::ctx->window->getSize(&x, &y);
+            if (nk_begin(nctx, "DebuGUI: FrameBuffer Overlay", nk_rect(0, y*0.8, x, y*0.30f), 0))
+            {
+                //nk_layout_row_dynamic(nctx,20,1);
+                if(Scene::currentScene->shadows.empty())
+                {
+                    nk_end(nctx);
+                    return;
+                }
+                int texId = (int)((ge::GL::Texture*)(Scene::currentScene->shadows.front()->shadowMap))->id;
+                glBindTexture(GL_TEXTURE_2D, texId);
+                auto img = nk_image_id(texId);
+                struct nk_vec2 upperCord = nk_window_get_content_region_min(nctx);
+            
+                //nk_stroke_line(nk_window_get_canvas(nctx), upperCord.x, upperCord.y, upperCord.x+30, upperCord.y+30, 1.0f, nk_rgba(255,255,100,255));
+                nk_draw_image(nk_window_get_canvas(nctx),nk_rect(upperCord.x,upperCord.y,y*0.30f,y*0.30f),&img,nk_rgba(255,255,255,255));
+            }
+            nk_end(nctx);
+
+            //nctx->style.window.fixed_background = lastStyle;
+        }
+
         void DebugGUI::drawEntProbe()
         {
             if (nk_begin(nctx, "DebuGUI: Entity Probe", nk_rect(750, 50, 330, 550),
@@ -225,6 +267,28 @@ namespace ge
 
                     return;
                 }
+
+                if(nk_button_label(nctx, "Duplicate"))
+                {
+                    //Log::err("unimplemented");
+                    //return;
+
+                    Entity* ent = new Entity();
+                    ent->name = selectedEnt->name+"-dupe";
+                    for(auto cmp : selectedEnt->components)
+                    {
+                        Component* nCmp = ComponentConstructorRegistry::newComponent(cmp.first, ent);
+                        for(auto pv : cmp.second->publicVars)
+                        {
+                            EntitySerial::copyPublicVar(nCmp, cmp.second, pv.first);
+                        }
+                        ent->insertComponent(nCmp);
+
+                        nCmp->insertToDefaultBatch();
+                    }
+                    EntityManager::registerEntity(ent);
+                }
+
                 nk_layout_row_dynamic(nctx, 25, 2);
                 nk_label(nctx, std::string("Entity Name: ").c_str(), NK_TEXT_LEFT);
                 {
@@ -264,6 +328,8 @@ namespace ge
 
                                 return; //NOTE: continue not working...
                             }
+
+
                             for(std::string vn : c.second->publicVarsDisplayOrder)
                             {
                                 auto v = c.second->publicVars.find(vn);
@@ -278,14 +344,30 @@ namespace ge
                 static bool addComponentMenuOpen = false;
                 if(nk_button_label(nctx, "Add Component") || addComponentMenuOpen)
                 {
+                    
                     addComponentMenuOpen = true;
                     if(nk_popup_begin(nctx, NK_POPUP_STATIC, "DebugGUI: Add Component", 0, nk_rect(10, 10, 200, 300)))
                     {
                         nk_layout_row_dynamic(nctx, 20, 1);
+                        if(nk_button_label(nctx, "cancel"))
+                        {
+                            addComponentMenuOpen = false;
+                            nk_popup_close(nctx);
+                            nk_popup_end(nctx);
+                            nk_end(nctx);
+                            return;
+                        }
+                        nk_layout_row_dynamic(nctx, 20, 1);
+                        nk_layout_row_dynamic(nctx, 20, 1);
                         for(auto s : ComponentConstructorRegistry::getAvailable())
                         {
+                            if(selectedEnt->components.count(s))
+                                continue;
                             if(nk_button_label(nctx, s.c_str()))
                             {
+                                if(selectedEnt->components.count(s))
+                                    break;
+
                                 Component* cmp = ComponentConstructorRegistry::newComponent(s, selectedEnt);
 
                                 cmp->insertToDefaultBatch();
@@ -332,6 +414,9 @@ namespace ge
             NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|NK_WINDOW_SCALABLE|
                 NK_WINDOW_MINIMIZABLE|NK_WINDOW_TITLE))
             {
+                nk_layout_row_dynamic(nctx, 15, 1);
+                nk_label(nctx, (std::string()+"Current Scene: "+Scene::currentScene->url).c_str(), NK_TEXT_LEFT);
+                
                 nk_layout_row_dynamic(nctx, 25, 2);
                 if(nk_button_label(nctx, "Save Scene"))
                 {
@@ -441,7 +526,7 @@ namespace ge
             /*nk_style_set_font(ctx, &droid->handle);*/}
 
 
-            RuntimeManager::getRuntime(RUNTIME_MAIN)->getGroup(RENDER)->
+            RuntimeManager::getRuntime(RUNTIME_MAIN)->getGroup(PIPELINE_ROUTER_RG)->
             ge_RUNTIME_GROUP_INSERT_HEAP(this);
         }
 
@@ -462,6 +547,9 @@ namespace ge
                     break;
                 case DataType::FLOAT:
                     dtfFloat(name, (float*)v);
+                    break;
+                case DataType::INT:
+                    dtfInt(name, (int*)v);
                     break;
                 case DataType::FVEC3:
                     dtfFVEC3(name, (glm::vec3*)v);
@@ -578,6 +666,20 @@ namespace ge
 
             nk_layout_row_end(nctx);
         }
+        void DebugGUI::dtfInt(std::string name, int *v)
+        {
+            nk_layout_row_begin(nctx, NK_DYNAMIC, 30, 2);
+            nk_layout_row_push(nctx, 0.66666f);
+
+            nk_label(nctx, name.c_str(), NK_TEXT_LEFT);
+
+            nk_layout_row_push(nctx, 0.33333f);
+
+            nk_property_int(nctx, "#", -1000, v, 1000, 1, 0.1f);
+            
+
+            nk_layout_row_end(nctx);
+        }
         void DebugGUI::dtfQUAT(std::string name, glm::quat *v)
         {
             nk_layout_row_begin(nctx, NK_DYNAMIC, 30, 2);
@@ -586,8 +688,12 @@ namespace ge
             nk_label(nctx, name.c_str(), NK_TEXT_LEFT);
 
             nk_layout_row_push(nctx, 0.8);
-            //glm::vec3 euler = glm::eulerAngles(*v);
-            if(nk_group_begin(nctx, "float_input_group", NK_WINDOW_NO_SCROLLBAR))
+            glm::vec3 euler = glm::degrees(glm::eulerAngles(*v));
+            float f = glm::radians(0.0f);
+            
+
+            ///Too complicated for a normal user
+            /*if(nk_group_begin(nctx, "float_input_group", NK_WINDOW_NO_SCROLLBAR))
             {
                 nk_layout_row_dynamic(nctx, 20,4);
                 nk_property_float(nctx, "#", -1000000, &v->w, 1000000, 0.10f, 0.1f);
@@ -596,8 +702,19 @@ namespace ge
                 nk_property_float(nctx, "#", -1000000, &v->z, 1000000, 0.10f, 0.1f);
 
                 nk_group_end(nctx);
+            }*/
+
+            if(nk_group_begin(nctx, "float_input_group", NK_WINDOW_NO_SCROLLBAR))
+            {
+                nk_layout_row_dynamic(nctx, 20,3);
+                nk_property_float(nctx, "#", -1000000, &(euler.x), 1000000, 0.50f, 0.5f);
+                nk_property_float(nctx, "#", -1000000, &(euler.y), 1000000, 0.50f, 0.5f);
+                nk_property_float(nctx, "#", -1000000, &(euler.z), 1000000, 0.50f, 0.5f);
+
+                nk_group_end(nctx);
             }
-            //*v = glm::quat(euler);
+
+            *v = glm::quat(glm::radians(euler));
             nk_layout_row_end(nctx);
 
         }

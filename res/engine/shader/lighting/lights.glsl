@@ -14,18 +14,40 @@ struct DirLight
     float ambient;
     //NOTE: this should include intensity (multiplied alpha I.E. vec3(R*A, G*A, B*A))
 	vec3 colour; //All
+    int shadowLoc;
 };
 
 struct PointLight
 {
     vec3 pos;
+    float ambient;
+
     //NOTE: this should include intensity (multiplied alpha I.E. vec3(R*A, G*A, B*A))
 	vec3 colour; //All
 
     float constant;
     float linear;
     float quadratic;
+    int shadowLoc;
 };
+
+
+struct SpotLight
+{
+    vec3 pos;
+    vec3 dir;
+    float ambient;
+    //NOTE: this should include intensity (multiplied alpha I.E. vec3(R*A, G*A, B*A))
+	vec3 colour; //All
+
+    float angle;
+    float outerAngle;
+
+    int shadowLoc;
+};
+
+
+
 
 
 

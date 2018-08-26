@@ -9,9 +9,9 @@
 //Runtime Groups IDs
 #define UPDATE 0
 
-#define PRE_RENDER 1
-#define RENDER 2
-#define POST_RENDER 3
+#define PIPELINE_ROUTER_RG 4
+//NOTE: render is old, but there were so many errors I didn't want to bother removing it...
+#define RENDER 5
 
 #define LOADER 6
 
@@ -29,9 +29,17 @@
 
 //STANDARD IMAGE LOCATIONS
 #define ALBEDO_LOC   0
+#define DIFFUSE_LOC   0
 #define SPECULAR_LOC 1
-#define NORMAL_LOC   2
 #define ROUGHNESS_LOC 1 //NOTE: there can't be specular and roughness in the same shader.
+#define GLOSSY_LOC   1
+#define EMISSION_LOC 2
+#define NORMAL_LOC   3
+#define BUMP_LOC     4
+#define PARRALAX_LOC 4
+
+#define A_SHADOW_LOC_START 5
+
 
 #define ALBEDO_REF   ge_albedo_map //Todo: ID instead of name
 #define SPECULAR_REF ge_specular_map //Todo: ID instead of name
@@ -53,6 +61,12 @@
 #define MVP_M_VP	 ge_mvp_vp * ge_mvp_m
 #define MVP_M_V_P	 ge_mvp_p * ge_mvp_v * ge_mvp_m
 
+//SHADOWS
+#define A_SHADOW_MAX 4
+#define A_SHADOW_SPACE_IN  ge_angle_shadows_SPACE_in_uniform
+#define A_SHADOW_MAP_IN  ge_angle_shadows_MAP_in_uniform
+#define A_SHADOW_NUM ge_angle_shadows_in_num_uniform
+
 //LIGHTING
 
 #define LIGHT_POINT        0
@@ -66,6 +80,10 @@
 #define LIGHT_POINT_IN      ge_light_point_in_uniform
 #define LIGHT_POINT_NUM     ge_light_point_in_num_uniform
 #define LIGHT_POINT_MAX     16
+
+#define LIGHT_SPOT_IN       ge_light_spot_in_uniform
+#define LIGHT_SPOT_NUM      ge_light_spot_in_num_uniform
+#define LIGHT_SPOT_MAX      8
 
 
 //NOTE: OLD
@@ -91,6 +109,7 @@
 
 //THIS IS CUBEMAP 0
 #define SKYBOX                          ge_skybox_in
+#define SKYBOX_LOC                      0
 
 //#define CUBEMAP_0                       ge_cube_map_0_in
 #define CUBEMAP_1                       ge_cube_map_1_in
@@ -160,7 +179,14 @@ std::unordered_map<std::string, std::string> ge_global_settings::map = {
     {GE_STRFY(LIGHT_DIR_MAX),GE_DBL_STRFY(LIGHT_DIR_MAX)},
     {GE_STRFY(LIGHT_POINT_IN),  GE_DBL_STRFY(LIGHT_POINT_IN)},
     {GE_STRFY(LIGHT_POINT_NUM), GE_DBL_STRFY(LIGHT_POINT_NUM)},
-    {GE_STRFY(LIGHT_POINT_MAX),GE_DBL_STRFY(LIGHT_POINT_MAX)}
+    {GE_STRFY(LIGHT_POINT_MAX),GE_DBL_STRFY(LIGHT_POINT_MAX)},
+    {GE_STRFY(LIGHT_SPOT_IN),  GE_DBL_STRFY(LIGHT_SPOT_IN)},
+    {GE_STRFY(LIGHT_SPOT_NUM), GE_DBL_STRFY(LIGHT_SPOT_NUM)},
+    {GE_STRFY(LIGHT_SPOT_MAX),GE_DBL_STRFY(LIGHT_SPOT_MAX)},
+    {GE_STRFY(A_SHADOW_SPACE_IN),  GE_DBL_STRFY(A_SHADOW_SPACE_IN)},
+    {GE_STRFY(A_SHADOW_MAP_IN), GE_DBL_STRFY(A_SHADOW_MAP_IN)},
+    {GE_STRFY(A_SHADOW_MAX),GE_DBL_STRFY(A_SHADOW_MAX)},
+    {GE_STRFY(A_SHADOW_NUM),GE_DBL_STRFY(A_SHADOW_NUM)}
 };
 
 #endif

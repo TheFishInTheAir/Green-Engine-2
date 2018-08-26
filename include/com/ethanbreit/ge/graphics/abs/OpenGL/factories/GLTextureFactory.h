@@ -14,6 +14,7 @@ namespace ge
         {
 	        Error genTexture(Image img, ge::Texture** outTex);
 			Error genCubeMap(std::array<Image, 6>, CubeMap**);
+            void  genFramebuffer(uint32_t width, uint32_t height, ge::FrameBuffer** outBuf);
 
         };
     }

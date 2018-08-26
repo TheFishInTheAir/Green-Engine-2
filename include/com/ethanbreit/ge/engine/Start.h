@@ -13,6 +13,7 @@ namespace ge
 		std::vector<Runtime*> runtimes;
 		std::vector<std::pair<RuntimeGroup*, std::string>> runtime_groups;
 
+		bool addInitPipeline = true;
 	};
 
 	void simpleStart(SimpleEngineCreationInfo);

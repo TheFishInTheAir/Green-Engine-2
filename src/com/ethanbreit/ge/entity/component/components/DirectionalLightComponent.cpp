@@ -27,7 +27,6 @@ namespace ge
         light.colour = glm::vec3(1);
         light.ambient = 0.2;
         Scene::currentScene->directionalLights.push_back(&light); //NOTE: a little hacky  also this must be run after scene creation or the deadly SEGFAULT
-        lightIter = Scene::currentScene->directionalLights.size()-1;
     }
 
     void DirectionalLightComponent::defaultInit()
@@ -70,9 +69,13 @@ namespace ge
         }
 
         light.dir = glm::vec3(0,1,0) * transformComponent->getRotation(); //Quaternion Direction is always up, NOTE: I might need to fix the Camera component now considering the quaternion's default direction is up
+        light.dir.y = -light.dir.y; //NOTE: I DON'T KNOW WHY THIS FIXES THIS
 
         if(debugBox)
+        {          
             Debug::DebugBox::draw(light.colour, transformComponent->getPosition(), glm::vec3(0.2f));
+            Debug::DebugBox::draw(light.colour*1.2f, transformComponent->getPosition(), glm::vec3(0.1f, 0.5f, 0.1f), transformComponent->getRotation());
+        }
 
     }
 
@@ -80,7 +83,7 @@ namespace ge
 
     void DirectionalLightComponent::destroy()
     {
-        Scene::currentScene->directionalLights.erase(Scene::currentScene->directionalLights.begin()+lightIter);//TODO: make work
+        Scene::currentScene->directionalLights.remove(&light);
     }
 
     std::string DirectionalLightComponent::getTypeName()

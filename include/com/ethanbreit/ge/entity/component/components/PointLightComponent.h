@@ -20,7 +20,6 @@ namespace ge
         
         LightPoint light;
     private:
-        int lightIter = 0;
         bool debugBox = false;
 
         TransformComponent* transformComponent = nullptr;

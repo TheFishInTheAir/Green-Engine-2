@@ -1,5 +1,5 @@
 #include <ge/entity/component/components/PointLightComponent.h>
-#include <ge/entity/component/batches/DefaultComponentBatch.h>
+#include <ge/entity/component/batches/PipelineComponentBatch.h>
 #include <ge/entity/component/ComponentManager.h>
 #include <ge/graphics/GraphicsCore.h>
 #include <ge/console/Log.h>
@@ -22,13 +22,14 @@ namespace ge
     PointLightComponent::PointLightComponent(Entity* e) : Component(e)
     {
         addPublicVar("Colour",  {DataType::COLOUR3, &light.colour});
+        addPublicVar("Ambient",  {DataType::FLOAT, &light.ambient});
+
         addPublicVar("Constant Attenuation",  {DataType::FLOAT, &light.constant});
         addPublicVar("Linear Attenuation",  {DataType::FLOAT, &light.linear});
         addPublicVar("Quadratic Attenuation",  {DataType::FLOAT, &light.quadratic});
         addPublicVar("Debug Box",  {DataType::BOOL, &debugBox});
         light.colour = glm::vec3(1);
         Scene::currentScene->pointLights.push_back(&light); //NOTE: a little hacky  also this must be run after scene creation or the deadly SEGFAULT
-        lightIter = Scene::currentScene->pointLights.size()-1;
     }
 
     void PointLightComponent::defaultInit()
@@ -39,19 +40,24 @@ namespace ge
     void PointLightComponent::insertToDefaultBatch() //TODO: add ingroup priorities
     {
 
-        if(!ComponentManager::containsComponentBatch("DefaultComponentBatch", getTypeName()))
+        if(!ComponentManager::containsComponentBatch("PipelineComponentBatch", getTypeName()))
         {
-            DefaultComponentBatch* cmp = new DefaultComponentBatch();
+            PipelineComponentBatch* cmp = new PipelineComponentBatch();
             cmp->setComponentType(getTypeName());
-
+            
             ComponentManager::registerComponentBatch(cmp);
         }
-
-        ComponentManager::getComponentBatch("DefaultComponentBatch", getTypeName())->softInsert(this);
+        
+        ComponentManager::getComponentBatch("PipelineComponentBatch", getTypeName())->softInsert(this);
     }
 
     void PointLightComponent::cycle()
     {
+        if(GraphicsCore::ctx->currentPipeline->getState()!=PipelineState::Render)
+            return;
+        if(GraphicsCore::ctx->currentPipeline->getCurrentStage()->type!=PipelineDrawType::Default)
+            return;
+            
         if(transformComponent == nullptr)
         {
 
@@ -81,7 +87,7 @@ namespace ge
 
     void PointLightComponent::destroy()
     {
-        Scene::currentScene->pointLights.erase(Scene::currentScene->pointLights.begin()+lightIter);//TODO: make work
+        Scene::currentScene->pointLights.remove(&light);//TODO: make work
     }
 
     std::string PointLightComponent::getTypeName()

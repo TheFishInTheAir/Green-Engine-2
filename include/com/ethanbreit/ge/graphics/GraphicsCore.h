@@ -17,6 +17,7 @@
 #include <ge/graphics/abs/OpenGL/factories/GLMeshFactory.h>
 #include <map>
 #include <ge/graphics/factories/TextureFactory.h>
+#include <ge/graphics/pipeline/Pipeline.h>
 
 ///Vulkan
 
@@ -33,6 +34,7 @@ namespace ge
         BufferFactory       *bufferFactory;
         MeshFactory         *meshFactory;
 		TextureFactory		*textureFactory;
+        Pipeline            *currentPipeline;
 
         Window              *window;
 

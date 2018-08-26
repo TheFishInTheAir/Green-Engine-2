@@ -16,6 +16,7 @@
 #include <ge/entity/component/components/AudioListinerComponent.h>
 #include <ge/entity/component/batches/DefaultComponentBatch.h>
 #include <ge/entity/component/components/HLMeshComponent.h>
+#include <ge/entity/component/components/RuntimeMaterialComponent.h>
 
 #include <ge/entity/component/ComponentBatch.h>
 #include <ge/console/Log.h>
@@ -26,7 +27,6 @@
 #include <ge/input/KeyboardHandler.h>
 #include <ge/debug/DebugGUI.h>
 #include <ge/util/ResourceUtil.h>
-#include <ge/engine/scene/EntityDeserializer.h>
 
 #include <ge/audio/AudioSource.h>
 #include <ge/audio/AudioClip.h>
@@ -37,6 +37,7 @@
 #include <json/json.hpp>
 
 ge::GraphicsCore *gc;
+    ge::FrameBuffer* fb;
 
 bool uninitialised = true;
 
@@ -44,7 +45,7 @@ void runtimeInitHook()
 {
     uninitialised = false;
 }
-const std::string MAP_LOC = "ge/t3.gesc";
+const std::string MAP_LOC = "ge/t4.gesc";
 
 void sceneInit(void* d)
 {
@@ -54,7 +55,7 @@ void sceneInit(void* d)
 
     ge::Debug::DebugGUI::enable();
 
-    {
+    /*{
         std::string _file;
 		ge::ResourceUtil::getRawStrResource(MAP_LOC, &_file);
 
@@ -63,7 +64,40 @@ void sceneInit(void* d)
         auto eList = ge::EntityDeserializer::deserializeJson(tempJ["entities"]);
 
         ge::EntityDeserializer::activateEntities(eList);
-    }
+    }*/
+
+
+    //Framebuffer test start:
+
+    /*ge::Entity* tent = new ge::Entity();
+    ge::RuntimeMaterialComponent* rmc = new ge::RuntimeMaterialComponent(tent);
+    tent->name = "fb_test";
+
+    
+    tent->insertComponent(rmc);    
+    rmc->insertToDefaultBatch();
+    ge::EntityManager::registerEntity(tent);
+
+    ge::GraphicsCore::ctx->textureFactory->genFramebuffer(900, 800, &fb);
+    fb->generateTextureAttachment(ge::FrameBufferAttachment::Colour);
+    fb->generateBufferAttachment(ge::FrameBufferAttachment::Depth24_Stencil8);
+
+    ge::PipelineStage* pStage = new ge::PipelineStage();
+    pStage->framebuffer = fb;
+    pStage->type = ge::PipelineDrawType::Default;
+    pStage->overrideCamera = true;
+    pStage->cam = new ge::Camera();
+    pStage->cam->update();
+    
+    ge::GraphicsCore::ctx->currentPipeline->stages.push_back(pStage);
+
+    rmc->mat->name = "fb_test";
+    rmc->mat->shader_group = "engine/defaults/forward/lit/phong.gesm";
+    rmc->mat->textures.push_back({"Albedo", {"fb_test", std::stoi(DBL_STRINGIFY(ALBEDO_LOC))}});
+    ge::Scene::currentScene->textures.insert({"fb_test", std::shared_ptr<ge::Texture>(fb->getTextureAttachment(ge::FrameBufferAttachment::Colour))});
+    rmc->shouldPut = true;*/
+    //Framebuffer test end
+
 };
 
 
@@ -74,12 +108,10 @@ int main()
      */
     
     ge::RuntimeGroup* update = new ge::RuntimeGroup();
-    ge::RuntimeGroup* render = new ge::RuntimeGroup();
-    ge::RuntimeGroup* postRender = new ge::RuntimeGroup();
+    // ge::RuntimeGroup* render = new ge::RuntimeGroup();
+    // ge::RuntimeGroup* postRender = new ge::RuntimeGroup();
 
     update->runtimeId = UPDATE;
-    render->runtimeId = RENDER;
-    postRender->runtimeId = POST_RENDER;
 
     
     
@@ -92,11 +124,12 @@ int main()
     seci.wci.gl_major_version = 3;
     seci.wci.gl_minor_version = 3;
     seci.wci.clear_colour = glm::vec3(79.0f/255, 100.0f/255, 144.0f/255);
+    seci.wci.samples = 0;
     //seci.wci.has_depth_buffer = false; //NOTE: TEST
     seci.runtimes.push_back(new ge::Runtime(RUNTIME_MAIN));
     seci.runtime_groups.push_back({ update, RUNTIME_MAIN });
-    seci.runtime_groups.push_back({ render, RUNTIME_MAIN });
-    seci.runtime_groups.push_back({ postRender, RUNTIME_MAIN });
+    // seci.runtime_groups.push_back({ render, RUNTIME_MAIN });
+    // seci.runtime_groups.push_back({ postRender, RUNTIME_MAIN });
 
     ge::simpleStart(seci);
     

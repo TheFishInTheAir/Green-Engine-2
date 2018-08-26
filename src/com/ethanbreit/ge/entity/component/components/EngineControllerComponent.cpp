@@ -24,17 +24,17 @@ namespace ge
         ComponentManager::getComponentBatch("EngineControllerComponentBatch", getTypeName())->softInsert(this);
     }
     
-    void EngineControllerComponent::cycle()
+    void EngineControllerComponent::cycle() //NOTE: is this necessary anymore? I'll keep it here for now but, I don't think I need it anymore.
     { //NOTE: this shouldn't be in a component...
-        static bool first = true;
-        if(first)
-        {
-            first = false;
-            ge::GraphicsCore::ctx->window->makeCurrentThread(ge::RuntimeManager::getRuntime(RUNTIME_MAIN));
-        }
+        // static bool first = true;
+        // if(first)
+        // {
+        //     first = false;
+        //     ge::GraphicsCore::ctx->window->makeCurrentThread(ge::RuntimeManager::getRuntime(RUNTIME_MAIN));
+        // }
         
-        GraphicsCore::ctx->window->swap();
-        GraphicsCore::ctx->window->clear();
+        //GraphicsCore::ctx->window->swap();
+        //GraphicsCore::ctx->window->clear();
     }
 
     void EngineControllerComponent::destroy()

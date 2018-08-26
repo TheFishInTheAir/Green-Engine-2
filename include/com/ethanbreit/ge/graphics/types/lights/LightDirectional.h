@@ -7,7 +7,7 @@ namespace ge
 	{
 		glm::vec3 colour;
 		glm::vec3 dir;
-		float ambient;
+		float ambient = 0;
 
 		void pushUnifValues(TriangleMesh* mesh, std::string prefix);
 	};

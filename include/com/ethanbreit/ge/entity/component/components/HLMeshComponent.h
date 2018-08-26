@@ -5,6 +5,7 @@
 
 namespace ge
 {
+    struct PipelineStage;
     struct HLMeshComponent : public Component
     {
         HLMeshComponent(Entity*);
@@ -24,7 +25,8 @@ namespace ge
 
     private:
         void init();
-
+        void meshUpdate();
+        void uniforms(PipelineStage*);
         std::string sketchMatTag = "NULL";
         std::string sketchMeshTag = "NULL";
 

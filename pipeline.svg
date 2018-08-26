@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="1024px" height="768px" viewBox="0 0 1024 768" enable-background="new 0 0 1024 768" xml:space="preserve">
+<path fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" d="M224.5,96.758c0,3.171-3.186,5.742-7.115,5.742H77.615
+	c-3.93,0-7.115-2.571-7.115-5.742V49.242c0-3.171,3.186-5.742,7.115-5.742h139.77c3.93,0,7.115,2.571,7.115,5.742V96.758z"/>
+<text transform="matrix(1 0 0 1 91.1304 64.9561)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="12">Runtime:</tspan><tspan x="0" y="14.4" font-family="'MyriadPro-Regular'" font-size="12">Cycle Runtime Groups</tspan></text>
+<path fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" d="M224.5,221.5c0,6.627-5.373,12-12,12h-130c-6.627,0-12-5.373-12-12
+	v-52c0-6.627,5.373-12,12-12h130c6.627,0,12,5.373,12,12V221.5z"/>
+<text transform="matrix(1.0341 0 0 1 78.0879 181.7798)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="12.6235">_PipelineRuntimeGroup: </tspan><tspan x="0" y="15.148" font-family="'MyriadPro-Regular'" font-size="12.6235">Tell GraphicsCore’s active </tspan><tspan x="0" y="30.296" font-family="'MyriadPro-Regular'" font-size="12.6235">Pipeline to draw.</tspan></text>
+<g>
+	<g>
+		<g>
+			<polygon fill="#202020" points="147.5,158 132,142.133 132,137.644 146,151.926 146,134.262 146,103 149,103 149,134.262 
+				149,151.926 163,137.644 163,142.133 			"/>
+		</g>
+	</g>
+</g>
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M224.5,346.5c0,6.627-5.373,12-12,12h-130c-6.627,0-12-5.373-12-12
+	v-41c0-6.627,5.373-12,12-12h130c6.627,0,12,5.373,12,12V346.5z"/>
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M224.5,489.5c0,6.627-5.373,12-12,12h-130c-6.627,0-12-5.373-12-12
+	v-41c0-6.627,5.373-12,12-12h130c6.627,0,12,5.373,12,12V489.5z"/>
+<text transform="matrix(1 0 0 1 92.2173 312.7817)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="12">PIpeline:</tspan><tspan x="0" y="14.4" font-family="'MyriadPro-Regular'" font-size="12">Draw all PIpelineStages</tspan></text>
+<g>
+	<g>
+		<g>
+			<polygon fill="#202020" points="147,294 131,278.133 131,273.644 145,287.926 145,270.262 145,234 149,234 149,270.262 
+				149,287.926 163,273.644 163,278.133 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<g>
+			<polygon fill="#202020" points="147,436.5 131,420.633 131,416.145 145,430.426 145,412.762 145,359 149,359 149,412.762 
+				149,430.426 163,416.145 163,420.633 			"/>
+		</g>
+	</g>
+</g>
+<text transform="matrix(1 0 0 1 88.9561 452.999)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="12">PipelineStage:</tspan><tspan x="0" y="14.4" font-family="'MyriadPro-Regular'" font-size="12">draw shadow depth </tspan><tspan x="0" y="28.8" font-family="'MyriadPro-Regular'" font-size="12">buffer.</tspan></text>
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M469.5,507.41c0,8.886-5.373,16.09-12,16.09h-130
+	c-6.627,0-12-7.204-12-16.09v-54.82c0-8.886,5.373-16.09,12-16.09h130c6.627,0,12,7.204,12,16.09V507.41z"/>
+<text transform="matrix(1 0 0 1 333.9561 452.999)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="12">PipelineStage:</tspan><tspan x="0" y="14.4" font-family="'MyriadPro-Regular'" font-size="12">draw standard forward </tspan><tspan x="0" y="28.8" font-family="'MyriadPro-Regular'" font-size="12">rendering stage using </tspan><tspan x="0" y="43.2" font-family="'MyriadPro-Regular'" font-size="12">shadow map from </tspan><tspan x="0" y="57.6" font-family="'MyriadPro-Regular'" font-size="12">previous pipeline stage.</tspan></text>
+<g>
+	<g>
+		<g>
+			<polygon fill="#202020" points="315.495,469.117 299.744,485.102 295.256,485.134 309.433,470.747 291.769,470.876 
+				224.013,471.371 223.989,468.199 291.746,467.703 309.41,467.574 295.023,453.396 299.512,453.363 			"/>
+		</g>
+	</g>
+</g>
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M714.5,507.41c0,8.886-5.373,16.09-12,16.09h-130
+	c-6.627,0-12-7.204-12-16.09v-54.82c0-8.886,5.373-16.09,12-16.09h130c6.627,0,12,7.204,12,16.09V507.41z"/>
+<text transform="matrix(1 0 0 1 578.9561 452.999)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="12">PipelineStage:</tspan><tspan x="0" y="14.4" font-family="'MyriadPro-Regular'" font-size="12">draw Post processing </tspan><tspan x="0" y="28.8" font-family="'MyriadPro-Regular'" font-size="12">effects and submit final </tspan><tspan x="0" y="43.2" font-family="'MyriadPro-Regular'" font-size="12">framebuffer.</tspan></text>
+<g>
+	<g>
+		<g>
+			<polygon fill="#202020" points="560.495,469.117 544.744,485.102 540.256,485.134 554.433,470.747 536.77,470.876 
+				469.013,471.371 468.989,468.199 536.746,467.703 554.409,467.574 540.023,453.396 544.513,453.363 			"/>
+		</g>
+	</g>
+</g>
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M454.5,219.5c0,6.627-5.373,12-12,12h-168c-6.627,0-12-5.373-12-12
+	v-75c0-6.627,5.373-12,12-12h168c6.627,0,12,5.373,12,12V219.5z"/>
+<rect x="262.5" y="144.5" fill="none" width="189.764" height="81.972"/>
+<text transform="matrix(1 0 0 1 262.5 153.0195)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="12">PipelineComponentBatch:</tspan><tspan x="0" y="14.4" font-family="'MyriadPro-Regular'" font-size="12">Route Draw calls to Listening Compo</tspan><tspan x="183.994" y="14.4" font-family="'MyriadPro-Regular'" font-size="12">-</tspan><tspan x="0" y="28.801" font-family="'MyriadPro-Regular'" font-size="12">nents, filter calls with tags i.e. trans</tspan><tspan x="172.728" y="28.801" font-family="'MyriadPro-Regular'" font-size="12">-</tspan><tspan x="0" y="43.2" font-family="'MyriadPro-Regular'" font-size="12">parency, post-processing (You don’t </tspan><tspan x="0" y="57.601" font-family="'MyriadPro-Regular'" font-size="12">want a chair to be rendered in the </tspan><tspan x="0" y="72" font-family="'MyriadPro-Regular'" font-size="12">post-processing framebuffer).</tspan></text>
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M410.5,347.5c0,6.627-5.373,12-12,12h-117c-6.627,0-12-5.373-12-12
+	v-41c0-6.627,5.373-12,12-12h117c6.627,0,12,5.373,12,12V347.5z"/>
+<text transform="matrix(1 0 0 1 292.2173 319.3037)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="12">Pipeline:</tspan><tspan x="0" y="14.4" font-family="'MyriadPro-Regular'" font-size="12">Draw Calls</tspan></text>
+<g>
+	<g>
+		<g>
+			<polygon fill="#202020" points="276.704,358.5 276.25,380.937 273.013,384.046 273.421,363.852 260.68,376.086 196.577,437.645 
+				194.379,435.355 258.482,373.798 271.223,361.563 251.029,361.153 254.267,358.044 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<g>
+			<polygon fill="#202020" points="376,359.961 392,375.828 392,380.317 377,366.035 377,383.699 377,437 374,437 374,383.699 
+				374,366.035 360,380.317 360,375.828 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<g>
+			<polygon fill="#202020" points="410.5,347.5 431.065,338.517 435.244,340.156 416.734,348.24 638.079,435.023 636.921,437.977 
+				415.576,351.194 423.659,369.705 419.479,368.066 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<g>
+			<polygon fill="#202020" points="339.5,232 355,247.867 355,252.356 341,238.074 341,255.738 341,295 338,295 338,255.738 
+				338,238.074 324,252.356 324,247.867 			"/>
+		</g>
+	</g>
+</g>
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M726.5,220.5c0,6.627-5.373,12-12,12h-154c-6.627,0-12-5.373-12-12
+	v-77c0-6.627,5.373-12,12-12h154c6.627,0,12,5.373,12,12V220.5z"/>
+<rect x="553.217" y="144.5" fill="none" width="157.609" height="69.369"/>
+<text transform="matrix(1 0 0 1 553.2168 153.02)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="12">HLMeshComponent:</tspan><tspan x="0" y="14.4" font-family="'MyriadPro-Regular'" font-size="12">retrieve pipeline state and </tspan><tspan x="0" y="28.8" font-family="'MyriadPro-Regular'" font-size="12">draw.</tspan></text>
+<g>
+	<g>
+		<g>
+			<polygon fill="#202020" points="545.495,182.117 529.744,198.102 525.256,198.134 539.433,183.747 521.77,183.876 
+				454.013,184.372 453.989,181.199 521.746,180.704 539.409,180.574 525.023,166.396 529.513,166.363 			"/>
+		</g>
+	</g>
+</g>
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M726.5,357.5c0,6.627-5.373,12-12,12h-154c-6.627,0-12-5.373-12-12
+	v-77c0-6.627,5.373-12,12-12h154c6.627,0,12,5.373,12,12V357.5z"/>
+<rect x="553.217" y="281.5" fill="none" width="157.609" height="69.369"/>
+<text transform="matrix(1 0 0 1 553.2168 290.02)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="12">HLMeshComponent:</tspan><tspan x="0" y="14.4" font-family="'MyriadPro-Regular'" font-size="12">retrieve pipeline state and </tspan><tspan x="0" y="28.8" font-family="'MyriadPro-Regular'" font-size="12">draw.</tspan></text>
+<g>
+	<g>
+		<g>
+			<polygon fill="#202020" points="542.172,281.74 520.362,287.028 516.53,284.691 536.16,279.932 521.078,270.735 451.797,228.491 
+				453.449,225.782 522.73,268.026 537.812,277.223 533.054,257.592 536.887,259.929 			"/>
+		</g>
+	</g>
+</g>
+<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M728.5,95.5c0,6.627-5.373,12-12,12h-154c-6.627,0-12-5.373-12-12v-77
+	c0-6.627,5.373-12,12-12h154c6.627,0,12,5.373,12,12V95.5z"/>
+<rect x="555.217" y="19.5" fill="none" width="157.609" height="69.369"/>
+<text transform="matrix(1 0 0 1 555.2168 28.02)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="12">HLMeshComponent:</tspan><tspan x="0" y="14.4" font-family="'MyriadPro-Regular'" font-size="12">retrieve pipeline state and </tspan><tspan x="0" y="28.8" font-family="'MyriadPro-Regular'" font-size="12">draw.</tspan></text>
+<g>
+	<g>
+		<g>
+			<polygon fill="#202020" points="543.583,88.599 537.125,110.091 533.172,112.217 538.984,92.873 523.428,101.24 451.963,139.674 
+				450.46,136.88 521.925,98.445 537.482,90.079 518.139,84.264 522.092,82.138 			"/>
+		</g>
+	</g>
+</g>
+</svg>

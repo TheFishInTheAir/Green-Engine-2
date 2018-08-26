@@ -22,7 +22,7 @@ namespace ge
 	{
 		//Init Trampoline
 
-		ge_REGISTER_RUNTIME_HANDLER;
+		//ge_REGISTER_RUNTIME_HANDLER;
 
 		_gCore = GlobalMemory::get(DBL_STRINGIFY(RENDERER_INSTANCE)).getRawData<GraphicsCore>();
 		
@@ -75,7 +75,7 @@ namespace ge
 
 		//Register to trampoline
 
-		GlobalMemory::get("ge_render_runtime_group").getRawData<RuntimeGroup>()->ge_RUNTIME_GROUP_INSERT_HEAP(this); 
+		//GlobalMemory::get("ge_render_runtime_group").getRawData<RuntimeGroup>()->ge_RUNTIME_GROUP_INSERT_HEAP(this); 
 	}
 	void StaticObject::render()
 	{

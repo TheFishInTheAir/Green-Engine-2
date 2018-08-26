@@ -5,7 +5,9 @@
 #include <ge/console/ConsoleIO.h>
 #include <iostream>
 #include <mutex>
+#include <gecon.h>
 //#define NO_COLOUR
+//#define GECON_ENABLE
 
 #define ENABLE_TURBO_VERBOSE
 
@@ -30,7 +32,22 @@ namespace ge
 
 		void RawOut(std::string m)
 		{
+#ifdef GECON_ENABLE
+#define GECON_PRINT(m, i) GECON::msg(m,i)
 
+			static bool shouldInit = true;
+			if(shouldInit)
+			{
+				shouldInit = false;
+				GECON::startNodeChild();
+				
+				for(int i = 0; i < 100000*10000; i++)
+					i += i-i;;;;
+			}
+#else
+//stub out
+#define GECON_PRINT(m, i)
+#endif
 #ifdef LOG
 
 			static std::string logPos = ResourceUtil::getResPath("../GREEN_ENGINE_LOG.txt");
@@ -114,25 +131,38 @@ namespace ge
 
 				case MessageType::Warning:          // yellow
 					RawOut("\033[33m"+msg+"\033[0m");
-
+					GECON_PRINT(msg, GECON_WARNING);
+			
 					break;
 				case MessageType::Message:          // white
 					RawOut("\033[0m"+msg+"\033[0m");
+					GECON_PRINT(msg, GECON_MESSAGE);
+
 					break;
 				case MessageType::Success:          // green
 					RawOut("\033[32;1m"+msg+"\033[0m");
+					GECON_PRINT(msg, GECON_SUCCESS);
+
 					break;
 				case MessageType::Error:            // dark red
 					RawOut("\033[31;1;7m"+msg+"\033[0m");
+					GECON_PRINT(msg, GECON_ERROR);
+
 					break;
 				case MessageType::Debug:            // purple
 					RawOut("\033[35m"+msg+"\033[0m");
+					GECON_PRINT(msg, GECON_SUCCESS);
+
 					break;
 				case MessageType::Verbose:          // grey
 					RawOut("\033[37m"+msg+"\033[0m");
+					GECON_PRINT(msg, GECON_MESSAGE);
+
 					break;
 				case MessageType::Turbo_Verbose:    // dark grey
 					RawOut("\033[90m"+msg+"\033[0m");
+					GECON_PRINT(msg, GECON_MESSAGE);
+
 					break;
 				default:
 					RawOut(msg);

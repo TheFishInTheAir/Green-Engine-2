@@ -53,9 +53,9 @@ namespace ge
 
 		void clear();
 
-		ge_START_CYCLE_HANDLER(StaticObject)
+		/*ge_START_CYCLE_HANDLER(StaticObject)
 			ge_GENERATE_TRAMPOLINE(render, RENDER)
-		ge_END_CYCLE_HANDLER
+		ge_END_CYCLE_HANDLER*/
 
 	private:
 

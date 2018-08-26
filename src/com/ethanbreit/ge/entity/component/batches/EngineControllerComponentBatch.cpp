@@ -1,6 +1,7 @@
 #include <ge/entity/component/batches/EngineControllerComponentBatch.h>
 #include <ge/console/Log.h>
 #include <ge/runtime/RuntimeManager.h>
+#include <ge/graphics/GraphicsCore.h>
 
 namespace ge
 {
@@ -10,7 +11,7 @@ namespace ge
         
         setBatchType("EngineControllerComponentBatch");
         
-        RuntimeManager::getRuntime(RUNTIME_MAIN)->getGroup(POST_RENDER)->
+        RuntimeManager::getRuntime(RUNTIME_MAIN)->getGroup(PIPELINE_ROUTER_RG)->
         ge_RUNTIME_GROUP_INSERT_HEAP(this);
         
     }
@@ -18,7 +19,10 @@ namespace ge
     void EngineControllerComponentBatch::cycle()
     {
         performPendingActions();
-        
+
+        if(GraphicsCore::ctx->currentPipeline->getState()!=PipelineState::PostRender)
+            return;
+
         for(Component* component : components)
         {
             if(component!=nullptr)

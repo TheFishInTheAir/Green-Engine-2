@@ -4,6 +4,7 @@
 #include <ge/entity/EntityTag.h>
 #include <ge/entity/EntityManager.h>
 #include <ge/entity/component/components/EngineControllerComponent.h>
+#include <ge/graphics/pipeline/Pipeline.h>
 namespace ge
 {
 	void simpleStart(SimpleEngineCreationInfo seci)
@@ -22,6 +23,17 @@ namespace ge
 			RuntimeManager::getRuntime(rg.second)->insertGroup(rg.first);
 		}
 
+
+		PipelineRuntimeRouter::ctx->init();
+		if(seci.addInitPipeline)
+		{
+			GraphicsCore::ctx->currentPipeline = new Pipeline();
+			PipelineStage* sDef = new PipelineStage();
+			sDef->type = PipelineDrawType::Default;
+			GraphicsCore::ctx->currentPipeline->stages.push_back(sDef);
+		}
+
+		
 		EntityTag* no_export_tag = EntityManager::getOrCreateTag("no_export");
 
         //NOT VERY GOOD shouldn't really be an entity...

@@ -22,12 +22,12 @@ namespace ge
     {
         uint32_t        runtimeId;
 
-        void            cycle();
+        virtual void            cycle();
 
-        void            insert(void *, uint64_t);
+        virtual void            insert(void *, uint64_t);
 
-        void            remove(void *);
-    private:
+        virtual void            remove(void *);
+    protected:
         std::list<RuntimeManager::RuntimeItem> items;
     };
 }

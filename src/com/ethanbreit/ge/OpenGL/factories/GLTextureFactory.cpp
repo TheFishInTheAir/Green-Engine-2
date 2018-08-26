@@ -6,6 +6,8 @@
 #include <ge/graphics/abs/OpenGL/factories/GLTextureFactory.h>
 #include <ge/graphics/abs/OpenGL/types/GLTexture.h>
 #include <ge/graphics/abs/OpenGL/types/GLCubeMap.h>
+#include <ge/graphics/abs/OpenGL/types/GLFrameBuffer.h>
+
 #include <ge/console/Log.h>
 
 #include <array>
@@ -36,11 +38,20 @@ namespace ge
                     return GL_ABGR_EXT;
                 case ColourModelType::BGRA:
                     return GL_BGRA;
+                /*case ColourModelType::Depth:
+                    return GL_DEPTH_COMPONENT;*/
                 default:
                     Log::critErr(LOG_TAG, "Unknown Colour Model Enum.");
                     return 0;
                 }
             
+        }
+
+        void TextureFactory::genFramebuffer(uint32_t width, uint32_t height, ge::FrameBuffer** outBuf)
+        {
+            GL::FrameBuffer* f = new GL::FrameBuffer();
+            f->init(width, height);
+            (*outBuf) = f;
         }
 
         Error TextureFactory::genTexture(Image img, ge::Texture ** outTex)

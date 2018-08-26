@@ -7,6 +7,8 @@ namespace ge
         mesh->setUniform(prefix+"colour", colour);
         mesh->setUniform(prefix+"pos", pos);
 
+        mesh->setUniform(prefix+"ambient", ambient);
+
         mesh->setUniform(prefix+"constant",  constant);
         mesh->setUniform(prefix+"linear",    linear);
         mesh->setUniform(prefix+"quadratic", quadratic);

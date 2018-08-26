@@ -107,6 +107,11 @@ namespace ge
                             interface[j["disp_name"]] = {0,
                                     j["tex2d_slot"].is_string() ? ge_global_settings::map[j["tex2d_slot"].get<std::string>()] : j["tex2d_slot"].get<std::string>()};
                             break;
+                        case 1: //TEX3D
+                            //Log::scc(j["tex2d_slot"].get<std::string>());
+                            interface[j["disp_name"]] = {0,
+                                    j["tex3d_slot"].is_string() ? ge_global_settings::map[j["tex3d_slot"].get<std::string>()] : j["tex3d_slot"].get<std::string>()};
+                            break;
                         case 2: //FLOAT
                             interface[j["disp_name"]] = {2, getGSValueIfExist(j["u_pos"])};
                             break;
@@ -124,6 +129,9 @@ namespace ge
                         case 0: //TEX2D     
                             //Log::dbg(interface[value["disp_name"]].second);    
                             mat.textures.push_back({value["disp_name"], {value["value"].get<std::string>(), std::stoi(interface[value["disp_name"]].second)}});
+                            break;
+                        case 1:
+                            mat.cubemaps.push_back({value["disp_name"], {value["value"].get<std::string>(), std::stoi(interface[value["disp_name"]].second)}});
                             break;
                     }
                 }

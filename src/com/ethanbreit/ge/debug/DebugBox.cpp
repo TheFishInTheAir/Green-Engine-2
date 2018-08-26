@@ -3,6 +3,8 @@
 #include <ge/graphics/Camera.h>
 #include <ge/graphics/GraphicsCore.h>
 #include <ge/default_geom/Cube.h>
+
+
 namespace ge
 {
     namespace Debug
@@ -54,6 +56,22 @@ namespace ge
 
                 isInit=true;
             }
+            void draw(glm::vec3 colour, glm::vec3 pos, glm::vec3 scale, glm::quat rot, glm::mat4 VP)
+            {
+                init();
+
+                glm::mat4 sMat(1);
+		        glm::mat4 tMat(1);
+		        glm::mat4 rMat;
+
+		        tMat = glm::translate(tMat, pos);
+		        rMat = glm::toMat4(rot);
+		        sMat = glm::scale(sMat, scale);
+
+                mesh->setUniform("inC", colour);
+		        mesh->setUniform("mvp", VP * tMat * rMat * sMat);
+                mesh->render();
+            }
 
             void draw(glm::vec3 colour, glm::vec3 pos, glm::vec3 scale, glm::mat4 VP)
             {
@@ -67,6 +85,31 @@ namespace ge
             {
                 draw(colour, pos,scale, Camera::displayCamera->vp);
             }
+
+            void draw(glm::vec3 colour, glm::vec3 pos, glm::vec3 scale, glm::quat rot)
+            {
+                draw(colour, pos,scale, rot, Camera::displayCamera->vp);
+            }
+
+            void draw2(glm::vec3 colour, glm::vec3 pos, glm::vec3 scale, glm::quat rot)
+            {
+                init();
+
+                glm::mat4 sMat(1);
+		        glm::mat4 tMat(1);
+		        glm::mat4 rMat;
+
+		        tMat = glm::translate(tMat, pos);
+		        rMat = glm::lookAt(glm::vec3(0,1,0) * rot, {0,0,0}, {0,1,0});
+		        sMat = glm::scale(sMat, scale);
+                //glm::toMat4(glm::vec3(1));
+                
+
+                mesh->setUniform("inC", colour);
+		        mesh->setUniform("mvp", Camera::displayCamera->vp * tMat * rMat * sMat);
+                mesh->render();            
+                }
+            
         }
     }
 }

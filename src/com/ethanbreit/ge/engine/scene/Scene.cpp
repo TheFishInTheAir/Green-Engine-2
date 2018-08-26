@@ -1,6 +1,7 @@
 #include <ge/engine/scene/Scene.h>
 #include <ge/graphics/GraphicsCore.h>
 #include <ge/memory/GlobalMemory.h>
+#include <ge/entity/EntitySerial.h>
 #include <engine/global_settings.pre>
 #include <ge/engine/defaults/StaticObject.h>
 #include <ge/entity/component/components/MeshRendererComponent.h>
@@ -20,6 +21,7 @@ namespace ge
 	{
         GraphicsCore* gc = GraphicsCore::ctx;
 
+		url = s.url;
 		//Clear
 		{
 
@@ -77,6 +79,8 @@ namespace ge
 			directionalLights.clear();
 			pointLights.resize(LIGHT_POINT_MAX);
 			pointLights.clear();
+			spotLights.resize(LIGHT_SPOT_MAX);
+			spotLights.clear();
 			//directionalLights.(nullptr);
 		}
 
@@ -133,12 +137,15 @@ namespace ge
 
 		}
 
+		//Materials
+
 		for(auto m : s.materials)
 		{
 			materials.insert({m.name, m});
 			Log::tVrb(LOG_TAG, "Loaded Material '"+m.name+"'");
 		}
 		
+		//Skybox
 
 		if (s.skybox != "")
 		{
@@ -174,6 +181,15 @@ namespace ge
 			skybox->insertComponent(mrc);
 			EntityManager::registerEntity(skybox);
             
+		}
+
+		//Entities
+		for(auto e : s.ents)
+		{
+			Entity* tEnt = EntitySerial::deserializeEntity(e);
+			for(auto c : tEnt->components)
+				c.second->insertToDefaultBatch();
+			EntityManager::registerEntity(tEnt);
 		}
 
 		//Initialise Static Objects

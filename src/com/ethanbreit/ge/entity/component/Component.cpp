@@ -1,7 +1,7 @@
 #include <ge/entity/component/Component.h>
 #include <ge/entity/component/ComponentBatch.h>
 #include <ge/entity/Entity.h>
-
+#include <ge/console/Log.h>
 namespace ge
 {
     Component::Component(Entity* ent)

@@ -177,9 +177,8 @@ namespace ge
 
             glfwMakeContextCurrent(_window); /// Initialize GLEW
 			{
-				int w,  h;
-				getSize(&w, &h);
-				glViewport(0, 0, w, h); /// Not really part of glew init
+				getSize(&_glfwWidth, &_glfwHeight); //cache height
+				glViewport(0, 0, _glfwWidth, _glfwHeight); /// Not really part of glew init
 			}
 
             glewExperimental= (GLboolean) true; /// Needed in core profile
@@ -227,6 +226,17 @@ namespace ge
         std::string Window::getWindowName(void)
         {
             return std::string();
+        }
+
+        uint8_t Window::getSamples()
+        {
+            return _samples;
+        }
+
+        void Window::bindFrameBuffer()
+        {
+            glBindFramebuffer(GL_FRAMEBUFFER, 0);
+            glViewport(0,0, _glfwWidth, _glfwHeight);
         }
 
         void Window::poll()

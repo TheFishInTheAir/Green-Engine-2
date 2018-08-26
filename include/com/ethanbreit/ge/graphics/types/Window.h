@@ -43,6 +43,8 @@ namespace ge
 
         virtual std::string getWindowName(void) = 0;
 
+        virtual uint8_t getSamples() = 0;
+
         virtual void poll() = 0;
 
         virtual void swap() = 0;
@@ -54,6 +56,8 @@ namespace ge
         virtual void setClearColour(glm::vec3) = 0;
 
         virtual void clear() = 0;
+
+        virtual void bindFrameBuffer() = 0;
 
         virtual bool shouldClose() = 0;
 

@@ -229,6 +229,8 @@ namespace ge
     
     RuntimeGroup* Runtime::getGroup(uint32_t pos)
     {
+        if(groups.size()<pos)
+            Log::critErr(LOG_TAG, "No group '"+std::to_string(pos)+"' in Runtime.");
         return groups.at(pos);
     }
 

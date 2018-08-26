@@ -14,7 +14,7 @@ namespace ge
         void cycle();
         
         ge_START_CYCLE_HANDLER(EngineControllerComponentBatch)
-        ge_GENERATE_TRAMPOLINE(cycle, POST_RENDER)
+        ge_GENERATE_TRAMPOLINE(cycle, PIPELINE_ROUTER_RG)
         ge_END_CYCLE_HANDLER
         
         

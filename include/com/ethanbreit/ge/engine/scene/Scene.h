@@ -8,13 +8,16 @@
 #include <ge/graphics/empty_types/MeshData.h>
 #include <ge/graphics/types/Shader.h>
 #include <memory>
-#include <ge/graphics/types/Image.h>
 #include <unordered_map>
+#include <list>
+#include <ge/graphics/types/Image.h>
 #include <ge/graphics/empty_types/Scene.h>
 #include <ge/graphics/meshes/TriangleMesh.h>
-#include <ge/engine/defaults/SkyBox.h>
+#include <ge/entity/Entity.h>
 #include <ge/graphics/types/lights/LightDirectional.h>
 #include <ge/graphics/types/lights/LightPoint.h>
+#include <ge/graphics/types/lights/LightSpot.h>
+#include <ge/graphics/types/lights/AngleShadow.h>
 #include <ge/graphics/types/Material.h>
 
 
@@ -31,6 +34,8 @@ namespace ge
 
 		void instantiateScene();
 
+		std::string url;
+
 		//Contains:
     	/*
     	 * Textures
@@ -43,24 +48,27 @@ namespace ge
 		 * 
     	 */
 
-		std::unordered_map<std::string, std::shared_ptr<ge::Texture>>		textures;
-		std::unordered_map<std::string, std::shared_ptr<ge::CubeMap>>		cubemaps;
+		std::unordered_map<std::string, std::shared_ptr<ge::Texture>>			textures;
+		std::unordered_map<std::string, std::shared_ptr<ge::CubeMap>>			cubemaps;
 
 		std::unordered_map<std::string, std::shared_ptr<ge::Empty::MeshData>>	meshes;
-		std::unordered_map<std::string, ge::Material>						materials;
+		std::unordered_map<std::string, ge::Material>							materials;
 
 		std::unordered_map<std::string, std::shared_ptr<ge::ShaderGroup>>		shaderGroups;
 		std::unordered_map<std::string, std::shared_ptr<ge::Shader>>			shaders;
         
-		std::forward_list<Entity*>                                          uninstantiatedEntities; //Should fix this
+		std::forward_list<Entity*>                                          	uninstantiatedEntities; //Should fix this
         
         Entity* skybox;
 		std::string skyboxCubemapName = "";
 
-		//TODO: create light class/struct @UNFINISHED
 
-		std::vector<LightDirectional*> 	directionalLights;
-		std::vector<LightPoint*> 	pointLights;
+
+		std::list<AngleShadow*>			shadows;
+	
+		std::list<LightDirectional*> 	directionalLights;
+		std::list<LightPoint*> 			pointLights;
+		std::list<LightSpot*> 			spotLights;
 
 	};
 }

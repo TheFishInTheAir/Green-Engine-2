@@ -58,6 +58,52 @@
             "type":"int"
         },
 
+        {
+            "name":"LIGHT_SPOT_IN",
+            "type":"struct_array",
+            "array_size":"LIGHT_SPOT_MAX",
+
+            "struct_members":
+            {
+                "uniforms":
+                [
+                    {
+                        "name":"dir",
+                        "type":"vec3"
+                    },
+                    {
+                        "name":"ambient",
+                        "type":"float"
+                    },
+                    {
+                        "name":"pos",
+                        "type":"vec3"
+                    },
+                    {
+                        "name":"colour",
+                        "type":"vec3"
+                    },
+                    {
+                        "name":"angle",
+                        "type":"float"
+                    },
+                    {
+                        "name":"outerAngle",
+                        "type":"float"
+                    },
+                    {
+                        "name":"shadowLoc",
+                        "type":"int"
+                    }
+                ]
+            }
+        },
+        {
+            "name":"LIGHT_SPOT_NUM",
+            "type":"int"
+        },
+
+
 
         {
             "name":"LIGHT_POINT_IN",
@@ -71,6 +117,10 @@
                     {
                         "name":"pos",
                         "type":"vec3"
+                    },
+                    {
+                        "name":"ambient",
+                        "type":"float"
                     },
                     {
                         "name":"colour",
@@ -93,6 +143,20 @@
         },
         {
             "name":"LIGHT_POINT_NUM",
+            "type":"int"
+        },
+        {
+            "name":"A_SHADOW_SPACE_IN",
+            "type":"mat4_array",
+            "array_size":"A_SHADOW_MAX"
+        },
+        {
+            "name":"A_SHADOW_MAP_IN",
+            "type":"int_array",
+            "array_size":"A_SHADOW_MAX"
+        },
+        {
+            "name":"A_SHADOW_NUM",
             "type":"int"
         }
     ],

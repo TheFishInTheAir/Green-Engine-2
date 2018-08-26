@@ -26,6 +26,7 @@ namespace ge
             bool shouldDrawEntTree = false;
             bool shouldDrawCurrentRes = false;
             bool shouldDrawInfoOverlay = false;
+            bool shouldDrawFrameBuffers = false;
 
             std::string probeSaveLoc = "";
             std::string probeLoadLoc = "";
@@ -34,7 +35,7 @@ namespace ge
             void draw();
 
             ge_START_CYCLE_HANDLER(DebugGUI)
-				ge_GENERATE_TRAMPOLINE(draw, RENDER)
+				ge_GENERATE_TRAMPOLINE(draw, PIPELINE_ROUTER_RG)
 			ge_END_CYCLE_HANDLER
 
             void drawEntTree();
@@ -43,6 +44,7 @@ namespace ge
             void drawSceneProbe();
 
             void drawCurrentRes();
+            void drawFrameBuffers();
 
             void drawInfoOverlay();
 
@@ -50,6 +52,8 @@ namespace ge
             void dtfAuto(std::string, DataType::type, void*);
             void dtfBool(std::string, bool*);
             void dtfFloat(std::string, float*);
+            void dtfInt(std::string, int*);
+
             void dtfMat(std::string, std::string*);
             void dtfMD(std::string, std::string*);
 

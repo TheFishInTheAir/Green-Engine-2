@@ -1,0 +1,263 @@
+{
+  "entitites": [
+    {
+      "components": [
+        {
+          "type": "HLMeshComponent",
+          "vars": [
+            {
+              "name": "Sketch Mesh",
+              "value": "demo/meshes/VSK_S.obj"
+            },
+            {
+              "name": "Sketch Material",
+              "value": "VSK"
+            }
+          ]
+        },
+        {
+          "type": "TransformComponent",
+          "vars": [
+            {
+              "name": "Should Recalculate",
+              "value": false
+            },
+            {
+              "name": "Rotation",
+              "value": {
+                "w": 1.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              }
+            },
+            {
+              "name": "Scale",
+              "value": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+              }
+            },
+            {
+              "name": "Is Dynamic",
+              "value": true
+            },
+            {
+              "name": "Position",
+              "value": {
+                "x": 1.700000286102295,
+                "y": 0.7999999523162842,
+                "z": 2.499999761581421
+              }
+            }
+          ]
+        }
+      ],
+      "name": "new_entity",
+      "tags": []
+    },
+    {
+      "components": [
+        {
+          "type": "SpotLightShadowComponent",
+          "vars": [
+            {
+              "name": "Far Plane",
+              "value": 100.0
+            },
+            {
+              "name": "Near Plane",
+              "value": 0.009999999776482582
+            },
+            {
+              "name": "Shadow Res",
+              "value": 7
+            },
+            {
+              "name": "Should Update",
+              "value": false
+            }
+          ]
+        },
+        {
+          "type": "SpotLightComponent",
+          "vars": [
+            {
+              "name": "Debug Box",
+              "value": true
+            },
+            {
+              "name": "Outer Angle",
+              "value": 10.0
+            },
+            {
+              "name": "Angle",
+              "value": 15.0
+            },
+            {
+              "name": "Colour",
+              "value": {
+                "x": 0.8965517282485962,
+                "y": 0.5457271337509155,
+                "z": 0.5457271337509155
+              }
+            },
+            {
+              "name": "Init Shadow",
+              "value": false
+            },
+            {
+              "name": "Shadow Res",
+              "value": 1.0
+            },
+            {
+              "name": "Ambient",
+              "value": 0.0
+            }
+          ]
+        },
+        {
+          "type": "TransformComponent",
+          "vars": [
+            {
+              "name": "Should Recalculate",
+              "value": false
+            },
+            {
+              "name": "Rotation",
+              "value": {
+                "w": 0.8594062328338623,
+                "x": 0.5112934112548828,
+                "y": 0.0,
+                "z": 0.0
+              }
+            },
+            {
+              "name": "Scale",
+              "value": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+              }
+            },
+            {
+              "name": "Is Dynamic",
+              "value": false
+            },
+            {
+              "name": "Position",
+              "value": {
+                "x": 2.499999761581421,
+                "y": 1.9000002145767212,
+                "z": 6.199995517730713
+              }
+            }
+          ]
+        }
+      ],
+      "name": "light_2",
+      "tags": []
+    },
+    {
+      "components": [
+        {
+          "type": "HLMeshComponent",
+          "vars": [
+            {
+              "name": "Sketch Mesh",
+              "value": "demo/meshes/plane.obj"
+            },
+            {
+              "name": "Sketch Material",
+              "value": "OnyxTile"
+            }
+          ]
+        },
+        {
+          "type": "TransformComponent",
+          "vars": [
+            {
+              "name": "Should Recalculate",
+              "value": false
+            },
+            {
+              "name": "Rotation",
+              "value": {
+                "w": 1.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              }
+            },
+            {
+              "name": "Scale",
+              "value": {
+                "x": 5.0,
+                "y": 1.0,
+                "z": 5.0
+              }
+            },
+            {
+              "name": "Is Dynamic",
+              "value": true
+            },
+            {
+              "name": "Position",
+              "value": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              }
+            }
+          ]
+        }
+      ],
+      "name": "test_ent_floor",
+      "tags": []
+    }
+  ],
+  "preloaded_resources": {
+    "cubemaps": [
+      {
+        "tag": "forest",
+        "xneg": "test_skybox/forest/negx.jpg",
+        "xpos": "test_skybox/forest/posx.jpg",
+        "yneg": "test_skybox/forest/negy.jpg",
+        "ypos": "test_skybox/forest/posy.jpg",
+        "zneg": "test_skybox/forest/negz.jpg",
+        "zpos": "test_skybox/forest/posz.jpg"
+      }
+    ],
+    "materials": [
+      "demo/mats/ice.gmat",
+      "demo/mats/vsk.gmat",
+      "demo/mats/tile.gmat"
+    ],
+    "meshes": [
+      "demo/meshes/cube.obj",
+      "demo/meshes/plane.obj",
+      "demo/meshes/subdiv_plane.obj",
+      "demo/meshes/room.obj",
+      "demo/meshes/VSK_S.obj",
+      "demo/meshes/marker.obj"
+    ],
+    "shaders": [
+      "engine/defaults/forward/test/Ice.gesm",
+      "engine/defaults/forward/skybox/skybox.gesm",
+      "engine/defaults/forward/lit/phong.gesm",
+      "engine/defaults/forward/water/simple.gesm"
+    ],
+    "textures": [
+      "demo/textures/ONYX_COL.jpg",
+      "demo/textures/VSK_COL.png",
+      "demo/textures/VSK_ROUGH.png",
+      "demo/textures/ONYX_REFL.jpg"
+    ]
+  },
+  "skybox": "forest",
+  "version": {
+    "major": 1,
+    "minor": 2
+  }
+}

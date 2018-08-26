@@ -108,10 +108,22 @@ endif()
 		set(ASSIMP_ROOT_DIR "C:\\Program Files\\Assimp")
 
 	else()
-
+        list(APPEND Green_Engine_LIBS ${CMAKE_CURRENT_SOURCE_DIR}/libs/compiled/libGECON_SERVER.a )
 	endif()
 
 	find_package(assimp REQUIRED)
+
+    set(Boost_USE_STATIC_LIBS ON)
+    set(Boost_USE_MULTITHREADED ON)
+    set(Boost_USE_STATIC_RUNTIME_LIBS OFF)
+
+    find_package(Boost 1.64.0 REQUIRED COMPONENTS system filesystem)
+
+
+    if(Boost_FOUND)
+        list(APPEND Green_Engine_INCLUDES ${Boost_INCLUDE_DIRS})
+        list(APPEND Green_Engine_LIBS ${Boost_LIBRARIES})
+    endif()
 
 	if(ASSIMP_LIBRARY_DIR)
 		message("assimp: ${ASSIMP_INCLUDE_DIR}")

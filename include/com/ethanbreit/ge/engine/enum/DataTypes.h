@@ -1,9 +1,10 @@
 #pragma once
+#include <json/json.hpp>
 namespace ge
 {
     namespace DataType
     {
-        typedef enum
+        enum type
         {
 
             STRING,
@@ -36,7 +37,12 @@ namespace ge
 
             COLOUR3, //vec3 but with a nice UI
             COLOUR4  //vec4 but with a nice UI
+        };
 
-        } type;
+        nlohmann::json serialize(type, void*);
+        void copy(type, void* src, void* dest);
+        //void* deserialize(nlohmann::json);
+        void deserialize(nlohmann::json, type, void*);
+
     }
 }

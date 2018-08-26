@@ -10,6 +10,7 @@
 #include <ge/engine/empty_types/EmptyStaticObject.h>
 #include <array>
 #include <ge/graphics/types/Material.h>
+#include <json/json.hpp>
 namespace ge
 {
 	namespace Empty
@@ -18,8 +19,11 @@ namespace ge
 		struct Scene 
 		{
 
+			std::string url;
 
 			std::vector<std::string>								keptRes;
+
+			nlohmann::json											ents;
 
 			std::unordered_map<std::string, ge::Image>				images;
 			std::unordered_map<std::string, ge::Empty::MeshData>	meshes;
@@ -33,7 +37,7 @@ namespace ge
 
 
 			std::string	skybox = "";
-			//TODO: create light class/struct  @UNFINISHED
+//TODO: create light class/struct  @UNFINISHED
 
 			//std::vector<Light> lights;
 

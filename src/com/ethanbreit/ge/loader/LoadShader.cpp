@@ -64,6 +64,8 @@ namespace ge
 
 			gc->shaderFactory->genShaderGroup(shaders, &shaderGroup);
 
+            shaderGroup->uniforms = loadUniforms(manifest);
+
 			*outShaderGroup = shaderGroup;
 
             return Error();
@@ -135,6 +137,40 @@ namespace ge
 
                 name = prefix+name;
 
+
+                //NOTE: TEMP
+                if(uni["type"]=="mat4_array")
+                {
+                    int array_size = 0;
+                    if(uni["array_size"].is_string())
+                        array_size = std::stoi(ge_global_settings::map.at(uni["array_size"]));
+                    else
+                        array_size = uni["array_size"];
+
+                    uniforms.insert({name,Uniform(Uniform::INT)});
+
+                    for(int i = 0; i < array_size; i++)
+                    {
+                        uniforms.insert({name+"["+std::to_string(i)+"]", Uniform(Uniform::MAT4)});
+                    }
+                }
+
+                if(uni["type"]=="int_array")
+                {
+                    int array_size = 0;
+                    if(uni["array_size"].is_string())
+                        array_size = std::stoi(ge_global_settings::map.at(uni["array_size"]));
+                    else
+                        array_size = uni["array_size"];
+
+                    uniforms.insert({name,Uniform(Uniform::INT)});
+
+                    for(int i = 0; i < array_size; i++)
+                    {
+                        uniforms.insert({name+"["+std::to_string(i)+"]", Uniform(Uniform::INT)});
+                    }
+                }
+
                 if(uni["type"]=="struct_array")
                 {
 
@@ -164,7 +200,7 @@ namespace ge
                     }
                 }
 
-                Log::dbg(name);
+                //Log::dbg(name);
                 Uniform u = genRightUniformFromType(uni["type"]);
                 uniforms.insert({name, u});
             }

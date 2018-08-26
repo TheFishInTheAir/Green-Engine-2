@@ -37,9 +37,9 @@ namespace ge
 
 		void clear();
 
-		ge_START_CYCLE_HANDLER(SkyBox)
+		/*ge_START_CYCLE_HANDLER(SkyBox)
 			ge_GENERATE_TRAMPOLINE(render, RENDER)
-		ge_END_CYCLE_HANDLER
+		ge_END_CYCLE_HANDLER*/
 
 	private:
 		Uniform* u_vp;

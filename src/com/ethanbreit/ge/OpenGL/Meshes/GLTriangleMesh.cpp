@@ -116,7 +116,7 @@ namespace ge
                 return false;
             if(_vertexBuffers.size()==0)
                 return false;
-                return true;
+            return true;
         }
 
 		void TriangleMesh::registerUniform(std::string name)

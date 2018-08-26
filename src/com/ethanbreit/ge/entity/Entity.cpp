@@ -18,7 +18,7 @@ namespace ge
     {
 		if(components.count(cmp->getTypeName())>=1)
 		{
-			Log::err(LOG_TAG, "Cannot insert Component with type '"+cmp->getTypeName()+"', one already exists in entity.");
+			Log::critErr(LOG_TAG, "Cannot insert Component with type '"+cmp->getTypeName()+"', one already exists in entity.");
 			return;
 		}
         components.insert({cmp->getTypeName(), cmp});
