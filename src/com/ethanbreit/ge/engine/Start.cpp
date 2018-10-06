@@ -5,6 +5,7 @@
 #include <ge/entity/EntityManager.h>
 #include <ge/entity/component/components/EngineControllerComponent.h>
 #include <ge/graphics/pipeline/Pipeline.h>
+#include <ge/audio/AudioController.h>
 namespace ge
 {
 	void simpleStart(SimpleEngineCreationInfo seci)
@@ -22,6 +23,7 @@ namespace ge
 		{
 			RuntimeManager::getRuntime(rg.second)->insertGroup(rg.first);
 		}
+
 
 
 		PipelineRuntimeRouter::ctx->init();
@@ -46,5 +48,9 @@ namespace ge
 
         EntityManager::registerEntity(engineCore);
         ecc->insertToDefaultBatch();
+
+
+		ge::Audio::standardInit();
+
 	}
 }

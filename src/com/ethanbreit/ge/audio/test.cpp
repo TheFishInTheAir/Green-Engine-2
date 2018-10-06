@@ -1,7 +1,7 @@
 #include <ge/audio/test.h>
 
-#include <OpenAL/al.h>
-#include <OpenAL/alc.h>
+#include <AL/al.h>
+#include <AL/alc.h>
 
 #define STB_VORBIS_HEADER_ONLY
 #include <stb/stb_vorbis.c>

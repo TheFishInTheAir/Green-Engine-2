@@ -1,6 +1,6 @@
 #include <ge/audio/AudioSource.h>
 #include <ge/console/Log.h>
-#include <OpenAL/al.h>
+#include <AL/al.h>
 namespace ge
 {
     namespace Audio

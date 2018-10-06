@@ -29,6 +29,8 @@ namespace ge
             SHADER,
             SHADER_GROUP,
 
+			AUDIO_CLIP,
+
             MESH_DATA,
             MATERIAL,
 

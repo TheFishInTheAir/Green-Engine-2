@@ -130,7 +130,7 @@ namespace ge
                             //Log::dbg(interface[value["disp_name"]].second);    
                             mat.textures.push_back({value["disp_name"], {value["value"].get<std::string>(), std::stoi(interface[value["disp_name"]].second)}});
                             break;
-                        case 1:
+                        case 1: //TEX3D
                             mat.cubemaps.push_back({value["disp_name"], {value["value"].get<std::string>(), std::stoi(interface[value["disp_name"]].second)}});
                             break;
                     }

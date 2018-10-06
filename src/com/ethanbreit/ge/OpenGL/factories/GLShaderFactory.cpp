@@ -98,6 +98,13 @@ namespace ge
 			shaderGroup->shaders = shadersIn;
             //shaderGroup->uniforms = std::unordered_map<std::string, ge::Uniform>();
             
+			/*if (!shaderGroup->uniforms.empty)
+			{
+				for (auto key : shaderGroup->uniforms)
+				{
+					shaderGroup->uniforms.at(key.first).descriptorId = glGetUniformLocation(shaderGroup->programID, key.first.c_str());
+				}
+			}*/
             
             { //Uniforms
                 /*GLint count;

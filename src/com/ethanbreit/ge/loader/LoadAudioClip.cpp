@@ -11,6 +11,7 @@ namespace ge
         {
             Audio::AudioClip* ac = new Audio::AudioClip();
             ac->samples = stb_vorbis_decode_filename((isResource ? ResourceUtil::getResPath(url) : url).c_str(), &(ac->channels), &(ac->sampleRate), &(ac->data));
+			ac->url = url;
             return ac;
         }
     }

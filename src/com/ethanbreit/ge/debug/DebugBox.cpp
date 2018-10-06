@@ -83,12 +83,14 @@ namespace ge
 
             void draw(glm::vec3 colour, glm::vec3 pos, glm::vec3 scale)
             {
-                draw(colour, pos,scale, Camera::displayCamera->vp);
+				if(Camera::displayCamera!=nullptr)
+					draw(colour, pos,scale, Camera::displayCamera->vp);
             }
 
             void draw(glm::vec3 colour, glm::vec3 pos, glm::vec3 scale, glm::quat rot)
             {
-                draw(colour, pos,scale, rot, Camera::displayCamera->vp);
+				if (Camera::displayCamera != nullptr)
+					draw(colour, pos,scale, rot, Camera::displayCamera->vp);
             }
 
             void draw2(glm::vec3 colour, glm::vec3 pos, glm::vec3 scale, glm::quat rot)

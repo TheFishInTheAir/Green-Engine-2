@@ -40,6 +40,9 @@ namespace ge
             case ge::DataType::SHADER_GROUP:
                 jv = *(std::string *)val;
                 break;
+			case ge::DataType::AUDIO_CLIP:
+				jv = *(std::string *)val;
+				break;
             case ge::DataType::TEXTURE:
                 jv = *(std::string *)val;
                 break;
@@ -155,6 +158,9 @@ namespace ge
             case ge::DataType::SHADER_GROUP:
                 (*(std::string *)dest) = (*(std::string *)src);
                 break;
+			case ge::DataType::AUDIO_CLIP:
+				(*(std::string *)dest) = (*(std::string *)src);
+				break;
             case ge::DataType::TEXTURE:
                 (*(std::string *)dest) = (*(std::string *)src);
                 break;
@@ -270,6 +276,9 @@ namespace ge
             case ge::DataType::SHADER_GROUP:
                 (*(std::string *)oVar) = jVar;
                 break;
+			case ge::DataType::AUDIO_CLIP:
+				(*(std::string *)oVar) = jVar;
+				break;
             case ge::DataType::TEXTURE:
                 (*(std::string *)oVar) = jVar;
                 break;

@@ -53,6 +53,8 @@ namespace ge
 
         virtual void cleanup() = 0;
 
+		virtual void mainThreadPollLoop() = 0;
+
         virtual void setClearColour(glm::vec3) = 0;
 
         virtual void clear() = 0;

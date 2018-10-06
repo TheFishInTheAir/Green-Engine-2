@@ -19,6 +19,7 @@ namespace ge
         addPublicVar("FOV", {DataType::FLOAT, &camera.fov});
         addPublicVar("Near Cull Plane", {DataType::FLOAT, &camera.nearCull});
         addPublicVar("Far Cull Plane", {DataType::FLOAT, &camera.farCull});
+		addPublicVar("Make Display", {DataType::BOOL, &shouldMakeDisplay});
     }
 
     void CameraComponent::defaultInit()
@@ -59,6 +60,12 @@ namespace ge
             Log::wrn("CameraComponent", "A CameraComponent requires a TransformComponent.");
             return;
         }
+		if (shouldMakeDisplay)
+		{
+			shouldMakeDisplay = false;
+			makeDisplay();
+		}
+
         camera.update(); //we only use this to recalculate the projection
         //NOTE: INNEFICIENT DOING AN UPDATE THEN RECALCULATING VIEW MATRIX
 

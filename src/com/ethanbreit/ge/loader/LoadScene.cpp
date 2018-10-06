@@ -3,6 +3,7 @@
 #include <json/json.hpp>
 #include <ge/loader/LoadImage.h>
 #include <ge/loader/LoadMesh.h>
+#include <ge/loader/LoadAudioClip.h>
 #include <ge/loader/LoadMaterial.h>
 #include <ge/engine/empty_types/EmptyStaticObject.h>
 #define GLM_ENABLE_EXPERIMENTAL
@@ -305,6 +306,8 @@ namespace ge
 
 			}
 
+
+
 			if (hasMaterials) 
 			{
 				std::vector<std::string> materials = res["materials"];
@@ -318,6 +321,15 @@ namespace ge
 
 			}
 
+			if (res.count("audio_clips"))
+			{
+				for (auto ac : res["audio_clips"])
+				{
+					Audio::AudioClip* clip = AudioClipLoader::loadAudioClip(ac, true);
+					scene.audioClips.push_front(clip);
+				}
+			}
+
 			if(data.count("entities"))
 			{
 				
@@ -326,6 +338,7 @@ namespace ge
 			/**
 			* SkyBox
 			*/
+
 
 			if(data.count("skybox")!=0)
 			{

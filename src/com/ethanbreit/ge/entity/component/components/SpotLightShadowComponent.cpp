@@ -96,9 +96,9 @@ namespace ge
             }
         }
         GraphicsCore::ctx->textureFactory->genFramebuffer(realShadowRes, realShadowRes, &fb);
-        fb->generateTextureAttachment(FrameBufferAttachment::Depth);
+        fb->generateTextureAttachment(FrameBufferAttachment::Depth24);
         //fb->generateBufferAttachment(FrameBufferAttachment::Depth24_Stencil8);
-        tex = fb->getTextureAttachment(FrameBufferAttachment::Depth);
+        tex = fb->getTextureAttachment(FrameBufferAttachment::Depth24);
         shadow->shadowMap = tex;
         ps->framebuffer = fb;
 
@@ -149,7 +149,7 @@ namespace ge
         cam->pos = spotLightComponent->light.pos;
         cam->dir = cam->pos + spotLightComponent->light.dir;
         cam->aspectRatio = 1;
-        cam->fov = glm::radians(spotLightComponent->light.angle+spotLightComponent->light.outerAngle);
+        cam->fov = glm::radians(spotLightComponent->light.angle+spotLightComponent->light.outerAngle+15); //15 is because.... 
         cam->update();
         shadow->lightSpace = cam->vp;
     }

@@ -14,7 +14,7 @@ namespace ge
 	{
         const std::string LOG_TAG = "GLTriangleMesh";
         
-        void TriangleMesh::applyUniform(ge::Uniform u)
+        void TriangleMesh::applyUniform(ge::Uniform& u)
         {
             switch(u.getUniformType())
             {
@@ -57,7 +57,7 @@ namespace ge
 
 			glBindVertexArray(_vao);
             
-            for(auto u : shaderGroup->uniforms)
+            for(auto u : shaderGroup->uniforms) //BADDNESS
             {
                 applyUniform(u.second);
             }
@@ -184,12 +184,6 @@ namespace ge
 		void TriangleMesh::setShaderGroup(ge::ShaderGroup* sg)
 		{
 			shaderGroup = (GL::ShaderGroup *) sg;
-            
-            //NOTE: THIS SHOULD NOT BE HERE
-            for(auto key : shaderGroup->uniforms)
-            {
-                shaderGroup->uniforms.at(key.first).descriptorId = glGetUniformLocation(shaderGroup->programID, key.first.c_str());
-            }
 		}
         
         bool TriangleMesh::containsUniform(std::string u)

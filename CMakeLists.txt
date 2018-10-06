@@ -21,7 +21,6 @@ set(SOURCE ${SOURCE_FILES} ${INCLUDE_FILES}) #Define Variable "Source" as all Gr
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/com/ethanbreit) #Define the Green Engine include directories
 
 
-
 ###
 ### Sources and Includes
 ###
@@ -52,6 +51,12 @@ else()
     add_library(Green_Engine_2 ${SOURCE})
 
 endif ()
+
+
+if (WIN32)
+find_library(ws2_32_LIBRARY_PATH ws2_32)
+target_link_libraries(Green_Engine_2 ${ws2_32_LIBRARY_PATH})
+endif()
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Libraries.cmake)
 green_engine_libs(includes libraries)

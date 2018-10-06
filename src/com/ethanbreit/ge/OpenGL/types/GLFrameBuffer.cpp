@@ -68,7 +68,7 @@ namespace ge
             //TODO: put Texture destructor in the Texture class ffs...
             
             for(auto b : bufferAttachments)
-                glDeleteTextures(1, &(b.second));
+				glDeleteBuffers(1, &(b.second));
             textureAttachments.clear();
         }
         uint32_t getComponentType(FrameBufferAttachment::buffer t)
@@ -78,7 +78,10 @@ namespace ge
                 case FrameBufferAttachment::Depth24_Stencil8:
                     return GL_DEPTH24_STENCIL8;
             }
+			return GL_DEPTH24_STENCIL8;
         }
+
+		//NOTE: This isn't working right now
         void FrameBuffer::generateBufferAttachment(FrameBufferAttachment::buffer t) //TODO: make more dynamic and stuff...
         {
             if(bufferAttachments.count(t))
@@ -89,13 +92,20 @@ namespace ge
             glGenRenderbuffers(1, &bid);
             glBindBuffer(GL_RENDERBUFFER, bid);
             glRenderbufferStorage(GL_RENDERBUFFER, getComponentType(t), width, height);
+			glBindBuffer(GL_RENDERBUFFER, 0);
 
+			//glObjectLabel(GL_RENDERBUFFER, bid, -1, "test buffer :)");
+
+			//Log::msg("GLFrameBuffer", "Generating Buffer Attachment ID:" + std::to_string(bid));
             bufferAttachments.insert({t, bid});
             
             glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT,
                 GL_RENDERBUFFER, bid);
 
             _hasDepth = true;
+
+			if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+				Log::critErr("GLFrameBuffer", "Framebuffer is not complete!");
 
             bindDefault();
         }
@@ -105,7 +115,7 @@ namespace ge
             switch(t)
             {
                 case FrameBufferAttachment::Colour:
-                    return GL_RGB; //TODO: add more variety in colour data
+                    return GL_RGBA; //TODO: add more variety in colour data
                 case FrameBufferAttachment::Depth:
                     return GL_DEPTH_COMPONENT;
                 case FrameBufferAttachment::Depth16:
@@ -145,10 +155,17 @@ namespace ge
             glGenTextures(1,&(tex->id));
             glBindTexture(GL_TEXTURE_2D, (tex->id));        
 
+			//glObjectLabel(GL_TEXTURE, tex->id, -1, "test texture :)");
+
+
             uint32_t component = getComponentType(t);
 
+			//unsigned char* _testImgDat = (unsigned char*) malloc(width*height);
+			//for (int i = 0; i < width*height; i++)
+		 	//	_testImgDat[i] = 0xff;
+
             glTexImage2D(GL_TEXTURE_2D, 0, component,
-                        width, height, 0, component, GL_FLOAT, NULL);
+                        width, height, 0, component, GL_FLOAT, NULL); //maybe should be unsigned byte
             
             tex->setFiltering(TextureFilterType::Anisotropic_16x);
 

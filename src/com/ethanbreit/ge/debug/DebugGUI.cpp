@@ -292,7 +292,7 @@ namespace ge
                 nk_layout_row_dynamic(nctx, 25, 2);
                 nk_label(nctx, std::string("Entity Name: ").c_str(), NK_TEXT_LEFT);
                 {
-                    char* editStr = (char*) malloc(selectedEnt->name.size()+1);
+                    char* editStr = (char*) malloc(selectedEnt->name.size()+2);
                     strcpy(editStr, selectedEnt->name.c_str());
                     nk_edit_string_zero_terminated(nctx, NK_EDIT_SIMPLE, editStr, 64, 0);
                     selectedEnt->name = std::string(editStr);
@@ -407,6 +407,7 @@ namespace ge
             nctx->style.window.fixed_background = lastStyle;
         }
 
+
         void DebugGUI::drawSceneProbe()
         {
             
@@ -497,6 +498,14 @@ namespace ge
                         }
                         nk_tree_pop(nctx);
                     }
+					if (nk_tree_push(nctx, NK_TREE_TAB, "AudioClips", NK_MINIMIZED))
+					{
+						for (auto s : Scene::currentScene->audioClips)
+						{
+							nk_label(nctx, s.first.c_str(), NK_TEXT_LEFT);
+						}
+						nk_tree_pop(nctx);
+					}
                     nk_tree_pop(nctx);
                 }
             }
@@ -566,6 +575,9 @@ namespace ge
                 case DataType::MESH_DATA:
                     dtfMD(name, (std::string*) v);
                     break;
+				case DataType::AUDIO_CLIP:
+					dtfAC(name, (std::string*) v);
+					break;
             }
         }
 
@@ -652,6 +664,40 @@ namespace ge
             
             nk_layout_row_end(nctx);
         }
+
+		void DebugGUI::dtfAC(std::string name, std::string* text)
+		{
+			nk_layout_row_begin(nctx, NK_DYNAMIC, 30, 2);
+			nk_layout_row_push(nctx, 0.66666f);
+
+
+			nk_label(nctx, name.c_str(), NK_TEXT_LEFT);
+
+			nk_layout_row_push(nctx, 0.33333f);
+
+			static std::string* currentSelected = nullptr;
+			if (nk_button_label(nctx, text->c_str()))
+				currentSelected = text;
+
+			if (currentSelected != nullptr)
+				if (nk_popup_begin(nctx, NK_POPUP_STATIC, "DebugGUI: Audio Clip Selector", 0, nk_rect(10, 10, 200, 300)))
+				{
+					nk_layout_row_dynamic(nctx, 15, 1);
+					for (auto s : Scene::currentScene->audioClips)
+					{
+						if (nk_button_label(nctx, s.first.c_str()))
+						{
+							*currentSelected = s.first;
+							currentSelected = nullptr;
+							nk_popup_close(nctx);
+						}
+					}
+					nk_popup_end(nctx);
+				}
+
+
+			nk_layout_row_end(nctx);
+		}
 
         void DebugGUI::dtfFloat(std::string name, float *v)
         {

@@ -44,6 +44,9 @@ namespace ge
 
             void bindFrameBuffer();
 
+			void mainThreadPollLoop();
+
+
             uint8_t getSamples();
 
             void getSize(int *, int *);

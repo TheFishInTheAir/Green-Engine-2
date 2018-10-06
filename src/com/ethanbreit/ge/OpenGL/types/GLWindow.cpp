@@ -16,6 +16,9 @@
 #include <ge/util/PreprocessorUtil.h>
 #include <ge/console/Log.h>
 
+#include  <chrono>
+#include  <thread>
+
 ge::GraphicsCore* core;
 
 namespace ge
@@ -268,6 +271,15 @@ namespace ge
         {
             glClearColor(c.x,c.y,c.z, 1);
         }
+
+		void Window::mainThreadPollLoop()
+		{
+			while (!shouldClose())
+			{
+				std::this_thread::sleep_for(std::chrono::milliseconds(std::chrono::seconds(1)/255)); //255 hz poll rate (windows default) TODO: add a
+				poll();
+			}
+		}
 
         void Window::clear()
         {

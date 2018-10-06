@@ -3,6 +3,7 @@
 #include <ge/entity/component/ComponentManager.h>
 #include <ge/graphics/GraphicsCore.h>
 #include <ge/console/Log.h>
+#include <ge/engine/scene/Scene.h>
 #include <ge/entity/Entity.h>
 #include <ge/entity/component/components/TransformComponent.h>
 #include <ge/audio/AudioController.h>
@@ -22,15 +23,20 @@ namespace ge
     {
         source = new Audio::AudioSource();
         source->create(); //should be run on audio thread
+
+		init();
     }
     AudioSourceComponent::AudioSourceComponent(Entity* e, Audio::AudioSource* source) : Component(e)
     {
         this->source = source;
+
+		init();
         //TODO: fill out
     }
 
     void AudioSourceComponent::init()
     {
+		addPublicVar("audio clip", { DataType::AUDIO_CLIP, &currentAudioSource });
         addPublicVar("loop", {DataType::BOOL, &(source->loop)});
         addPublicVar("play", {DataType::BOOL, &queuePlay});
         addPublicVar("pause", {DataType::BOOL, &queuePause});
@@ -89,6 +95,20 @@ namespace ge
                 return;
             }
         }
+		if (currentAudioSource != "NONE")
+		{
+			if (currentAudioSource != currentAudioSourceCACHED)
+			{
+				if (!Scene::currentScene->audioClips.count(currentAudioSource))
+				{
+					Log::critErr("AudioSourceComponent", "No Resource: " + currentAudioSource);
+					return;
+				}
+				currentAudioSourceCACHED = currentAudioSource;
+				source->setClip(Scene::currentScene->audioClips.at(currentAudioSource).get());
+			}
+		}
+
         if(!source->isCreated())
             source->create();
         if(source->getClip()!=nullptr)

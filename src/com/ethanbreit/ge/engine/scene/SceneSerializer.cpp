@@ -116,7 +116,7 @@ namespace ge
                     test_label:
                     continue;
                 }
-                jScene["entitites"] = ents;
+                jScene["entities"] = ents;
             }
             Log::scc("Serialized Scene.");
 

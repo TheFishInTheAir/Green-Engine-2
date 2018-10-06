@@ -39,11 +39,11 @@
 ge::GraphicsCore *gc;
     ge::FrameBuffer* fb;
 
-bool uninitialised = true;
+bool* uninitialised = nullptr;
 
 void runtimeInitHook()
 {
-    uninitialised = false;
+    *uninitialised = false;
 }
 const std::string MAP_LOC = "ge/t4.gesc";
 
@@ -106,7 +106,8 @@ int main()
     /**
      * New Fancy Engine Simple Start
      */
-    
+	uninitialised = new bool();
+	*uninitialised = true;
     ge::RuntimeGroup* update = new ge::RuntimeGroup();
     // ge::RuntimeGroup* render = new ge::RuntimeGroup();
     // ge::RuntimeGroup* postRender = new ge::RuntimeGroup();
@@ -137,9 +138,8 @@ int main()
     gc = ge::GraphicsCore::ctx;
     
     ge::RuntimeManager::getRuntime(RUNTIME_MAIN)->enqueFunctionStatic(runtimeInitHook);
-    
-    while(uninitialised); //wait until Runtimes are created
-    
+    while(*uninitialised) ge::Log::dbg("FUCK"); //wait until Runtimes are created
+
  
     
     //Camera Test:

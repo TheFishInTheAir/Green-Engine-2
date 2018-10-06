@@ -1,5 +1,5 @@
 #include <ge/audio/AudioClip.h>
-#include <OpenAL/al.h>
+#include <AL/al.h>
 #include <ge/console/Log.h>
 namespace ge
 {

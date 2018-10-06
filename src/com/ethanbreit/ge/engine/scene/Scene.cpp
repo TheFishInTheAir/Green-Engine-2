@@ -31,6 +31,7 @@ namespace ge
 
 			std::vector<std::pair<std::string, std::shared_ptr<ge::Empty::MeshData>>> meshesK;
 			std::vector<std::pair<std::string, std::shared_ptr<ge::ShaderGroup>>> shadersK;
+			std::vector<std::pair<std::string, std::shared_ptr<ge::Audio::AudioClip>>> audioClipsK;
 			
 			for(auto res : s.keptRes)
 			{
@@ -60,6 +61,13 @@ namespace ge
 					shadersK.push_back({ shader->first,shader->second });
 					continue;
 				}
+
+				auto ac = audioClips.find(res);
+				if (ac != audioClips.end())
+				{
+					audioClipsK.push_back({ ac->first, ac->second });
+					continue;
+				}
 			}
 			textures.clear();
 			for (auto t : texturesK)
@@ -73,6 +81,10 @@ namespace ge
 			shaders.clear();
 			for (auto s : shadersK)
 				shaderGroups.insert({ s.first,s.second });
+			audioClips.clear();
+			for (auto ac : audioClipsK)
+				audioClips.insert({ ac.first, ac.second });
+
 
 			materials.clear(); //NOTE: materials are so small we dont really care that they don't get kept...
 			directionalLights.resize(LIGHT_DIR_MAX);
@@ -137,6 +149,13 @@ namespace ge
 
 		}
 
+		//AudioClips
+
+		for (auto ac : s.audioClips)
+		{
+			ac->upload();
+			audioClips.insert({ ac->url, std::shared_ptr<Audio::AudioClip>(ac) });
+		}
 		//Materials
 
 		for(auto m : s.materials)

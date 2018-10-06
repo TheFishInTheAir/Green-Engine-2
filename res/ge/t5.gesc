@@ -1,17 +1,107 @@
 {
-  "entitites": [
+  "entities": [
     {
       "components": [
         {
-          "type": "HLMeshComponent",
+          "type": "TransformComponent",
           "vars": [
             {
-              "name": "Sketch Mesh",
-              "value": "demo/meshes/VSK_S.obj"
+              "name": "Position",
+              "value": {
+                "x": 0.055904727429151535,
+                "y": 3.0190207958221436,
+                "z": 6.8891119956970215
+              }
             },
             {
-              "name": "Sketch Material",
-              "value": "VSK"
+              "name": "Should Recalculate",
+              "value": true
+            },
+            {
+              "name": "Scale",
+              "value": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+              }
+            },
+            {
+              "name": "Rotation",
+              "value": {
+                "w": 0.9600898027420044,
+                "x": -0.2167118489742279,
+                "y": -0.17247627675533295,
+                "z": -0.038931410759687424
+              }
+            },
+            {
+              "name": "Is Dynamic",
+              "value": false
+            }
+          ]
+        },
+        {
+          "type": "CameraComponent",
+          "vars": [
+            {
+              "name": "FOV",
+              "value": 0.7853981852531433
+            },
+            {
+              "name": "Near Cull Plane",
+              "value": 0.009999999776482582
+            },
+            {
+              "name": "Far Cull Plane",
+              "value": 100.0
+            },
+            {
+              "name": "Make Display",
+              "value": false
+            }
+          ]
+        },
+        {
+          "type": "FreeCamControllerComponent",
+          "vars": [
+            {
+              "name": "Look Speed",
+              "value": 15.0
+            },
+            {
+              "name": "Move Speed",
+              "value": 35.0
+            }
+          ]
+        },
+        {
+          "type": "AudioListinerComponent",
+          "vars": []
+        }
+      ],
+      "name": "main_cam",
+      "tags": []
+    },
+    {
+      "components": [
+        {
+          "type": "DirectionalLightComponent",
+          "vars": [
+            {
+              "name": "Colour",
+              "value": {
+                "x": 0.24137932062149048,
+                "y": 0.236131951212883,
+                "z": 0.236131951212883
+              }
+            },
+            {
+              "name": "Ambient",
+              "value": 0.20000000298023224
+            },
+            {
+              "name": "Debug Box",
+              "value": true
             }
           ]
         },
@@ -19,8 +109,68 @@
           "type": "TransformComponent",
           "vars": [
             {
+              "name": "Position",
+              "value": {
+                "x": 0.0,
+                "y": 1.500000238418579,
+                "z": 0.0
+              }
+            },
+            {
               "name": "Should Recalculate",
               "value": false
+            },
+            {
+              "name": "Scale",
+              "value": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+              }
+            },
+            {
+              "name": "Rotation",
+              "value": {
+                "w": 0.760405957698822,
+                "x": -0.649448037147522,
+                "y": -0.0,
+                "z": 0.0
+              }
+            },
+            {
+              "name": "Is Dynamic",
+              "value": false
+            }
+          ]
+        }
+      ],
+      "name": "sun_light",
+      "tags": []
+    },
+    {
+      "components": [
+        {
+          "type": "TransformComponent",
+          "vars": [
+            {
+              "name": "Position",
+              "value": {
+                "x": -3.2999989986419678,
+                "y": 3.9999985694885254,
+                "z": 0.0
+              }
+            },
+            {
+              "name": "Should Recalculate",
+              "value": false
+            },
+            {
+              "name": "Scale",
+              "value": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+              }
             },
             {
               "name": "Rotation",
@@ -32,50 +182,7 @@
               }
             },
             {
-              "name": "Scale",
-              "value": {
-                "x": 1.0,
-                "y": 1.0,
-                "z": 1.0
-              }
-            },
-            {
               "name": "Is Dynamic",
-              "value": true
-            },
-            {
-              "name": "Position",
-              "value": {
-                "x": 1.700000286102295,
-                "y": 0.7999999523162842,
-                "z": 2.499999761581421
-              }
-            }
-          ]
-        }
-      ],
-      "name": "new_entity",
-      "tags": []
-    },
-    {
-      "components": [
-        {
-          "type": "SpotLightShadowComponent",
-          "vars": [
-            {
-              "name": "Far Plane",
-              "value": 100.0
-            },
-            {
-              "name": "Near Plane",
-              "value": 0.009999999776482582
-            },
-            {
-              "name": "Shadow Res",
-              "value": 7
-            },
-            {
-              "name": "Should Update",
               "value": false
             }
           ]
@@ -84,28 +191,16 @@
           "type": "SpotLightComponent",
           "vars": [
             {
-              "name": "Debug Box",
-              "value": true
-            },
-            {
-              "name": "Outer Angle",
-              "value": 10.0
-            },
-            {
-              "name": "Angle",
-              "value": 15.0
+              "name": "Init Shadow",
+              "value": false
             },
             {
               "name": "Colour",
               "value": {
-                "x": 0.8965517282485962,
-                "y": 0.5457271337509155,
-                "z": 0.5457271337509155
+                "x": 0.9231832027435303,
+                "y": 0.931034505367279,
+                "z": 0.7033358216285706
               }
-            },
-            {
-              "name": "Init Shadow",
-              "value": false
             },
             {
               "name": "Shadow Res",
@@ -114,15 +209,49 @@
             {
               "name": "Ambient",
               "value": 0.0
+            },
+            {
+              "name": "Angle",
+              "value": 2.700004816055298
+            },
+            {
+              "name": "Outer Angle",
+              "value": 28.30002784729004
+            },
+            {
+              "name": "Debug Box",
+              "value": true
             }
           ]
-        },
+        }
+      ],
+      "name": "light_1",
+      "tags": []
+    },
+    {
+      "components": [
         {
           "type": "TransformComponent",
           "vars": [
             {
+              "name": "Position",
+              "value": {
+                "x": 2.499999761581421,
+                "y": 1.9000002145767212,
+                "z": 6.199995517730713
+              }
+            },
+            {
               "name": "Should Recalculate",
               "value": false
+            },
+            {
+              "name": "Scale",
+              "value": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+              }
             },
             {
               "name": "Rotation",
@@ -134,24 +263,45 @@
               }
             },
             {
-              "name": "Scale",
-              "value": {
-                "x": 1.0,
-                "y": 1.0,
-                "z": 1.0
-              }
-            },
-            {
               "name": "Is Dynamic",
+              "value": false
+            }
+          ]
+        },
+        {
+          "type": "SpotLightComponent",
+          "vars": [
+            {
+              "name": "Init Shadow",
               "value": false
             },
             {
-              "name": "Position",
+              "name": "Colour",
               "value": {
-                "x": 2.499999761581421,
-                "y": 1.9000002145767212,
-                "z": 6.199995517730713
+                "x": 0.8965517282485962,
+                "y": 0.5457271337509155,
+                "z": 0.5457271337509155
               }
+            },
+            {
+              "name": "Shadow Res",
+              "value": 1.0
+            },
+            {
+              "name": "Ambient",
+              "value": 0.0
+            },
+            {
+              "name": "Angle",
+              "value": 15.0
+            },
+            {
+              "name": "Outer Angle",
+              "value": 10.0
+            },
+            {
+              "name": "Debug Box",
+              "value": true
             }
           ]
         }
@@ -162,24 +312,27 @@
     {
       "components": [
         {
-          "type": "HLMeshComponent",
-          "vars": [
-            {
-              "name": "Sketch Mesh",
-              "value": "demo/meshes/plane.obj"
-            },
-            {
-              "name": "Sketch Material",
-              "value": "OnyxTile"
-            }
-          ]
-        },
-        {
           "type": "TransformComponent",
           "vars": [
             {
+              "name": "Position",
+              "value": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              }
+            },
+            {
               "name": "Should Recalculate",
               "value": false
+            },
+            {
+              "name": "Scale",
+              "value": {
+                "x": 5.0,
+                "y": 1.0,
+                "z": 5.0
+              }
             },
             {
               "name": "Rotation",
@@ -191,29 +344,83 @@
               }
             },
             {
-              "name": "Scale",
-              "value": {
-                "x": 5.0,
-                "y": 1.0,
-                "z": 5.0
-              }
-            },
-            {
               "name": "Is Dynamic",
               "value": true
+            }
+          ]
+        },
+        {
+          "type": "HLMeshComponent",
+          "vars": [
+            {
+              "name": "Sketch Material",
+              "value": "OnyxTile"
             },
             {
-              "name": "Position",
-              "value": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-              }
+              "name": "Sketch Mesh",
+              "value": "demo/meshes/plane.obj"
             }
           ]
         }
       ],
       "name": "test_ent_floor",
+      "tags": []
+    },
+    {
+      "components": [
+        {
+          "type": "HLMeshComponent",
+          "vars": [
+            {
+              "name": "Sketch Material",
+              "value": "VSK"
+            },
+            {
+              "name": "Sketch Mesh",
+              "value": "demo/meshes/VSK_S.obj"
+            }
+          ]
+        },
+        {
+          "type": "TransformComponent",
+          "vars": [
+            {
+              "name": "Position",
+              "value": {
+                "x": 2.200000047683716,
+                "y": 0.5999999046325684,
+                "z": 0.30000001192092896
+              }
+            },
+            {
+              "name": "Should Recalculate",
+              "value": false
+            },
+            {
+              "name": "Scale",
+              "value": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+              }
+            },
+            {
+              "name": "Rotation",
+              "value": {
+                "w": 1.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              }
+            },
+            {
+              "name": "Is Dynamic",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "name": "new_entity",
       "tags": []
     }
   ],
@@ -230,28 +437,32 @@
       }
     ],
     "materials": [
-      "demo/mats/ice.gmat",
+      "demo/mats/tile.gmat",
       "demo/mats/vsk.gmat",
-      "demo/mats/tile.gmat"
+      "demo/mats/ice.gmat"
     ],
     "meshes": [
       "demo/meshes/cube.obj",
-      "demo/meshes/plane.obj",
-      "demo/meshes/subdiv_plane.obj",
       "demo/meshes/room.obj",
       "demo/meshes/VSK_S.obj",
+      "demo/meshes/subdiv_plane.obj",
+      "demo/meshes/plane.obj",
       "demo/meshes/marker.obj"
     ],
+    "audio_clips":[
+      "ge_test.ogg",
+      "ge_test_2.ogg"
+    ],
     "shaders": [
-      "engine/defaults/forward/test/Ice.gesm",
       "engine/defaults/forward/skybox/skybox.gesm",
+      "engine/defaults/forward/water/simple.gesm",
       "engine/defaults/forward/lit/phong.gesm",
-      "engine/defaults/forward/water/simple.gesm"
+      "engine/defaults/forward/test/Ice.gesm"
     ],
     "textures": [
-      "demo/textures/ONYX_COL.jpg",
-      "demo/textures/VSK_COL.png",
       "demo/textures/VSK_ROUGH.png",
+      "demo/textures/VSK_COL.png",
+      "demo/textures/ONYX_COL.jpg",
       "demo/textures/ONYX_REFL.jpg"
     ]
   },

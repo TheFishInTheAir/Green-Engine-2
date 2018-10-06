@@ -20,7 +20,7 @@ namespace ge
         void makeDisplay();
     private:
         static ComponentConstructorRegistry::StartupHook _hook;
-
+		bool shouldMakeDisplay = false;
         bool hasTransformComponent = false;
         TransformComponent* transformComponent;
     };

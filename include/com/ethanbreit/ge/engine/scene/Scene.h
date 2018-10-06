@@ -56,6 +56,7 @@ namespace ge
 
 		std::unordered_map<std::string, std::shared_ptr<ge::ShaderGroup>>		shaderGroups;
 		std::unordered_map<std::string, std::shared_ptr<ge::Shader>>			shaders;
+		std::unordered_map<std::string, std::shared_ptr<ge::Audio::AudioClip>>	audioClips;
         
 		std::forward_list<Entity*>                                          	uninstantiatedEntities; //Should fix this
         

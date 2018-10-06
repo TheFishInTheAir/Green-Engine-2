@@ -5,6 +5,7 @@
 #include <ge/console/Log.h>
 #include <ge/entity/Entity.h>
 #include <ge/entity/component/components/TransformComponent.h>
+#include <ge/entity/component/components/CameraComponent.h>
 #include <ge/input/KeyboardHandler.h>
 #include <ge/input/MouseHandler.h>
 #include <ge/util/RotationUtil.h>
@@ -61,6 +62,19 @@ namespace ge
             Log::wrn("FreeCamController", "A FreeCamController requires a TransformComponent.");
             return;
         }
+
+		if (!hasCamComponent)
+		{
+			if (ent->components.count("CameraComponent"))
+			{
+				hasCamComponent = true;
+				(*(bool*)ent->components["CameraComponent"]->publicVars["Make Display"].second) = true; 
+			}
+
+			Log::wrn("FreeCamController", "A FreeCamController requires a CameraComponent.");
+			return;
+		}
+
 
         Runtime* r = RuntimeManager::getRuntime(RUNTIME_MAIN);
 

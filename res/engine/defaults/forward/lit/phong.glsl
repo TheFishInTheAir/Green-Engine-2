@@ -33,7 +33,7 @@ void main()
 
     for(int i = 0; i < A_SHADOW_NUM; i++)
     {
-        lightFragCoords[i] = A_SHADOW_SPACE_IN[i] * vec4(vpos, 1);
+        lightFragCoords[i] = A_SHADOW_SPACE_IN[i] * MVP_M * vec4(vpos, 1); //TODO: clamp here
     }
 }
 
@@ -69,7 +69,7 @@ uniform int A_SHADOW_NUM;
 //Phong Lighting
 
 
-float computeShadow(int i)
+float computeShadow(int i, vec3 lightDir)
 {
     // perform perspective divide
     vec3 projCoords = lightFragCoords[i].xyz / lightFragCoords[i].w;
@@ -78,20 +78,23 @@ float computeShadow(int i)
     projCoords = projCoords * 0.5 + 0.5;
 
     // get closest depth value from light’s perspective (using [0,1] range fragPosLight as coords)
-    float closestDepth = texture(A_SHADOW_MAP_IN[i], projCoords.xy).r;
+    float closestDepth = texture(A_SHADOW_MAP_IN[i], clamp(projCoords.xy, vec2(0), vec2(1))).r;
 
     // get depth of current fragment from light’s perspective
     float currentDepth = projCoords.z;
 
     // check whether current frag pos is in shadow
-    float shadow = currentDepth > closestDepth ? 1.0 : 0.0;
+	//float shadow = 0;
+	//if (texture(shadowMap, (ShadowCoord.xy / ShadowCoord.w)).z  <  (ShadowCoord.z - bias) / ShadowCoord.w)
+	float bias = max(0.05 * (1.0 - dot(tNormals, lightDir)), 0.005);
+	float shadow = currentDepth - bias > closestDepth ? 1.0 : 0.0;
 
     return shadow;
 }
 
 vec3 computeDirectionalLight(DirLight l)
 {
-    vec4 lCol = vec4(normalize(l.colour), 1); //the normalize is just a test
+    vec4 lCol = vec4(l.colour, 1); 
     vec4 colour = vec4(0);
 
     vec3 normalLightDir = normalize(l.dir);
@@ -120,8 +123,8 @@ vec3 computeDirectionalLight(DirLight l)
 
 vec3 computePointLight(PointLight l)
 {
-    vec4 lCol = vec4(normalize(l.colour), 1); //the normalize is just a test
-    vec4 colour = vec4(0);
+	vec4 lCol = vec4(l.colour, 1);
+	vec4 colour = vec4(0);
 
     vec3 normalLightDir = normalize(tFragcoord.xyz - l.pos);
 
@@ -149,14 +152,13 @@ vec3 computePointLight(PointLight l)
 
     colour += texture(ALBEDO_REF, tTexcoord) * (ambient + diff + spec);
 
-
     return vec3(colour);
 }
 
 vec3 computeSpotLight(SpotLight l)
 {
-    vec4 lCol = vec4(normalize(l.colour), 1); //the normalize is just a test
-    vec4 colour = vec4(0);
+	vec4 lCol = vec4(l.colour, 1);
+	vec4 colour = vec4(0);
 
     vec3 normalLightDir = normalize(tFragcoord.xyz - l.pos);
 
@@ -184,13 +186,13 @@ vec3 computeSpotLight(SpotLight l)
     float shadowAmnt = 0.0f;
     if(l.shadowLoc!=-1)
     {
-        colour = texture(A_SHADOW_MAP_IN[l.shadowLoc], tTexcoord);
+        //colour = texture(A_SHADOW_MAP_IN[l.shadowLoc], tTexcoord);
 
-        shadowAmnt = computeShadow(l.shadowLoc);
+        shadowAmnt = computeShadow(l.shadowLoc, normalLightDir);
     }
 
-    //colour += texture(ALBEDO_REF, tTexcoord) * (ambient + (1.0 - shadowAmnt) * (diff + spec));
-
+    colour += texture(ALBEDO_REF, tTexcoord) * (ambient + (1.0 - shadowAmnt) * (diff + spec));
+	//colour = vec4(1.0 - shadowAmnt);
     return vec3(colour);
 }
 

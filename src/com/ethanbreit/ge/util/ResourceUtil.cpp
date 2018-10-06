@@ -5,26 +5,11 @@
 
 //this is osx only
 #include <stdlib.h>
+#ifndef WIN32
 #include <libproc.h>
 #include <unistd.h>
 
-#include <mach-o/dyld.h>
-std::string _get_os_bin_path()
-{
-    std::string path;
-    uint32_t size = 256;
-    char* _temp_path = (char*) malloc(size);
-    ge::Log::dbg("test");
-    if(_NSGetExecutablePath(_temp_path, &size)!=0)
-    {
-        ge::Log::dbg("ResourceUtil", "BAD STUFF!!!!!");
-    }
-    path = _temp_path;
-    ge::Log::dbg("ResourceUtil", path);
-
-    free(_temp_path);
-    return path;
-}
+#define FILE_SEP '/'
 
 std::string _get_os_pid_bin_path()
 {
@@ -48,6 +33,31 @@ std::string _get_os_pid_bin_path()
     path = pathbuf;
     return path;
 }
+#else
+#include <windows.h>
+#define FILE_SEP '\\'
+
+std::string _get_os_pid_bin_path()
+{
+
+	std::string path;
+
+	HMODULE hModule = GetModuleHandleW(NULL);
+
+	WCHAR tpath[260];
+	GetModuleFileNameW(hModule, tpath, 260);
+
+	char ch[260];
+	char DefChar = ' ';
+	WideCharToMultiByte(CP_ACP, 0, tpath, -1, ch, 260, &DefChar, NULL);
+
+	path = std::string(ch);
+
+	ge::Log::dbg("good stuff :)", "FUCK: '" + path + "'");
+
+	return path;
+}
+#endif
 
 namespace ge
 {
@@ -64,10 +74,10 @@ namespace ge
                 return;
             initialised=true;
             std::string path = _get_os_pid_bin_path();
-            path = path.substr(0, path.find_last_of('/'));
-            path = path.substr(0, path.find_last_of('/'));
-            GE_RES_PATH = path+"/res/";
-            //Log::critErr(GE_RES_PATH);
+            path = path.substr(0, path.find_last_of(FILE_SEP));
+            path = path.substr(0, path.find_last_of(FILE_SEP));
+            GE_RES_PATH = path+ FILE_SEP+ "res"+ FILE_SEP;
+            Log::dbg(GE_RES_PATH);
         }
 
 		std::string getResPath(std::string path)

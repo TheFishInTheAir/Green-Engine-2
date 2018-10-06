@@ -32,6 +32,9 @@ namespace ge
         bool queuePause = false;
         bool queueStop = false;
 
+		std::string currentAudioSource			= "NONE";
+		std::string currentAudioSourceCACHED	= "NONE";
+
         TransformComponent* transformComponent = nullptr;
         static ComponentConstructorRegistry::StartupHook _hook;
 

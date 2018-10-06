@@ -1,8 +1,9 @@
 #include <ge/audio/AudioController.h>
 
 
-#include <OpenAL/al.h>
-#include <OpenAL/alc.h>
+#include <AL/al.h>
+#include <AL/alc.h>
+#include <AL/alext.h>
 
 #include <ge/console/Log.h>
 
@@ -49,7 +50,9 @@ namespace ge
             device = alcOpenDevice(nullptr);
             alcErrCheck("Couldn't Open Device");
 
-            context = alcCreateContext(device, nullptr);
+			ALCint attribs[] = { ALC_HRTF_SOFT, 1, 0 };
+
+            context = alcCreateContext(device, attribs);
             alcErrCheck("Couldn't Create Context");
 
             makeContextCurrent();

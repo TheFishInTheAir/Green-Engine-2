@@ -15,6 +15,7 @@
 #include <ge/memory/GlobalMemory.h>
 #include <ge/engine/scene/Scene.h>
 #include <ge/util/PreprocessorUtil.h>
+#include <ge/graphics/abs/OpenGL/types/GLShaderGroup.h>
 #include <ge/console/Log.h>
 #include <unordered_map>
 
@@ -64,7 +65,19 @@ namespace ge
 
 			gc->shaderFactory->genShaderGroup(shaders, &shaderGroup);
 
+
+			//shaderGroup->uniforms.max_load_factor();
+
             shaderGroup->uniforms = loadUniforms(manifest);
+
+
+			//NOTE: THIS SHOULD NOT BE HERE
+			for (auto key : shaderGroup->uniforms)
+			{
+				shaderGroup->uniforms.at(key.first).descriptorId = glGetUniformLocation(((GL::ShaderGroup*)shaderGroup)->programID, key.first.c_str());
+			}
+
+
 
 			*outShaderGroup = shaderGroup;
 
@@ -92,7 +105,15 @@ namespace ge
 			gc->shaderFactory->genShaderGroup(shaders, &shaderGroup);
 
             shaderGroup->uniforms = loadUniforms(manifest);
+
+
+			//NOTE: THIS SHOULD NOT BE HERE
+			for (auto key : shaderGroup->uniforms)
+			{
+				shaderGroup->uniforms.at(key.first).descriptorId = glGetUniformLocation(((GL::ShaderGroup*)shaderGroup)->programID, key.first.c_str());
+			}
             
+
 			*outShaderGroup = shaderGroup;
 
 			return Error();

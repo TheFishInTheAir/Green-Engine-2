@@ -25,6 +25,7 @@ namespace ge
     private:
         static ComponentConstructorRegistry::StartupHook _hook;
 
+		bool hasCamComponent = false;
         bool hasTransformComponent = false;
         TransformComponent* tComp = nullptr;
         

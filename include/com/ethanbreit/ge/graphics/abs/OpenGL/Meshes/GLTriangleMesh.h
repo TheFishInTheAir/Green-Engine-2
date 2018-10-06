@@ -62,7 +62,7 @@ namespace ge
             void deepDestroy();
         private:
             
-            void applyUniform(ge::Uniform);
+            void applyUniform(ge::Uniform&);
             
             unsigned int _vao;
 

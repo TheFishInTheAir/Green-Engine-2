@@ -45,6 +45,7 @@ namespace ge
                     ge_Error_GENERATE("attempt to set texture's anisotropy to ("+std::to_string(anisotropy)+") higher than graphics card limit ("+std::to_string(GlobalMemory::get("ge_max_anisotropy").getData<byte>())+")!");
                 }
             }
+			filtering = t;
             return Error();
         }
     }

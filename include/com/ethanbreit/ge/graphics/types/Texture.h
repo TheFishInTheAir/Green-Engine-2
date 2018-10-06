@@ -10,7 +10,7 @@
 
 namespace ge
 {
-    struct Texture
+    struct Texture //TODO: fill out struct and add a destructor.
     {
         //NOTE: we should maybe have a thing here for the name/url
         std::string url;
@@ -22,7 +22,7 @@ namespace ge
         ColourModelType::type getColourModel();
         virtual Error setFiltering(TextureFilterType::type) = 0;
 
-    private:
+    protected:
         int width,height;
 
         TextureFilterType   ::type filtering;

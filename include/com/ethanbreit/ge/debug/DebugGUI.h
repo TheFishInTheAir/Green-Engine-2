@@ -56,6 +56,7 @@ namespace ge
 
             void dtfMat(std::string, std::string*);
             void dtfMD(std::string, std::string*);
+			void dtfAC(std::string, std::string*);
 
             void dtfFVEC3(std::string, glm::vec3*);
             void dtfCOL3(std::string, glm::vec3*);

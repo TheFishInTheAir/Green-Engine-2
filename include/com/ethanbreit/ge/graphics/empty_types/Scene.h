@@ -11,6 +11,7 @@
 #include <array>
 #include <ge/graphics/types/Material.h>
 #include <json/json.hpp>
+#include <ge/audio/AudioSource.h>
 namespace ge
 {
 	namespace Empty
@@ -31,7 +32,8 @@ namespace ge
 
 
 			std::forward_list<std::string>							shaders;
-			std::forward_list<Material>							materials;
+			std::forward_list<Material>								materials;
+			std::forward_list<Audio::AudioClip*>					audioClips;
 
 			std::forward_list<Empty::StaticObject>					staticObjects;
 
